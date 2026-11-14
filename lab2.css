@@ -1,0 +1,28 @@
+#as2{margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--line);padding-top:30px;user-select:none;-webkit-user-select:none}
+#as2 .top{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+#as2 h2{font-size:clamp(34px,5vw,64px)}
+#as2 .bar{height:3px;background:var(--line);margin:16px 0}#as2 .bar i{display:block;height:100%;width:0;background:#fff;transition:width .6s var(--ease)}
+#as2 .ast{font:500 13px Inter;letter-spacing:.08em;color:var(--hi);min-height:24px;text-transform:uppercase}
+#as2 .sg{position:relative;border:1px solid var(--line);background:#0d0d0f;overflow:hidden;touch-action:none}
+#as2 .sg svg{width:100%;max-height:58vh;display:block;margin:0 auto}
+#as2 .slot{cursor:pointer}#as2 .slot .gh{fill:rgba(255,255,255,.03);stroke:#fff;stroke-width:1.5;stroke-dasharray:6 5;animation:dsh3 1s linear infinite}
+#as2 .slot text{font:500 9px Inter;fill:#9a9aa3;text-anchor:middle;letter-spacing:.1em}
+#as2 .slot.lk{opacity:.22;pointer-events:none}#as2 .slot.ok{display:none}#as2 .slot.tg .gh{fill:rgba(255,255,255,.18);stroke-width:2.5}#as2 .slot.bad{animation:shk .4s}
+#as2 .pl{fill:#18181b;stroke:#e4e5ea;stroke-width:2}#as2 .ar{stroke:#cfd0d6;stroke-width:14;stroke-linecap:round}#as2 .hb{fill:#fff}
+#as2 .tr{fill:none;stroke:#fff;stroke-width:1;stroke-dasharray:3 3;animation:dsh3 .8s linear infinite;opacity:.8}
+#as2 .chp{fill:#2a2a2f;stroke:#fff;stroke-width:1;animation:pu3 1.4s ease-in-out infinite}
+#as2 .tx{font:600 6px Inter;fill:#fff;text-anchor:middle;letter-spacing:.05em}
+#as2 .rt{transform-box:fill-box;transform-origin:center;animation:sp3 .3s linear infinite;animation-play-state:paused;fill:rgba(255,255,255,.3);stroke:#fff}
+#as2 .run .rt{animation-play-state:running;animation-duration:.1s}
+#as2 .in2{opacity:0;transition:opacity .4s}#as2 .xr .in2{opacity:1}#as2 .out{transition:opacity .4s}#as2 .xr .out{opacity:.1}
+#as2 .sn{transform-box:fill-box;transform-origin:center;animation:snap .6s var(--ease)}
+#as2 .bu{fill:none;stroke:#fff;transform-box:fill-box;transform-origin:center;animation:bu .7s ease-out forwards}
+#as2 #dg{transition:translate 2s var(--ease),scale 2s var(--ease)}#as2 .lift #dg{translate:0 -70px;scale:1.08}
+#as2 #sh{transition:opacity 2s,scale 2s;transform-box:fill-box;transform-origin:center;fill:rgba(255,255,255,.12)}#as2 .lift #sh{opacity:.4;scale:.6}
+#as2 .lift #dg{animation:hv 2s ease-in-out 2s infinite}
+#as2 .tray{display:flex;gap:10px;flex-wrap:wrap;padding:14px;border-bottom:1px solid var(--line);min-height:70px;position:sticky;top:68px;z-index:5;background:#0d0d0f}
+#as2 .ti{border:1px solid #fff;background:#18181b;color:var(--ink);padding:12px 16px;font:700 15px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;cursor:grab;touch-action:none;transition:.25s}
+#as2 .ti:hover,#as2 .ti.sel{background:#fff;color:#0a0a0b;transform:translateY(-4px)}#as2 .ti.used{display:none}
+.fg{position:fixed;z-index:1000;pointer-events:none;border:1px solid #fff;background:#fff;color:#0a0a0b;padding:10px 14px;font:700 15px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;translate:-50% -50%;box-shadow:0 0 30px rgba(255,255,255,.5)}
+@keyframes snap{from{scale:1.6;opacity:0}60%{scale:.92}}@keyframes bu{from{scale:.3;opacity:1}to{scale:5;opacity:0}}
+@keyframes shk{25%{translate:-8px 0}75%{translate:8px 0}}@keyframes dsh3{to{stroke-dashoffset:-11}}@keyframes pu3{50%{opacity:.3}}@keyframes sp3{to{rotate:360deg}}@keyframes hv{50%{translate:0 -84px}}
