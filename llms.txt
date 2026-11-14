@@ -9,13 +9,13 @@ Key facts:
 - OEM and bulk orders: arup@spaceandtech-engineerings.com, +91 96657 17903.
 
 ## Products
-- [Aazmuth flight controller](https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html): Modular, triple-redundant flight controller with isolated sensors.
-- [Exelr8 FPV flight controller F7](https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html): F7 flight controller for FPV builds.
-- [Skydrive AM32 60A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-60a.html): 60A AM32 speed controller for 3-6S batteries.
-- [Skydrive AM32 40A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-40a.html): 40A AM32 speed controller for 3-6S batteries.
-- [Skydrive 55A AM32 4-in-1](https://www.spaceandtechengineerings.com/skydrive-55a-am32-4-in-1.html): 4-in-1 AM32 ESC for FPV drones.
-- [NAVSATE GPS for UAVs](https://www.spaceandtechengineerings.com/navsate-gps-for-uavs.html): GPS module tuned for UAVs.
-- [NAVSATE mini for FPV drones](https://www.spaceandtechengineerings.com/navsate-mini-gps.html): Compact GPS for FPV drones.
+- [Aazmuth flight controller](https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html): Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.
+- [Exelr8 FPV flight controller F7](https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html): F7 flight controller for light, fast FPV racing and freestyle builds.
+- [Skydrive AM32 60A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-60a.html): 60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads such as sprayer drones.
+- [Skydrive AM32 40A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-40a.html): 40A AM32 ESC for 3-6S LiPo builds. A light choice for survey and mapping drones.
+- [Skydrive 55A AM32 4-in-1](https://www.spaceandtechengineerings.com/skydrive-55a-am32-4-in-1.html): Four 55A AM32 ESCs on one board. Short wiring for 5-inch FPV builds and below.
+- [NAVSATE GPS for UAVs](https://www.spaceandtechengineerings.com/navsate-gps-for-uavs.html): UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.
+- [NAVSATE mini for FPV drones](https://www.spaceandtechengineerings.com/navsate-mini-gps.html): Compact NAVSATE GPS for FPV drones. Adds position data to small builds.
 
 ## Coming soon
 - Dev Kit 1
@@ -33,6 +33,7 @@ Key facts:
 - [Home](https://www.spaceandtechengineerings.com/)
 - [All products](https://www.spaceandtechengineerings.com/products.html)
 - [About](https://www.spaceandtechengineerings.com/about.html)
+- [Investors](https://www.spaceandtechengineerings.com/investors.html)
 - [Contact](https://www.spaceandtechengineerings.com/contact.html)
 
 ## Contact

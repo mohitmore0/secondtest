@@ -1,7 +1,6 @@
 # Search engines and AI answer engines are welcome. To opt out of AI training only, change that bot to "Disallow: /".
 User-agent: *
 Allow: /
-Disallow: /product.html
 
 User-agent: Googlebot
 Allow: /

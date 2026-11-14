@@ -26,14 +26,14 @@ let path='';
 const org={"@context":"https://schema.org","@type":"Organization",name:S.name,url:S.url,logo:abs(S.hero.image),email:S.email,telephone:'+'+S.whatsapp,sameAs:S.social.map(s=>s.url)};
 
 /* ---------- shared parts ---------- */
-const links=[['Products','products.html','products'],['Solutions','solutions.html','solutions'],['Drone Lab','drone-lab.html','lab'],['Docs',S.docsUrl,''],['Support','support.html','support'],['About','about.html','about'],['Contact','contact.html','contact']];
+const links=[['Products','products.html','products'],['Solutions','solutions.html','solutions'],['Drone Lab','drone-lab.html','lab'],['Docs',S.docsUrl,''],['Support','support.html','support'],['About','about.html','about'],['Investors','investors.html','investors'],['Contact','contact.html','contact']];
 const cur=l=>(l[2]&&(page===l[2]||(l[2]==='products'&&page==='product')))?' aria-current="page"':'';
 const header=`<header><div class="wrap nav"><a class="logo" href="index.html">${E(S.short)}<small>${E(S.tagline)}</small></a>
 <nav aria-label="Main">${links.map(l=>`<a href="${E(l[1])}"${cur(l)}>${l[0]}</a>`).join('')}</nav>
 <div class="hbar"><a class="btn" href="contact.html">Get a quote</a><button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button></div></div></header>
 <div class="menu" id="menu">${[['Home','index.html']].concat(links.map(l=>[l[0],l[1]])).map(l=>`<a class="m" href="${E(l[1])}">${l[0]}</a>`).join('')}
 <div class="mf">Talk to our engineers<a href="${tel}">${E(S.phone)}</a></div></div>`;
-const footer=`<footer><div class="wrap"><div><a href="solutions.html">Solutions</a><a href="support.html">Support</a><a href="about.html">About</a><a href="${E(S.careersUrl)}">Careers</a><a href="${E(S.docsUrl)}">Documents</a>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div><div>&copy; ${S.year} ${E(S.name)}</div></div></footer>
+const footer=`<footer><div class="wrap"><div><a href="solutions.html">Solutions</a><a href="support.html">Support</a><a href="about.html">About</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="investors.html">Investors</a><a href="${E(S.docsUrl)}">Documents</a>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div><div>&copy; ${S.year} ${E(S.name)}</div></div></footer>
 <div class="dock" id="dock"><a class="btn o" href="${tel}">Call us</a><a class="btn" href="contact.html">Get a quote</a></div>`;
 
 const card=p=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img loading="lazy" src="${E(p.image)}" alt="${E(p.name)}"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(p.name)}</h3><p>${E(p.short)}</p></div></a>`;
@@ -96,7 +96,9 @@ ${imgs.length>1?`<div class="thumbs">${imgs.map((u,i)=>`<button type="button" da
 ${p.features&&p.features.length?`<h3>Highlights</h3><ul>${p.features.map(f=>`<li>${E(f)}</li>`).join('')}</ul>`:''}
 ${p.specs&&p.specs.length?`<h3>Specifications</h3><table>${p.specs.map(s=>`<tr><td>${E(s[0])}</td><td>${E(s[1])}</td></tr>`).join('')}</table>`:''}
 ${p.docs&&p.docs.length?`<h3>Documentation</h3><div class="docs">${p.docs.map(x=>`<a href="${E(x.url)}">${E(x.label)}</a>`).join('')}</div>`:''}
-<div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div></div></div></div></section>
+${p.bestFor&&p.bestFor.length?`<h3>Best for</h3><div class="docs">${p.bestFor.map(x=>`<a href="solutions.html">${E(x)}</a>`).join('')}</div>`:''}
+<div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${soon?'':`<a class="btn o" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I want a quote for '+p.name+'. Quantity: ')}">WhatsApp quote</a>`}${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div></div></div></div></section>
+${p.faq&&p.faq.length?`<section><div class="wrap"><h2>${E(p.name)} FAQ</h2><p class="lead"></p>${p.faq.map(f=>`<details><summary>${E(f.q)}</summary><p>${E(f.a)}</p></details>`).join('')}</div></section>`:''}
 ${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map(card).join('')}</div></div></section>`:''}</main>`;
 },
 about(){
@@ -124,9 +126,19 @@ ${A.gallery.length?`<section><div class="wrap"><h2>Inside the workshop</h2><p cl
 <section id="find" class="alt"><div class="wrap"><h2>Find us</h2><p class="lead">Two cities, one team.</p><div class="offs">${A.offices.map((o,i)=>`<div class="of rv"><h3>${E(o.city)}</h3><p class="mute" style="margin:0">${E(o.role)}</p><p>${E(o.address)}</p><p class="mute" style="font-size:13px;letter-spacing:.08em;margin:0 0 6px">${co[i%2]}</p><span class="clk live"></span></div>`).join('')}</div></div></section>
 <section><div class="wrap"><h2>Work with us</h2><p class="lead">Partners, distributors, builders and engineers: start here.</p><div class="tiles">
 <a class="tile go rv" href="contact.html"><b>\u2197</b><h3>Partner with us</h3><p class="mute">OEM, distribution and integration enquiries.</p></a>
-<a class="tile go rv" href="${E(S.careersUrl)}"><b>\u2197</b><h3>Join the team</h3><p class="mute">Hardware, firmware and flight-test roles.</p></a>
+${S.careersUrl?`<a class="tile go rv" href="${E(S.careersUrl)}"><b>\u2197</b><h3>Join the team</h3><p class="mute">Hardware, firmware and flight-test roles.</p></a>`:''}
 <a class="tile go rv" href="${E(S.docsUrl)}"><b>\u2197</b><h3>Read the docs</h3><p class="mute">Pinouts, calibration and setup guides.</p></a></div></div></section>
 <section class="fin alt"><div class="wrap"><h2>Hardware that flies</h2><p class="lead" style="margin-inline:auto">Designed in India. Tested in the air.</p><a class="btn o" href="#">Back to top</a></div></section></main>`;
+},
+investors(){
+  const I=S.investors;path='investors.html';
+  seo(`Investors | ${S.name}`,I.text,S.hero.image,org,path);
+  return `<main><section style="border-bottom:1px solid var(--line)"><div class="wrap"><span class="eye">Investors and partners</span><h1 class="cn" style="font-size:clamp(38px,8vw,92px);max-width:11em">${E(I.title)}</h1><p class="lead" style="color:var(--hi);font-size:19px;margin-bottom:0">${E(I.text)}</p><div class="cta"><a class="btn" href="mailto:${E(S.email)}?subject=${encodeURIComponent('Investor enquiry')}">Contact us</a><a class="btn o" href="products.html">See the products</a></div></div></section>
+<div class="stats"><div class="wrap">${S.stats.map(s=>`<div><b data-n="${s.n}" data-s="${E(s.s)}">${s.n}${E(s.s)}</b><span>${E(s.l)}</span></div>`).join('')}<div><b>${S.partners.length}</b><span>Partners and customers</span></div>${(I.metrics||[]).map(m=>`<div><b>${E(m.n)}</b><span>${E(m.l)}</span></div>`).join('')}</div></div>
+<section><div class="wrap"><h2>Why Space and Tech Engineering</h2><p class="lead">What makes the business hard to copy.</p><div class="tiles t3">${I.thesis.map((t,i)=>`<div class="tile rv"><b>0${i+1}</b><h3>${E(t.t)}</h3><p class="mute">${E(t.x)}</p></div>`).join('')}</div></div></section>
+<section class="alt"><div class="wrap"><h2>What we sell today</h2><p class="lead">${P.filter(p=>p.status!=='soon').length} products across flight control, power and navigation.</p><div class="grid">${P.filter(p=>p.status!=='soon'&&p.featured).map(card).join('')}</div></div></section>
+<section><div class="wrap"><h2>Roadmap</h2><p class="lead">What ships next.</p><div class="tiles t3">${I.roadmap.map((t,i)=>`<div class="tile rv"><b>0${i+1}</b><h3>${E(t.t)}</h3><p class="mute">${E(t.x)}</p></div>`).join('')}</div></div></section>
+<section class="alt"><div class="wrap join" style="margin:0 auto"><div><h3>${E(I.cta)}</h3><p>${E(S.email)} &middot; ${E(S.phone)}</p></div><a class="btn" href="mailto:${E(S.email)}?subject=${encodeURIComponent('Investor enquiry')}">Email us</a></div></section></main>`;
 },
 solutions(){
   path='solutions.html';
@@ -152,7 +164,7 @@ contact(){
 <div style="margin-top:26px">${S.about.offices.map(o=>`<div class="off" style="margin-bottom:12px"><h3 style="font-size:26px">${E(o.role)}</h3><p>${E(o.address)}</p></div>`).join('')}</div></div>
 <form id="f"><label>Your name<input name="n" required autocomplete="name"></label><label>Phone<input name="p" type="tel" required autocomplete="tel"></label>
 <label>Product<select name="s"><option value="">Not sure yet</option>${P.map(p=>`<option value="${E(p.name)}"${p.slug===sel?' selected':''}>${E(p.name)}</option>`).join('')}</select></label>
-<label>Message<textarea name="m" placeholder="Tell us about your build and quantity"></textarea></label><button class="btn" type="submit">Send by email</button><p class="mute" style="font-size:13px;margin:0">This opens your email app with the message ready to send.</p></form></div></section></main>`;
+<label>Message<textarea name="m" placeholder="Tell us about your build and quantity"></textarea></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p class="mute" style="font-size:13px;margin:0">This opens your email app with the message ready to send.</p></form></div></section></main>`;
 }};
 
 /* ---------- render ---------- */
@@ -171,12 +183,14 @@ if(pg){const show=c=>{const l=P.filter(p=>c==='All'||p.category===c);pg.innerHTM
 $$('.filters button').forEach(b=>b.onclick=()=>{$$('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));show(b.dataset.c)});show('All')}
 
 /* product gallery */
-$$('.thumbs button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,u=[P.find(x=>x.slug===q.get('p')).image].concat(P.find(x=>x.slug===q.get('p')).gallery||[]);$('#mi').src=u[i];$$('.thumbs button').forEach(x=>x.toggleAttribute('aria-current',x===b))});
+$$('.thumbs button').forEach(b=>b.onclick=()=>{const pp=P.find(x=>x.slug===(q.get('p')||d.body.dataset.slug)),i=+b.dataset.i,u=[pp.image].concat(pp.gallery||[]);$('#mi').src=u[i];$$('.thumbs button').forEach(x=>x.toggleAttribute('aria-current',x===b))});
 
 /* contact form -> mailto */
 const f=$('#f');
 if(f)f.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(f));
 location.href='mailto:'+S.email+'?subject='+encodeURIComponent('Quote request'+(v.s?': '+v.s:''))+'&body='+encodeURIComponent(`Name: ${v.n}\nPhone: ${v.p}\nProduct: ${v.s||'-'}\n\n${v.m||''}`)};
+
+const wa=$('#wa');if(wa)wa.onclick=()=>{const v=Object.fromEntries(new FormData(f));open('https://wa.me/'+S.whatsapp+'?text='+encodeURIComponent(`Hi, I am ${v.n||''}. Product: ${v.s||'not sure yet'}. ${v.m||''} Phone: ${v.p||''}`),'_blank')};
 
 /* reveal, counters, marquee */
 const rm=false;

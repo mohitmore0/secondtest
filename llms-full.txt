@@ -11,12 +11,13 @@ Category: Flight controllers
 Status: Available
 URL: https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html
 
-Separate IMU modules connect over 20-pin Aazmuth Bus connectors, with each sensor on its own isolated bus. Built for defense, industry, agriculture, startups and universities.
+Aazmuth is our flagship flight controller for professional UAVs. It runs on an STM32 H7 (Cortex-M7, up to 480 MHz) and carries 3 IMUs and 2 barometers, each on its own isolated bus, so one noisy or failed sensor does not take down the flight. IMU boards plug in over 20-pin Aazmuth Bus connectors, which means you can swap or upgrade sensors without replacing the controller. Built for defence, industry, agriculture, survey, startups and universities.
 
 Highlights:
-- Isolated sensors, triple redundancy
-- Modular IMU boards on 20-pin Aazmuth Bus
-- For defense, industry, agriculture, startups and universities
+- Triple IMU and dual barometer redundancy
+- Isolated sensor buses, so vibration on one does not corrupt the others
+- Modular IMU boards on the 20-pin Aazmuth Bus
+- Public pinout, calibration and sensor-integration docs
 
 Specifications:
 - Microcontroller: STM32 H7, Cortex-M7
@@ -38,18 +39,28 @@ Category: Flight controllers
 Status: Available
 URL: https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html
 
-Flight controller for FPV drones.
+Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.
+
+Highlights:
+- F7 processor
+- Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS
+- Designed and supported in India
+
+Specifications:
+- Processor: F7
+- Built for: FPV racing and freestyle
 
 ## Skydrive AM32 60A 3-6S
 Category: ESCs
 Status: Available
 URL: https://www.spaceandtechengineerings.com/skydrive-am32-60a.html
 
-AM32 firmware ESC for 3-6S builds.
+The Skydrive AM32 60A is a 3-6S electronic speed controller running open AM32 firmware, so you can configure and update it with the usual AM32 tools. Its 60 A rating suits heavy-lift and agriculture drones carrying sprayer payloads.
 
 Highlights:
-- AM32 firmware
-- 3-6S input
+- 60 A rating for heavy payloads
+- AM32 firmware, configurable with standard AM32 tools
+- 3-6S LiPo input
 
 Specifications:
 - Current: 60 A
@@ -61,11 +72,12 @@ Category: ESCs
 Status: Available
 URL: https://www.spaceandtechengineerings.com/skydrive-am32-40a.html
 
-AM32 firmware ESC for 3-6S builds.
+The Skydrive AM32 40A is a 3-6S electronic speed controller running AM32 firmware. It is a light, efficient choice for survey, mapping and general UAV builds that do not need the 60 A headroom.
 
 Highlights:
+- 40 A rating
 - AM32 firmware
-- 3-6S input
+- 3-6S LiPo input
 
 Specifications:
 - Current: 40 A
@@ -77,11 +89,12 @@ Category: ESCs
 Status: Available
 URL: https://www.spaceandtechengineerings.com/skydrive-55a-am32-4-in-1.html
 
-Four ESCs on one board for FPV builds.
+The Skydrive 55A 4-in-1 puts four AM32 ESCs on a single board, which keeps wiring short and the stack tidy on 5-inch FPV builds and smaller. It is the matching ESC for the Exelr8 F7 flight controller.
 
 Highlights:
+- 4 ESCs on one board
+- 55 A rating
 - AM32 firmware
-- 4-in-1 board
 
 Specifications:
 - Current: 55 A
@@ -93,42 +106,58 @@ Category: GPS
 Status: Available
 URL: https://www.spaceandtechengineerings.com/navsate-gps-for-uavs.html
 
-A GPS module tuned for UAVs and tested on long flights.
+NAVSATE is our GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position and ground-speed data it needs for position hold, return-to-home and waypoint missions, and pairs with Aazmuth for survey, agriculture and defence work.
+
+Highlights:
+- Tuned for UAVs
+- Tested on long flights
+- Enables position hold, return-to-home and waypoint missions
+
+Specifications:
+- Built for: UAVs
+- Use: Position hold, return-to-home, waypoints
 
 ## NAVSATE mini for FPV drones
 Category: GPS
 Status: Available
 URL: https://www.spaceandtechengineerings.com/navsate-mini-gps.html
 
-Small GPS module for FPV builds.
+NAVSATE mini is the compact version of our UAV GPS, made for FPV builds where weight and space matter. It adds position data for features like return-to-home to racing and long-range quads.
+
+Highlights:
+- Compact size for FPV builds
+- Matches the Exelr8 FPV stack
+
+Specifications:
+- Built for: FPV drones
 
 ## Dev Kit 1
 Category: Development kits
 Status: Coming soon
 URL: https://www.spaceandtechengineerings.com/dev-kit-1.html
 
-Details will be added soon.
+Dev Kit 1 is on our roadmap for universities, labs and startups that want to learn and prototype on our flight electronics. Ask us and we will tell you as soon as there is a launch date.
 
 ## Dev Kit 2
 Category: Development kits
 Status: Coming soon
 URL: https://www.spaceandtechengineerings.com/dev-kit-2.html
 
-Details will be added soon.
+Dev Kit 2 is on our roadmap. Ask us and we will tell you as soon as there is a launch date.
 
 ## TRX 5 km
 Category: Transmitters
 Status: Coming soon
 URL: https://www.spaceandtechengineerings.com/trx-5km.html
 
-Details will be added soon.
+TRX 5 km is a radio transmitter on our roadmap, aimed at 5 km control range. Ask us and we will tell you as soon as there is a launch date.
 
 ## TRX 10 km
 Category: Transmitters
 Status: Coming soon
 URL: https://www.spaceandtechengineerings.com/trx-10km.html
 
-Details will be added soon.
+TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.
 
 ## How a drone works
 A drone flies on six core parts working together: a frame that holds everything, four brushless motors with propellers that create thrust, ESCs that power the motors, a flight controller that decides how fast each motor spins, a GPS that gives position, and a battery. Sensors such as IMUs and barometers tell the flight controller how the drone is moving, and it corrects the motors many times a second to stay stable.
@@ -217,23 +246,29 @@ A: Yes. Space and Tech Engineering LLP designs flight controllers, AM32 ESCs and
 Q: Can I order in bulk or request a custom OEM stack?
 A: Yes. Send your platform, use case and quantity through the quote form, or call or WhatsApp +91 96657 17903. The team replies with a matched stack, and custom firmware support is available for OEM programmes.
 
-Q: Which firmware do your ESCs run?
-A: Skydrive ESCs run AM32 firmware, so you can configure and update them with the usual AM32 tools.
+Q: What is AM32 firmware?
+A: AM32 is open-source firmware for 32-bit brushless ESCs. Skydrive ESCs run it, so you can configure and update them with the usual AM32 tools.
 
-Q: Can I buy in bulk or for a company project?
-A: Yes. Send quantity and use case through the quote form, or call us, and we will reply with the right parts.
-
-Q: Where are the pinouts and setup guides?
-A: In our public documentation. Each product page links to its own docs, where they exist.
+Q: Which ESC should I buy for an agriculture or sprayer drone?
+A: Start with the Skydrive AM32 60A 3-6S, which is meant for heavier payloads. Share your motor, prop and battery setup and we will confirm the fit.
 
 Q: Which flight controller should I pick?
 A: Aazmuth for redundancy and professional work, Exelr8 F7 for FPV builds. Tell us your build and we will confirm.
 
-Q: When will the coming-soon products launch?
-A: Use Ask about launch on the product page and we will tell you as soon as there is a date.
+Q: Are your drone electronics made in India?
+A: They are designed in Mumbai and Nashik by our own hardware and firmware engineers, so support and fixes are a phone call away.
+
+Q: Can I buy in bulk or for a company or OEM project?
+A: Yes. Send quantity and use case through the quote form, or call or WhatsApp us, and we will reply with the right parts.
+
+Q: Where are the pinouts and setup guides?
+A: In our public documentation. Each product page links to its own docs, where they exist.
 
 Q: Do you ship across India?
 A: Call or WhatsApp us with your pincode and quantity and we will confirm shipping.
+
+Q: When will the coming-soon products launch?
+A: Dev Kit 1, Dev Kit 2 and the TRX transmitters are on our roadmap. Message us and we will tell you as soon as there is a date.
 
 ## Contact
 Phone: +91 96657 17903

@@ -5,7 +5,7 @@ const dr=($('#fd')||{}).innerHTML||'';
 ['.tick','.stats','#an','#pb'].forEach(q=>$$(q).forEach(e=>e.remove()));
 /* ---- clean hero ---- */
 hero.classList.add('n4');
-const W=['Flight','electronics','for','drone','makers'].map((w,i)=>`<span class="w"><i style="animation-delay:${.2+i*.13}s">${w}</i></span>`).join(' ');
+const W=(S.hero&&S.hero.title?S.hero.title:'Flight electronics for drone makers').split(' ').map((w,i)=>`<span class="w"><i style="animation-delay:${.2+i*.13}s">${w}</i></span>`).join(' ');
 const st=(S.stats||[]).slice(0,3);
 hero.innerHTML=`<div class="g4"></div><div class="wrap in4"><div><div class="eb">Made in India - Designed in Mumbai and Nashik</div><h1>${W}</h1><p>${S.hero?S.hero.text:''}</p><div class="bs"><a class="btn" href="#cfg">Configure your stack</a><a class="btn o" href="contact.html">Get OEM quote</a></div></div>
 <div class="sg4" id="sg4"><svg class="or" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><circle class="o1" cx="50" cy="50" r="48"/><circle class="o2" cx="50" cy="50" r="38"/><circle class="o3" cx="50" cy="50" r="20"/></svg><div class="dw" id="dw">${dr}</div>

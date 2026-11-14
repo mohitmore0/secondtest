@@ -52,3 +52,14 @@ V3 NOTES - SEO / AEO / GEO (IMPORTANT)
     2) Google Search Console + Bing Webmaster Tools me sitemap.xml submit karo
     3) Google Business Profile banao (Nashik + Mumbai), wahi phone/address use karo jo contact page par hai
     4) Rich Results Test (search.google.com/test/rich-results) se schema check karo
+
+V4 NOTES - PRODUCT-FOCUSED REBUILD
+  data.js           product copy rewritten (benefit + spec led), per-product faq[] and bestFor[], site FAQ expanded,
+                    NEW investors{} block (metrics: [] khali = hide; revenue/funding tabhi daalo jab public karna ho)
+  investors.html    NEW page (build.js + app.js dono me)
+  build.js          coming-soon products ab noindex + sitemap se bahar, per-product FAQ schema, WhatsApp quote link,
+                    real logo.svg + og-default.png, robots.txt cleanup, THIN PRODUCT warning (specs kam ho to batata hai)
+  app.js / fx4.js  hero H1 ab data.js (hero.title) se aata hai - static aur visible H1 ek jaisa; careers link khali ho to hide;
+                    product page par Best for + FAQ + WhatsApp quote; contact par "Send on WhatsApp"
+  TODO (aapko karna hai): 1) Wix images images/ folder me download karke data.js me paths badlo  2) Exelr8 / NAVSATE ke specs daalo
+        3) domain check: site = spaceandtechengineerings.com, email = spaceandtech-engineerings.com (hyphen)  4) price daalna ho to Offer schema add karwao
