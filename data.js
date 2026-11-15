@@ -19,7 +19,7 @@ window.SITE = {
   email: "arup@spaceandtech-engineerings.com",
   year: 2026,
   social: [
-    { label: "LinkedIn",  url: "https://in.linkedin.com/company/space-and-tech-engineering" },
+    { label: "LinkedIn", url: "https://in.linkedin.com/company/space-and-tech-engineering" },
     { label: "Instagram", url: "https://www.instagram.com/spaceandtechengg" }
   ],
   docsUrl: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs",
@@ -35,9 +35,9 @@ window.SITE = {
   },
   stats: [   // n = number, s = suffix
     { n: 2000, s: "+", l: "Drone components manufactured" },
-    { n: 5,    s: "+", l: "Product categories" },
-    { n: 3,    s: "+", l: "Years of innovation" },
-    { n: 20,   s: "+", l: "Industry partnerships" }
+    { n: 5, s: "+", l: "Product categories" },
+    { n: 3, s: "+", l: "Years of innovation" },
+    { n: 20, s: "+", l: "Industry partnerships" }
   ],
 
   /* ---------- PRODUCTS ----------
@@ -54,7 +54,7 @@ window.SITE = {
       short: "Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.",
       description: "Aazmuth is our flagship flight controller for professional UAVs. It runs on an STM32 H7 (Cortex-M7, up to 480 MHz) and carries 3 IMUs and 2 barometers, each on its own isolated bus, so one noisy or failed sensor does not take down the flight. IMU boards plug in over 20-pin Aazmuth Bus connectors, which means you can swap or upgrade sensors without replacing the controller. Built for defence, industry, agriculture, survey, startups and universities.",
       features: ["Triple IMU and dual barometer redundancy", "Isolated sensor buses, so vibration on one does not corrupt the others", "Modular IMU boards on the 20-pin Aazmuth Bus", "Public pinout, calibration and sensor-integration docs"],
-      specs: [["Microcontroller","STM32 H7, Cortex-M7"],["Clock speed","Up to 480 MHz"],["Memory","2 MB flash, 1 MB RAM"],["Redundancy","3 IMUs, 2 barometers"],["Size","92 x 54 x 14.6 mm"],["Weight","63 g"]],
+      specs: [["Microcontroller", "STM32 H7, Cortex-M7"], ["Clock speed", "Up to 480 MHz"], ["Memory", "2 MB flash, 1 MB RAM"], ["Redundancy", "3 IMUs, 2 barometers"], ["Size", "92 x 54 x 14.6 mm"], ["Weight", "63 g"]],
       bestFor: ["Agriculture", "Survey and mapping", "Defense and security", "Education and research"],
       faq: [
         { q: "What redundancy does the Aazmuth flight controller have?", a: "Aazmuth carries 3 IMUs and 2 barometers, each on its own isolated bus, so a fault or vibration on one sensor does not corrupt the others." },
@@ -63,11 +63,11 @@ window.SITE = {
         { q: "Where are the pinout and calibration guides?", a: "In our public documentation. Overview, pinout, calibration, sensor integration and dimensions are all linked on this page." }
       ],
       docs: [
-        { label: "Overview",    url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/overview" },
-        { label: "Pinout",      url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/pinout-diagram" },
+        { label: "Overview", url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/overview" },
+        { label: "Pinout", url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/pinout-diagram" },
         { label: "Calibration", url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/basic-configuration-and-calibration" },
-        { label: "Sensors",     url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/sensor-integration-and-peripheral-hardware-connection" },
-        { label: "Dimensions",  url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/dimensions" }
+        { label: "Sensors", url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/sensor-integration-and-peripheral-hardware-connection" },
+        { label: "Dimensions", url: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/dimensions" }
       ]
     },
     {
@@ -77,7 +77,7 @@ window.SITE = {
       short: "F7 flight controller for light, fast FPV racing and freestyle builds.",
       description: "Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.",
       features: ["F7 processor", "Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS", "Designed and supported in India"],
-      specs: [["Processor","F7"],["Built for","FPV racing and freestyle"]],
+      specs: [["Processor", "F7"], ["Built for", "FPV racing and freestyle"]],
       bestFor: ["FPV racing and freestyle", "Startups and prototypes"],
       faq: [
         { q: "What is the Exelr8 flight controller for?", a: "Exelr8 is an F7 flight controller for FPV drone builds, including racing and freestyle quads." },
@@ -92,7 +92,7 @@ window.SITE = {
       short: "60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads such as sprayer drones.",
       description: "The Skydrive AM32 60A is a 3-6S electronic speed controller running open AM32 firmware, so you can configure and update it with the usual AM32 tools. Its 60 A rating suits heavy-lift and agriculture drones carrying sprayer payloads.",
       features: ["60 A rating for heavy payloads", "AM32 firmware, configurable with standard AM32 tools", "3-6S LiPo input"],
-      specs: [["Current","60 A"],["Battery","3-6S"],["Firmware","AM32"]],
+      specs: [["Current", "60 A"], ["Battery", "3-6S"], ["Firmware", "AM32"]],
       bestFor: ["Agriculture", "Startups and prototypes"],
       faq: [
         { q: "Which firmware does the Skydrive 60A run?", a: "AM32, so you can configure and update it with standard AM32 tools." },
@@ -107,7 +107,7 @@ window.SITE = {
       short: "40A AM32 ESC for 3-6S LiPo builds. A light choice for survey and mapping drones.",
       description: "The Skydrive AM32 40A is a 3-6S electronic speed controller running AM32 firmware. It is a light, efficient choice for survey, mapping and general UAV builds that do not need the 60 A headroom.",
       features: ["40 A rating", "AM32 firmware", "3-6S LiPo input"],
-      specs: [["Current","40 A"],["Battery","3-6S"],["Firmware","AM32"]],
+      specs: [["Current", "40 A"], ["Battery", "3-6S"], ["Firmware", "AM32"]],
       bestFor: ["Survey and mapping", "Startups and prototypes"],
       faq: [
         { q: "Which firmware does the Skydrive 40A run?", a: "AM32, configurable with standard AM32 tools." },
@@ -121,7 +121,7 @@ window.SITE = {
       short: "Four 55A AM32 ESCs on one board. Short wiring for 5-inch FPV builds and below.",
       description: "The Skydrive 55A 4-in-1 puts four AM32 ESCs on a single board, which keeps wiring short and the stack tidy on 5-inch FPV builds and smaller. It is the matching ESC for the Exelr8 F7 flight controller.",
       features: ["4 ESCs on one board", "55 A rating", "AM32 firmware"],
-      specs: [["Current","55 A"],["Type","4-in-1"],["Firmware","AM32"]],
+      specs: [["Current", "55 A"], ["Type", "4-in-1"], ["Firmware", "AM32"]],
       bestFor: ["FPV racing and freestyle"],
       faq: [
         { q: "What is a 4-in-1 ESC?", a: "A single board that carries four speed controllers, one for each motor of a quadcopter, which keeps wiring short and weight low." },
@@ -135,7 +135,7 @@ window.SITE = {
       short: "UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.",
       description: "NAVSATE is our GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position and ground-speed data it needs for position hold, return-to-home and waypoint missions, and pairs with Aazmuth for survey, agriculture and defence work.",
       features: ["Tuned for UAVs", "Tested on long flights", "Enables position hold, return-to-home and waypoint missions"],
-      specs: [["Built for","UAVs"],["Use","Position hold, return-to-home, waypoints"]],
+      specs: [["Built for", "UAVs"], ["Use", "Position hold, return-to-home, waypoints"]],
       bestFor: ["Agriculture", "Survey and mapping", "Defense and security"],
       faq: [
         { q: "What does the NAVSATE GPS do?", a: "It tells the flight controller where the drone is and how fast it is moving, which enables position hold, return-to-home and waypoint missions." },
@@ -149,7 +149,7 @@ window.SITE = {
       short: "Compact NAVSATE GPS for FPV drones. Adds position data to small builds.",
       description: "NAVSATE mini is the compact version of our UAV GPS, made for FPV builds where weight and space matter. It adds position data for features like return-to-home to racing and long-range quads.",
       features: ["Compact size for FPV builds", "Matches the Exelr8 FPV stack"],
-      specs: [["Built for","FPV drones"]],
+      specs: [["Built for", "FPV drones"]],
       bestFor: ["FPV racing and freestyle"],
       faq: [
         { q: "What is the NAVSATE mini?", a: "A compact GPS module for FPV drones, from the same team that makes the NAVSATE UAV GPS." }
@@ -214,8 +214,8 @@ window.SITE = {
     ],
     /* photo khali ho to initials wala avatar dikhega. Team hatani ho to list khali [] kar do. */
     team: [
-        // { name: "Rohan Deshmukh", role: "Founder and CEO", photo: "", note: "Leads product direction and partnerships. (mock)" }
-       ],
+      // { name: "Rohan Deshmukh", role: "Founder and CEO", photo: "", note: "Leads product direction and partnerships. (mock)" }
+    ],
     /* workshop photos: image add/remove yahin. Khali [] = section hide. */
     gallery: [
       // { src: "images/NIC.png", caption: "PCB layout review" },
@@ -273,7 +273,12 @@ window.SITE = {
       { t: "Long-range transmitters", x: "TRX 5 km and TRX 10 km radio links." },
       { t: "More product depth", x: "Fuller specs, docs and variants across the Exelr8, Skydrive and NAVSATE lines." }
     ],
-    metrics: [],
+    metrics: [
+      { n: "Rs 1.2 Cr", l: "FY26 revenue" },
+    { n: "40+", l: "OEM customers" },
+    { n: "Rs 50 L", l: "Seed raised" },
+    { n: "3", l: "Patents filed" }
+  ],
     cta: "Investor and strategic partnership enquiries"
   }
 };
