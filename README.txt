@@ -63,3 +63,5 @@ V4 NOTES - PRODUCT-FOCUSED REBUILD
                     product page par Best for + FAQ + WhatsApp quote; contact par "Send on WhatsApp"
   TODO (aapko karna hai): 1) Wix images images/ folder me download karke data.js me paths badlo  2) Exelr8 / NAVSATE ke specs daalo
         3) domain check: site = spaceandtechengineerings.com, email = spaceandtech-engineerings.com (hyphen)  4) price daalna ho to Offer schema add karwao
+
+V5: hero drone par Motors on/off switch (fx4.js + fx4.css). Props default me ruke rehte hain, switch dabane par hi ghoomte hain.

@@ -8,12 +8,14 @@ hero.classList.add('n4');
 const W=(S.hero&&S.hero.title?S.hero.title:'Flight electronics for drone makers').split(' ').map((w,i)=>`<span class="w"><i style="animation-delay:${.2+i*.13}s">${w}</i></span>`).join(' ');
 const st=(S.stats||[]).slice(0,3);
 hero.innerHTML=`<div class="g4"></div><div class="wrap in4"><div><div class="eb">Made in India - Designed in Mumbai and Nashik</div><h1>${W}</h1><p>${S.hero?S.hero.text:''}</p><div class="bs"><a class="btn" href="#cfg">Configure your stack</a><a class="btn o" href="contact.html">Get OEM quote</a></div></div>
-<div class="sg4" id="sg4"><svg class="or" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><circle class="o1" cx="50" cy="50" r="48"/><circle class="o2" cx="50" cy="50" r="38"/><circle class="o3" cx="50" cy="50" r="20"/></svg><div class="dw" id="dw">${dr}</div>
+<div class="sg4" id="sg4"><svg class="or" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"><circle class="o1" cx="50" cy="50" r="48"/><circle class="o2" cx="50" cy="50" r="38"/><circle class="o3" cx="50" cy="50" r="20"/></svg><div class="dw" id="dw">${dr}</div><button class="pw" id="pw" type="button" role="switch" aria-checked="false" aria-label="Start propellers"><span class="tk"><i></i></span><span class="pl">Motors <b>off</b></span></button>
 
 
 </div></div><div class="sc"></div>`;
 hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect(),a=(e.clientX-r.left)/r.width-.5,b=(e.clientY-r.top)/r.height-.5;$('#dw').style.transform=`rotateY(${a*24}deg) rotateX(${-b*18}deg)`});
 hero.addEventListener('pointerleave',()=>$('#dw').style.transform='');
+/* propeller power switch: props stay still until the person turns it on */
+const pw=$('#pw');pw.onclick=()=>{const on=pw.getAttribute('aria-checked')!=='true';pw.setAttribute('aria-checked',on);pw.setAttribute('aria-label',on?'Stop propellers':'Start propellers');$('b',pw).textContent=on?'on':'off';$('#dw').classList.toggle('on',on)};
 /* ---- OEM stack configurator ---- */
 const P=S.products||[],by=s=>P.find(p=>p.slug===s);
 const PL={'FPV racing':{s:[['exelr8-fpv-flight-controller-f7','Flight controller'],['skydrive-55a-am32-4-in-1','4-in-1 ESC'],['navsate-mini-gps','GPS']],w:'Light and punchy. A single 4-in-1 ESC keeps wiring short for 5-inch builds and below.'},
