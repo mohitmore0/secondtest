@@ -273,7 +273,12 @@ window.SITE = {
       { t: "Long-range transmitters", x: "TRX 5 km and TRX 10 km radio links." },
       { t: "More product depth", x: "Fuller specs, docs and variants across the Exelr8, Skydrive and NAVSATE lines." }
     ],
-    metrics: [],
+    metrics: [
+      { n: "Rs 1.2 Cr", l: "FY26 revenue" },
+    { n: "40+", l: "OEM customers" },
+    { n: "Rs 50 L", l: "Seed raised" },
+    { n: "3", l: "Patents filed" }
+  ],
     cta: "Investor and strategic partnership enquiries"
   }
 };
