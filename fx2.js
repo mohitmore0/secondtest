@@ -22,7 +22,7 @@ addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);t
 /* 5. text scramble on headings */
 const ch='ABCDEFGHJKLMNPRSTUVWXYZ0123456789#/';
 if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,t=el.dataset.t;let i=0;const iv=setInterval(()=>{el.textContent=t.split('').map((c,j)=>c===' '||j<i?c:ch[Math.random()*ch.length|0]).join('');i+=.7;if(i>=t.length){el.textContent=t;clearInterval(iv)}},30)}),{threshold:.6});
-$$('main h2,section h2').forEach(h=>{if(!h.children.length&&h.textContent.trim()&&!h.closest('#an')){h.dataset.t=h.textContent;io.observe(h)}})}
+$$('main h2,section h2').forEach(h=>{if(!h.children.length&&h.textContent.trim()&&!h.closest('#an,#tech')){h.dataset.t=h.textContent;io.observe(h)}})}
 /* 6. flying companion drone follows scroll */
 const f=d.createElement('div');f.id='fd';f.innerHTML=drone(0);d.body.appendChild(f);let ly0=scrollY,vel=0;
 addEventListener('scroll',()=>{const h=d.documentElement.scrollHeight-innerHeight,p=h>0?scrollY/h:0;vel=scrollY-ly0;ly0=scrollY;f.style.top=(10+p*72)+'%';f.style.rotate=Math.max(-25,Math.min(25,vel*.6))+'deg'},{passive:true});
