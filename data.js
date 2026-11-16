@@ -40,12 +40,12 @@ window.SITE = {
        Image badalni ho to images/ folder me file rakho aur src badlo. alt sirf screen reader / SEO ke liye. */
     interval: 3000,
     slides: [
-      { src: "images/hero.avif",    ms: 6000, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
+      { src: "images/hero.png",    ms: 6000, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
       { src: "images/azmuth.avif",  ms: 3000, alt: "Azmuth flight controller", href: "aazmuth-flight-controller.html" },
       { src: "images/exclr8.avif",  ms: 3000, alt: "Exelr8 flight controller for FPV drones", href: "exelr8-fpv-flight-controller-f7.html" },
-      { src: "images/4in1.avif",    ms: 3000, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
+      { src: "images/4in1.png",    ms: 3000, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
       { src: "images/sateesc.avif", ms: 3000, alt: "SATE-ESC single electronic speed controller", href: "skydrive-am32-60a.html" },
-      { src: "images/navsate.avif", ms: 3000, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
+      { src: "images/navsate.png", ms: 3000, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
     ]
   },
   stats: [   // n = number, s = suffix
