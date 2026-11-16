@@ -1,0 +1,63 @@
+/* FX4 - clean hero + OEM stack configurator */
+#fd{display:none}#cr b{display:none}
+.hero.n4{display:block;min-height:min(840px,100svh);background:radial-gradient(60% 70% at 72% 50%,#1c1c20,#0a0a0b 72%)}
+.hero.n4:before{display:none}
+.n4 .g4{position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/48px 48px;-webkit-mask-image:radial-gradient(65% 75% at 72% 50%,#000,transparent);mask-image:radial-gradient(65% 75% at 72% 50%,#000,transparent);animation:gm 6s linear infinite}
+@keyframes gm{to{background-position:48px 48px}}
+.n4 .in4{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:20px;min-height:min(840px,100svh);padding-top:80px;padding-bottom:60px}
+.n4 .eb{font:500 12px Inter;letter-spacing:.3em;color:var(--mute);text-transform:uppercase;margin-bottom:14px;animation:up2 .8s both}
+.n4 h1{font-size:clamp(48px,7vw,92px);max-width:8em;background:none;color:var(--ink);animation:none}
+.n4 p{color:var(--hi);max-width:30em;margin:20px 0 28px;animation:up2 .9s .5s both}
+.n4 .bs{display:flex;gap:12px;flex-wrap:wrap;animation:up2 .9s .7s both}
+.n4 .ss{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap;animation:up2 .9s .9s both}
+.n4 .ss b{font:700 44px "Barlow Condensed";display:block;line-height:1}.n4 .ss span{font-size:12px;color:var(--mute);max-width:12em;display:block}
+.n4 .sg4{position:relative;aspect-ratio:1/.82;perspective:1000px}
+.n4 .or{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.n4 .or circle{fill:none;stroke:#fff;stroke-opacity:.2;transform-box:fill-box;transform-origin:center}
+.n4 .or .o1{stroke-dasharray:3 10;animation:sp2 40s linear infinite}.n4 .or .o2{stroke-dasharray:70 18;animation:sp2 26s linear infinite reverse;stroke-opacity:.35}
+.n4 .or .o3{animation:rg2 4s ease-out infinite}
+.n4 .dw{position:absolute;inset:6% 4%;animation:ent 1.4s var(--ease) .3s both;transition:transform .2s}
+.n4 .dw .dr{width:100%;animation:fl 4.5s ease-in-out infinite;filter:drop-shadow(0 40px 30px rgba(0,0,0,.7))}
+@keyframes ent{from{opacity:0;translate:0 80px;scale:.7}}
+.n4 .co{position:absolute;left:var(--x);top:var(--y);display:flex;align-items:center;z-index:3}
+.n4 .co i{width:12px;height:12px;border:2px solid #fff;border-radius:50%;background:#0a0a0b;flex:none;opacity:0;animation:fo 1s var(--d) forwards}
+.n4 .co u{display:block;height:1px;width:0;background:#fff;animation:ln 1s var(--d) forwards}
+.n4 .co span{font:700 15px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:6px 12px;border:1px solid #fff;background:rgba(10,10,11,.85);opacity:0;animation:fo 1s calc(var(--d) + .8s) forwards}
+.n4 .co small{display:block;font:400 11px Inter;letter-spacing:0;text-transform:none;color:var(--mute)}
+.n4 .co.l{flex-direction:row-reverse}
+@keyframes ln{to{width:var(--w)}}
+.n4 .sc{position:absolute;bottom:26px;left:50%;width:22px;height:36px;border:2px solid #fff;border-radius:12px;opacity:.5}.n4 .sc:after{content:"";position:absolute;left:8px;top:6px;width:2px;height:6px;background:#fff;animation:sk 1.5s infinite}
+@keyframes sk{to{translate:0 14px;opacity:0}}
+@media(max-width:820px){.n4 .in4{grid-template-columns:1fr;padding-top:40px}.n4 .co{display:none}.n4 .sg4{order:-1;max-width:420px}}
+#cfg{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--line);background:linear-gradient(#0a0a0b,#101012)}
+#cfg .tb{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
+#cfg .tb button{background:transparent;color:var(--ink);border:1px solid var(--line);padding:12px 22px;font:700 17px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.3s}
+#cfg .tb button.on,#cfg .tb button:hover{background:#fff;color:#0a0a0b;border-color:#fff}
+#cfg .gr{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}@media(max-width:900px){#cfg .gr{grid-template-columns:1fr}}
+#cfg .dg{border:1px solid var(--line);background:#0d0d0f;padding:10px}#cfg .dg svg{width:100%;display:block}
+#cfg .nd rect{fill:#18181b;stroke:#fff;stroke-width:1.5}#cfg .nd text{font:700 12px "Barlow Condensed";fill:#fff;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase}
+#cfg .nd{animation:up2 .6s both}#cfg .ln{fill:none;stroke:#fff;stroke-width:1.5;stroke-dasharray:5 5;animation:dsh 1s linear infinite;opacity:.7}
+#cfg .ls{display:flex;flex-direction:column;gap:10px}
+#cfg .it{display:grid;grid-template-columns:84px 1fr;gap:14px;border:1px solid var(--line);padding:10px;text-decoration:none;background:rgba(255,255,255,.03);animation:up2 .6s both;transition:.3s}
+#cfg .it:hover{border-color:#fff;background:rgba(255,255,255,.08);translate:6px 0}
+#cfg .it img{width:84px;height:70px;object-fit:cover;filter:grayscale(1)}#cfg .it small{font:500 11px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+#cfg .it b{display:block;font:700 20px "Barlow Condensed";text-transform:uppercase;letter-spacing:.03em}#cfg .it span{font-size:13px;color:var(--mute)}
+#cfg .why{color:var(--hi);margin:6px 0;animation:up2 .6s both}
+#cfg .bd{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}@media(max-width:820px){#cfg .bd{grid-template-columns:1fr 1fr}}
+#cfg .bd div{border-top:2px solid #fff;padding-top:10px;font:700 18px "Barlow Condensed";text-transform:uppercase;letter-spacing:.04em}#cfg .bd span{display:block;font:400 13px Inter;color:var(--mute);text-transform:none;letter-spacing:0}
+.tick,#pb,#an{display:none!important}
+body:not([data-page="investors"]) .stats{display:none!important}
+
+/* hero propeller switch */
+.n4 .dw:not(.on) .dr .p{animation-play-state:paused}
+.n4 .pw{position:absolute;left:50%;top:3%;translate:-50% 0;z-index:5;display:flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border:1px solid rgba(255,255,255,.55);border-radius:40px;background:rgba(10,10,11,.88);color:#fff;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;backdrop-filter:blur(6px);transition:border-color .25s,box-shadow .25s}
+.n4 .pw:hover{border-color:#fff}.n4 .pw:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.n4 .pw .tk{position:relative;width:46px;height:26px;border-radius:13px;background:#2a2a30;border:1px solid rgba(255,255,255,.4);transition:background .25s}
+.n4 .pw .tk i{position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:translate .25s ease}
+.n4 .pw .pl b{font-weight:700;display:inline-block;min-width:2.2em}
+.n4 .pw[aria-checked=true]{border-color:#fff;box-shadow:0 0 28px rgba(255,255,255,.35)}
+.n4 .pw[aria-checked=true] .tk{background:#fff}.n4 .pw[aria-checked=true] .tk i{translate:20px 0;background:#0a0a0b}
+.n4 .pw[aria-checked=false]:after{content:"";position:absolute;inset:-5px;border-radius:44px;border:1px solid #fff;opacity:0;animation:pwp 2s ease-out infinite;pointer-events:none}
+@keyframes pwp{from{opacity:.6;scale:.96}to{opacity:0;scale:1.12}}
+@media(max-width:820px){.n4 .pw{top:0;font-size:11px;padding:6px 12px 6px 6px;gap:8px}.n4 .pw .tk{width:40px;height:22px}.n4 .pw .tk i{width:14px;height:14px}.n4 .pw[aria-checked=true] .tk i{translate:18px 0}}
+@media(prefers-reduced-motion:reduce){.n4 .pw[aria-checked=false]:after{animation:none}}
