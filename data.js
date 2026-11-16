@@ -69,9 +69,9 @@ window.SITE = {
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
          Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
-        design: { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8" },
-        bench:  { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8" },
-        fly:    { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8" }
+        design: { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8?si=LYhF-suSEK0uuuBl" },
+        bench:  { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8?si=LYhF-suSEK0uuuBl" },
+        fly:    { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8?si=LYhF-suSEK0uuuBl" }
       },
       short: "Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.",
       description: "Aazmuth is our flagship flight controller for professional UAVs. It runs on an STM32 H7 (Cortex-M7, up to 480 MHz) and carries 3 IMUs and 2 barometers, each on its own isolated bus, so one noisy or failed sensor does not take down the flight. IMU boards plug in over 20-pin Aazmuth Bus connectors, which means you can swap or upgrade sensors without replacing the controller. Built for defence, industry, agriculture, survey, startups and universities.",
