@@ -33,7 +33,7 @@ const header=`<header><div class="wrap nav"><a class="logo" href="index.html">${
 <div class="hbar"><a class="btn" href="contact.html">Get a quote</a><button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button></div></div></header>
 <div class="menu" id="menu">${[['Home','index.html']].concat(links.map(l=>[l[0],l[1]])).map(l=>`<a class="m" href="${E(l[1])}">${l[0]}</a>`).join('')}
 <div class="mf">Talk to our engineers<a href="${tel}">${E(S.phone)}</a></div></div>`;
-const footer=`<footer><div class="wrap"><div><a href="solutions.html">Solutions</a><a href="support.html">Support</a><a href="about.html">About</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="investors.html">Investors</a><a href="${E(S.docsUrl)}">Documents</a>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div><div>&copy; ${S.year} ${E(S.name)}</div></div></footer>
+const footer=`<footer><div class="wrap fcols"><div class="fc"><b>Company</b><a href="solutions.html">Solutions</a><a href="support.html">Support</a><a href="about.html">About</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="investors.html">Investors</a><a href="${E(S.docsUrl)}">Documents</a></div><div class="fc"><b>Legal</b>${S.legal.pages.map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</div><div class="fc"><b>Grievance Officer</b><span>${E(S.legal.officer.name)}</span><a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a><span>Reply in 24 hours</span></div><div class="fc"><b>Follow</b>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div></div><div class="wrap fbar"><span>&copy; ${S.year} ${E(S.name)}</span><span>Made in India</span></div></footer>
 <div class="dock" id="dock"><a class="btn o" href="${tel}">Call us</a><a class="btn" href="contact.html">Get a quote</a></div>`;
 
 const card=p=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img loading="lazy" src="${E(p.image)}" alt="${E(p.name)}"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(p.name)}</h3><p>${E(p.short)}</p></div></a>`;
@@ -165,8 +165,18 @@ contact(){
 <div style="margin-top:26px">${S.about.offices.map(o=>`<div class="off" style="margin-bottom:12px"><h3 style="font-size:26px">${E(o.role)}</h3><p>${E(o.address)}</p></div>`).join('')}</div></div>
 <form id="f"><label>Your name<input name="n" required autocomplete="name"></label><label>Phone<input name="p" type="tel" required autocomplete="tel"></label>
 <label>Product<select name="s"><option value="">Not sure yet</option>${P.map(p=>`<option value="${E(p.name)}"${p.slug===sel?' selected':''}>${E(p.name)}</option>`).join('')}</select></label>
-<label>Message<textarea name="m" placeholder="Tell us about your build and quantity"></textarea></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p class="mute" style="font-size:13px;margin:0">This opens your email app with the message ready to send.</p></form></div></section></main>`;
+<label>Message<textarea name="m" placeholder="Tell us about your build and quantity"></textarea></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p class="mute" style="font-size:13px;margin:0">This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section></main>`;
 }};
+
+
+/* ---------- legal pages (IT Rules 2021, amended 2026) ---------- */
+const LG=S.legal;
+const secHtml=L=>L.sections.map((s,i)=>`<section class="lg-s" id="s${i+1}"><h2>${i+1}. ${E(s.h)}</h2>${(s.p||[]).map(t=>`<p>${E(t)}</p>`).join('')}${s.ul?`<ul>${s.ul.map(t=>`<li>${E(t)}</li>`).join('')}</ul>`:''}</section>`).join('');
+const offHtml=()=>{const o=LG.officer;return `<div class="lg-card"><h3>${E(o.designation)}</h3><dl><dt>Name</dt><dd>${E(o.name)}</dd><dt>Email</dt><dd><a href="mailto:${E(o.email)}">${E(o.email)}</a></dd><dt>Phone</dt><dd><a href="${tel}">${E(o.phone)}</a></dd><dt>Address</dt><dd>${E(o.address)}</dd><dt>Hours</dt><dd>${E(o.hours)}</dd></dl></div>`};
+LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
+  seo(`${L.nav} | ${S.name}`,L.desc,S.hero.image,org,path);
+  return `<main><section style="border-bottom:1px solid var(--line)"><div class="wrap"><span class="eye">Legal</span><h1 class="cn" style="font-size:clamp(36px,7vw,84px);max-width:12em">${E(L.title)}</h1><p class="lead" style="color:var(--hi);font-size:19px;margin-bottom:8px">${E(L.intro)}</p><p class="mute" style="font-size:14px;margin:0">Last updated: ${E(LG.updated)}</p></div></section>
+<section><div class="wrap lg"><aside class="lg-toc" aria-label="On this page"><b>On this page</b>${L.sections.map((s,i)=>`<a href="#s${i+1}">${i+1}. ${E(s.h)}</a>`).join('')}<hr>${LG.pages.filter(x=>x!==L).map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</aside><article class="lg-body">${L.officerBlock?offHtml():''}${secHtml(L)}</article></div></section></main>`}});
 
 /* ---------- render ---------- */
 d.body.innerHTML=header+(pages[page]||pages.home)()+footer;

@@ -282,3 +282,71 @@ window.SITE = {
     cta: "Investor and strategic partnership enquiries"
   }
 };
+
+
+/* =====================================================================
+   LEGAL / COMPLIANCE  -  IT (Intermediary Guidelines and Digital Media
+   Ethics Code) Rules, 2021 (as amended up to 10.02.2026)
+   Sirf [BRACKET] wali values apni asli details se badlo, phir: node build.js
+   ===================================================================== */
+(function(){
+const S=window.SITE;
+S.legal={
+  updated:"16 November 2026",
+  officer:{
+    name:"[NAAM - Grievance Officer ka naam daalo]",
+    designation:"Grievance Officer",
+    email:S.email,
+    phone:S.phone,
+    address:"Space and Tech Engineering LLP, Unit 37A, Patel Industrial Estate, Vivekananda Rd, Yadav Nagar, Dahisar East, Mumbai 400068, Maharashtra, India",
+    hours:"Monday to Saturday, 10:00 to 18:00 IST"
+  },
+  pages:[
+  { slug:"terms", nav:"Terms of Use", title:"Terms of Use and User Agreement",
+    desc:"Rules for using the Space and Tech Engineering website: what you may not post or send, what we can do if rules are broken, and your legal responsibilities.",
+    intro:"These terms apply to everyone who visits spaceandtechengineerings.com, sends us an enquiry or uses any page, form or link on it. Please read them once. Using the site means you accept them.",
+    sections:[
+    {h:"Who we are",p:["This site is run by "+S.name+", Mumbai and Nashik, India. It shows our drone flight controllers, ESCs and GPS modules and lets you contact us for quotes and support."]},
+    {h:"What you must not send or upload to us",p:["Through our forms, email, WhatsApp or any other channel we provide, you agree not to host, upload, share or transmit anything that:"],
+     ul:["belongs to someone else and you have no right to use it;","is obscene, pornographic, paedophilic, or invades another person's privacy, including bodily privacy;","harasses or insults anyone on the basis of gender, or is racially or ethnically objectionable;","promotes money laundering or gambling, or promotes enmity between groups on grounds of religion or caste with intent to incite violence;","is harmful to children;","infringes a patent, trademark, copyright or other proprietary right;","deceives the reader about who sent it, or knowingly spreads false or misleading information as if it were fact;","impersonates another person;","threatens the unity, integrity, defence or security of India, friendly relations with other countries or public order, or incites a cognisable offence;","contains a virus or any code meant to disrupt or damage a computer resource;","is synthetically generated (AI-made or AI-altered) and unlawful, or falsely shows a real person or event in a way meant to deceive;","violates any law in force in India."]},
+    {h:"What we may do if these terms are broken",p:["We may immediately remove or disable access to the content, suspend or end your access, and preserve the related records for 180 days without altering the evidence. Where the law requires it we report the matter to the proper authority, and we may disclose a violating user's identity to a victim or a person acting for the victim, in line with applicable law."]},
+    {h:"Your legal responsibility",p:["Breaking these terms can lead to penalty or punishment under the Information Technology Act, 2000, the Bharatiya Nyaya Sanhita, 2023 read with the Bharatiya Nagarik Suraksha Sanhita, 2023, the Protection of Children from Sexual Offences Act, 2012 and other laws. Offences that must be reported by law will be reported."]},
+    {h:"Products, quotes and technical information",p:["Specifications, images and prices on this site are for general information and may change without notice. A product is sold only on a written quote or invoice from us. Drone electronics must be used in line with Indian drone rules and other applicable law; you are responsible for lawful use."]},
+    {h:"Our content",p:["Text, designs, firmware descriptions, logos and product images on this site belong to us or our licensors. You may share links freely. Copying content for commercial use needs our written permission."]},
+    {h:"Complaints and changes",p:["To report content or raise any issue, use the process on our Grievance Redressal page. We review these terms regularly and remind users of them at least once every three months. Continued use after a change means you accept it."]}
+    ]},
+  { slug:"privacy", nav:"Privacy Policy", title:"Privacy Policy",
+    desc:"What personal information Space and Tech Engineering collects through this website, why, how long we keep it and how to reach us about it.",
+    intro:"We keep this simple: we collect only what we need to answer your enquiry, quote you, deliver an order and support you after the sale.",
+    sections:[
+    {h:"What we collect",p:["Only what you give us: name, phone number, email, product of interest, build details and message when you use our contact form, email or WhatsApp, plus details needed to raise an invoice or ship an order (company name, address, GST number). The contact form opens your own email app or WhatsApp with the message prepared; nothing is sent until you press send there."]},
+    {h:"Why we use it",ul:["to reply to enquiries and prepare quotes;","to process orders, invoices and warranty or support requests;","to meet legal, tax and security obligations;","to share product updates only if you ask for them."]},
+    {h:"Who we share it with",p:["We do not sell personal information. We share it only with logistics, payment and accounting partners who need it to serve you, and with government agencies when a lawful order requires it. Where a lawful written order requires, we provide information to an authorised agency within the time the rules allow."]},
+    {h:"How long we keep it",p:["Enquiry and registration details are kept for as long as needed for the purpose above. If we collect registration information from you, we retain it for 180 days after you cancel or withdraw it. Content removed under our terms and its related records are preserved for 180 days, or longer if a court or authorised agency requires."]},
+    {h:"Security",p:["We follow reasonable security practices and procedures under the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Information) Rules, 2011, and report cyber security incidents to CERT-In as required."]},
+    {h:"Your choices",p:["You may ask us to correct or delete your details, or to stop contacting you, by writing to the Grievance Officer. We will acknowledge within 24 hours and resolve within seven days."]},
+    {h:"Third-party links",p:["Our site links to services such as our documentation, LinkedIn and Instagram. Their privacy practices are their own."]}
+    ]},
+  { slug:"grievance", nav:"Grievance Redressal", title:"Grievance Redressal",
+    desc:"Name and contact details of the Grievance Officer, how to file a complaint, response timelines and how to appeal to the Grievance Appellate Committee.",
+    intro:"If something on this site or in our dealings with you is wrong, tell us. A named officer reads every complaint.",
+    officerBlock:true,
+    sections:[
+    {h:"How to file a complaint",p:["Write to the Grievance Officer by email, phone or post using the details above. Tell us the page or link, what the problem is and how to reach you. Complaints about content help us most when they include the exact web address."]},
+    {h:"How fast we act",ul:["Acknowledgement of every complaint: within 24 hours.","Resolution of a complaint: within seven days of receipt.","Requests to remove content that breaches our Terms of Use (other than ownership, infringement and general-law categories): as quickly as possible and within 36 hours.","Intimate or impersonating content: if a person, or someone on their behalf, complains that content shows their private area, full or partial nudity, a sexual act, or is an impersonation including a morphed image, we take reasonable and practicable steps to remove or disable access within two hours of the complaint.","Orders of a court or lawful notices from the Appropriate Government: acted on within three hours of receipt, as the rules require."]},
+    {h:"If you are not satisfied",p:["If you disagree with the Grievance Officer's decision, or you do not get a resolution in time, you may appeal to the Grievance Appellate Committee established by the Central Government within 30 days of receiving our reply. The Committee aims to decide within 30 calendar days, and its orders bind us."]},
+    {h:"Law enforcement and government agencies",p:["Lawful orders and notices can be sent to the Grievance Officer at the address above. We provide information or assistance to an authorised agency within 72 hours of a written order that states its purpose."]},
+    {h:"Our commitment",p:["We respect the rights of every person under the Constitution of India, including Articles 14, 19 and 21, and we keep our services accessible and transparent."]}
+    ]},
+  { slug:"synthetic-content", nav:"AI and Synthetic Content", title:"AI and Synthetic Content Policy",
+    desc:"How Space and Tech Engineering labels AI-generated or AI-altered images, audio and video, and what we do not allow.",
+    intro:"Under the IT Rules, audio, images and video that are artificially created or altered so they look real are called synthetically generated information. This is our policy on it.",
+    sections:[
+    {h:"What we label",p:["Any image, video or audio on this site that was created or materially altered with AI or other computer generation, and could be taken for a real person, place or event, carries a clear visible label (or an audio notice at the start) and, where technically possible, embedded provenance information. Product renders, diagrams and illustrations are marked as illustrative where they are not photographs of the actual product."]},
+    {h:"What we do not allow",ul:["synthetic content showing child sexual abuse material, non-consensual intimate imagery, or anything obscene, pornographic or sexually explicit;","false documents or false electronic records;","content about making explosives, arms or ammunition;","fake depictions of a real person or event meant to deceive, including false identity, voice, actions or statements."]},
+    {h:"Routine edits are fine",p:["Normal editing such as cropping, colour correction, noise reduction, compression, translation, captions and accessibility improvements, and good-faith drafts, templates and educational material, do not need a label so long as they do not change the real meaning."]},
+    {h:"Report a concern",p:["If you see content on our site that looks fake, misleading or harmful, send the link to the Grievance Officer. We act quickly, remove or disable access where needed and keep the evidence intact."]}
+    ]}
+  ]
+};
+})();

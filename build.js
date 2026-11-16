@@ -97,8 +97,10 @@ const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 const ICON = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230a0a0b%27/%3E%3Cpath d=%27M6 22L16 8l10 14z%27 fill=%27none%27 stroke=%27%23fff%27 stroke-width=%272%27/%3E%3C/svg%3E">`;
 
 /* ---------------- static body blocks (real, crawlable content) ---------------- */
+
+S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
 const nav = `<header><nav aria-label="Main"><a href="index.html">Home</a> <a href="products.html">Products</a> <a href="solutions.html">Solutions</a> <a href="drone-lab.html">Drone Lab</a> <a href="support.html">Support</a> <a href="about.html">About</a> <a href="investors.html">Investors</a> <a href="contact.html">Contact</a></nav></header>`;
-const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p></footer>`;
+const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${E(S.legal.officer.name)}, <a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
 const prodCards = list => list.map(p => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(p.name)} ${E(p.category.replace(/s$/, ''))}" width="320" height="240" loading="lazy"></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
 const faqHtml = list => list.map(f => `<h3>${E(f.q || f[0])}</h3><p>${E(f.a || f[1])}</p>`).join('');
@@ -124,6 +126,7 @@ ${S.categories.filter(c => S.products.some(p => p.category === c)).map(c => `<h2
 <h2>How we work</h2><ul>${S.about.values.map(v => `<li><b>${E(v.title)}.</b> ${E(v.text)}</li>`).join('')}</ul><h2>Offices</h2>${officesHtml()}</main>`,
   contact: () => `<main><h1>Contact ${E(S.name)}</h1><p>Request an OEM quote or ask about any flight controller, ESC or GPS module.</p>
 <ul><li>Phone: <a href="tel:+${E(S.whatsapp)}">${E(S.phone)}</a></li><li>WhatsApp: <a href="https://wa.me/${E(S.whatsapp)}">${E(S.phone)}</a></li><li>Email: <a href="mailto:${E(S.email)}">${E(S.email)}</a></li></ul>${officesHtml()}</main>`,
+  ...Object.fromEntries(S.legal.pages.map(L => [L.slug, () => `<main><h1>${E(L.title)}</h1><p>${E(L.intro)}</p><p>Last updated: ${E(S.legal.updated)}</p>${L.officerBlock ? `<h2>Grievance Officer</h2><ul><li>Name: ${E(S.legal.officer.name)}</li><li>Email: <a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></li><li>Phone: ${E(S.legal.officer.phone)}</li><li>Address: ${E(S.legal.officer.address)}</li><li>Hours: ${E(S.legal.officer.hours)}</li></ul>` : ''}${L.sections.map((s, i) => `<h2>${i + 1}. ${E(s.h)}</h2>${(s.p || []).map(t => `<p>${E(t)}</p>`).join('')}${s.ul ? `<ul>${s.ul.map(t => `<li>${E(t)}</li>`).join('')}</ul>` : ''}`).join('')}</main>`])),
   investors: () => { const I = S.investors; return `<main><h1>${E(I.title)}</h1><p>${E(I.text)}</p>
 <h2>Why Space and Tech Engineering</h2><ul>${I.thesis.map(t => `<li><b>${E(t.t)}.</b> ${E(t.x)}</li>`).join('')}</ul>
 <h2>What we sell today</h2>${prodList(avail)}
@@ -175,6 +178,7 @@ ${SCRIPTS}
 
 /* ---------------- generate pages ---------------- */
 const pageType = { home: 'WebPage', products: 'CollectionPage', solutions: 'WebPage', support: 'FAQPage', about: 'AboutPage', contact: 'ContactPage', investors: 'WebPage' };
+S.legal.pages.forEach(L => { pageType[L.slug] = 'WebPage'; });
 Object.keys(pageType).forEach(k => {
   const m = META[k], url = U + '/' + m.path;
   const items = [org, website];
@@ -227,7 +231,7 @@ S.products.forEach(p => {
 }
 
 /* ---------------- sitemap.xml ---------------- */
-const pages = [['', 1.0, 'weekly'], ['products.html', 0.9, 'weekly'], ['drone-lab.html', 0.8, 'monthly'], ['solutions.html', 0.7, 'monthly'], ['support.html', 0.6, 'monthly'], ['about.html', 0.6, 'monthly'], ['investors.html', 0.5, 'monthly'], ['contact.html', 0.6, 'yearly']];
+const pages = [['', 1.0, 'weekly'], ['products.html', 0.9, 'weekly'], ['drone-lab.html', 0.8, 'monthly'], ['solutions.html', 0.7, 'monthly'], ['support.html', 0.6, 'monthly'], ['about.html', 0.6, 'monthly'], ['investors.html', 0.5, 'monthly'], ['contact.html', 0.6, 'yearly']].concat(S.legal.pages.map(L => [L.slug + '.html', 0.3, 'yearly']));
 const x = t => t.replace(/&/g, '&amp;');
 w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   pages.map(([p, pr, cf]) => `  <url><loc>${U}/${p}</loc><lastmod>${today}</lastmod><changefreq>${cf}</changefreq><priority>${pr}</priority></url>`).join('\n') + '\n' +
@@ -242,7 +246,7 @@ w('robots.txt', `# Search engines and AI answer engines are welcome. To opt out 
 const allFaq = LABC.FAQ.concat(S.faq.map(f => [f.q, f.a]));
 w('llms.txt', `# ${S.name}\n\n> ${S.tagline}. ${intro}\n\nKey facts:\n- Products: Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1), NAVSATE GPS modules.\n- Offices: Mumbai (registered office) and Nashik (product development centre), Maharashtra, India.\n- Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.\n- OEM and bulk orders: ${S.email}, ${S.phone}.\n\n## Products\n` +
   avail.map(p => `- [${p.name}](${pUrl(p)}): ${p.short}`).join('\n') + (soon.length ? `\n\n## Coming soon\n` + soon.map(p => `- ${p.name}`).join('\n') : '') +
-  `\n\n## Guides\n- [How a drone works: parts, sensors and flight controller](${U}/drone-lab.html): quick answers, part-by-part guide, sensors, use cases and FAQ\n- [Solutions by application](${U}/solutions.html)\n- [Support and FAQ](${U}/support.html)\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [About](${U}/about.html)\n- [Investors](${U}/investors.html)\n- [Contact](${U}/contact.html)\n\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
+  `\n\n## Guides\n- [How a drone works: parts, sensors and flight controller](${U}/drone-lab.html): quick answers, part-by-part guide, sensors, use cases and FAQ\n- [Solutions by application](${U}/solutions.html)\n- [Support and FAQ](${U}/support.html)\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [About](${U}/about.html)\n- [Investors](${U}/investors.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
 w('llms-full.txt', `# ${S.name}\n\n> ${S.tagline}\n\n${intro}\n\n${S.about.text}\n\n` +
   S.products.map(p => `## ${p.name}\nCategory: ${p.category}\nStatus: ${p.status === 'soon' ? 'Coming soon' : 'Available'}\nURL: ${pUrl(p)}\n\n${p.description}\n` +
     (p.features.length ? `\nHighlights:\n${p.features.map(f => '- ' + f).join('\n')}\n` : '') + (p.specs.length ? `\nSpecifications:\n${p.specs.map(s => `- ${s[0]}: ${s[1]}`).join('\n')}\n` : '') + (p.docs.length ? `\nDocs:\n${p.docs.map(d => `- ${d.label}: ${d.url}`).join('\n')}\n` : '')).join('\n') +
