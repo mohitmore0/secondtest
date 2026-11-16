@@ -17,10 +17,6 @@ h2{background:linear-gradient(90deg,#fff 30%,#ffffff,#8a8a92,#fff 70%);backgroun
 .fdv i{position:absolute;top:8px;left:-70px;width:56px;animation:fy 7s linear infinite;animation-play-state:paused}
 .fdv.in i{animation-play-state:running}.fdv svg{width:100%;display:block}
 @keyframes fy{to{left:105%}}
-#pt{position:fixed;inset:0;z-index:997;background:linear-gradient(135deg,#ffffff,#8a8a92);transform:translateY(-100%);transition:transform .55s cubic-bezier(.8,0,.2,1);pointer-events:none}
-#pt.ld{transform:translateY(0);transition:none;animation:po .7s .15s cubic-bezier(.8,0,.2,1) forwards}
-#pt.cv{transform:translateY(0)}
-@keyframes po{to{transform:translateY(100%)}}
 #aud{padding:clamp(48px,8vw,96px) 0;position:relative}
 #aud .tb{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
 #aud .tb button{background:transparent;color:var(--ink);border:1px solid var(--line);padding:12px 24px;font:700 17px "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:.3s}

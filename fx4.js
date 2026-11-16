@@ -1,5 +1,4 @@
 (()=>{const d=document,$=(s,r=d)=>r.querySelector(s),$$=(s,r=d)=>[...r.querySelectorAll(s)],S=window.SITE||{};
-const l=d.createElement('link');l.rel='stylesheet';l.href='fx4.css';d.head.appendChild(l);
 const hero=$('.hero');if(!hero||d.body.dataset.page!=='home')return;
 const dr=($('#fd')||{}).innerHTML||'';
 ['.tick','.stats','#an','#pb'].forEach(q=>$$(q).forEach(e=>e.remove()));

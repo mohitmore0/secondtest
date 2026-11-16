@@ -1,5 +1,4 @@
 (()=>{const d=document,$=(s,r=d)=>r.querySelector(s),$$=(s,r=d)=>[...r.querySelectorAll(s)],fine=matchMedia('(pointer:fine)').matches;
-const l=d.createElement('link');l.rel='stylesheet';l.href='fx2.css';d.head.appendChild(l);
 const drone=(g)=>`<svg viewBox="0 0 400 260" class="dr"><path d="M70 50L330 210M330 50L70 210" class="a"/><rect x="165" y="95" width="70" height="70" rx="10" class="b"/><rect x="182" y="112" width="36" height="36" class="c"/><circle cx="200" cy="130" r="4" class="led"/>${g?'<circle cx="200" cy="72" r="10" class="m"/><circle cx="200" cy="72" r="10" class="rg"/>':''}`+[[70,50,0],[330,50,1],[70,210,1],[330,210,0]].map(([x,y,r])=>`<g transform="translate(${x} ${y})"><circle r="16" class="m"/><g class="p${r?' r':''}"><ellipse rx="52" ry="5"/><ellipse rx="52" ry="5" transform="rotate(90)"/></g></g>`).join('')+'</svg>';
 /* 1. boot intro (once per session) */
 let seen=0;try{seen=sessionStorage.getItem('b2')}catch(e){}

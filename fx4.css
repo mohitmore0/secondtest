@@ -45,7 +45,8 @@
 #cfg .why{color:var(--hi);margin:6px 0;animation:up2 .6s both}
 #cfg .bd{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}@media(max-width:820px){#cfg .bd{grid-template-columns:1fr 1fr}}
 #cfg .bd div{border-top:2px solid #fff;padding-top:10px;font:700 18px "Barlow Condensed";text-transform:uppercase;letter-spacing:.04em}#cfg .bd span{display:block;font:400 13px Inter;color:var(--mute);text-transform:none;letter-spacing:0}
-.tick,.stats,#pb,#an{display:none!important}
+.tick,#pb,#an{display:none!important}
+body:not([data-page="investors"]) .stats{display:none!important}
 
 /* hero propeller switch */
 .n4 .dw:not(.on) .dr .p{animation-play-state:paused}

@@ -55,7 +55,7 @@ nav a:hover,nav a[aria-current]{color:var(--acc);border-color:var(--acc)}
 .stats{background:var(--bg2);border-bottom:1px solid var(--line)}
 .stats .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
 .stats div{padding:26px 20px;border-left:1px solid var(--line)}
-.stats div:first-child{border-left:0;padding-left:0}
+.stats div:first-child{border-left:0}
 .stats b{display:block;font:700 clamp(40px,6vw,58px)/1 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums}
 .stats span{color:var(--mute);font-size:14px}
 
@@ -151,7 +151,7 @@ footer a:hover{color:var(--acc)}
 
 .dock{display:none}
 .js .rv{xopacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.js .rv.in{opacity:1;transform:none;padding-left: 20px;}
+.js .rv.in{opacity:1;transform:none}
 .empty{padding:40px;border:1px dashed var(--line);color:var(--mute);text-align:center}
 
 @media (max-width:900px){
@@ -346,3 +346,8 @@ header nav a{white-space:nowrap}
 .tiles.t3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 @media(min-width:960px){.tiles.t3{grid-template-columns:repeat(3,1fr)}}
 .tiles.t3 .tile h3{font-size:28px;overflow-wrap:normal;word-break:normal;hyphens:manual}
+
+/* investors: key metrics band (own row, never wraps a value) */
+.stats.km .wrap{grid-template-columns:repeat(4,1fr)}
+.stats.km b{white-space:nowrap;font-size:clamp(30px,4.6vw,52px)}
+@media(max-width:700px){.stats.km .wrap{grid-template-columns:repeat(2,1fr)}.stats.km div:nth-child(odd){border-left:0}}

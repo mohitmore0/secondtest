@@ -145,7 +145,8 @@ ${p.status !== 'soon' ? `<p><a href="${E(waLink(p))}">Get a quote on WhatsApp</a
 <h2>More products</h2>${prodList(rel)}</main>`;
   }
 };
-const SCRIPTS = `<script src="data.js"></script>\n<script src="app.js"></script><script src="fx.js"></script><script src="fx2.js"></script><script src="fx3.js"></script><script src="fx4.js"></script>`;
+const READY = `<script>document.addEventListener('DOMContentLoaded',function(){document.documentElement.classList.remove('boot')})</script>`;
+const SCRIPTS = `<script src="data.js"></script>\n<script src="app.js"></script><script src="fx.js"></script><script src="fx2.js"></script><script src="fx3.js"></script><script src="fx4.js"></script>\n${READY}`;
 function shell(m, url, ld, bodyAttr, body, og) {
   return `<!DOCTYPE html>
 <html lang="en-IN" data-static="1">
@@ -153,10 +154,13 @@ function shell(m, url, ld, bodyAttr, body, og) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0b">
+<script>document.documentElement.classList.add('boot');setTimeout(function(){document.documentElement.classList.remove('boot')},3000)</script>
+<style>html{background:#0a0a0b}html.boot body{visibility:hidden}</style>
 ${seoTags(m, url, ld, og)}
 ${ICON}
 ${FONTS}
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="fx2.css"><link rel="stylesheet" href="fx3.css"><link rel="stylesheet" href="fx4.css">
 </head>
 <body ${bodyAttr}>
 ${nav}
