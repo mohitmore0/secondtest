@@ -274,7 +274,7 @@ window.SITE = {
       { t: "More product depth", x: "Fuller specs, docs and variants across the Exelr8, Skydrive and NAVSATE lines." }
     ],
     metrics: [
-   [{ n: "Rs 1.2 Cr", l: "FY26 revenue" }]
+   { n: "Rs 1.2 Cr", l: "FY26 revenue" }
   ],
     cta: "Investor and strategic partnership enquiries"
   }
