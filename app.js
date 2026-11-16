@@ -33,7 +33,7 @@ const header=`<header><div class="wrap nav"><a class="logo" href="index.html">${
 <div class="hbar"><a class="btn" href="contact.html">Get a quote</a><button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button></div></div></header>
 <div class="menu" id="menu">${[['Home','index.html']].concat(links.map(l=>[l[0],l[1]])).map(l=>`<a class="m" href="${E(l[1])}">${l[0]}</a>`).join('')}
 <div class="mf">Talk to our engineers<a href="${tel}">${E(S.phone)}</a></div></div>`;
-const footer=`<footer><div class="wrap fcols"><div class="fc"><b>Company</b><a href="solutions.html">Solutions</a><a href="support.html">Support</a><a href="about.html">About</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="investors.html">Investors</a><a href="${E(S.docsUrl)}">Documents</a></div><div class="fc"><b>Legal</b>${S.legal.pages.map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</div><div class="fc"><b>Grievance Officer</b><span>${E(S.legal.officer.name)}</span><a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a><span>Reply in 24 hours</span></div><div class="fc"><b>Follow</b>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div></div><div class="wrap fbar"><span>&copy; ${S.year} ${E(S.name)}</span><span>Made in India</span></div></footer>
+const footer=`<footer><div class="wrap fcols"><div class="fc"><b>Company</b><a href="solutions.html">Solutions</a><a href="support.html">Support</a><a href="about.html">About</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="investors.html">Investors</a><a href="${E(S.docsUrl)}">Documents</a></div><div class="fc"><b>Legal</b>${S.legal.pages.map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</div><div class="fc"><b>Grievance Officer</b><span>${E(S.legal.officer.name)}</span><a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a><span>Reply in 24 hours</span></div><div class="fc"><b>Follow</b>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div></div><div class="wrap fbar"><span>&copy; ${S.year} ${E(S.name)}${S.company.llpin?` &middot; LLPIN ${E(S.company.llpin)}`:''}</span><span>Registered office: ${E(S.company.registeredOffice)}</span></div></footer>
 <div class="dock" id="dock"><a class="btn o" href="${tel}">Call us</a><a class="btn" href="contact.html">Get a quote</a></div>`;
 
 const card=p=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img loading="lazy" src="${E(p.image)}" alt="${E(p.name)}"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(p.name)}</h3><p>${E(p.short)}</p></div></a>`;
@@ -85,7 +85,7 @@ products(){
 product(){
   const p=P.find(x=>x.slug===(q.get('p')||d.body.dataset.slug));
   if(!p){path='products.html';seo(`Product not found | ${S.name}`,'This product does not exist.',null,null,path);
-    return `<main><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section></main>`}
+    return `<main><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section>${regBox(p0)}</main>`}
   path=pUrl(p);const imgs=[p.image].concat(p.gallery||[]).filter(Boolean);const soon=p.status==='soon';
   seo(`${p.name} | ${S.name}`,p.short||p.description,p.image,[org,{"@context":"https://schema.org","@type":"Product",name:p.name,image:imgs.map(abs),description:p.description,category:p.category,brand:{"@type":"Brand",name:S.short}}],path);
   const rel=P.filter(x=>x.slug!==p.slug&&x.category===p.category).concat(P.filter(x=>x.slug!==p.slug&&x.category!==p.category)).slice(0,4);
@@ -99,7 +99,7 @@ ${p.docs&&p.docs.length?`<h3>Documentation</h3><div class="docs">${p.docs.map(x=
 ${p.bestFor&&p.bestFor.length?`<h3>Best for</h3><div class="docs">${p.bestFor.map(x=>`<a href="solutions.html">${E(x)}</a>`).join('')}</div>`:''}
 <div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${soon?'':`<a class="btn o" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I want a quote for '+p.name+'. Quantity: ')}">WhatsApp quote</a>`}${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div></div></div></div></section>
 ${p.faq&&p.faq.length?`<section><div class="wrap"><h2>${E(p.name)} FAQ</h2><p class="lead"></p>${p.faq.map(f=>`<details><summary>${E(f.q)}</summary><p>${E(f.a)}</p></details>`).join('')}</div></section>`:''}
-${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map(card).join('')}</div></div></section>`:''}</main>`;
+${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map(card).join('')}</div></div></section>`:''}${regBox(p)}</main>`;
 },
 about(){
   const A=S.about;path='about.html';
@@ -163,19 +163,20 @@ contact(){
   return `<main><section><div class="wrap contact"><div><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Talk to our engineers</h1><p class="lead">Share your build and we will suggest the right parts.</p>
 <a class="big" href="${tel}">${E(S.phone)}</a><a class="big" href="mailto:${E(S.email)}">${E(S.email)}</a><a class="big" href="https://wa.me/${E(S.whatsapp)}">WhatsApp</a>
 <div style="margin-top:26px">${S.about.offices.map(o=>`<div class="off" style="margin-bottom:12px"><h3 style="font-size:26px">${E(o.role)}</h3><p>${E(o.address)}</p></div>`).join('')}</div></div>
-<form id="f"><label>Your name<input name="n" required autocomplete="name"></label><label>Phone<input name="p" type="tel" required autocomplete="tel"></label>
+<form id="f"><label>Your name<input name="n" required autocomplete="name" maxlength="80"></label><label>Phone<input name="p" type="tel" required autocomplete="tel" inputmode="tel" pattern="[0-9+ ()\-]{8,18}" maxlength="18" title="Enter a valid phone number"></label>
 <label>Product<select name="s"><option value="">Not sure yet</option>${P.map(p=>`<option value="${E(p.name)}"${p.slug===sel?' selected':''}>${E(p.name)}</option>`).join('')}</select></label>
-<label>Message<textarea name="m" placeholder="Tell us about your build and quantity"></textarea></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p class="mute" style="font-size:13px;margin:0">This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section></main>`;
+<label>Message<textarea name="m" maxlength="1500" placeholder="Tell us about your build and quantity"></textarea></label><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div><label class="chk"><input type="checkbox" name="ok" required> <span>I have read the <a href="privacy.html">Privacy Policy</a> and agree that Space and Tech Engineering LLP may use these details to reply to my enquiry.</span></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p id="fs" role="status" aria-live="polite" class="mute" style="font-size:14px;margin:0"></p><p class="mute" style="font-size:13px;margin:0">Nothing is stored on our website. This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section></main>`;
 }};
 
 
 /* ---------- legal pages (IT Rules 2021, amended 2026) ---------- */
 const LG=S.legal;
 const secHtml=L=>L.sections.map((s,i)=>`<section class="lg-s" id="s${i+1}"><h2>${i+1}. ${E(s.h)}</h2>${(s.p||[]).map(t=>`<p>${E(t)}</p>`).join('')}${s.ul?`<ul>${s.ul.map(t=>`<li>${E(t)}</li>`).join('')}</ul>`:''}</section>`).join('');
-const offHtml=()=>{const o=LG.officer;return `<div class="lg-card"><h3>${E(o.designation)}</h3><dl><dt>Name</dt><dd>${E(o.name)}</dd><dt>Email</dt><dd><a href="mailto:${E(o.email)}">${E(o.email)}</a></dd><dt>Phone</dt><dd><a href="${tel}">${E(o.phone)}</a></dd><dt>Address</dt><dd>${E(o.address)}</dd><dt>Hours</dt><dd>${E(o.hours)}</dd></dl></div>`};
+const offHtml=()=>{const o=LG.officer,r=(k,v,h)=>v?`<dt>${k}</dt><dd>${h||E(v)}</dd>`:'';return `<div class="lg-card"><h3>Grievance Officer</h3>${o.name?'':`<p class="mute" style="margin:0 0 12px">Officer details are being finalised. Meanwhile, write to us at the email below.</p>`}<dl>${r('Name',o.name)}${r('Designation',o.designation)}${r('Email',o.email,`<a href="mailto:${E(o.email)}">${E(o.email)}</a>`)}${r('Phone',o.phone,`<a href="${tel}">${E(o.phone)}</a>`)}${r('Address',o.address)}${r('Hours',o.hours)}</dl></div>`};
+const regBox=p=>`<section class="reg-s"><div class="wrap"><aside class="reg" role="note"><h3>Regulatory note</h3><p>${E(LG.uasNotice)}</p>${p.category==='Transmitters'?`<p>${E(LG.rfNotice)}</p>`:''}<p><a href="product-regulatory.html">Product Regulatory Disclaimer</a></p></aside></div></section>`;
 LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
   seo(`${L.nav} | ${S.name}`,L.desc,S.hero.image,org,path);
-  return `<main><section style="border-bottom:1px solid var(--line)"><div class="wrap"><span class="eye">Legal</span><h1 class="cn" style="font-size:clamp(36px,7vw,84px);max-width:12em">${E(L.title)}</h1><p class="lead" style="color:var(--hi);font-size:19px;margin-bottom:8px">${E(L.intro)}</p><p class="mute" style="font-size:14px;margin:0">Last updated: ${E(LG.updated)}</p></div></section>
+  return `<main><section style="border-bottom:1px solid var(--line)"><div class="wrap"><span class="eye">Legal</span><h1 class="cn" style="font-size:clamp(36px,7vw,84px);max-width:12em">${E(L.title)}</h1><p class="lead" style="color:var(--hi);font-size:19px;margin-bottom:8px">${E(L.intro)}</p><p class="mute" style="font-size:14px;margin:0">Effective: ${E(LG.effective)} &middot; Last updated: ${E(LG.updated)}</p></div></section>
 <section><div class="wrap lg"><aside class="lg-toc" aria-label="On this page"><b>On this page</b>${L.sections.map((s,i)=>`<a href="#s${i+1}">${i+1}. ${E(s.h)}</a>`).join('')}<hr>${LG.pages.filter(x=>x!==L).map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</aside><article class="lg-body">${L.officerBlock?offHtml():''}${secHtml(L)}</article></div></section></main>`}});
 
 /* ---------- render ---------- */
@@ -198,10 +199,10 @@ $$('.thumbs button').forEach(b=>b.onclick=()=>{const pp=P.find(x=>x.slug===(q.ge
 
 /* contact form -> mailto */
 const f=$('#f');
-if(f)f.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(f));
+if(f)f.onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(f));if(v.hp)return;if(!f.checkValidity()){f.reportValidity();return}$('#fs').textContent='Thank you. Your email app should open with your message. Press send there to reach us. If it did not open, email '+S.email+'.';
 location.href='mailto:'+S.email+'?subject='+encodeURIComponent('Quote request'+(v.s?': '+v.s:''))+'&body='+encodeURIComponent(`Name: ${v.n}\nPhone: ${v.p}\nProduct: ${v.s||'-'}\n\n${v.m||''}`)};
 
-const wa=$('#wa');if(wa)wa.onclick=()=>{const v=Object.fromEntries(new FormData(f));open('https://wa.me/'+S.whatsapp+'?text='+encodeURIComponent(`Hi, I am ${v.n||''}. Product: ${v.s||'not sure yet'}. ${v.m||''} Phone: ${v.p||''}`),'_blank')};
+const wa=$('#wa');if(wa)wa.onclick=()=>{if(!f.checkValidity()){f.reportValidity();return}const v=Object.fromEntries(new FormData(f));open('https://wa.me/'+S.whatsapp+'?text='+encodeURIComponent(`Hi, I am ${v.n||''}. Product: ${v.s||'not sure yet'}. ${v.m||''} Phone: ${v.p||''}`),'_blank')};
 
 /* reveal, counters, marquee */
 const rm=false;

@@ -18,6 +18,11 @@ const abs = u => /^https?:/.test(u) ? u : U + '/' + String(u).replace(/^\//, '')
 const pFile = p => p.slug + '.html', pUrl = p => `${U}/${pFile(p)}`;
 const clip = (t, n) => { t = String(t).replace(/\s+/g, ' ').trim(); return t.length <= n ? t : t.slice(0, n - 1).replace(/\s+\S*$/, '') + '\u2026'; };
 const warn = [];
+{ const C = S.company, O = S.legal.officer;
+  [['company.llpin', C.llpin], ['legal.officer.name', O.name], ['legal.officer.designation', O.designation], ['legal.officer.hours', O.hours]].forEach(([k, v]) => { if (!String(v || '').trim()) warn.push('MISSING (data.js): ' + k + ' - verified detail daalo'); });
+  if ((S.investors.metrics || []).length) warn.push('VERIFY: investors.metrics (revenue/seed/patents) documents se prove hone chahiye'); }
+const regNote = p => `<aside class="reg"><h3>Regulatory note</h3><p>${E(S.legal.uasNotice)}</p>${p.category === 'Transmitters' ? `<p>${E(S.legal.rfNotice)}</p>` : ''}<p><a href="product-regulatory.html">Product Regulatory Disclaimer</a></p></aside>`;
+const offTxt = () => { const o = S.legal.officer; return `<h2>Grievance Officer</h2><ul>${[['Name', o.name], ['Designation', o.designation], ['Email', o.email], ['Phone', o.phone], ['Address', o.address], ['Hours', o.hours]].filter(r => r[1]).map(r => `<li>${r[0]}: ${E(r[1])}</li>`).join('')}</ul>`; };
 const waLink = p => `https://wa.me/${S.whatsapp}?text=${encodeURIComponent('Hi, I want a quote for ' + p.name + '. Quantity: ')}`;
 const avail = S.products.filter(p => p.status !== 'soon'), soon = S.products.filter(p => p.status === 'soon');
 
@@ -100,7 +105,7 @@ const ICON = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://w
 
 S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
 const nav = `<header><nav aria-label="Main"><a href="index.html">Home</a> <a href="products.html">Products</a> <a href="solutions.html">Solutions</a> <a href="drone-lab.html">Drone Lab</a> <a href="support.html">Support</a> <a href="about.html">About</a> <a href="investors.html">Investors</a> <a href="contact.html">Contact</a></nav></header>`;
-const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${E(S.legal.officer.name)}, <a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p></footer>`;
+const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><p>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${E(S.legal.officer.name)}, <a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
 const prodCards = list => list.map(p => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(p.name)} ${E(p.category.replace(/s$/, ''))}" width="320" height="240" loading="lazy"></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
 const faqHtml = list => list.map(f => `<h3>${E(f.q || f[0])}</h3><p>${E(f.a || f[1])}</p>`).join('');
@@ -126,7 +131,7 @@ ${S.categories.filter(c => S.products.some(p => p.category === c)).map(c => `<h2
 <h2>How we work</h2><ul>${S.about.values.map(v => `<li><b>${E(v.title)}.</b> ${E(v.text)}</li>`).join('')}</ul><h2>Offices</h2>${officesHtml()}</main>`,
   contact: () => `<main><h1>Contact ${E(S.name)}</h1><p>Request an OEM quote or ask about any flight controller, ESC or GPS module.</p>
 <ul><li>Phone: <a href="tel:+${E(S.whatsapp)}">${E(S.phone)}</a></li><li>WhatsApp: <a href="https://wa.me/${E(S.whatsapp)}">${E(S.phone)}</a></li><li>Email: <a href="mailto:${E(S.email)}">${E(S.email)}</a></li></ul>${officesHtml()}</main>`,
-  ...Object.fromEntries(S.legal.pages.map(L => [L.slug, () => `<main><h1>${E(L.title)}</h1><p>${E(L.intro)}</p><p>Last updated: ${E(S.legal.updated)}</p>${L.officerBlock ? `<h2>Grievance Officer</h2><ul><li>Name: ${E(S.legal.officer.name)}</li><li>Email: <a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></li><li>Phone: ${E(S.legal.officer.phone)}</li><li>Address: ${E(S.legal.officer.address)}</li><li>Hours: ${E(S.legal.officer.hours)}</li></ul>` : ''}${L.sections.map((s, i) => `<h2>${i + 1}. ${E(s.h)}</h2>${(s.p || []).map(t => `<p>${E(t)}</p>`).join('')}${s.ul ? `<ul>${s.ul.map(t => `<li>${E(t)}</li>`).join('')}</ul>` : ''}`).join('')}</main>`])),
+  ...Object.fromEntries(S.legal.pages.map(L => [L.slug, () => `<main><h1>${E(L.title)}</h1><p>${E(L.intro)}</p><p>Effective: ${E(S.legal.effective)}. Last updated: ${E(S.legal.updated)}.</p>${L.officerBlock ? offTxt() : ''}${L.sections.map((s, i) => `<h2>${i + 1}. ${E(s.h)}</h2>${(s.p || []).map(t => `<p>${E(t)}</p>`).join('')}${s.ul ? `<ul>${s.ul.map(t => `<li>${E(t)}</li>`).join('')}</ul>` : ''}`).join('')}</main>`])),
   investors: () => { const I = S.investors; return `<main><h1>${E(I.title)}</h1><p>${E(I.text)}</p>
 <h2>Why Space and Tech Engineering</h2><ul>${I.thesis.map(t => `<li><b>${E(t.t)}.</b> ${E(t.x)}</li>`).join('')}</ul>
 <h2>What we sell today</h2>${prodList(avail)}
@@ -145,7 +150,7 @@ ${p.docs && p.docs.length ? `<h2>Documentation</h2><ul>${p.docs.map(d => `<li><a
 ${p.bestFor && p.bestFor.length ? `<h2>Best for</h2><ul>${p.bestFor.map(a => `<li>${E(a)}</li>`).join('')}</ul>` : ''}
 ${p.faq && p.faq.length ? `<h2>${E(p.name)} FAQ</h2>${faqHtml(p.faq)}` : ''}
 ${p.status !== 'soon' ? `<p><a href="${E(waLink(p))}">Get a quote on WhatsApp</a></p>` : ''}
-<h2>More products</h2>${prodList(rel)}</main>`;
+<h2>More products</h2>${prodList(rel)}${regNote(p)}</main>`;
   }
 };
 const READY = `<script>document.addEventListener('DOMContentLoaded',function(){document.documentElement.classList.remove('boot')})</script>`;

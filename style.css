@@ -376,3 +376,10 @@ footer .fbar{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);d
 .lg-card dt{color:var(--mute)}.lg-card dd{margin:0;color:var(--ink)}
 @media(max-width:900px){footer .fcols{grid-template-columns:1fr 1fr}.lg{grid-template-columns:1fr;gap:24px}.lg-toc{position:static}}
 @media(max-width:520px){footer .fcols{grid-template-columns:1fr}.lg-card dl{grid-template-columns:1fr;gap:2px}.lg-card dd{margin-bottom:10px}}
+.reg-s{padding:0 0 clamp(40px,6vw,72px)}
+.reg{border:1px solid var(--line);border-left:3px solid var(--hi);background:var(--card);border-radius:12px;padding:20px 22px;font-size:14px;color:var(--mute);max-width:860px}
+.reg h3{font-size:20px;color:var(--ink);margin-bottom:8px}.reg p{margin:0 0 8px}.reg a{color:var(--hi)}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mute);line-height:1.5}
+.chk input{width:20px;height:20px;margin-top:2px;flex:none}
+#fs:not(:empty){color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

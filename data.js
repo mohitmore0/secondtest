@@ -273,6 +273,7 @@ window.SITE = {
       { t: "Long-range transmitters", x: "TRX 5 km and TRX 10 km radio links." },
       { t: "More product depth", x: "Fuller specs, docs and variants across the Exelr8, Skydrive and NAVSATE lines." }
     ],
+    /* VERIFY: ye figures (revenue, seed, patents, customers) tabhi rakho jab documents se prove ho sakein, warna metrics: [] kar do */
     metrics: [
       { n: "Rs 1.2 Cr", l: "FY26 revenue" },
       { n: "40+", l: "OEM customers" },
@@ -283,70 +284,96 @@ window.SITE = {
   }
 };
 
-
 /* =====================================================================
-   LEGAL / COMPLIANCE  -  IT (Intermediary Guidelines and Digital Media
-   Ethics Code) Rules, 2021 (as amended up to 10.02.2026)
-   Sirf [BRACKET] wali values apni asli details se badlo, phir: node build.js
+   LEGAL / COMPLIANCE  -  sirf neeche ke khali fields apni VERIFIED details se bharo,
+   phir:  node build.js     (khali field site par dikhta hi nahi; build warning deta hai)
    ===================================================================== */
 (function(){
 const S=window.SITE;
+const reg=(S.about.offices||[]).find(o=>/regist/i.test(o.role))||(S.about.offices||[])[0]||{};
+S.company={
+  llpName:S.name,
+  llpin:"",                       // <-- LLPIN (MCA records se verify karke daalo, jaise AAA-1234)
+  registeredOffice:reg.address||"",
+  gstin:""                        // <-- optional, GSTIN verify karke
+};
 S.legal={
-  updated:"16 November 2026",
+  effective:"16 November 2026", updated:"16 November 2026",
   officer:{
-    name:"[NAAM - Grievance Officer ka naam daalo]",
-    designation:"Grievance Officer",
-    email:S.email,
-    phone:S.phone,
-    address:"Space and Tech Engineering LLP, Unit 37A, Patel Industrial Estate, Vivekananda Rd, Yadav Nagar, Dahisar East, Mumbai 400068, Maharashtra, India",
-    hours:"Monday to Saturday, 10:00 to 18:00 IST"
+    name:"",                      // <-- Grievance Officer ka poora naam
+    designation:"",               // <-- jaise "Director" / "Compliance Manager"
+    email:S.email,                // existing verified email (badalna ho to yahin)
+    phone:S.phone,                // existing verified number
+    address:S.company.registeredOffice,
+    hours:""                      // <-- jaise "Mon-Sat, 10:00 to 18:00 IST"
   },
+  /* Sab drone products UAS ke components hain, isliye ye text har product page par aata hai.
+     Transmitters ke liye RF wali extra line judti hai. */
+  uasNotice:"Space and Tech Engineering LLP supplies electronic components and accessories for unmanned aircraft systems. The supply of an individual component does not constitute certification or approval of a complete drone or unmanned aircraft system. Customers and system integrators are responsible for verifying applicable regulatory, safety and operational requirements before deployment.",
+  rfNotice:"Radio equipment may need Wireless Planning and Coordination (WPC) approval and must follow Indian frequency and power rules. This product is not yet released, and no approval or legal-operation claim is made for it.",
   pages:[
-  { slug:"terms", nav:"Terms of Use", title:"Terms of Use and User Agreement",
-    desc:"Rules for using the Space and Tech Engineering website: what you may not post or send, what we can do if rules are broken, and your legal responsibilities.",
-    intro:"These terms apply to everyone who visits spaceandtechengineerings.com, sends us an enquiry or uses any page, form or link on it. Please read them once. Using the site means you accept them.",
-    sections:[
-    {h:"Who we are",p:["This site is run by "+S.name+", Mumbai and Nashik, India. It shows our drone flight controllers, ESCs and GPS modules and lets you contact us for quotes and support."]},
-    {h:"What you must not send or upload to us",p:["Through our forms, email, WhatsApp or any other channel we provide, you agree not to host, upload, share or transmit anything that:"],
-     ul:["belongs to someone else and you have no right to use it;","is obscene, pornographic, paedophilic, or invades another person's privacy, including bodily privacy;","harasses or insults anyone on the basis of gender, or is racially or ethnically objectionable;","promotes money laundering or gambling, or promotes enmity between groups on grounds of religion or caste with intent to incite violence;","is harmful to children;","infringes a patent, trademark, copyright or other proprietary right;","deceives the reader about who sent it, or knowingly spreads false or misleading information as if it were fact;","impersonates another person;","threatens the unity, integrity, defence or security of India, friendly relations with other countries or public order, or incites a cognisable offence;","contains a virus or any code meant to disrupt or damage a computer resource;","is synthetically generated (AI-made or AI-altered) and unlawful, or falsely shows a real person or event in a way meant to deceive;","violates any law in force in India."]},
-    {h:"What we may do if these terms are broken",p:["We may immediately remove or disable access to the content, suspend or end your access, and preserve the related records for 180 days without altering the evidence. Where the law requires it we report the matter to the proper authority, and we may disclose a violating user's identity to a victim or a person acting for the victim, in line with applicable law."]},
-    {h:"Your legal responsibility",p:["Breaking these terms can lead to penalty or punishment under the Information Technology Act, 2000, the Bharatiya Nyaya Sanhita, 2023 read with the Bharatiya Nagarik Suraksha Sanhita, 2023, the Protection of Children from Sexual Offences Act, 2012 and other laws. Offences that must be reported by law will be reported."]},
-    {h:"Products, quotes and technical information",p:["Specifications, images and prices on this site are for general information and may change without notice. A product is sold only on a written quote or invoice from us. Drone electronics must be used in line with Indian drone rules and other applicable law; you are responsible for lawful use."]},
-    {h:"Our content",p:["Text, designs, firmware descriptions, logos and product images on this site belong to us or our licensors. You may share links freely. Copying content for commercial use needs our written permission."]},
-    {h:"Complaints and changes",p:["To report content or raise any issue, use the process on our Grievance Redressal page. We review these terms regularly and remind users of them at least once every three months. Continued use after a change means you accept it."]}
-    ]},
-  { slug:"privacy", nav:"Privacy Policy", title:"Privacy Policy",
-    desc:"What personal information Space and Tech Engineering collects through this website, why, how long we keep it and how to reach us about it.",
-    intro:"We keep this simple: we collect only what we need to answer your enquiry, quote you, deliver an order and support you after the sale.",
-    sections:[
-    {h:"What we collect",p:["Only what you give us: name, phone number, email, product of interest, build details and message when you use our contact form, email or WhatsApp, plus details needed to raise an invoice or ship an order (company name, address, GST number). The contact form opens your own email app or WhatsApp with the message prepared; nothing is sent until you press send there."]},
-    {h:"Why we use it",ul:["to reply to enquiries and prepare quotes;","to process orders, invoices and warranty or support requests;","to meet legal, tax and security obligations;","to share product updates only if you ask for them."]},
-    {h:"Who we share it with",p:["We do not sell personal information. We share it only with logistics, payment and accounting partners who need it to serve you, and with government agencies when a lawful order requires it. Where a lawful written order requires, we provide information to an authorised agency within the time the rules allow."]},
-    {h:"How long we keep it",p:["Enquiry and registration details are kept for as long as needed for the purpose above. If we collect registration information from you, we retain it for 180 days after you cancel or withdraw it. Content removed under our terms and its related records are preserved for 180 days, or longer if a court or authorised agency requires."]},
-    {h:"Security",p:["We follow reasonable security practices and procedures under the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Information) Rules, 2011, and report cyber security incidents to CERT-In as required."]},
-    {h:"Your choices",p:["You may ask us to correct or delete your details, or to stop contacting you, by writing to the Grievance Officer. We will acknowledge within 24 hours and resolve within seven days."]},
-    {h:"Third-party links",p:["Our site links to services such as our documentation, LinkedIn and Instagram. Their privacy practices are their own."]}
-    ]},
-  { slug:"grievance", nav:"Grievance Redressal", title:"Grievance Redressal",
-    desc:"Name and contact details of the Grievance Officer, how to file a complaint, response timelines and how to appeal to the Grievance Appellate Committee.",
-    intro:"If something on this site or in our dealings with you is wrong, tell us. A named officer reads every complaint.",
-    officerBlock:true,
-    sections:[
-    {h:"How to file a complaint",p:["Write to the Grievance Officer by email, phone or post using the details above. Tell us the page or link, what the problem is and how to reach you. Complaints about content help us most when they include the exact web address."]},
-    {h:"How fast we act",ul:["Acknowledgement of every complaint: within 24 hours.","Resolution of a complaint: within seven days of receipt.","Requests to remove content that breaches our Terms of Use (other than ownership, infringement and general-law categories): as quickly as possible and within 36 hours.","Intimate or impersonating content: if a person, or someone on their behalf, complains that content shows their private area, full or partial nudity, a sexual act, or is an impersonation including a morphed image, we take reasonable and practicable steps to remove or disable access within two hours of the complaint.","Orders of a court or lawful notices from the Appropriate Government: acted on within three hours of receipt, as the rules require."]},
-    {h:"If you are not satisfied",p:["If you disagree with the Grievance Officer's decision, or you do not get a resolution in time, you may appeal to the Grievance Appellate Committee established by the Central Government within 30 days of receiving our reply. The Committee aims to decide within 30 calendar days, and its orders bind us."]},
-    {h:"Law enforcement and government agencies",p:["Lawful orders and notices can be sent to the Grievance Officer at the address above. We provide information or assistance to an authorised agency within 72 hours of a written order that states its purpose."]},
-    {h:"Our commitment",p:["We respect the rights of every person under the Constitution of India, including Articles 14, 19 and 21, and we keep our services accessible and transparent."]}
-    ]},
-  { slug:"synthetic-content", nav:"AI and Synthetic Content", title:"AI and Synthetic Content Policy",
-    desc:"How Space and Tech Engineering labels AI-generated or AI-altered images, audio and video, and what we do not allow.",
-    intro:"Under the IT Rules, audio, images and video that are artificially created or altered so they look real are called synthetically generated information. This is our policy on it.",
-    sections:[
-    {h:"What we label",p:["Any image, video or audio on this site that was created or materially altered with AI or other computer generation, and could be taken for a real person, place or event, carries a clear visible label (or an audio notice at the start) and, where technically possible, embedded provenance information. Product renders, diagrams and illustrations are marked as illustrative where they are not photographs of the actual product."]},
-    {h:"What we do not allow",ul:["synthetic content showing child sexual abuse material, non-consensual intimate imagery, or anything obscene, pornographic or sexually explicit;","false documents or false electronic records;","content about making explosives, arms or ammunition;","fake depictions of a real person or event meant to deceive, including false identity, voice, actions or statements."]},
-    {h:"Routine edits are fine",p:["Normal editing such as cropping, colour correction, noise reduction, compression, translation, captions and accessibility improvements, and good-faith drafts, templates and educational material, do not need a label so long as they do not change the real meaning."]},
-    {h:"Report a concern",p:["If you see content on our site that looks fake, misleading or harmful, send the link to the Grievance Officer. We act quickly, remove or disable access where needed and keep the evidence intact."]}
-    ]}
+  {slug:"terms",nav:"Terms and Conditions",title:"Terms and Conditions",
+   desc:"Terms for using the Space and Tech Engineering LLP website and for enquiries, quotations and supply of drone electronics.",
+   intro:"These terms apply when you use this website or ask us for a quotation. By using the site you agree to them.",
+   sections:[
+   {h:"About us",p:[`This website is operated by ${S.company.llpName}, a limited liability partnership. Registered office: ${S.company.registeredOffice}.`+(S.company.llpin?` LLPIN: ${S.company.llpin}.`:'')+" The partners' liability is limited as provided in the Limited Liability Partnership Act, 2008."]},
+   {h:"Using the website",p:["You agree to use the site and its forms lawfully. You must not send us anything that infringes another person's rights, is unlawful, defamatory, obscene or harassing, or contains malicious code, and you must not attempt to disrupt or gain unauthorised access to the site. We may block access or decline to respond if these terms are broken, and we may report unlawful activity to the authorities."]},
+   {h:"Information on this site",p:["Product details are for general information. Specifications, availability and prices can change without notice and are confirmed only in a written quotation or invoice. See our Disclaimer and Product Regulatory Disclaimer."]},
+   {h:"Quotations, orders, delivery and returns",p:["The website does not take online payments. Supply is by written quotation, purchase order and invoice. Price, taxes, delivery schedule, shipping, cancellation, returns, refunds and warranty are set out in the quotation or invoice agreed with you, which prevails over any general statement on this site."]},
+   {h:"Lawful use of products",p:["Our products are electronic components. You are responsible for lawful use, including drone registration, certification, airspace, radio and operational rules applicable to your final system."]},
+   {h:"Intellectual property",p:["Content, designs, logos and product images on this site belong to us or our licensors unless stated. You may link to the site. Other use needs our written permission."]},
+   {h:"Limitation of liability",p:["To the extent permitted by law, we are not liable for indirect or consequential loss arising from use of the site or from reliance on general information on it. Nothing here limits liability that cannot be limited by law, or any right you have under consumer law."]},
+   {h:"Governing law and complaints",p:["These terms are governed by the laws of India. Subject to applicable law, the courts at Mumbai, Maharashtra have jurisdiction. For complaints, use the Grievance Redressal page."]},
+   {h:"Changes",p:["We may update these terms. The latest version, with its effective date, is always on this page."]}
+   ]},
+  {slug:"privacy",nav:"Privacy Policy",title:"Privacy Policy",
+   desc:"How Space and Tech Engineering LLP collects, uses, shares and protects personal data, and how to exercise your rights or withdraw consent.",
+   intro:"We collect only what we need to answer your enquiry and supply our products. This policy explains what, why, and how you stay in control.",
+   sections:[
+   {h:"Who is responsible",p:[`${S.company.llpName} (registered office: ${S.company.registeredOffice}) decides why and how your personal data is used. Privacy contact: the Grievance Officer listed on the Grievance Redressal page.`]},
+   {h:"Which law applies today",p:["The Information Technology Act, 2000 and the SPDI Rules, 2011 apply now. The Digital Personal Data Protection Act, 2023 and the DPDP Rules, 2025 are being brought into force in phases; as published, the main duties on businesses (notice, consent, rights and breach reporting) apply from May 2027. We are shaping this policy and our forms to match them, but we do not claim compliance with provisions that are not yet in force."]},
+   {h:"What we collect",ul:["Contact form or message: name, phone number, product of interest and the message you write (build details, quantity).","Email or WhatsApp: the details your account shows us and what you send.","Orders and invoices: company name, billing and shipping address, GSTIN and similar details needed to supply and bill.","We do not ask for sensitive data such as health or financial account details through this site."]},
+   {h:"Why we use it, and on what basis",ul:["To reply to your enquiry and prepare a quotation: you ask us to, and you consent by sending the message.","To supply, invoice, deliver and support products: to perform the contract with you.","To meet legal, tax, accounting and security obligations.","We do not send marketing messages unless you separately ask us to. We never pre-tick consent boxes."]},
+   {h:"How the contact form works",p:["The form does not store your details on our servers. When you submit it, it opens your own email app or WhatsApp with the message ready, and nothing is sent until you press send there. Details are then handled in those services under their own policies."]},
+   {h:"Cookies, analytics and third-party resources",p:["As of the effective date this site sets no advertising or analytics cookies. To display the page, your browser loads fonts from Google and some product images from servers hosted by Wix, so those providers receive your IP address and browser details. If we add analytics or advertising cookies later, we will update this policy and ask for your consent first where required."]},
+   {h:"Who we share data with",p:["We do not sell personal data. We share it only with service providers who help us (email, messaging, courier, accounting, hosting) and with authorities when the law or a lawful order requires it."]},
+   {h:"Retention and security",p:["We keep enquiry and order records only as long as needed for the purpose, and for as long as tax, accounting or other law requires. We use reasonable security safeguards suited to the data we handle. If a personal data breach affects you, we will inform you and the authorities as the law requires."]},
+   {h:"Your rights and withdrawing consent",p:["You can ask us to give you a summary of your data, correct or complete it, erase it, or stop using it, and you can withdraw consent at any time. Withdrawal is as easy as giving it: write to the Grievance Officer and we will act, except where we must keep data by law. Withdrawing does not affect what was done before. You may also nominate someone to exercise these rights for you if you cannot."]},
+   {h:"Children",p:["This site is meant for business and adult users. Please do not send us personal data of anyone under 18."]},
+   {h:"Complaints",p:["Write to the Grievance Officer first. If you are not satisfied, you may approach the Data Protection Board of India once its complaint provisions are in force, or any other authority the law provides."]}
+   ]},
+  {slug:"grievance",nav:"Grievance Redressal",title:"Grievance Redressal Policy",
+   desc:"How to raise a complaint with Space and Tech Engineering LLP, our Grievance Officer contact details and response commitments.",
+   intro:"If something on this website or in our dealings with you is wrong, tell us. A named officer is responsible for every complaint.",
+   officerBlock:true,
+   sections:[
+   {h:"How to complain",p:["Write, call or email the Grievance Officer using the details above. Please include your name, contact details, the page or product concerned and what went wrong. Complaints about privacy or personal data go to the same officer."]},
+   {h:"What you can expect",ul:["We acknowledge your complaint within 2 working days.","We aim to resolve it within 15 days of receipt, or tell you why more time is needed.","We give you the reason for our decision in writing."]},
+   {h:"Scope of this policy",p:["The timelines above are our own service commitments. This website does not host or publish content uploaded by the public. If any law gives you a shorter timeline or a further appeal route in a particular situation, we will follow it."]},
+   {h:"Consumer complaints",p:["If you are a consumer and are not satisfied, you may also contact the National Consumer Helpline (1915) or the consumer commission that has jurisdiction under the Consumer Protection Act, 2019."]},
+   {h:"Government and law-enforcement requests",p:["Lawful notices and orders may be sent in writing to the Grievance Officer at the postal address above."]}
+   ]},
+  {slug:"disclaimer",nav:"Disclaimer",title:"Disclaimer",
+   desc:"General disclaimer for information on the Space and Tech Engineering LLP website, including specifications, images and technical guidance.",
+   intro:"Please read this with our Terms and Conditions and Product Regulatory Disclaimer.",
+   sections:[
+   {h:"General information",p:["Content on this site is for general information. We try to keep it accurate but do not promise it is complete or current. Performance figures are from our design or test conditions and may differ in your build."]},
+   {h:"Images and renders",p:["Photos and renders are illustrative. Where an image is a computer-generated render or has been materially altered, the actual product may differ."]},
+   {h:"Technical guidance",p:["Documentation, guides and Drone Lab articles are educational. They are not a substitute for your own engineering, safety and legal review. Test any build in a safe, lawful environment."]},
+   {h:"Third-party links and trademarks",p:["Links to other sites, open-source projects (such as AM32) and third-party names are for convenience. We do not control them, and their trademarks belong to their owners. Compatibility statements apply only to the configurations we describe."]},
+   {h:"No professional advice",p:["Nothing on this site is legal, regulatory or financial advice."]}
+   ]},
+  {slug:"product-regulatory",nav:"Product Regulatory Disclaimer",title:"Product Regulatory Disclaimer",
+   desc:"Regulatory position of drone components supplied by Space and Tech Engineering LLP: DGCA, drone rules, radio equipment and who is responsible for compliance.",
+   intro:"Our products are parts of drones, not complete drones. This page explains what that means for regulation.",
+   sections:[
+   {h:"Components are not aircraft",p:[S.legal_uas_placeholder||"Space and Tech Engineering LLP supplies electronic components and accessories for unmanned aircraft systems. The supply of an individual component does not constitute certification or approval of a complete drone or unmanned aircraft system. Customers and system integrators are responsible for verifying applicable regulatory, safety and operational requirements before deployment."]},
+   {h:"What we supply",ul:["Flight controllers, ESCs (speed controllers) and GPS modules: electronic components for integrators and builders.","Development kits: engineering tools for prototyping, not finished aircraft.","Radio transmitters (planned, not yet released): radio equipment with its own approval requirements.","We do not sell complete unmanned aircraft systems on this site."]},
+   {h:"Drone rules in India",p:["Complete drones and their operators are subject to the Drone Rules, 2021 and later amendments, the Certification Scheme for Unmanned Aircraft Systems, 2022 and DGCA notifications. Type certification, registration, remote pilot requirements and airspace permissions apply to the final aircraft and its operator. The final drone manufacturer and operator are responsible for them."]},
+   {h:"Radio equipment",p:["Radio transmitters and links may need WPC Equipment Type Approval or other authorisation, and must use permitted frequencies and power. We do not state that any radio product is approved or legal to operate unless the approval is documented and listed on this page."]},
+   {h:"Our approvals status",p:["As of the effective date we do not claim DGCA, WPC or other regulatory approval for any product on this website. If we obtain one, we will name the product and approval here only with supporting documents."]},
+   {h:"Questions",p:["Ask the Grievance Officer or write to us through the contact page and we will tell you what we can document for a specific product."]}
+   ]}
   ]
 };
 })();
