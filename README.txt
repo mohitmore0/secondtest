@@ -96,3 +96,12 @@ V10: SECTIONS KO ARRANGE KARNA (layout.js + editor.html)
     HAR BAAR:     node build.js
     Home sections: hero, tech, cfg (Configure your drone stack), process, manifesto, cta.
 
+
+V11: SAFFRON GLOW THEME (bhagwa orange + gold shine + black + white)
+    saffron.css   NAYI FILE, sabse last load hoti hai. Palette images/ ke orange se nikala gaya (amber #E49C0C, bright #FCB43C),
+                  thoda halka karke bhagwa jaisa: --or #FF9A2E, --or-lt #FFB86B, --gold #FFD36B. Rang badalna ho to sirf
+                  saffron.css ke upar wale :root me badlo, poori site badal jayegi. Style.css / fx*.css ko nahi chhua gaya.
+    build.js      ab har page me saffron.css link karta hai + orange favicon. HAR BAAR: node build.js
+    fx.js         canvas particles / starfield ab saffron.
+    logo.svg, og-default.png   orange glow version.
+    Product photos pe se grayscale filter hata diya, taaki unka orange dikhe.

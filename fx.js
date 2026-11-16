@@ -34,9 +34,9 @@ if(dm<R&&dm>.1){const f=(1-dm/R)*2.2;a.x+=dx/dm*f;a.y+=dy/dm*f}
 a.near=dm<R?1-dm/R:0}
 for(let i=0;i<N.length;i++){const a=N[i];
 for(let j=i+1;j<N.length;j++){const b=N[j],l=Math.hypot(a.x-b.x,a.y-b.y);
-if(l<LINK){const g=Math.min(1,(1-l/LINK)*.45+Math.max(a.near,b.near)*.5);x.strokeStyle='rgba(255,255,255,'+g.toFixed(3)+')';x.lineWidth=1;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}}
-for(const a of N){x.fillStyle='rgba(255,255,255,'+(.55+a.near*.45).toFixed(2)+')';x.beginPath();x.arc(a.x,a.y,a.s+a.near*2,0,6.2832);x.fill()}
-if(mx>-9000){x.strokeStyle='rgba(255,255,255,.18)';x.lineWidth=1;x.beginPath();x.arc(mx,my,R,0,6.2832);x.stroke()}
+if(l<LINK){const g=Math.min(1,(1-l/LINK)*.45+Math.max(a.near,b.near)*.5);x.strokeStyle='rgba(255,170,70,'+g.toFixed(3)+')';x.lineWidth=1;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}}
+for(const a of N){x.fillStyle='rgba(255,170,70,'+(.55+a.near*.45).toFixed(2)+')';x.beginPath();x.arc(a.x,a.y,a.s+a.near*2,0,6.2832);x.fill()}
+if(mx>-9000){x.strokeStyle='rgba(255,170,70,.18)';x.lineWidth=1;x.beginPath();x.arc(mx,my,R,0,6.2832);x.stroke()}
 raf=requestAnimationFrame(draw)};
 const start=()=>{if(!raf){run=true;fit();raf=requestAnimationFrame(draw)}};
 const hero=cv.parentElement;
@@ -63,7 +63,7 @@ abh.addEventListener('pointermove',e=>{px=e.clientX/innerWidth-.5;py=e.clientY/i
 new IntersectionObserver(([e])=>on=e.isIntersecting).observe(abh);
 const loop=()=>{if(on){v+=(Math.min(Math.abs(scrollY-last),70)-v)*.1;last=scrollY;const sp=2+v*1.6,ox=W/2-px*70,oy=H/2-py*70;g.clearRect(0,0,W,H);
 for(const s of S){const pz=s.z;s.z-=sp;if(s.z<=1){s.x=(Math.random()-.5)*W*2;s.y=(Math.random()-.5)*H*2;s.z=W;continue}
-const k=W*.5/s.z,k0=W*.5/pz,a=1-s.z/W;g.strokeStyle='rgba(255,255,255,'+a.toFixed(2)+')';g.lineWidth=Math.max(.6,a*1.8);g.beginPath();g.moveTo(ox+s.x*k0,oy+s.y*k0);g.lineTo(ox+s.x*k,oy+s.y*k);g.stroke()}}
+const k=W*.5/s.z,k0=W*.5/pz,a=1-s.z/W;g.strokeStyle='rgba(255,170,70,'+a.toFixed(2)+')';g.lineWidth=Math.max(.6,a*1.8);g.beginPath();g.moveTo(ox+s.x*k0,oy+s.y*k0);g.lineTo(ox+s.x*k,oy+s.y*k);g.stroke()}}
 requestAnimationFrame(loop)};loop()}
 const fl=$('.fl');
 if(fl){const up=()=>{const r=fl.getBoundingClientRect();fl.style.setProperty('--p',Math.max(0,Math.min(1,(innerHeight*.6-r.top)/r.height)))};addEventListener('scroll',up,{passive:true});up()}

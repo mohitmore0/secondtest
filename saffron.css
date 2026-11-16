@@ -1,0 +1,237 @@
+/* ==========================================================================
+   SAFFRON GLOW THEME  (bhagwa orange + gold shine + black + white)
+   --------------------------------------------------------------------------
+   Palette images/ se nikala gaya hai (hero.avif, azmuth.avif, 4in1.avif ...):
+     image amber      #E49C0C   |  image deep   #CC840C   |  image bright #FCB43C
+   Usko thoda halka, bhagwa (saffron) jaisa banaya gaya hai:
+     --or  #FF9A2E   main saffron        --or-lt #FFB86B  light saffron
+     --or-dp #F27A0D deep saffron        --gold  #FFD36B  gold highlight
+   Ye file SABSE LAST load hoti hai, isliye style.css / fx*.css ko chhue bina
+   poori site ka rang badal deti hai.  Rang badalna ho to sirf neeche :root me.
+   ========================================================================== */
+
+:root{
+  --or:#FF9A2E;
+  --or-lt:#FFB86B;
+  --or-dp:#F27A0D;
+  --gold:#FFD36B;
+  --gold-dk:#C98A1B;
+  --glow:rgba(255,154,46,.55);
+  --glow-s:rgba(255,154,46,.26);
+  --glow-xs:rgba(255,154,46,.12);
+
+  /* gold shine gradients (first and last stop same = seamless loop) */
+  --gold-grad:linear-gradient(100deg,#C98A1B 0%,#FFD36B 22%,#FFF3C4 38%,#FFB347 54%,#FF8A1F 74%,#C98A1B 100%);
+  --btn-grad:linear-gradient(100deg,#FFB347 0%,#FFD36B 46%,#FF9A2E 100%);
+
+  /* re-point the old white / blue accents to saffron */
+  --acc:var(--or);--hot:var(--or);--ac2:var(--or-lt);
+  --blue:var(--or-lt);--blue-glow:var(--glow);
+
+  /* warm blacks + soft white text */
+  --bg:#0a0908;--bg2:#100d0a;--card:#15110d;
+  --line:#2d2620;--ink:#fbf7f2;--hi:#ece4da;--mute:#a89f94;
+}
+
+::selection{background:var(--or);color:#0a0908}
+:focus-visible{outline-color:var(--or)}
+html{scrollbar-color:#e0780f #0a0908}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#0a0908}
+::-webkit-scrollbar-thumb{background:linear-gradient(#FFB347,#E0780F);border-radius:8px;border:2px solid #0a0908}
+
+@keyframes goldsweep{from{background-position:0 0}to{background-position:200% 0}}
+@keyframes btnshine{0%,55%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+@keyframes orGlow{50%{box-shadow:0 0 30px var(--glow),0 0 70px rgba(255,154,46,.25)}}
+
+/* ---------- background aurora: saffron instead of white ---------- */
+body:before{background:
+  radial-gradient(40% 40% at 18% 28%,rgba(255,138,31,.17),transparent),
+  radial-gradient(35% 35% at 82% 18%,rgba(255,211,107,.10),transparent),
+  radial-gradient(40% 40% at 60% 88%,rgba(255,106,0,.11),transparent)}
+#gl{background:radial-gradient(circle,rgba(255,154,46,.16),transparent 65%)}
+
+/* ---------- header + logo ---------- */
+header{background:rgba(10,9,8,.9);border-bottom:1px solid rgba(255,154,46,.30);box-shadow:0 1px 30px rgba(255,154,46,.10)}
+.logo{background:var(--gold-grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:goldsweep 7s linear infinite;filter:drop-shadow(0 0 10px rgba(255,154,46,.35))}
+.logo small{-webkit-text-fill-color:var(--mute);color:var(--mute)}
+nav a:hover,nav a[aria-current]{color:var(--or-lt);border-color:var(--or);text-shadow:0 0 14px var(--glow)}
+.burger{border-color:rgba(255,154,46,.5)}
+.burger:hover{box-shadow:0 0 18px var(--glow-s)}
+.menu a.m{border-bottom-color:rgba(255,154,46,.22)}
+.menu a.m:hover{color:var(--or-lt);text-shadow:0 0 22px var(--glow)}
+
+/* ---------- buttons: gold shine ---------- */
+.btn{position:relative;overflow:hidden;background:var(--btn-grad);background-size:160% 100%;background-position:0 0;color:#140b02;border:1px solid rgba(255,225,150,.65);box-shadow:0 0 20px var(--glow-s),inset 0 1px 0 rgba(255,255,255,.5);text-shadow:0 1px 0 rgba(255,255,255,.25);transition:box-shadow .3s,transform .2s var(--ease),background-position .5s}
+.btn:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.7) 50%,transparent 65%);transform:translateX(-130%);animation:btnshine 4s ease-in-out infinite}
+@media (hover:hover){.btn:not(.o):hover{background:var(--btn-grad);background-size:160% 100%;background-position:100% 0;color:#140b02;box-shadow:0 0 34px var(--glow),0 0 80px rgba(255,154,46,.30),inset 0 1px 0 rgba(255,255,255,.6);transform:translateY(-2px)}}
+.btn.o{background:transparent;color:#fff;border:1px solid rgba(255,154,46,.75);box-shadow:inset 0 0 16px rgba(255,154,46,.12),0 0 14px rgba(255,154,46,.10);text-shadow:none}
+.btn.o:after{display:none}
+@media (hover:hover){.btn.o:hover{background:rgba(255,154,46,.14);border-color:var(--or-lt);color:#fff;box-shadow:0 0 28px var(--glow),inset 0 0 18px rgba(255,154,46,.2);transform:translateY(-2px)}}
+
+/* ---------- headings: white -> gold -> saffron shine ---------- */
+h2{background-image:linear-gradient(90deg,#fff 0%,#fff 30%,#FFE9A8 41%,#FFB347 50%,#FF8A1F 56%,#fff 70%,#fff 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(255,154,46,.18))}
+.abh h1,.pd h1{text-shadow:0 0 38px rgba(255,154,46,.16)}
+.fin h2{background-image:var(--gold-grad);background-size:200% 100%;animation:goldsweep 5s linear infinite;filter:drop-shadow(0 0 26px rgba(255,154,46,.35))}
+.st b,.jr .jt b{background:var(--gold-grad);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:goldsweep 6s linear infinite;filter:drop-shadow(0 0 12px rgba(255,154,46,.4))}
+.eye{color:var(--or-lt);border-color:rgba(255,154,46,.5);box-shadow:0 0 18px var(--glow-xs)}
+.lead,.mute{color:var(--mute)}
+
+/* ---------- sections ---------- */
+.alt,#tech{background:linear-gradient(180deg,#110e0a,#0c0a08);border-block:1px solid rgba(255,154,46,.16)}
+#tech{box-shadow:inset 0 60px 90px -70px rgba(255,154,46,.14)}
+.stats{border-bottom-color:rgba(255,154,46,.2)}
+
+/* ---------- product cards: image ka orange nikhar ke aaye ---------- */
+.card,.alt .b{background:linear-gradient(160deg,rgba(255,154,46,.075),rgba(255,255,255,.02) 42%,rgba(0,0,0,.25));border-color:rgba(255,154,46,.30)}
+.card:hover{border-color:var(--or);box-shadow:0 0 0 1px rgba(255,154,46,.45),0 0 40px rgba(255,154,46,.28),0 14px 50px rgba(0,0,0,.55)}
+.card:before{background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,154,46,.30),transparent 60%)}
+.card:after{background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,211,107,.14),transparent 60%)}
+.ph{border-bottom-color:rgba(255,154,46,.25)}
+.ph img{filter:saturate(1.1) contrast(1.04)}
+.ph:after{background:linear-gradient(transparent 46%,rgba(255,184,107,.55) 50%,transparent 54%) 0 -60%/100% 60% no-repeat;border-color:rgba(255,154,46,.25)}
+.card h3{color:#fff}
+.card:hover h3{color:var(--gold);text-shadow:0 0 18px var(--glow)}
+.cat{color:var(--or-lt)}
+.tag{color:var(--gold);background:rgba(10,9,8,.88);border-color:rgba(255,154,46,.65);box-shadow:0 0 14px var(--glow-s)}
+.filters button{border-color:rgba(255,154,46,.30)}
+.filters button:hover{border-color:var(--or);color:#fff}
+.filters button[aria-pressed=true]{background:var(--btn-grad);color:#140b02;border-color:var(--gold);box-shadow:0 0 22px var(--glow-s)}
+
+/* ---------- product page ---------- */
+.main-img,.jr .jimgs img,.yt,.gal img,.about-img{border-color:rgba(255,154,46,.28)}
+.main-img{box-shadow:0 0 50px rgba(255,154,46,.12)}
+.thumbs button{border-color:rgba(255,154,46,.2)}
+.thumbs button[aria-current=true]{border-color:var(--or);box-shadow:0 0 16px var(--glow-s)}
+td:last-child{color:var(--gold)}
+td{border-bottom-color:rgba(255,154,46,.15)}
+.docs a{border-color:rgba(255,154,46,.30)}
+.docs a:hover{border-color:var(--or);box-shadow:0 0 20px var(--glow-s);color:var(--gold)}
+.pd ul li::marker{color:var(--or)}
+.yt button{border-color:var(--or);color:var(--or-lt);box-shadow:0 0 28px var(--glow)}
+.yt:hover button{background:var(--btn-grad);color:#140b02;border-color:var(--gold)}
+
+/* ---------- hero slider ---------- */
+.hs{border-bottom:0;box-shadow:0 10px 70px rgba(255,154,46,.16)}
+.hs:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;z-index:4;background:var(--gold-grad);background-size:200% 100%;animation:goldsweep 5s linear infinite;box-shadow:0 0 22px var(--glow)}
+.hnav{border-color:rgba(255,154,46,.6);background:rgba(10,9,8,.6);color:var(--or-lt);box-shadow:0 0 18px var(--glow-xs)}
+.hnav:hover{background:var(--btn-grad);color:#140b02;border-color:var(--gold);box-shadow:0 0 26px var(--glow)}
+.hdot{border-color:var(--or-lt);background:rgba(10,9,8,.55)}
+.hdot.on{background:var(--btn-grad);border-color:var(--gold);box-shadow:0 0 14px var(--glow)}
+.hero>img{filter:contrast(1.05) brightness(.6)}
+
+/* ---------- configure your drone stack ---------- */
+#cfg{background:linear-gradient(#0a0908,#110d09);border-bottom-color:rgba(255,154,46,.2)}
+#cfg .tb button{border-color:rgba(255,154,46,.35)}
+#cfg .tb button.on,#cfg .tb button:hover{background:var(--btn-grad);color:#140b02;border-color:var(--gold);box-shadow:0 0 22px var(--glow-s)}
+#cfg .dg{background:#0c0907;border-color:rgba(255,154,46,.28);box-shadow:inset 0 0 60px rgba(255,154,46,.06)}
+#cfg .nd rect{fill:#16110b;stroke:var(--or);filter:drop-shadow(0 0 6px var(--glow))}
+#cfg .nd text{fill:#fff}
+#cfg .ln{stroke:var(--or-lt);opacity:.85}
+#cfg .it{border-color:rgba(255,154,46,.22);background:rgba(255,154,46,.04)}
+#cfg .it:hover{border-color:var(--or);background:rgba(255,154,46,.10);box-shadow:0 0 26px var(--glow-s)}
+#cfg .it img{filter:none}
+#cfg .it small{color:var(--or-lt)}
+#cfg .bd div{border-top-color:var(--or);box-shadow:0 -6px 18px -10px var(--glow)}
+
+/* ---------- audience (aud) + process + apps ---------- */
+#aud .tb button{border-color:rgba(255,154,46,.3)}
+#aud .tb button.on{border-color:var(--gold);color:#140b02;background:var(--btn-grad)}
+#aud .pn{border-color:rgba(255,154,46,.28);background:rgba(255,154,46,.035)}
+#aud li:before{background:var(--or)}
+#aud .nu b{color:var(--gold)}
+#aud .rm{border-left-color:var(--or)}
+.st{border-top-color:rgba(255,154,46,.22)}
+.st:before{background:var(--gold-grad);box-shadow:0 0 14px var(--glow)}
+.app:before{background:var(--btn-grad)}
+.apps{background:rgba(255,154,46,.2);border-color:rgba(255,154,46,.2)}
+.si.on{color:var(--or-lt)}
+
+/* ---------- about page ---------- */
+.ax .abh{background-image:linear-gradient(rgba(255,154,46,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,154,46,.05) 1px,transparent 1px),radial-gradient(ellipse at 72% 40%,#241608,var(--bg) 70%);border-bottom-color:rgba(255,154,46,.25)}
+.radar{border-color:rgba(255,154,46,.3);background:repeating-radial-gradient(circle,transparent 0 59px,rgba(255,154,46,.16) 59px 60px);box-shadow:0 0 90px rgba(255,154,46,.12)}
+.radar:after{background:conic-gradient(from 0deg,rgba(255,154,46,.42),transparent 24%)}
+.bl{background:var(--gold);box-shadow:0 0 20px 5px rgba(255,154,46,.75)}
+.spine{background:rgba(255,154,46,.2)}
+.spine i{background:var(--gold-grad)}
+.spine em{background:var(--gold);box-shadow:0 0 28px 6px rgba(255,154,46,.7)}
+.yr2{-webkit-text-stroke:1px rgba(255,154,46,.6)}
+.ti2.in .yr2{color:var(--or-lt);text-shadow:0 0 36px var(--glow)}
+.ti:before{box-shadow:0 0 12px var(--glow)}
+.tiles{background:rgba(255,154,46,.22);border-color:rgba(255,154,46,.22)}
+.tile:before{background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(255,154,46,.24),transparent 60%)}
+.tile b{-webkit-text-stroke:1px rgba(255,154,46,.55)}
+.tile:hover b{color:var(--or-lt);text-shadow:0 0 30px var(--glow)}
+.of{border-color:rgba(255,154,46,.28)}
+.of h3{-webkit-text-stroke:1px rgba(255,154,46,.6)}
+.of:hover h3{color:var(--or-lt);text-shadow:0 0 30px var(--glow)}
+.live:before{background:var(--or);box-shadow:0 0 12px var(--glow)}
+.mc,.off{border-color:rgba(255,154,46,.25);border-left-color:var(--or);box-shadow:-10px 0 30px -18px var(--glow)}
+.mc span{color:var(--or-lt)}
+.val{border-color:rgba(255,154,46,.25)}
+.val:hover{border-color:var(--or);box-shadow:0 0 30px var(--glow-s)}
+.cap{border-bottom-color:rgba(255,154,46,.2)}
+.caps{border-top-color:rgba(255,154,46,.2)}
+.cap .bar{background:var(--gold-grad);box-shadow:0 0 12px var(--glow)}
+.cap:hover{background:var(--btn-grad);color:#140b02}
+.cap:hover p,.cap:hover .n{color:#4a3008}
+.cap .n,.cap em{color:var(--or-lt)}
+.cap:hover .n,.cap:hover em{color:#4a3008}
+.sn i{background:#5a4a38}
+.sn a.on i,.sn a:hover i{background:var(--or);box-shadow:0 0 12px var(--glow)}
+.sn a:hover span{color:var(--or-lt)}
+.person .pic{border-color:rgba(255,154,46,.28);background:linear-gradient(135deg,#1f160c,#3a2a14)}
+.person .pic img{filter:none}
+.person .pic b{color:rgba(255,154,46,.6)}
+.join{border-color:rgba(255,154,46,.28);background:linear-gradient(120deg,rgba(255,154,46,.08),var(--bg2))}
+
+/* old blueprint hero (if used) */
+.hbg .gl{stroke:var(--or);stroke-opacity:.09}
+.hbg .thn,.hbg .dsh,.hbg .arm2{stroke:var(--or);stroke-opacity:.45}
+.hbg .fl{fill:#0a0908;stroke:var(--or-lt)}
+.hbg .wh,.hbg .led{fill:var(--or)}
+.hbg .pr ellipse{fill:rgba(255,154,46,.18);stroke:var(--or-lt)}
+.hbg text{fill:#d9b98f}
+
+/* drone parts popup (blue -> saffron) */
+.sx .pt.on *{stroke:var(--or-lt);fill:rgba(255,154,46,.18)}
+.sx .pt.on{filter:drop-shadow(0 0 6px var(--glow)) drop-shadow(0 0 16px rgba(255,154,46,.38))}
+.pop{background:rgba(16,12,8,.97);box-shadow:0 0 22px rgba(255,154,46,.32)}
+
+/* custom cursor + flying drone + pins (fx2) */
+#cr,#cd{mix-blend-mode:normal}
+#cr{border-color:var(--or);box-shadow:0 0 16px var(--glow-s)}
+#cd{background:var(--or);box-shadow:0 0 10px var(--glow)}
+.dr .a{stroke:#c9a477}.dr .b,.dr .m{stroke:var(--or-lt)}.dr .c{stroke:var(--or-lt)}
+.dr .led{fill:var(--or)}.dr .p{fill:rgba(255,154,46,.28);stroke:var(--or-lt)}.dr .rg{stroke:var(--or)}
+.pin{border-color:var(--or);color:var(--or-lt);background:rgba(10,9,8,.75)}
+.pin:before{border-color:var(--or)}
+.pin .tt{border-color:var(--or);background:rgba(14,10,7,.96)}
+.fdv:before{border-top-color:rgba(255,154,46,.4)}
+
+/* ---------- contact form + legal pages ---------- */
+input,select,textarea{border-color:#3b3027;background:#12100d}
+input:hover,select:hover,textarea:hover{border-color:rgba(255,154,46,.5)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--or);outline-offset:1px;box-shadow:0 0 22px var(--glow-s)}
+input[type=checkbox],input[type=radio]{accent-color:var(--or)}
+.big{color:#fff}
+.big:hover{color:var(--gold);text-shadow:0 0 22px var(--glow)}
+.lg-toc a{border-left-color:rgba(255,154,46,.2)}
+.lg-card{border-color:rgba(255,154,46,.25)}
+.reg{border-color:rgba(255,154,46,.25);border-left-color:var(--or)}
+.reg a{color:var(--or-lt)}
+.lg-body a,.crumb a:hover{color:var(--or-lt)}
+details{border-bottom-color:rgba(255,154,46,.2)}
+summary:after{text-shadow:0 0 12px var(--glow)}
+
+/* ---------- footer + mobile dock ---------- */
+footer{position:relative;border-top:1px solid rgba(255,154,46,.25)}
+footer:before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--or) 25%,var(--gold) 50%,var(--or) 75%,transparent);box-shadow:0 0 18px var(--glow)}
+footer .fc b{color:var(--or-lt)}
+footer a:hover{color:var(--or-lt);text-shadow:0 0 12px var(--glow)}
+footer .fbar{border-top-color:rgba(255,154,46,.2)}
+.dock{border-top-color:rgba(255,154,46,.35);background:rgba(10,9,8,.95);box-shadow:0 -8px 30px rgba(255,154,46,.10)}
+
+@media (prefers-reduced-motion:reduce){
+  .logo,h2,.fin h2,.st b,.jr .jt b,.hs:after,.btn:after{animation:none!important}
+}
