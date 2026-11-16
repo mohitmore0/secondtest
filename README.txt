@@ -65,3 +65,34 @@ V4 NOTES - PRODUCT-FOCUSED REBUILD
         3) domain check: site = spaceandtechengineerings.com, email = spaceandtech-engineerings.com (hyphen)  4) price daalna ho to Offer schema add karwao
 
 V5: hero drone par Motors on/off switch (fx4.js + fx4.css). Props default me ruke rehte hain, switch dabane par hi ghoomte hain.
+
+V6 NOTES (is version me kya badla)
+  HERO          Sirf image slider (koi text nahi), har 3 sec me auto slide. Images: data.js -> hero.slides (4-5 rakho).
+                Time badalna ho: hero.interval (milliseconds). Best image size 1920 x 800 px.
+  HOME ORDER    Hero -> Technology solutions (products) -> flight stack -> process -> quote.
+  REMOVED       Solutions, Drone Lab, Support, Investors pages + Partners section (home aur about se).
+  FPV           products.html me naya filter "FPV". Kisi product ko FPV me dikhana ho: also: ["FPV"] likho.
+  HAR BAAR      node build.js chalao.
+
+V7: hero full screen. Images images/*.avif (hero.avif = main, 6 sec; baki 3 sec). Timing: data.js -> hero.slides[].ms.
+    Purana boot intro (loading animation) hata diya taaki hero seedha dikhe.
+
+V8: Har available product page ke neeche "From bench to sky" (Design, Bench test, Fly test, Ship and support).
+    data.js me har product ke andar journey { design, bench, fly } hai: text (khali = default), imgs: ["images/x.jpg"], video: "YouTube link".
+    Khali imgs/video wala hissa site par dikhta hi nahi. Coming-soon (TRX) pages par ye section nahi aata.
+    Dev Kit 1 / Dev Kit 2 aur "Development kits" category poori hata di gayi.
+
+V9: "Configure your drone stack" wapas (Technology solutions ke niche, fx4.js). "The whole flight stack" section hata diya.
+
+V10: SECTIONS KO ARRANGE KARNA (layout.js + editor.html)
+    layout.js     Har page ke sections ki list. Line upar/niche = section upar/niche. Line delete = remove.
+                  Line ke aage // = comment (hide). Line copy-paste = duplicate. Pura guide file ke upar likha hai.
+    editor.html   Browser me kholo: mouse se drag & drop, checkbox se hide/show, "+ Add new section" se naya block.
+                  "Copy" dabao aur layout.js me paste karo. (Local tool hai, sitemap me nahi, noindex.)
+    Naye custom blocks: type 'text' | 'banner' | 'tiles' | 'image' | 'html' (format layout.js ke neeche).
+    Content (text, products, images) pehle jaisa data.js me hi hai. layout.js sirf order + on/off ke liye hai.
+    app.js: ab har page ke sections alag alag functions hain, aur compose() layout.js ke hisaab se jodta hai.
+    build.js: SEO static pages (home, about) bhi layout.js ke order/hide ko follow karte hain.
+    HAR BAAR:     node build.js
+    Home sections: hero, tech, cfg (Configure your drone stack), process, manifesto, cta.
+

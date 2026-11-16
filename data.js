@@ -29,9 +29,22 @@ window.SITE = {
 
   /* ---------- HOME PAGE ---------- */
   hero: {
+    /* title + text sirf SEO / Google ke liye hain (screen par nahi dikhte). Hero par sirf slider dikhta hai. */
     title: "Indian flight controllers, ESCs and GPS for drones",
     text: "Triple-redundant Aazmuth flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules. Designed in Mumbai and Nashik, tested in flight, supported by the engineers who built them.",
-    image: "https://static.wixstatic.com/media/e688f6_10c2110744d94fc980962c8b7d6fc872~mv2.png"
+    image: "https://static.wixstatic.com/media/e688f6_10c2110744d94fc980962c8b7d6fc872~mv2.png",
+    /* HERO SLIDER (full screen, koi text nahi). Order yahi rahega: pehli image = main hero.
+       ms = us image ko kitni der dikhana hai (milliseconds): main hero 6000 (6 sec), baki 3000 (3 sec).
+       Image badalni ho to images/ folder me file rakho aur src badlo. alt sirf screen reader / SEO ke liye. */
+    interval: 3000,
+    slides: [
+      { src: "images/hero.avif",    ms: 6000, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
+      { src: "images/azmuth.avif",  ms: 3000, alt: "Azmuth flight controller", href: "aazmuth-flight-controller.html" },
+      { src: "images/exclr8.avif",  ms: 3000, alt: "Exelr8 flight controller for FPV drones", href: "exelr8-fpv-flight-controller-f7.html" },
+      { src: "images/4in1.avif",    ms: 3000, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
+      { src: "images/sateesc.avif", ms: 3000, alt: "SATE-ESC single electronic speed controller", href: "skydrive-am32-60a.html" },
+      { src: "images/navsate.avif", ms: 3000, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
+    ]
   },
   stats: [   // n = number, s = suffix
     { n: 2000, s: "+", l: "Drone components manufactured" },
@@ -45,12 +58,21 @@ window.SITE = {
      image  : main photo             |  gallery: extra photos (optional)
      specs  : [["Naam","Value"], ...] (khali chhodo to table hide ho jayegi)
      docs   : [{label,url}]          |  buyUrl: store link (optional)        */
-  categories: ["Flight controllers", "ESCs", "GPS", "Development kits", "Transmitters"],
+  categories: ["Flight controllers", "ESCs", "GPS", "FPV", "Transmitters"],
+  /* FPV category: product ki main category (category:) wahi rehti hai; FPV me dikhane ke liye also: ["FPV"] lagao.
+     Naya FPV product: category: "FPV" bhi likh sakte ho. */
   products: [
     {
       slug: "aazmuth-flight-controller", name: "Aazmuth flight controller", category: "Flight controllers",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_4ef9d2c2ab6a43a5ab35ac564c0604cc~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.",
       description: "Aazmuth is our flagship flight controller for professional UAVs. It runs on an STM32 H7 (Cortex-M7, up to 480 MHz) and carries 3 IMUs and 2 barometers, each on its own isolated bus, so one noisy or failed sensor does not take down the flight. IMU boards plug in over 20-pin Aazmuth Bus connectors, which means you can swap or upgrade sensors without replacing the controller. Built for defence, industry, agriculture, survey, startups and universities.",
       features: ["Triple IMU and dual barometer redundancy", "Isolated sensor buses, so vibration on one does not corrupt the others", "Modular IMU boards on the 20-pin Aazmuth Bus", "Public pinout, calibration and sensor-integration docs"],
@@ -72,8 +94,15 @@ window.SITE = {
     },
     {
       slug: "exelr8-fpv-flight-controller-f7", name: "Exelr8 FPV flight controller F7", category: "Flight controllers",
-      status: "available", featured: true,
+      also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_7ed082c4ce4c4d01baea626a1683544f~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "F7 flight controller for light, fast FPV racing and freestyle builds.",
       description: "Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.",
       features: ["F7 processor", "Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS", "Designed and supported in India"],
@@ -89,6 +118,13 @@ window.SITE = {
       slug: "skydrive-am32-60a", name: "Skydrive AM32 60A 3-6S", category: "ESCs",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads such as sprayer drones.",
       description: "The Skydrive AM32 60A is a 3-6S electronic speed controller running open AM32 firmware, so you can configure and update it with the usual AM32 tools. Its 60 A rating suits heavy-lift and agriculture drones carrying sprayer payloads.",
       features: ["60 A rating for heavy payloads", "AM32 firmware, configurable with standard AM32 tools", "3-6S LiPo input"],
@@ -104,6 +140,13 @@ window.SITE = {
       slug: "skydrive-am32-40a", name: "Skydrive AM32 40A 3-6S", category: "ESCs",
       status: "available", featured: false,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "40A AM32 ESC for 3-6S LiPo builds. A light choice for survey and mapping drones.",
       description: "The Skydrive AM32 40A is a 3-6S electronic speed controller running AM32 firmware. It is a light, efficient choice for survey, mapping and general UAV builds that do not need the 60 A headroom.",
       features: ["40 A rating", "AM32 firmware", "3-6S LiPo input"],
@@ -116,8 +159,15 @@ window.SITE = {
     },
     {
       slug: "skydrive-55a-am32-4-in-1", name: "Skydrive 55A AM32 4-in-1", category: "ESCs",
-      status: "available", featured: false,
+      also: ["FPV"], status: "available", featured: false,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "Four 55A AM32 ESCs on one board. Short wiring for 5-inch FPV builds and below.",
       description: "The Skydrive 55A 4-in-1 puts four AM32 ESCs on a single board, which keeps wiring short and the stack tidy on 5-inch FPV builds and smaller. It is the matching ESC for the Exelr8 F7 flight controller.",
       features: ["4 ESCs on one board", "55 A rating", "AM32 firmware"],
@@ -132,6 +182,13 @@ window.SITE = {
       slug: "navsate-gps-for-uavs", name: "NAVSATE GPS for UAVs", category: "GPS",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.",
       description: "NAVSATE is our GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position and ground-speed data it needs for position hold, return-to-home and waypoint missions, and pairs with Aazmuth for survey, agriculture and defence work.",
       features: ["Tuned for UAVs", "Tested on long flights", "Enables position hold, return-to-home and waypoint missions"],
@@ -144,8 +201,15 @@ window.SITE = {
     },
     {
       slug: "navsate-mini-gps", name: "NAVSATE mini for FPV drones", category: "GPS",
-      status: "available", featured: false,
+      also: ["FPV"], status: "available", featured: false,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
+      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
+         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench:  { text: "", imgs: [], video: "" },
+        fly:    { text: "", imgs: [], video: "" }
+      },
       short: "Compact NAVSATE GPS for FPV drones. Adds position data to small builds.",
       description: "NAVSATE mini is the compact version of our UAV GPS, made for FPV builds where weight and space matter. It adds position data for features like return-to-home to racing and long-range quads.",
       features: ["Compact size for FPV builds", "Matches the Exelr8 FPV stack"],
@@ -154,16 +218,6 @@ window.SITE = {
       faq: [
         { q: "What is the NAVSATE mini?", a: "A compact GPS module for FPV drones, from the same team that makes the NAVSATE UAV GPS." }
       ], docs: []
-    },
-    {
-      slug: "dev-kit-1", name: "Dev Kit 1", category: "Development kits", status: "soon", featured: false, noindex: true,
-      image: "https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg", gallery: [],
-      short: "Development kit for universities and startups. Coming soon.", description: "Dev Kit 1 is on our roadmap for universities, labs and startups that want to learn and prototype on our flight electronics. Ask us and we will tell you as soon as there is a launch date.", features: [], specs: [], docs: [], faq: []
-    },
-    {
-      slug: "dev-kit-2", name: "Dev Kit 2", category: "Development kits", status: "soon", featured: false, noindex: true,
-      image: "https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg", gallery: [],
-      short: "Second development kit. Coming soon.", description: "Dev Kit 2 is on our roadmap. Ask us and we will tell you as soon as there is a launch date.", features: [], specs: [], docs: [], faq: []
     },
     {
       slug: "trx-5km", name: "TRX 5 km", category: "Transmitters", status: "soon", featured: false, noindex: true,
@@ -175,23 +229,6 @@ window.SITE = {
       image: "https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg", gallery: [],
       short: "10 km range radio transmitter. Coming soon.", description: "TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.", features: [], specs: [], docs: [], faq: []
     }
-  ],
-
-  /* ---------- PARTNERS (logo add/remove) ---------- */
-  partners: [
-    { name: "Garuda Aerospace", logo: "images/garuda-aerospace-logo.png" },
-    { name: "DA3", logo: "https://static.wixstatic.com/media/6d90dc_a5da0d88ad12431ba5e9c54e63df72a9~mv2.png" },
-    { name: "NEC", logo: "images/NEC.png" },
-    { name: "Known Aero", logo: "images/Known Aero.png" },
-    { name: "Nitiraj Engineers", logo: "images/Nitiraj Engee.webp" },
-    { name: "Faradic", logo: "images/FARADIC.png" },
-    { name: "Riddl", logo: "images/riidl.webp" },
-    { name: "Sandip University", logo: "images/sandip uni.png" },
-    { name: "Rotorize Aviation", logo: "https://static.wixstatic.com/media/6d90dc_c34d727a13a24f1e86c07c676c491c0c~mv2.png" },
-    { name: "Flylab Solutions", logo: "https://static.wixstatic.com/media/6d90dc_2643795abf4c44b3971c111bd4bd011f~mv2.png" },
-    { name: "Greventek", logo: "https://static.wixstatic.com/media/6d90dc_1407130ef82344e78a8920eb1d16beb2~mv2.png" },
-    { name: "MSINS", logo: "https://static.wixstatic.com/media/6d90dc_632a942e250946649aaac5083453e028~mv2.png" },
-    { name: "GGSF", logo: "https://static.wixstatic.com/media/6d90dc_8129da0665d746f89b3120d47318336f~mv2.png" }
   ],
 
   /* ---------- ABOUT PAGE ---------- */
@@ -227,14 +264,14 @@ window.SITE = {
   },
 
   /* ---------- EXTRA CONTENT (home, solutions, support) ---------- */
-  ticker: ["Flight controllers", "AM32 ESCs", "GPS modules", "Dev kits", "Transmitters", "Made in India"],
+  ticker: ["Flight controllers", "AM32 ESCs", "GPS modules", "Transmitters", "Made in India"],
   manifesto: "We design the electronics, write the firmware and fly every batch ourselves. When something needs fixing, you call the people who built it.",
   apps: [
     { t: "Agriculture", x: "Spraying and crop-mapping drones need a steady hover and long, GPS-locked runs.", p: ["aazmuth-flight-controller", "navsate-gps-for-uavs", "skydrive-am32-60a"] },
     { t: "Survey and mapping", x: "Redundant sensors and a reliable GPS keep survey lines straight.", p: ["aazmuth-flight-controller", "navsate-gps-for-uavs"] },
     { t: "Defense and security", x: "Triple-redundant sensing for missions where a failure is not an option.", p: ["aazmuth-flight-controller", "navsate-gps-for-uavs"] },
     { t: "FPV racing and freestyle", x: "Light, fast F7 control and 4-in-1 ESCs for tight, punchy builds.", p: ["exelr8-fpv-flight-controller-f7", "skydrive-55a-am32-4-in-1", "navsate-mini-gps"] },
-    { t: "Education and research", x: "Modular boards and open docs that students can open up and learn from.", p: ["aazmuth-flight-controller", "dev-kit-1"] },
+    { t: "Education and research", x: "Modular boards and open docs that students can open up and learn from.", p: ["aazmuth-flight-controller", "exelr8-fpv-flight-controller-f7"] },
     { t: "Startups and prototypes", x: "Small batches, direct support and parts that match your build.", p: ["skydrive-am32-40a", "skydrive-am32-60a", "exelr8-fpv-flight-controller-f7"] }
   ],
   process: [
@@ -251,37 +288,8 @@ window.SITE = {
     { q: "Can I buy in bulk or for a company or OEM project?", a: "Yes. Send quantity and use case through the quote form, or call or WhatsApp us, and we will reply with the right parts." },
     { q: "Where are the pinouts and setup guides?", a: "In our public documentation. Each product page links to its own docs, where they exist." },
     { q: "Do you ship across India?", a: "Call or WhatsApp us with your pincode and quantity and we will confirm shipping." },
-    { q: "When will the coming-soon products launch?", a: "Dev Kit 1, Dev Kit 2 and the TRX transmitters are on our roadmap. Message us and we will tell you as soon as there is a date." }
-  ],
-
-  /* ---------- INVESTORS PAGE (sirf wahi dikhao jo sach aur verify ho) ----------
-     metrics: [] khali = block hide. Revenue / funding / certifications tabhi daalo jab public karna ho.
-     metrics format: [{ n: "Rs 1.2 Cr", l: "FY26 revenue" }] */
-  investors: {
-    title: "Building India's own drone electronics stack",
-    text: "Every drone needs a flight controller, speed controllers and GPS. We design all three in India, test them in flight and support the people who build with them.",
-    thesis: [
-      { t: "Full flight-electronics stack", x: "Flight controllers, AM32 ESCs and GPS modules from one team, so parts are designed to work together." },
-      { t: "Redundancy-first design", x: "Aazmuth carries 3 IMUs and 2 barometers on isolated buses, aimed at professional, industrial and defence work." },
-      { t: "Modular platform", x: "IMU boards plug into the 20-pin Aazmuth Bus, so one platform can be upgraded instead of replaced." },
-      { t: "Two ways to sell", x: "Direct sales to builders, and OEM and bulk supply to drone companies, universities and startups." },
-      { t: "Local design and support", x: "Engineering in Mumbai and Nashik means fast fixes, custom firmware conversations and a phone that gets answered." },
-      { t: "Open documentation", x: "Public pinouts, calibration and integration guides lower the cost of adopting our boards." }
-    ],
-    roadmap: [
-      { t: "Development kits", x: "Dev Kit 1 and Dev Kit 2 for universities, labs and startups." },
-      { t: "Long-range transmitters", x: "TRX 5 km and TRX 10 km radio links." },
-      { t: "More product depth", x: "Fuller specs, docs and variants across the Exelr8, Skydrive and NAVSATE lines." }
-    ],
-    /* VERIFY: ye figures (revenue, seed, patents, customers) tabhi rakho jab documents se prove ho sakein, warna metrics: [] kar do */
-    metrics: [
-      { n: "Rs 1.2 Cr", l: "FY26 revenue" },
-      { n: "40+", l: "OEM customers" },
-      { n: "Rs 50 L", l: "Seed raised" },
-      { n: "3", l: "Patents filed" }
-    ],
-    cta: "Investor and strategic partnership enquiries"
-  }
+    { q: "When will the coming-soon products launch?", a: "The TRX transmitters are on our roadmap. Message us and we will tell you as soon as there is a date." }
+  ]
 };
 
 /* =====================================================================
@@ -290,6 +298,7 @@ window.SITE = {
    ===================================================================== */
 (function(){
 const S=window.SITE;
+S.inCat=(p,c)=>p.category===c||(p.also||[]).indexOf(c)>-1;   /* product kisi category me hai ya nahi (main + also) */
 const reg=(S.about.offices||[]).find(o=>/regist/i.test(o.role))||(S.about.offices||[])[0]||{};
 S.company={
   llpName:S.name,
@@ -368,7 +377,7 @@ S.legal={
    intro:"Our products are parts of drones, not complete drones. This page explains what that means for regulation.",
    sections:[
    {h:"Components are not aircraft",p:[S.legal_uas_placeholder||"Space and Tech Engineering LLP supplies electronic components and accessories for unmanned aircraft systems. The supply of an individual component does not constitute certification or approval of a complete drone or unmanned aircraft system. Customers and system integrators are responsible for verifying applicable regulatory, safety and operational requirements before deployment."]},
-   {h:"What we supply",ul:["Flight controllers, ESCs (speed controllers) and GPS modules: electronic components for integrators and builders.","Development kits: engineering tools for prototyping, not finished aircraft.","Radio transmitters (planned, not yet released): radio equipment with its own approval requirements.","We do not sell complete unmanned aircraft systems on this site."]},
+   {h:"What we supply",ul:["Flight controllers, ESCs (speed controllers) and GPS modules: electronic components for integrators and builders.","Radio transmitters (planned, not yet released): radio equipment with its own approval requirements.","We do not sell complete unmanned aircraft systems on this site."]},
    {h:"Drone rules in India",p:["Complete drones and their operators are subject to the Drone Rules, 2021 and later amendments, the Certification Scheme for Unmanned Aircraft Systems, 2022 and DGCA notifications. Type certification, registration, remote pilot requirements and airspace permissions apply to the final aircraft and its operator. The final drone manufacturer and operator are responsible for them."]},
    {h:"Radio equipment",p:["Radio transmitters and links may need WPC Equipment Type Approval or other authorisation, and must use permitted frequencies and power. We do not state that any radio product is approved or legal to operate unless the approval is documented and listed on this page."]},
    {h:"Our approvals status",p:["As of the effective date we do not claim DGCA, WPC or other regulatory approval for any product on this website. If we obtain one, we will name the product and approval here only with supporting documents."]},

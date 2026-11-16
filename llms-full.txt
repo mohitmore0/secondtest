@@ -131,20 +131,6 @@ Highlights:
 Specifications:
 - Built for: FPV drones
 
-## Dev Kit 1
-Category: Development kits
-Status: Coming soon
-URL: https://www.spaceandtechengineerings.com/dev-kit-1.html
-
-Dev Kit 1 is on our roadmap for universities, labs and startups that want to learn and prototype on our flight electronics. Ask us and we will tell you as soon as there is a launch date.
-
-## Dev Kit 2
-Category: Development kits
-Status: Coming soon
-URL: https://www.spaceandtechengineerings.com/dev-kit-2.html
-
-Dev Kit 2 is on our roadmap. Ask us and we will tell you as soon as there is a launch date.
-
 ## TRX 5 km
 Category: Transmitters
 Status: Coming soon
@@ -159,93 +145,8 @@ URL: https://www.spaceandtechengineerings.com/trx-10km.html
 
 TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.
 
-## How a drone works
-A drone flies on six core parts working together: a frame that holds everything, four brushless motors with propellers that create thrust, ESCs that power the motors, a flight controller that decides how fast each motor spins, a GPS that gives position, and a battery. Sensors such as IMUs and barometers tell the flight controller how the drone is moving, and it corrects the motors many times a second to stay stable.
-
-### Carbon frame
-The rigid skeleton that carries every other part and absorbs motor vibration. How stiff the arms are decides how clean the sensor data is and how easy the drone is to tune.
-Inside: Centre plate, Arms, Vibration mounts, Landing gear.
-Used for: Long, stiff arms for sprayers and survey rigs. Compact frames for 5-inch FPV racing.
-Space and Tech: We do not make frames. Because Aazmuth keeps its sensors isolated, soft-mounting it on any carbon frame gives the IMUs a clean signal.
-
-### Brushless motors and propellers
-Four motors turn ESC pulses into thrust. Speeding up one pair and slowing the other gives the drone roll, pitch and yaw.
-Inside: Stator, Rotor magnets, Bearings, Propeller.
-Used for: Big motors with large props for lifting payloads efficiently. Small, fast motors for racing.
-Space and Tech: Motor choice stays yours. Skydrive AM32 ESCs drive standard brushless motors on 3-6S, and open firmware lets you tune the motor settings yourself.
-
-### Skydrive AM32 ESC
-Takes the throttle command from the flight controller and switches battery current into the three phases of each motor. It also measures current to protect the motor.
-Inside: MCU running AM32, MOSFET bridge, Gate drivers, Current sense.
-Used for: 40A for lighter UAVs. 60A for heavy payloads such as agriculture sprayers. 55A 4-in-1 for compact FPV builds.
-Space and Tech: Open AM32 firmware, so there is no locked-in ESC software. 3-6S input covers most builds, and the 4-in-1 keeps wiring short on small drones.
-
-### Aazmuth flight controller
-Reads every sensor, compares it with what the pilot or mission asks for, and decides how fast each motor should turn. This runs many times a second.
-Inside: STM32 H7 up to 480 MHz, 3 IMUs, 2 barometers, Aazmuth Bus.
-Used for: Defence, industry, agriculture, startups and universities. For FPV builds, the Exelr8 F7.
-Space and Tech: Every sensor sits on its own isolated bus, and IMU boards are modular on the 20-pin Aazmuth Bus. Pinout and calibration guides are public.
-
-### NAVSATE GPS
-Tells the drone where it is and how fast it is moving. Without it there is no position hold, return-to-home or waypoint mission.
-Inside: Antenna, RF front-end, GNSS receiver, Link to FC.
-Used for: Survey lines, spraying passes, inspection work and long-range FPV with return-to-home.
-Space and Tech: NAVSATE for UAVs is tuned for UAVs and tested on long flights. The mini version fits compact FPV builds.
-
-### LiPo battery
-Stores the energy for flight. Cell count sets the voltage, and capacity sets how long you can stay up.
-Inside: Cells, Balance lead, Power connector, Power module.
-Used for: 3S to 6S packs. More cells for heavier lift, more capacity for longer endurance.
-Space and Tech: Not our product. Skydrive ESCs accept 3-6S, so the same electronics scale from light to heavy builds.
-
-## Drone sensors
-- IMU (Gyroscope + accelerometer): measures how fast the drone is rotating and accelerating. Used for staying level and resisting wind. this is the sense that keeps the drone upright. In our stack: Aazmuth carries 3 IMUs, each on its own isolated bus.
-- Barometer (Air pressure): measures pressure, which falls as the drone climbs. Used for altitude hold and smooth climbs and descents. In our stack: Aazmuth carries 2 barometers for a redundant altitude estimate.
-- GNSS receiver (Satellite timing): measures position and ground speed from satellite signals. Used for position hold, return-to-home and waypoint missions. In our stack: NAVSATE GPS for UAVs, and a mini version for FPV.
-- Current sense (Motor current): measures how much current each esc is delivering. Used for overcurrent protection and telemetry. In our stack: Built into the Skydrive AM32 ESC.
-- Power module (Battery voltage and current): measures voltage and current drawn from the pack. Used for remaining flight time and low-battery failsafe. In our stack: Connect it through the Aazmuth peripheral ports. See the sensor integration guide.
-- Camera (Optional vision payload): measures live video, or images for inspection and mapping. Used for fpv piloting, inspection and mapping jobs. In our stack: An optional payload. Not part of our stack.
-
-## Recommended stacks by use case
-- FPV racing: Light and punchy. A single 4-in-1 ESC keeps wiring short for 5-inch builds and below. Parts: Exelr8 FPV flight controller F7, Skydrive 55A AM32 4-in-1, NAVSATE mini for FPV drones.
-- Survey and mapping: Redundant sensors and a UAV-grade GPS for steady, repeatable flight lines. Parts: Aazmuth flight controller, Skydrive AM32 40A 3-6S, NAVSATE GPS for UAVs.
-- Agriculture: 60A ESCs carry heavy sprayer payloads. Isolated sensors tolerate vibration and field conditions. Parts: Aazmuth flight controller, Skydrive AM32 60A 3-6S, NAVSATE GPS for UAVs.
-- Defence and industrial: Triple-redundant flight control, made in India, with custom firmware support for your programme. Parts: Aazmuth flight controller, Skydrive AM32 60A 3-6S, NAVSATE GPS for UAVs.
 
 ## Frequently asked questions
-Q: What are the main parts of a drone?
-A: The main parts of a drone are the frame, brushless motors with propellers, electronic speed controllers (ESCs), a flight controller, a GPS module and a battery. Many drones also carry a camera. Together they provide structure, thrust, control, navigation and power.
-
-Q: What does a flight controller do in a drone?
-A: A flight controller is the drone’s brain. It reads sensors such as IMUs and barometers, compares them with the pilot’s or mission’s commands, and sets how fast each motor should spin, many times a second, to keep the drone stable and on course.
-
-Q: What is an ESC in a drone?
-A: An ESC (electronic speed controller) converts battery power into the three-phase current a brushless motor needs. It takes the throttle signal from the flight controller and controls motor speed. Each motor has one ESC, or four share a single 4-in-1 board.
-
-Q: What is AM32 firmware?
-A: AM32 is open-source firmware for drone ESCs. Because it is open, builders can configure and update the ESC themselves instead of being locked into one vendor’s software. All Skydrive ESCs from Space and Tech Engineering run AM32.
-
-Q: What sensors does a drone use?
-A: A drone typically uses an IMU (gyroscope and accelerometer) to sense rotation and acceleration, a barometer for altitude, a GNSS/GPS receiver for position and speed, and current and voltage sensors to monitor the motors and battery. Cameras are optional payloads.
-
-Q: Why does a drone need GPS?
-A: GPS tells the drone where it is and how fast it is moving. It enables position hold, return-to-home and autonomous waypoint missions. Without GPS a drone can still fly manually but cannot hold position by itself.
-
-Q: What is a triple-redundant flight controller?
-A: A triple-redundant flight controller carries three independent IMUs so that one failing or noisy sensor does not have to end the flight. The Aazmuth flight controller has 3 IMUs and 2 barometers, each on its own isolated bus.
-
-Q: Which flight controller, ESC and GPS suit an agriculture drone?
-A: For agriculture, Space and Tech Engineering suggests the Aazmuth flight controller, Skydrive AM32 60A ESCs for heavy sprayer payloads and the NAVSATE GPS for UAVs. Isolated sensors help tolerate vibration and field conditions.
-
-Q: Which electronics suit an FPV racing drone?
-A: For compact FPV builds, use the Exelr8 F7 flight controller with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS. A single 4-in-1 ESC keeps wiring short on 5-inch builds and below.
-
-Q: Are Space and Tech Engineering products made in India?
-A: Yes. Space and Tech Engineering LLP designs flight controllers, AM32 ESCs and GPS modules in Mumbai and Nashik, India, and supports builders with public documentation and direct engineer help.
-
-Q: Can I order in bulk or request a custom OEM stack?
-A: Yes. Send your platform, use case and quantity through the quote form, or call or WhatsApp +91 96657 17903. The team replies with a matched stack, and custom firmware support is available for OEM programmes.
-
 Q: What is AM32 firmware?
 A: AM32 is open-source firmware for 32-bit brushless ESCs. Skydrive ESCs run it, so you can configure and update them with the usual AM32 tools.
 
@@ -268,7 +169,7 @@ Q: Do you ship across India?
 A: Call or WhatsApp us with your pincode and quantity and we will confirm shipping.
 
 Q: When will the coming-soon products launch?
-A: Dev Kit 1, Dev Kit 2 and the TRX transmitters are on our roadmap. Message us and we will tell you as soon as there is a date.
+A: The TRX transmitters are on our roadmap. Message us and we will tell you as soon as there is a date.
 
 ## Contact
 Phone: +91 96657 17903

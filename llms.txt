@@ -18,22 +18,16 @@ Key facts:
 - [NAVSATE mini for FPV drones](https://www.spaceandtechengineerings.com/navsate-mini-gps.html): Compact NAVSATE GPS for FPV drones. Adds position data to small builds.
 
 ## Coming soon
-- Dev Kit 1
-- Dev Kit 2
 - TRX 5 km
 - TRX 10 km
 
 ## Guides
-- [How a drone works: parts, sensors and flight controller](https://www.spaceandtechengineerings.com/drone-lab.html): quick answers, part-by-part guide, sensors, use cases and FAQ
-- [Solutions by application](https://www.spaceandtechengineerings.com/solutions.html)
-- [Support and FAQ](https://www.spaceandtechengineerings.com/support.html)
 - [Documentation, pinouts and calibration](https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs)
 
 ## Company
 - [Home](https://www.spaceandtechengineerings.com/)
 - [All products](https://www.spaceandtechengineerings.com/products.html)
 - [About](https://www.spaceandtechengineerings.com/about.html)
-- [Investors](https://www.spaceandtechengineerings.com/investors.html)
 - [Contact](https://www.spaceandtechengineerings.com/contact.html)
 - [Terms and Conditions](https://www.spaceandtechengineerings.com/terms.html)
 - [Privacy Policy](https://www.spaceandtechengineerings.com/privacy.html)
