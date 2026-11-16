@@ -97,7 +97,7 @@ ${graph(ld)}`;
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">`;
-const ICON = `<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230a0a0b%27/%3E%3Cpath d=%27M6 22L16 8l10 14z%27 fill=%27none%27 stroke=%27%23FF9A2E%27 stroke-width=%272%27/%3E%3C/svg%3E">`;
+const ICON = (S.favicon ? `<link rel="icon" type="image/png" href="${S.favicon}"><link rel="shortcut icon" href="${S.favicon}">` : '') + ((S.appleIcon || S.logo) ? `<link rel="apple-touch-icon" href="${S.appleIcon || S.logo}">` : '');
 
 /* ---------------- static body blocks (real, crawlable content) ---------------- */
 

@@ -23,12 +23,12 @@ function seo(title,desc,img,ld,path){
   [].concat(ld||[]).forEach(o=>{const s=d.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(o);d.head.appendChild(s)});
 }
 let path='';
-const org={"@context":"https://schema.org","@type":"Organization",name:S.name,url:S.url,logo:abs(S.hero.image),email:S.email,telephone:'+'+S.whatsapp,sameAs:S.social.map(s=>s.url)};
+const org={"@context":"https://schema.org","@type":"Organization",name:S.name,url:S.url,logo:abs(S.logo||S.hero.image),email:S.email,telephone:'+'+S.whatsapp,sameAs:S.social.map(s=>s.url)};
 
 /* ---------- shared parts ---------- */
 const links=[['Products','products.html','products'],['Docs',S.docsUrl,''],['About','about.html','about'],['Contact','contact.html','contact']];
 const cur=l=>(l[2]&&(page===l[2]||(l[2]==='products'&&page==='product')))?' aria-current="page"':'';
-const header=`<header><div class="wrap nav"><a class="logo" href="index.html">${E(S.short)}<small>${E(S.tagline)}</small></a>
+const header=`<header><div class="wrap nav"><a class="logo" href="index.html">${S.logo?`<img class="lgi" src="${E(S.logo)}" alt="${E(S.short)} logo" width="40" height="40">`:''}<span class="lt">${E(S.short)}<small>${E(S.tagline)}</small></span></a>
 <nav aria-label="Main">${links.map(l=>`<a href="${E(l[1])}"${cur(l)}>${l[0]}</a>`).join('')}</nav>
 <div class="hbar"><a class="btn" href="contact.html">Get a quote</a><button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button></div></div></header>
 <div class="menu" id="menu">${[['Home','index.html']].concat(links.map(l=>[l[0],l[1]])).map(l=>`<a class="m" href="${E(l[1])}">${l[0]}</a>`).join('')}

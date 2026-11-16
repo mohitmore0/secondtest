@@ -24,7 +24,9 @@ window.SITE = {
   ],
   docsUrl: "https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs",
   careersUrl: "",   // jab careers page ready ho tab link daalo; khali = link hide
-  logo: "logo.svg",
+  logo: "images/logo.png",            // header + Google logo (PNG, images/ folder). Badalna ho to nayi PNG rakho aur yahan naam likho
+  favicon: "images/favicon.png",      // browser tab icon (PNG, square, 192x192 best)
+  appleIcon: "images/apple-touch-icon.png", // phone home-screen icon (180x180)
   ogImage: "og-default.png",
 
   /* ---------- HOME PAGE ---------- */
@@ -69,9 +71,9 @@ window.SITE = {
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
          Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
-        design: { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8?si=LYhF-suSEK0uuuBl" },
-        bench:  { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8?si=LYhF-suSEK0uuuBl" },
-        fly:    { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8?si=LYhF-suSEK0uuuBl" }
+        design: { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8" },
+        bench:  { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8" },
+        fly:    { text: "", imgs: [], video: "https://youtu.be/uoMnChWIPS8" }
       },
       short: "Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.",
       description: "Aazmuth is our flagship flight controller for professional UAVs. It runs on an STM32 H7 (Cortex-M7, up to 480 MHz) and carries 3 IMUs and 2 barometers, each on its own isolated bus, so one noisy or failed sensor does not take down the flight. IMU boards plug in over 20-pin Aazmuth Bus connectors, which means you can swap or upgrade sensors without replacing the controller. Built for defence, industry, agriculture, survey, startups and universities.",

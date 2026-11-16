@@ -103,5 +103,11 @@ V11: SAFFRON GLOW THEME (bhagwa orange + gold shine + black + white)
                   saffron.css ke upar wale :root me badlo, poori site badal jayegi. Style.css / fx*.css ko nahi chhua gaya.
     build.js      ab har page me saffron.css link karta hai + orange favicon. HAR BAAR: node build.js
     fx.js         canvas particles / starfield ab saffron.
-    logo.svg, og-default.png   orange glow version.
+    images/logo.png, favicon.png, apple-touch-icon.png, og-default.png   orange glow PNG versions.
     Product photos pe se grayscale filter hata diya, taaki unka orange dikhe.
+
+V12: LOGO + FAVICON AB data.js SE (PNG, images/ folder)
+    data.js        logo: "images/logo.png"   favicon: "images/favicon.png"   appleIcon: "images/apple-touch-icon.png"
+    Logo badalna    nayi PNG images/ me rakho -> data.js me naam badlo -> node build.js. Header logo, favicon, phone icon, Google schema sab badal jate hain.
+    Sizes           logo.png 512x512 (transparent best) | favicon.png 192x192 square | apple-touch-icon.png 180x180
+    logo: "" khali   to header me sirf text rahega. favicon: "" khali = favicon nahi.
