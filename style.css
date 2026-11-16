@@ -150,7 +150,7 @@ footer a{margin-right:18px;text-decoration:none;display:inline-block;padding:6px
 footer a:hover{color:var(--acc)}
 
 .dock{display:none}
-.js .rv{xopacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 .empty{padding:40px;border:1px dashed var(--line);color:var(--mute);text-align:center}
 
@@ -404,7 +404,21 @@ footer .fbar{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);d
 /* hero full screen: image poori dikhe (text crop na ho), black background image se match */
 .hs{height:calc(100svh - 69px);min-height:420px}
 .hsl img{object-fit:contain}
-@media(max-width:700px){.hs{height:calc(100svh - 69px);min-height:360px}}
+/* ===== hero MOBILE (phone + portrait tablet) =====
+   Images landscape hain aur unka content beech me hota hai, side/upar-niche ka kaala hissa khali hai.
+   Isliye mobile par box ko image jitna hi (aspect-ratio) rakha, aur image ko --z guna zoom karke
+   khali black side crop kiya: content kahin nahi katta, par image bada aur saaf dikhta hai.
+   --z har slide ka data.js me "zoom" se aata hai (default 1.4). Dots/arrows image ke neeche wali patti me. */
+@media(max-width:700px),(max-width:900px) and (orientation:portrait){
+  .hs{height:auto;min-height:0;aspect-ratio:100/86}
+  .hsl img{position:absolute;left:50%;top:46%;translate:-50% -50%;width:calc(var(--z,1.4)*100%);max-width:none;height:auto;object-fit:fill}
+  .hnav{top:auto;bottom:10px;translate:none;width:34px;height:34px}
+  .hnav svg{width:18px;height:18px}
+  .hnav.p{left:12px}.hnav.n{right:12px}
+  .hdots{bottom:22px;gap:12px}
+  .hdot{position:relative}
+  .hdot:after{content:"";position:absolute;inset:-12px -6px}
+}
 
 .hs{background:#000}
 
