@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff76a"/>
+      <stop offset="0.38" stop-color="#ffd500"/>
+      <stop offset="0.72" stop-color="#ff9b00"/>
+      <stop offset="1" stop-color="#ff5a00"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="17" result="blur1"/>
+      <feColorMatrix in="blur1" type="matrix" values="1 0 0 0 0.9  0 0.55 0 0 0.22  0 0 0.05 0 0  0 0 0 1 0" result="amber"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur2"/>
+      <feMerge><feMergeNode in="amber"/><feMergeNode in="blur2"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="butt" stroke-linejoin="round" filter="url(#glow)">
+    <!-- Broken outer circular band -->
+    <path d="M 586 292 A 238 238 0 0 0 367 706" stroke-width="70"/>
+    <path d="M 438 758 A 238 238 0 0 0 690 402" stroke-width="70"/>
+    <!-- Inner circuit ring -->
+    <path d="M 525 366 A 145 145 0 0 0 424 644" stroke-width="12"/>
+    <path d="M 468 670 A 145 145 0 0 0 626 389" stroke-width="12"/>
+  </g>
+  <g filter="url(#glow)">
+    <!-- Diagonal lightning slash -->
+    <path d="M 224 802 L 777 263 L 800 244 L 784 271 L 246 813 Z" fill="url(#gold)"/>
+    <circle cx="525" cy="366" r="17" fill="url(#gold)"/>
+    <circle cx="468" cy="670" r="17" fill="url(#gold)"/>
+  </g>
+</svg>

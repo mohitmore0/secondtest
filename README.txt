@@ -111,3 +111,4 @@ V12: LOGO + FAVICON AB data.js SE (PNG, images/ folder)
     Logo badalna    nayi PNG images/ me rakho -> data.js me naam badlo -> node build.js. Header logo, favicon, phone icon, Google schema sab badal jate hain.
     Sizes           logo.png 512x512 (transparent best) | favicon.png 192x192 square | apple-touch-icon.png 180x180
     logo: "" khali   to header me sirf text rahega. favicon: "" khali = favicon nahi.
+    Header          ab sirf logo dikhta hai (naam/tagline text nahi). logo khali ho tabhi text dikhega.
