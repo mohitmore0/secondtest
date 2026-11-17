@@ -236,7 +236,7 @@ window.SITE = {
 
   /* ---------- ABOUT PAGE ---------- */
   about: {
-    title: "Built in Nashik. Flown everywhere.",
+    title: "Built in INDIA. Flown everywhere.",
     mission: "Make dependable flight electronics in India, with open docs and support that builders can actually reach.",   // <-- apna mission likho
     vision: "An Indian drone industry that flies on locally designed, locally supported hardware.",                         // <-- apna vision likho
     text: "We are a small team of hardware and firmware engineers making flight controllers, ESCs and GPS modules that Indian builders can actually get support for.",
