@@ -112,3 +112,63 @@ V12: LOGO + FAVICON AB data.js SE (PNG, images/ folder)
     Sizes           logo.png 512x512 (transparent best) | favicon.png 192x192 square | apple-touch-icon.png 180x180
     logo: "" khali   to header me sirf text rahega. favicon: "" khali = favicon nahi.
     Header          ab sirf logo dikhta hai (naam/tagline text nahi). logo khali ho tabhi text dikhega.
+
+V13: PRODUCT ADD FORM (data.js ko haath se edit karne ki zarurat nahi)
+    admin-server.js     Local backend (Node, koi package nahi). Sirf aapke computer par chalta hai.
+    product-admin.html  Form page. Naam, category, photo, short, description, features, specs, FAQ, docs, video bharo -> "Add product".
+    start-admin.bat     Windows: double-click. (Mac/Linux: terminal me  node admin-server.js)
+    KAISE:  1) start-admin.bat chalao (browser khud khulega: http://localhost:3000/product-admin.html)
+            2) Form bharo, "Add product" dabao
+            3) Khud hota hai: photo images/ me save, data.js me naya product, node build.js (page + sitemap + llms.txt)
+            4) "Naya product page kholo" link se check karo, phir poora folder hosting par upload karo.
+    SAFETY: har add se pehle purana data.js .admin-backups/ me save hota hai (last 30). Galat ho jaye to wahi file data.js ki jagah rakh do.
+            Naya data.js pehle check hota hai; agar kuch gadbad ho to kuch bhi change nahi hota.
+    NOTE:   .admin-backups/ folder aur admin files hosting par upload karna zaroori nahi.
+            Product edit/delete abhi bhi data.js se hota hai (sirf ADD form banaya hai).
+
+V14: HOSTING + DOMAIN (Wix se connect)
+    Wix me ye custom HTML site upload nahi hoti. Site Netlify par chalao aur domain ko wahan point karo:
+    1) netlify.com par free account -> "Add new site" -> "Deploy manually" -> poora secondtest folder drag-drop
+       (ya GitHub repo connect karo: har git push par site khud update hogi). Build command khali, publish directory "."
+    2) Netlify ek temporary link dega (xxxx.netlify.app). Pehle usme sab pages check karo.
+    3) Netlify: Domain management -> Add custom domain -> apna domain likho. Netlify jo A record aur CNAME (www) dikhaye wo note karo.
+    4) Wix account -> Domains -> domain ke aage "..." -> Manage DNS Records. A record (@) aur CNAME (www) Netlify wale values se badlo.
+       Purane Wix wale A / CNAME records delete karo (conflict hota hai). Nameserver Wix domain ka badal nahi sakte, sirf DNS records.
+    5) 1 se 48 ghante me domain chalu. Netlify me HTTPS certificate khud lag jata hai.
+    NOTE: Jab tak Wix par purani site live hai, DNS badalte hi wo hat jayegi. Purana content/images pehle download kar lo.
+    Naya product add karna: start-admin.bat -> form -> phir folder dobara deploy karo (ya git push).
+
+V15: PRODUCT EDIT (admin form me)
+    product-admin.html ke upar "Kya karna hai?" dropdown: "+ Naya product add karo" ya koi maujooda product chuno.
+    Product chunte hi form uski details se bhar jata hai. Badlav karo -> "Save changes". data.js me sirf wahi product badalta hai.
+    - Slug (page address) edit me lock rehta hai, taaki purana link/SEO na tute.
+    - Jo fields form me nahi hain (journey ka text/photos, koi extra field) jaisi thi waisi rehti hain.
+    - Naya photo upload karoge to purani photo file images/ me padi rehti hai (delete nahi hoti).
+    - Us product ke data.js block me likhe hue comments hat jate hain (sirf comments, data nahi).
+    - Har save se pehle purana data.js .admin-backups/ me save hota hai.
+    Product DELETE abhi bhi data.js se haath se hota hai.
+
+V16: WIX PAR SITE (asli Wix site banane ka tarika)
+    Wix me HTML folder upload nahi hota, par 2 tarike kaam karte hain:
+
+    TARIKA A (best): Wix Harmony "Create from URL"  (asli Wix site banti hai, Wix me hi edit hoti hai)
+      1) Pehle site ko public link par live karo (Netlify drag-drop, README V14). Temporary xxxx.netlify.app link chalega.
+      2) Wix account -> naya site (Wix Harmony editor) -> Design Site -> Create from URL -> apni site ka link -> Continue -> Add site.
+      3) "Design your site with Aria" screen par extra instructions me wix-export/aria-prompt.txt ka text paste karo -> Generate Site.
+      4) Jo ban jaye use check karo. Wix AI poora copy nahi karta: content aur look ke hisaab se NAYI site banata hai.
+         Drone animation, scroll effects, boot/hero canvas jaise custom effects nahi aayenge. Layout thoda alag ho sakta hai.
+      5) Products ke liye Wix me CMS collection banao: CMS -> Create Collection -> Import from CSV -> wix-export/products.csv.
+         Phir Products page / product page us collection se jodo (dynamic page).
+      6) Domain: Wix me hi connect karo (agar domain Wix ka hai to wo already Wix me hai).
+      DHYAN: Harmony site baad me Wix Editor / Studio me convert nahi hoti.
+
+    TARIKA B (jaldi, par kamzor): Embed a site
+      Wix me ek khali page par "Embed a site" (iframe) lagao, link = Netlify wali site. Sirf HTTPS link chalta hai.
+      Wix ke hisaab se embed responsive nahi hota, aur SEO Wix ke domain par nahi milta (content iframe ke andar hai).
+      Sirf temporary/demo ke liye theek hai.
+
+    wix-export/ folder (node export-wix.js se banta hai, data.js badalne par dobara chalao):
+      products.csv      Wix CMS import (UTF-8, comma separated, 21 columns)
+      site-content.md   Poori site ka text
+      aria-prompt.txt   Aria ke liye instructions
+    Site live hone ke baad:  node export-wix.js --base https://aapki-site.netlify.app

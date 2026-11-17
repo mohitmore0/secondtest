@@ -1,0 +1,9 @@
+Rebuild this site faithfully. Do not invent content, prices, certifications or approvals. Use only the text already on the source site.
+
+Brand: Indian drone electronics company (Space and Tech Engineering LLP). Look: black background, white text, saffron/orange glow accents (#FF9A2E, gold #FFD36B). Use the logo from the source site.
+
+Pages: Home, Products, one page per product (use a CMS "Products" collection with a dynamic item page), About, Contact, Terms, Privacy, Disclaimer, Grievance, Product regulatory.
+Home order: full-width image slider (no text on it), "Technology solutions" product grid, "Configure your drone stack", "From bench to sky" process steps, then a "Talk to our engineers" call-to-action.
+Products page: filter buttons for Flight controllers, ESCs, GPS, FPV, Transmitters. Product page: photo gallery, short description, highlights, specifications table, best-for list, FAQ, documents links, "Get a quote" button and "Get a quote on WhatsApp" button (https://wa.me/919665717903). Coming-soon products show "Ask about launch" instead.
+Contact: phone +91 96657 17903, email arup@spaceandtech-engineerings.com, address Unit 37A, Patel Industrial Estate, Vivekananda Rd, Yadav Nagar, Dahisar East, Mumbai 400068, plus a quote request form.
+Keep the existing "we do not claim DGCA/WPC approval" regulatory wording exactly as on the source.

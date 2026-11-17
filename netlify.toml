@@ -1,0 +1,28 @@
+# Netlify settings. Site static hai: build command nahi chahiye (node build.js aap apne computer par chalate ho).
+[build]
+  publish = "."
+
+# Admin tool sirf aapke computer ke liye hai. Online site par ye files kholne par 404 aayega.
+[[redirects]]
+  from = "/admin-server.js"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/product-admin.html"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/start-admin.bat"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.txt"
+  to = "/404.html"
+  status = 404
+  force = true

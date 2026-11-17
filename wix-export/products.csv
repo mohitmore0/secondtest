@@ -1,0 +1,86 @@
+title,slug,category,also_in_categories,status,featured,main_image,gallery_images,short_description,description,features,specifications,best_for,faq,documents,buy_link,video_design,video_bench,video_fly,page_url,hidden_from_search
+Aazmuth flight controller,aazmuth-flight-controller,Flight controllers,,Available,TRUE,https://static.wixstatic.com/media/e688f6_4ef9d2c2ab6a43a5ab35ac564c0604cc~mv2.jpg,,"Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.","Aazmuth is our flagship flight controller for professional UAVs. It runs on an STM32 H7 (Cortex-M7, up to 480 MHz) and carries 3 IMUs and 2 barometers, each on its own isolated bus, so one noisy or failed sensor does not take down the flight. IMU boards plug in over 20-pin Aazmuth Bus connectors, which means you can swap or upgrade sensors without replacing the controller. Built for defence, industry, agriculture, survey, startups and universities.","Triple IMU and dual barometer redundancy
+Isolated sensor buses, so vibration on one does not corrupt the others
+Modular IMU boards on the 20-pin Aazmuth Bus
+Public pinout, calibration and sensor-integration docs","Microcontroller: STM32 H7, Cortex-M7
+Clock speed: Up to 480 MHz
+Memory: 2 MB flash, 1 MB RAM
+Redundancy: 3 IMUs, 2 barometers
+Size: 92 x 54 x 14.6 mm
+Weight: 63 g","Agriculture
+Survey and mapping
+Defense and security
+Education and research","Q: What redundancy does the Aazmuth flight controller have?
+A: Aazmuth carries 3 IMUs and 2 barometers, each on its own isolated bus, so a fault or vibration on one sensor does not corrupt the others.
+
+Q: What processor does Aazmuth use?
+A: An STM32 H7 (Cortex-M7) running at up to 480 MHz, with 2 MB of flash and 1 MB of RAM.
+
+Q: How big and heavy is it?
+A: 92 x 54 x 14.6 mm and 63 g.
+
+Q: Where are the pinout and calibration guides?
+A: In our public documentation. Overview, pinout, calibration, sensor integration and dimensions are all linked on this page.","Overview: https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/overview
+Pinout: https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/pinout-diagram
+Calibration: https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/basic-configuration-and-calibration
+Sensors: https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/sensor-integration-and-peripheral-hardware-connection
+Dimensions: https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs/flight-controller/aazmuth/dimensions",,https://youtu.be/uoMnChWIPS8,https://youtu.be/uoMnChWIPS8,https://youtu.be/uoMnChWIPS8,https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html,FALSE
+Exelr8 FPV flight controller F7,exelr8-fpv-flight-controller-f7,Flight controllers,FPV,Available,TRUE,https://static.wixstatic.com/media/e688f6_7ed082c4ce4c4d01baea626a1683544f~mv2.jpg,,"F7 flight controller for light, fast FPV racing and freestyle builds.","Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.","F7 processor
+Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS
+Designed and supported in India","Processor: F7
+Built for: FPV racing and freestyle","FPV racing and freestyle
+Startups and prototypes","Q: What is the Exelr8 flight controller for?
+A: Exelr8 is an F7 flight controller for FPV drone builds, including racing and freestyle quads.
+
+Q: Which ESC and GPS go with Exelr8?
+A: The Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS are the matching parts in our FPV stack.
+
+Q: Exelr8 or Aazmuth?
+A: Choose Exelr8 for FPV builds and Aazmuth when you need triple-redundant sensing for professional or mission work.",,,,,,https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html,FALSE
+Skydrive AM32 60A 3-6S,skydrive-am32-60a,ESCs,,Available,TRUE,https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg,,60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads such as sprayer drones.,"The Skydrive AM32 60A is a 3-6S electronic speed controller running open AM32 firmware, so you can configure and update it with the usual AM32 tools. Its 60 A rating suits heavy-lift and agriculture drones carrying sprayer payloads.","60 A rating for heavy payloads
+AM32 firmware, configurable with standard AM32 tools
+3-6S LiPo input","Current: 60 A
+Battery: 3-6S
+Firmware: AM32","Agriculture
+Startups and prototypes","Q: Which firmware does the Skydrive 60A run?
+A: AM32, so you can configure and update it with standard AM32 tools.
+
+Q: What battery does the Skydrive 60A support?
+A: 3-6S LiPo.
+
+Q: Is the 60A ESC good for agriculture drones?
+A: Yes. The 60 A rating is meant for heavier payloads such as sprayer drones. Tell us your motor and prop setup and we will confirm the fit.",,,,,,https://www.spaceandtechengineerings.com/skydrive-am32-60a.html,FALSE
+Skydrive AM32 40A 3-6S,skydrive-am32-40a,ESCs,,Available,FALSE,https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg,,40A AM32 ESC for 3-6S LiPo builds. A light choice for survey and mapping drones.,"The Skydrive AM32 40A is a 3-6S electronic speed controller running AM32 firmware. It is a light, efficient choice for survey, mapping and general UAV builds that do not need the 60 A headroom.","40 A rating
+AM32 firmware
+3-6S LiPo input","Current: 40 A
+Battery: 3-6S
+Firmware: AM32","Survey and mapping
+Startups and prototypes","Q: Which firmware does the Skydrive 40A run?
+A: AM32, configurable with standard AM32 tools.
+
+Q: 40A or 60A Skydrive ESC?
+A: Pick 40 A for lighter survey and general UAV builds, and 60 A for heavy payloads such as sprayer drones.",,,,,,https://www.spaceandtechengineerings.com/skydrive-am32-40a.html,FALSE
+Skydrive 55A AM32 4-in-1,skydrive-55a-am32-4-in-1,ESCs,FPV,Available,FALSE,https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg,,Four 55A AM32 ESCs on one board. Short wiring for 5-inch FPV builds and below.,"The Skydrive 55A 4-in-1 puts four AM32 ESCs on a single board, which keeps wiring short and the stack tidy on 5-inch FPV builds and smaller. It is the matching ESC for the Exelr8 F7 flight controller.","4 ESCs on one board
+55 A rating
+AM32 firmware","Current: 55 A
+Type: 4-in-1
+Firmware: AM32",FPV racing and freestyle,"Q: What is a 4-in-1 ESC?
+A: A single board that carries four speed controllers, one for each motor of a quadcopter, which keeps wiring short and weight low.
+
+Q: Which firmware does the 55A 4-in-1 run?
+A: AM32.",,,,,,https://www.spaceandtechengineerings.com/skydrive-55a-am32-4-in-1.html,FALSE
+NAVSATE GPS for UAVs,navsate-gps-for-uavs,GPS,,Available,TRUE,https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg,,"UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.","NAVSATE is our GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position and ground-speed data it needs for position hold, return-to-home and waypoint missions, and pairs with Aazmuth for survey, agriculture and defence work.","Tuned for UAVs
+Tested on long flights
+Enables position hold, return-to-home and waypoint missions","Built for: UAVs
+Use: Position hold, return-to-home, waypoints","Agriculture
+Survey and mapping
+Defense and security","Q: What does the NAVSATE GPS do?
+A: It tells the flight controller where the drone is and how fast it is moving, which enables position hold, return-to-home and waypoint missions.
+
+Q: Which flight controller works with NAVSATE?
+A: It is designed as part of our stack with the Aazmuth flight controller. Share your build and we will confirm wiring and settings.",,,,,,https://www.spaceandtechengineerings.com/navsate-gps-for-uavs.html,FALSE
+NAVSATE mini for FPV drones,navsate-mini-gps,GPS,FPV,Available,FALSE,https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg,,Compact NAVSATE GPS for FPV drones. Adds position data to small builds.,"NAVSATE mini is the compact version of our UAV GPS, made for FPV builds where weight and space matter. It adds position data for features like return-to-home to racing and long-range quads.","Compact size for FPV builds
+Matches the Exelr8 FPV stack",Built for: FPV drones,FPV racing and freestyle,"Q: What is the NAVSATE mini?
+A: A compact GPS module for FPV drones, from the same team that makes the NAVSATE UAV GPS.",,,,,,https://www.spaceandtechengineerings.com/navsate-mini-gps.html,FALSE
+TRX 5 km,trx-5km,Transmitters,,Coming soon,FALSE,https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg,,5 km range radio transmitter. Coming soon.,"TRX 5 km is a radio transmitter on our roadmap, aimed at 5 km control range. Ask us and we will tell you as soon as there is a launch date.",,,,,,,,,,https://www.spaceandtechengineerings.com/trx-5km.html,TRUE
+TRX 10 km,trx-10km,Transmitters,,Coming soon,FALSE,https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg,,10 km range radio transmitter. Coming soon.,"TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.",,,,,,,,,,https://www.spaceandtechengineerings.com/trx-10km.html,TRUE

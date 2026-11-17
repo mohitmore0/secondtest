@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Add product</title>
+<style>
+:root{--bg:#0a0a0b;--card:#141416;--line:#2a2a2e;--tx:#f2f2f3;--mu:#9a9aa2;--ac:#ffb020;--bad:#ff6b6b;--ok:#4cd07d;color-scheme:dark light}
+@media(prefers-color-scheme:light){:root{--bg:#f6f6f7;--card:#fff;--line:#d9d9de;--tx:#111;--mu:#666;--ac:#b86e00;--bad:#c62828;--ok:#1b7f3b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,sans-serif;padding:20px;max-width:900px;margin-inline:auto}
+h1{margin:0 0 4px;font-size:26px}
+h2{font-size:17px;margin:0 0 4px}
+p{color:var(--mu);margin:4px 0 12px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:13.5px;margin:10px 0 4px}
+label small{font-weight:400;color:var(--mu)}
+input[type=text],input[type=url],select,textarea{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--ac);outline-offset:0;border-color:var(--ac)}
+textarea{min-height:76px;resize:vertical}
+.req::after{content:" *";color:var(--ac)}
+.chk{display:flex;gap:8px;align-items:center;font-weight:400;margin:6px 0}
+.chk input{width:18px;height:18px;accent-color:var(--ac)}
+.chips{display:flex;flex-wrap:wrap;gap:6px 16px}
+button{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer}
+button:hover{border-color:var(--ac)}
+button.pri{background:var(--ac);border-color:var(--ac);color:#111;font-weight:700;padding:11px 22px;font-size:16px}
+button.pri:disabled{opacity:.5;cursor:wait}
+button.x{padding:6px 10px;color:var(--mu)}
+.r2{display:grid;grid-template-columns:1fr 1.4fr auto;gap:8px;margin-bottom:6px}
+.r3{display:grid;grid-template-columns:1fr 1.6fr auto;gap:8px;margin-bottom:6px}
+@media(max-width:640px){.r2,.r3{grid-template-columns:1fr auto}.r2>:nth-child(2),.r3>:nth-child(2){grid-column:1/-1;order:3}}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.thumbs img{width:84px;height:84px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.thumb{position:relative}
+.thumb button{position:absolute;top:2px;right:2px;padding:0 6px;line-height:20px;font-size:14px;background:rgba(0,0,0,.65);color:#fff;border-color:transparent}
+.msg{border-radius:10px;padding:10px 14px;margin:12px 0;border:1px solid var(--line)}
+.msg.bad{border-color:var(--bad);color:var(--bad)}
+.msg.warn{border-color:var(--ac);color:var(--tx)}
+.msg.good{border-color:var(--ok)}
+.msg ul{margin:4px 0 0;padding-left:20px}
+.msg a{color:var(--ac)}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto;font:12px/1.45 ui-monospace,Consolas,monospace;max-height:340px;margin:8px 0 0;white-space:pre-wrap;word-break:break-word}
+details summary{cursor:pointer;font-weight:600}
+.count{float:right;color:var(--mu);font-weight:400}
+.existing{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.existing span{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--mu)}
+.bar{position:sticky;bottom:0;background:var(--bg);padding:12px 0;border-top:1px solid var(--line);margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#offline{display:none}
+</style>
+</head>
+<body>
+<h1 id="title">Add new product</h1>
+<p id="intro">Form bharo, <b>Add product</b> dabao. Baaki sab khud hoga: <code>data.js</code> update, photos <code>images/</code> me save, aur <code>node build.js</code> chalega. <span style="color:var(--ac)">*</span> wale fields zaroori hain.</p>
+
+<div id="offline" class="msg bad">
+  <b>Admin server chalu nahi hai.</b> Ye page seedha double-click se nahi chalta. Terminal me folder ke andar ye chalao:<br>
+  <code>node admin-server.js</code> &nbsp;(Windows par <code>start-admin.bat</code> double-click) &nbsp;aur phir <code>http://localhost:3000/product-admin.html</code> kholo.
+</div>
+
+<div class="sec" id="modeBar">
+  <label for="mode" style="margin-top:0">Kya karna hai?</label>
+  <select id="mode"><option value="">+ Naya product add karo</option><optgroup label="Maujooda product edit karo" id="editGroup"></optgroup></select>
+  <p id="editNote" style="display:none;margin-bottom:0">Edit mode: jo fields yahan nahi hain (journey text/photos aadi) wo jaise hain waise hi rehti hain. Page address (slug) lock hai taaki purana link na tute. Purani photo file <code>images/</code> me rehti hai.</p>
+</div>
+
+<div class="sec">
+  <h2>1. Basic</h2>
+  <div class="grid">
+    <div><label class="req" for="name">Product name</label><input type="text" id="name" placeholder="Skydrive AM32 80A 6-12S" autocomplete="off"></div>
+    <div><label class="req" for="slug">Page address (slug) <small id="slugNote">auto banta hai, badal sakte ho</small></label><input type="text" id="slug" placeholder="skydrive-am32-80a" autocomplete="off"><small id="slugHint" style="color:var(--mu)"></small></div>
+    <div><label class="req" for="category">Category</label><select id="category"></select></div>
+    <div><label for="status">Status</label><select id="status"><option value="available">Available (bik raha hai)</option><option value="soon">Coming soon</option></select></div>
+  </div>
+  <label>Is category ke saath in me bhi dikhao <small>(optional, e.g. FPV)</small></label>
+  <div class="chips" id="also"></div>
+  <label class="chk"><input type="checkbox" id="featured"> Home page par dikhao (featured)</label>
+  <label class="chk"><input type="checkbox" id="noindex"> Google search se chhupao (noindex, sitemap se bhi bahar)</label>
+</div>
+
+<div class="sec">
+  <h2>2. Photos</h2>
+  <label class="req" for="mainFile">Main photo <small>(PNG / JPG / WEBP / AVIF, max 8 MB)</small></label>
+  <input type="file" id="mainFile" accept="image/png,image/jpeg,image/webp,image/avif,image/gif">
+  <label for="mainUrl">ya photo ka link <small>(https://... ya images/naam.jpg, agar upload nahi karna)</small></label>
+  <input type="text" id="mainUrl" placeholder="https://...">
+  <div class="thumbs" id="mainThumb"></div>
+  <label for="galFile">Extra photos (gallery) <small>optional, ek se zyada chun sakte ho</small></label>
+  <input type="file" id="galFile" accept="image/png,image/jpeg,image/webp,image/avif,image/gif" multiple>
+  <label for="galUrl">ya gallery ke links <small>(ek line me ek)</small></label>
+  <textarea id="galUrl" style="min-height:52px"></textarea>
+  <div class="thumbs" id="galThumbs"></div>
+</div>
+
+<div class="sec">
+  <h2>3. Text</h2>
+  <label class="req" for="short">Short line <small>(card par dikhti hai, 1 line)</small> <span class="count" id="shortN">0</span></label>
+  <input type="text" id="short" placeholder="60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads.">
+  <label class="req" for="description">Description <small>(2-4 sentence; kya hai, kiske liye, kya khaas)</small></label>
+  <textarea id="description" style="min-height:110px"></textarea>
+  <div class="grid">
+    <div><label for="features">Features / highlights <small>(ek line me ek)</small></label><textarea id="features" placeholder="60 A rating for heavy payloads&#10;AM32 firmware&#10;3-6S LiPo input"></textarea></div>
+    <div><label for="bestFor">Best for <small>(ek line me ek)</small></label><textarea id="bestFor" placeholder="Agriculture&#10;Startups and prototypes"></textarea></div>
+  </div>
+</div>
+
+<div class="sec">
+  <h2>4. Specifications</h2>
+  <p>Kam se kam 3 daalo (SEO ke liye). Jaise: Current &rarr; 60 A</p>
+  <div id="specs"></div>
+  <button type="button" id="addSpec">+ Spec row</button>
+</div>
+
+<div class="sec">
+  <h2>5. FAQ <small style="font-weight:400;color:var(--mu)">(optional, par Google/AI search me madad karta hai)</small></h2>
+  <div id="faq"></div>
+  <button type="button" id="addFaq">+ Question</button>
+</div>
+
+<div class="sec">
+  <h2>6. Links <small style="font-weight:400;color:var(--mu)">(optional)</small></h2>
+  <label>Documents / manuals</label>
+  <div id="docs"></div>
+  <button type="button" id="addDoc">+ Document link</button>
+  <label for="buyUrl">Buy / store link</label>
+  <input type="text" id="buyUrl" placeholder="https://...">
+  <details style="margin-top:12px"><summary>"From bench to sky" videos (optional, YouTube link)</summary>
+    <div class="grid">
+      <div><label for="vDesign">Design video</label><input type="text" id="vDesign" placeholder="https://youtu.be/..."></div>
+      <div><label for="vBench">Bench test video</label><input type="text" id="vBench" placeholder="https://youtu.be/..."></div>
+      <div><label for="vFly">Fly test video</label><input type="text" id="vFly" placeholder="https://youtu.be/..."></div>
+    </div>
+  </details>
+</div>
+
+<details class="sec"><summary>Code preview (data.js me ye block judega)</summary><pre id="code">...</pre></details>
+
+<div id="result"></div>
+<div id="issues"></div>
+
+<div class="bar">
+  <button type="button" class="pri" id="submit">Add product</button>
+  <button type="button" id="reset">Form saaf karo</button>
+  <span id="status2" style="color:var(--mu)"></span>
+</div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s);
+const st={cats:[],slugs:new Set(),slugTouched:false,main:null,gal:[],edit:null};
+const slugify=s=>s.toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const readFile=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=()=>no(r.error);r.readAsDataURL(f)});
+
+/* dynamic rows */
+function row(host,cls,fields,vals){
+  const d=document.createElement('div');d.className=cls;
+  fields.forEach((f,i)=>{const e=document.createElement(f.tag||'input');if(!f.tag){e.type='text'}e.placeholder=f.ph;e.setAttribute('aria-label',f.ph);e.value=(vals&&vals[i])||'';e.oninput=schedule;d.appendChild(e)});
+  const x=document.createElement('button');x.type='button';x.className='x';x.textContent='\u2715';x.setAttribute('aria-label','Remove row');x.onclick=()=>{d.remove();schedule()};d.appendChild(x);
+  host.appendChild(d);return d;
+}
+const specRow=v=>row($('#specs'),'r2',[{ph:'Name (Current)'},{ph:'Value (60 A)'}],v);
+const faqRow=v=>row($('#faq'),'r2',[{ph:'Question'},{ph:'Answer'}],v);
+const docRow=v=>row($('#docs'),'r3',[{ph:'Label (Manual)'},{ph:'https://...'}],v);
+const rows=(host)=>[...document.querySelectorAll(host+' > div')].map(d=>[...d.querySelectorAll('input')].map(i=>i.value));
+$('#addSpec').onclick=()=>specRow();$('#addFaq').onclick=()=>faqRow();$('#addDoc').onclick=()=>docRow();
+
+/* thumbs */
+function drawThumbs(){
+  const mk=(src,del)=>{const w=document.createElement('div');w.className='thumb';const i=document.createElement('img');i.src=src;i.alt='';w.appendChild(i);if(del){const b=document.createElement('button');b.type='button';b.textContent='\u00d7';b.setAttribute('aria-label','Remove photo');b.onclick=del;w.appendChild(b)}return w};
+  const m=$('#mainThumb');m.innerHTML='';
+  const ms=st.main?st.main.data:$('#mainUrl').value.trim();
+  if(ms&&(st.main||/^(https?:|images\/)/.test(ms)))m.appendChild(mk(ms,st.main?()=>{st.main=null;$('#mainFile').value='';drawThumbs();schedule()}:null));
+  const g=$('#galThumbs');g.innerHTML='';
+  st.gal.forEach((x,i)=>g.appendChild(mk(x.data,()=>{st.gal.splice(i,1);drawThumbs();schedule()})));
+}
+$('#mainFile').onchange=async e=>{const f=e.target.files[0];if(!f){st.main=null}else{st.main={type:'file',name:f.name,data:await readFile(f)}}drawThumbs();schedule()};
+$('#galFile').onchange=async e=>{for(const f of e.target.files)st.gal.push({type:'file',name:f.name,data:await readFile(f)});e.target.value='';drawThumbs();schedule()};
+$('#mainUrl').addEventListener('input',()=>{drawThumbs()});
+
+/* payload */
+function payload(){
+  const gal=st.gal.map(x=>({type:'file',data:x.data})).concat($('#galUrl').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).map(v=>({type:'url',value:v})));
+  return{
+    editSlug:st.edit||undefined,noindex:$('#noindex').checked,
+    name:$('#name').value,slug:$('#slug').value,category:$('#category').value,status:$('#status').value,featured:$('#featured').checked,
+    also:[...document.querySelectorAll('#also input:checked')].map(i=>i.value),
+    image:st.main?{type:'file',data:st.main.data}:{type:'url',value:$('#mainUrl').value},gallery:gal,
+    short:$('#short').value,description:$('#description').value,features:$('#features').value,bestFor:$('#bestFor').value,
+    specs:rows('#specs'),faq:rows('#faq').map(r=>({q:r[0],a:r[1]})),docs:rows('#docs').map(r=>({label:r[0],url:r[1]})),
+    buyUrl:$('#buyUrl').value,journey:{design:$('#vDesign').value,bench:$('#vBench').value,fly:$('#vFly').value}
+  };
+}
+async function api(path,body){
+  const r=await fetch(path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
+  return r.json();
+}
+
+/* live preview (debounced) */
+let t=null,seq=0;
+function schedule(){clearTimeout(t);t=setTimeout(preview,400)}
+async function preview(){
+  const n=++seq;
+  try{
+    // photo base64 preview me bhejna bhaari hai: preview ke liye sirf chhota marker bhejo
+    const p=payload();
+    if(p.image.type==='file')p.image={type:'file',data:TINY};
+    p.gallery=p.gallery.map(g=>g.type==='file'?{type:'file',data:TINY}:g);
+    const r=await api('/api/preview',p);
+    if(n!==seq)return;
+    $('#code').textContent=r.code||'';
+  }catch(e){}
+}
+const TINY='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAFAAH/q842iQAAAABJRU5ErkJggg==';
+
+/* events */
+$('#name').addEventListener('input',()=>{if(!st.edit&&!st.slugTouched){$('#slug').value=slugify($('#name').value);slugCheck()}});
+$('#slug').addEventListener('input',()=>{st.slugTouched=true;slugCheck()});
+function slugCheck(){const s=$('#slug').value.trim(),h=$('#slugHint');
+  if(st.edit){h.textContent='Page: '+s+'.html (edit me badalta nahi)';h.style.color='var(--mu)';return}
+  if(!s){h.textContent='';return}
+  h.textContent=st.slugs.has(s)?'Ye slug pehle se hai, doosra rakho.':'Page: '+s+'.html';h.style.color=st.slugs.has(s)?'var(--bad)':'var(--mu)'}
+['category','status','featured','short','description','features','bestFor','buyUrl','vDesign','vBench','vFly','galUrl','mainUrl','name','slug','noindex'].forEach(id=>$('#'+id).addEventListener('input',schedule));
+$('#category').addEventListener('change',()=>{drawAlso();schedule()});
+$('#status').addEventListener('change',schedule);
+$('#short').addEventListener('input',()=>$('#shortN').textContent=$('#short').value.length+' akshar (110-160 best)');
+
+function drawAlso(){
+  const keep=new Set([...document.querySelectorAll('#also input:checked')].map(i=>i.value)),cur=$('#category').value;
+  $('#also').innerHTML='';
+  st.cats.filter(c=>c!==cur).forEach(c=>{const l=document.createElement('label');l.className='chk';l.style.margin='2px 0';
+    const i=document.createElement('input');i.type='checkbox';i.value=c;i.checked=keep.has(c);i.onchange=schedule;l.append(i,document.createTextNode(c));$('#also').appendChild(l)});
+}
+
+function showIssues(errs,warns){
+  const h=[];
+  if(errs&&errs.length)h.push('<div class="msg bad" role="alert"><b>Ye theek karo:</b><ul>'+errs.map(e=>'<li>'+esc(e)+'</li>').join('')+'</ul></div>');
+  if(warns&&warns.length)h.push('<div class="msg warn"><b>Suggestion:</b><ul>'+warns.map(e=>'<li>'+esc(e)+'</li>').join('')+'</ul></div>');
+  $('#issues').innerHTML=h.join('');
+}
+
+function resetForm(){
+  document.querySelectorAll('input[type=text],textarea').forEach(e=>e.value='');
+  document.querySelectorAll('input[type=file]').forEach(e=>e.value='');
+  $('#featured').checked=false;$('#noindex').checked=false;$('#status').value='available';setMode(null);$('#specs').innerHTML='';$('#faq').innerHTML='';$('#docs').innerHTML='';
+  st.main=null;st.gal=[];st.slugTouched=false;
+  for(let i=0;i<3;i++)specRow();faqRow();faqRow();docRow();
+  drawAlso();drawThumbs();$('#slugHint').textContent='';$('#shortN').textContent='0';$('#code').textContent='...';
+}
+$('#reset').onclick=()=>{if(confirm('Form ka sab kuch saaf kar dun?')){resetForm();showIssues([]);}};
+
+function setMode(slug,name){
+  st.edit=slug||null;
+  $('#slug').readOnly=!!slug;$('#slugNote').textContent=slug?'locked (URL na tute)':'auto banta hai, badal sakte ho';
+  $('#title').textContent=slug?'Edit product: '+(name||slug):'Add new product';
+  $('#submit').textContent=slug?'Save changes':'Add product';
+  $('#editNote').style.display=slug?'':'none';if(!slug)$('#mode').value='';
+  $('#intro').innerHTML=slug?'Badlav karo, <b>Save changes</b> dabao. <code>data.js</code> me sirf ye product badlega, baaki sab waisa hi rahega, aur <code>node build.js</code> khud chalega.':'Form bharo, <b>Add product</b> dabao. Baaki sab khud hoga: <code>data.js</code> update, photos <code>images/</code> me save, aur <code>node build.js</code> chalega. <span style="color:var(--ac)">*</span> wale fields zaroori hain.';
+}
+async function loadProduct(slug){
+  const r=await api('/api/product?slug='+encodeURIComponent(slug));
+  if(!r.ok){showIssues(r.errors);return}
+  const p=r.product;
+  resetForm();setMode(slug,p.name);st.slugTouched=true;
+  const set=(id,v)=>{$(id).value=v==null?'':v};
+  set('#name',p.name);set('#slug',p.slug);set('#category',p.category);set('#status',p.status||'available');
+  $('#featured').checked=!!p.featured;$('#noindex').checked=!!p.noindex;
+  drawAlso();(p.also||[]).forEach(c=>{const i=document.querySelector('#also input[value="'+CSS.escape(c)+'"]');if(i)i.checked=true});
+  set('#mainUrl',p.image);set('#galUrl',(p.gallery||[]).join('\n'));
+  set('#short',p.short);set('#description',p.description);
+  set('#features',(p.features||[]).join('\n'));set('#bestFor',(p.bestFor||[]).join('\n'));
+  $('#shortN').textContent=(p.short||'').length+' akshar (110-160 best)';
+  $('#specs').innerHTML='';(p.specs||[]).forEach(x=>specRow(x));if(!(p.specs||[]).length)specRow();
+  $('#faq').innerHTML='';(p.faq||[]).forEach(x=>faqRow([x.q,x.a]));if(!(p.faq||[]).length)faqRow();
+  $('#docs').innerHTML='';(p.docs||[]).forEach(x=>docRow([x.label,x.url]));if(!(p.docs||[]).length)docRow();
+  set('#buyUrl',p.buyUrl);
+  const j=p.journey||{};set('#vDesign',(j.design||{}).video);set('#vBench',(j.bench||{}).video);set('#vFly',(j.fly||{}).video);
+  slugCheck();drawThumbs();schedule();
+  $('#mode').value=slug;
+  window.scrollTo({top:0});
+}
+$('#mode').onchange=async e=>{
+  showIssues([]);$('#result').innerHTML='';
+  if(e.target.value)await loadProduct(e.target.value);
+  else{resetForm();$('#mode').value=''}
+};
+
+$('#submit').onclick=async()=>{
+  const b=$('#submit');b.disabled=true;$('#status2').textContent='Save ho raha hai, build chal raha hai...';$('#result').innerHTML='';showIssues([]);
+  try{
+    const editing=st.edit,r=await api(editing?'/api/update-product':'/api/add-product',payload());
+    if(!r.ok){showIssues(r.errors);window.scrollTo({top:$('#issues').offsetTop-80,behavior:'smooth'});return}
+    const bad=r.build&&!r.build.ok;
+    $('#result').innerHTML='<div class="msg '+(bad?'warn':'good')+'" role="status"><b>'+(editing?'Product update ho gaya.':'Product add ho gaya.')+'</b><ul>'
+      +'<li>data.js me <code>'+esc(r.slug)+'</code> '+(editing?'update ho gaya':'jud gaya')+' (purana data.js <code>.admin-backups/</code> me safe hai).</li>'
+      +(r.images&&r.images.length?'<li>Photos save hui: '+r.images.map(esc).join(', ')+'</li>':'')
+      +'<li>'+(bad?'<b>node build.js me error aaya</b>, neeche dekho.':'node build.js ho gaya: sitemap, llms.txt aur product page ban gaye.')+'</li>'
+      +'<li><a href="/'+esc(r.page)+'" target="_blank" rel="noopener">Naya product page kholo</a> &middot; <a href="/products.html" target="_blank" rel="noopener">Products page</a></li>'
+      +'<li>Ab poora folder hosting par upload karo.</li></ul>'
+      +(r.build&&r.build.out?'<details><summary>Build output</summary><pre>'+esc(r.build.out)+'</pre></details>':'')+'</div>';
+    showIssues([],r.warnings);
+    await loadMeta();
+    if(editing){await loadProduct(editing)}else{resetForm()}
+    window.scrollTo({top:$('#result').offsetTop-80,behavior:'smooth'});
+  }catch(e){showIssues(['Server se baat nahi ho paayi: '+e.message])}
+  finally{b.disabled=false;$('#status2').textContent=''}
+};
+
+async function loadMeta(){
+  try{
+    const m=await api('/api/meta');$('#offline').style.display='none';
+    st.cats=m.categories;st.slugs=new Set(m.products.map(p=>p.slug));
+    const c=$('#category'),cur=c.value;c.innerHTML='';m.categories.forEach(x=>{const o=document.createElement('option');o.textContent=x;o.value=x;c.appendChild(o)});if(cur)c.value=cur;
+    const g=$('#editGroup');g.innerHTML='';
+    m.products.forEach(p=>{const o=document.createElement('option');o.value=p.slug;o.textContent=p.name+(p.status==='soon'?' (soon)':'');g.appendChild(o)});
+    $('#mode').value=st.edit||'';
+    drawAlso();
+  }catch(e){$('#offline').style.display='block'}
+}
+resetForm();loadMeta();
+})();
+</script>
+</body>
+</html>
