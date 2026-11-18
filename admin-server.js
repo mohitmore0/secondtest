@@ -9,6 +9,9 @@
      4) node build.js khud chalata hai (naya <slug>.html, sitemap, llms.txt sab ban jata hai)
    EDIT: maujooda product chun kar uska block data.js me badalta hai. Form me jo fields nahi hain (journey text/images,
          aur koi extra field) wo jaise the waise hi rehte hain. Slug edit me lock rehta hai (URL na tute).
+   HIDE: product hide karo to wo site par kahin nahi dikhta (data.js me hidden:true, uska <slug>.html bhi hat jata hai); Unhide se wapas.
+   REMOVE: product data.js se aur uska <slug>.html delete (photos images/ me rehti hain). Dono se pehle data.js ka backup banta hai.
+   NOIMAGE: main photo na ho to site par images/noimage.png lagti hai.
    Koi npm package nahi chahiye. Server sirf 127.0.0.1 par sunta hai (bahar se koi access nahi kar sakta). */
 const http = require('http'), fs = require('fs'), path = require('path'), vm = require('vm');
 const { spawn, execFile } = require('child_process');
@@ -28,7 +31,9 @@ const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; cha
 function loadSite(file = DATA) {
   const ctx = { window: {} }; vm.createContext(ctx);
   vm.runInContext(fs.readFileSync(file, 'utf8'), ctx, { timeout: 2000 });
-  return ctx.window.SITE;
+  const site = ctx.window.SITE;
+  if (site && site.allProducts) site.products = site.allProducts;   // hidden products bhi (admin ko sab dikhna chahiye)
+  return site;
 }
 
 /* src[open] == '[' ya '{' : uska matching band karne wala index. Strings aur comments ko skip karta hai. */
@@ -127,7 +132,7 @@ function planImage(img, slug, label, taken, errors) {
   return null;
 }
 
-const MANAGED = ['slug', 'name', 'category', 'also', 'status', 'featured', 'noindex', 'image', 'gallery', 'journey', 'short', 'description', 'features', 'specs', 'bestFor', 'faq', 'docs', 'buyUrl'];
+const MANAGED = ['slug', 'name', 'category', 'also', 'status', 'featured', 'noindex', 'image', 'gallery', 'journey', 'short', 'description', 'features', 'specs', 'bestFor', 'faq', 'docs', 'buyUrl', 'hidden'];
 
 function buildProduct(inp, site, editSlug) {
   const errors = [], writes = [];
@@ -150,7 +155,6 @@ function buildProduct(inp, site, editSlug) {
 
   const taken = { names: new Set(), gal: 0 };
   const main = planImage(inp.image, slug, 'Main image', taken, errors);
-  if (!main) errors.push('Main photo zaroori hai (upload karo ya link daalo).');
   const gallery = (Array.isArray(inp.gallery) ? inp.gallery : []).map(g => planImage(g, slug, 'Gallery image', taken, errors)).filter(Boolean);
   [main].concat(gallery).forEach(x => x && x.write && writes.push(x.write));
 
@@ -168,7 +172,9 @@ function buildProduct(inp, site, editSlug) {
   if (also.length) p.also = also;
   p.status = status; p.featured = !!inp.featured;
   if (inp.noindex) p.noindex = true;
-  p.image = main ? main.path : ''; p.gallery = gallery.map(g => g.path);
+  if (inp.hidden) p.hidden = true;
+  p.image = main ? main.path : '';   // khali = site par images/noimage.png lagta hai
+  p.gallery = gallery.map(g => g.path);
   const oj = (old && old.journey) || null, vids = { design: yt('design'), bench: yt('bench'), fly: yt('fly') };
   if (!old || oj || vids.design || vids.bench || vids.fly) {
     p.journey = {};
@@ -180,6 +186,8 @@ function buildProduct(inp, site, editSlug) {
   if (old) Object.keys(old).filter(k => !MANAGED.includes(k)).forEach(k => { p[k] = old[k]; });
 
   const warnings = [];
+  if (!main) warnings.push('Main photo nahi di: site par images/noimage.png dikhegi. Photo baad me edit karke daal sakte ho.');
+  if (inp.hidden) warnings.push('Product HIDDEN hai: site par kahin nahi dikhega (admin me dikhta rahega).');
   if (status !== 'soon' && specs.length < 3) warnings.push('Specs 3 se kam hain: Google ke liye product "thin" maana jayega. Ho sake to aur specs daalo.');
   if (!features.length) warnings.push('Features khali hain. 3-5 benefit lines daalna better rehta hai.');
   if (status !== 'soon' && !faq.length) warnings.push('FAQ khali hai. 2-3 sawal-jawab daalne se search me madad milti hai.');
@@ -192,7 +200,7 @@ function productCode(p) {
   const arr = (a, pad) => a.length ? '[\n' + a.map(x => pad + '  ' + x).join(',\n') + '\n' + pad + ']' : '[]';
   const L = [];   // har entry ek line/block; end me ",\n" se judti hain
   L.push(`slug: ${J(p.slug)}, name: ${J(p.name)}, category: ${J(p.category)}`);
-  L.push((p.also ? `also: ${J(p.also)}, ` : '') + `status: ${J(p.status)}, featured: ${!!p.featured}` + (p.noindex ? ', noindex: true' : ''));
+  L.push((p.also ? `also: ${J(p.also)}, ` : '') + `status: ${J(p.status)}, featured: ${!!p.featured}` + (p.noindex ? ', noindex: true' : '') + (p.hidden ? ', hidden: true' : ''));
   L.push(`image: ${J(p.image)}, gallery: ${J(p.gallery || [])}`);
   if (p.journey) {
     const jl = ['design', 'bench', 'fly'].map(k => { const o = p.journey[k] || {}; return `${ind}  ${k.padEnd(6)}: { text: ${J(o.text || '')}, imgs: ${J(o.imgs || [])}, video: ${J(o.video || '')} }`; });
@@ -291,6 +299,65 @@ async function updateProduct(inp) {
   return { ok: true, edited: true, slug: editSlug, page: editSlug + '.html', warnings: r.warnings, build: b, images: r.writes.map(w => 'images/' + path.basename(w.abs)) };
 }
 
+
+/* ---------------- hide / unhide / remove ---------------- */
+function checkAndCommit(orig, next, verify) {
+  const tmp = path.join(ROOT, '.data.check.js');
+  fs.writeFileSync(tmp, next);
+  try { verify(loadSite(tmp)); }
+  catch (e) { return 'data.js update safe nahi tha, isliye kuch change nahi kiya. (' + e.message + ')'; }
+  finally { try { fs.unlinkSync(tmp); } catch (_) {} }
+  backup(orig);
+  fs.writeFileSync(DATA + '.new', next);
+  fs.renameSync(DATA + '.new', DATA);
+  return null;
+}
+
+async function hideProduct(inp) {
+  const slug = S_(inp.slug), hide = !!inp.hidden;
+  const site = loadSite(), old = site.products.find(p => p.slug === slug);
+  if (!old) return { ok: false, errors: ['Ye product data.js me nahi mila: ' + slug] };
+  const p = Object.assign({}, old); if (hide) p.hidden = true; else delete p.hidden;
+  const orig = fs.readFileSync(DATA, 'utf8');
+  let next; try { next = replaceProduct(orig, slug, productCode(p)); } catch (e) { return { ok: false, errors: [e.message] }; }
+  const idx = site.products.findIndex(x => x.slug === slug);
+  const err = checkAndCommit(orig, next, chk => {
+    const same = chk.products.length === site.products.length && chk.products.every((x, i) => x.slug === site.products[i].slug);
+    if (!same || !!chk.products[idx].hidden !== hide) throw new Error('hide/unhide sahi nahi hua');
+    chk.products.forEach((x, i) => { if (i !== idx && JSON.stringify(x) !== JSON.stringify(site.products[i])) throw new Error('doosra product badal raha tha'); });
+  });
+  if (err) return { ok: false, errors: [err] };
+  const b = await runBuild();   // build.js hidden product ka <slug>.html khud hata deta hai
+  return { ok: true, slug, hidden: hide, build: b };
+}
+
+async function removeProduct(inp) {
+  const slug = S_(inp.slug);
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) return { ok: false, errors: ['Slug galat hai.'] };
+  const site = loadSite();
+  if (!site.products.some(p => p.slug === slug)) return { ok: false, errors: ['Ye product data.js me nahi mila: ' + slug] };
+  const orig = fs.readFileSync(DATA, 'utf8'), b0 = findProductBlock(orig, slug);
+  if (!b0) return { ok: false, errors: ['data.js me "' + slug + '" ka block nahi mila.'] };
+  // block ke aage/peeche ka comma bhi hatao (block se pehle wali blank/space line saaf)
+  let st = b0.start, en = b0.end + 1;
+  while (st > 0 && /\s/.test(orig[st - 1])) st--;            // pehle ka whitespace
+  let k = en; while (k < orig.length && /[ \t]/.test(orig[k])) k++;
+  let next;
+  if (orig[k] === ',') next = orig.slice(0, st) + orig.slice(k + 1);          // block ke baad comma tha: wo bhi gaya
+  else { let q = st; while (q > 0 && /\s/.test(orig[q - 1])) q--; next = (orig[q - 1] === ',' ? orig.slice(0, q - 1) : orig.slice(0, st)) + orig.slice(en); } // aakhri block: pichla comma hatao
+  const idx = site.products.findIndex(p => p.slug === slug);
+  const err = checkAndCommit(orig, next, chk => {
+    if (chk.products.length !== site.products.length - 1 || chk.products.some(p => p.slug === slug)) throw new Error('remove sahi nahi hua');
+    const rest = site.products.filter((_, i) => i !== idx);
+    chk.products.forEach((p, i) => { if (JSON.stringify(p) !== JSON.stringify(rest[i])) throw new Error('doosra product badal raha tha'); });
+  });
+  if (err) return { ok: false, errors: [err] };
+  let pageGone = false;
+  try { fs.unlinkSync(path.join(ROOT, slug + '.html')); pageGone = true; } catch (_) {}
+  const b = await runBuild();
+  return { ok: true, removed: slug, pageGone, build: b };
+}
+
 /* ---------------- http ---------------- */
 function readBody(req) {
   return new Promise((res, rej) => {
@@ -314,19 +381,21 @@ const server = http.createServer(async (req, res) => {
       if (origin && new URL(origin).host !== req.headers.host) return send(res, 403, { ok: false, errors: ['Origin allowed nahi.'] });
       if (url.pathname === '/api/meta' && req.method === 'GET') {
         const s = loadSite();
-        return send(res, 200, { ok: true, site: s.short || s.name, categories: s.categories, products: s.products.map(p => ({ slug: p.slug, name: p.name, category: p.category, status: p.status })) });
+        return send(res, 200, { ok: true, site: s.short || s.name, categories: s.categories, products: s.products.map(p => ({ slug: p.slug, name: p.name, category: p.category, status: p.status, hidden: !!p.hidden })) });
       }
       if (url.pathname === '/api/product' && req.method === 'GET') {
         const p = loadSite().products.find(x => x.slug === url.searchParams.get('slug'));
         return p ? send(res, 200, { ok: true, product: p }) : send(res, 404, { ok: false, errors: ['Product nahi mila.'] });
       }
-      if (['/api/preview', '/api/add-product', '/api/update-product'].includes(url.pathname) && req.method === 'POST') {
+      if (['/api/preview', '/api/add-product', '/api/update-product', '/api/hide-product', '/api/remove-product'].includes(url.pathname) && req.method === 'POST') {
         if (!/application\/json/.test(req.headers['content-type'] || '')) return send(res, 415, { ok: false, errors: ['JSON chahiye.'] });
         const inp = JSON.parse(await readBody(req) || '{}');
         if (url.pathname === '/api/preview') {
           const r = buildProduct(inp, loadSite(), S_(inp.editSlug));
           return send(res, 200, { ok: true, errors: r.errors, warnings: r.warnings, code: productCode(r.product) });
         }
+        if (url.pathname === '/api/hide-product') return send(res, 200, await hideProduct(inp));
+        if (url.pathname === '/api/remove-product') return send(res, 200, await removeProduct(inp));
         return send(res, 200, url.pathname === '/api/update-product' ? await updateProduct(inp) : await addProduct(inp));
       }
       return send(res, 404, { ok: false, errors: ['Not found'] });

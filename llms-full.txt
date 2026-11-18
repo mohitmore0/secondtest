@@ -67,40 +67,6 @@ Specifications:
 - Battery: 3-6S
 - Firmware: AM32
 
-## Skydrive AM32 40A 3-6S
-Category: ESCs
-Status: Available
-URL: https://www.spaceandtechengineerings.com/skydrive-am32-40a.html
-
-The Skydrive AM32 40A is a 3-6S electronic speed controller running AM32 firmware. It is a light, efficient choice for survey, mapping and general UAV builds that do not need the 60 A headroom.
-
-Highlights:
-- 40 A rating
-- AM32 firmware
-- 3-6S LiPo input
-
-Specifications:
-- Current: 40 A
-- Battery: 3-6S
-- Firmware: AM32
-
-## Skydrive 55A AM32 4-in-1
-Category: ESCs
-Status: Available
-URL: https://www.spaceandtechengineerings.com/skydrive-55a-am32-4-in-1.html
-
-The Skydrive 55A 4-in-1 puts four AM32 ESCs on a single board, which keeps wiring short and the stack tidy on 5-inch FPV builds and smaller. It is the matching ESC for the Exelr8 F7 flight controller.
-
-Highlights:
-- 4 ESCs on one board
-- 55 A rating
-- AM32 firmware
-
-Specifications:
-- Current: 55 A
-- Type: 4-in-1
-- Firmware: AM32
-
 ## NAVSATE GPS for UAVs
 Category: GPS
 Status: Available
@@ -144,6 +110,194 @@ Status: Coming soon
 URL: https://www.spaceandtechengineerings.com/trx-10km.html
 
 TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.
+
+## ELRS FPV radio receiver
+Category: Receivers
+Status: Available
+URL: https://www.spaceandtechengineerings.com/elrs-fpv-receiver.html
+
+The ELRS receiver is an ExpressLRS-approved 2.4 GHz receiver for FPV aircraft. It uses an ESP32 microcontroller with a Semtech RF chip and a built-in TCXO, and connects to the flight controller over the CRSF bus. It gives a fast, smooth link with telemetry back to the radio.
+
+Highlights:
+- ESP32 microcontroller
+- ExpressLRS-approved design
+- Fast and smooth connection
+- Built-in TCXO
+- CRSF bus interface
+
+Specifications:
+- Microcontroller: ESP32
+- RF chip: Semtech
+- Frequency: 2.4 GHz
+- Interface: CRSF bus
+- Antenna: 65 mm 2.4 GHz T-antenna
+- Telemetry RF power: 10 mW
+- Input voltage: 5 V
+
+## 4-in-1 ESC 80A 3-6S
+Category: ESCs
+Status: Available
+URL: https://www.spaceandtechengineerings.com/sate-4-in-1-esc-80a.html
+
+The 4-in-1 ESC puts four motor-drive channels on a single board for FPV quadcopters and multirotors. It runs AM32 firmware, supports DShot with bidirectional control, and includes crash protection plus reverse-voltage and short-circuit protection. Catalogue rating is 80 A continuous.
+
+Highlights:
+- DShot protocol support
+- Bidirectional control
+- Crash-protection feature
+- Reverse-voltage and short-circuit protection
+- AM32 firmware supported
+- Wide compatibility and customization
+
+Specifications:
+- Current: 80 A continuous (as stated in catalogue)
+- Battery: 3-6S
+- Type: 4-in-1
+- Firmware: AM32
+- Microcontroller: STM
+- MOSFETs: High-capacity
+
+## Analog VTX
+Category: Video transmitters
+Status: Coming soon
+URL: https://www.spaceandtechengineerings.com/analog-vtx.html
+
+The Analog VTX is a 5.8 GHz video transmitter for analog FPV links. It has a compact, lightweight body, high-power output and a design that dissipates heat efficiently for stable signal transmission.
+
+Highlights:
+- High-power output
+- 5.8 GHz frequency band
+- Stable signal transmission
+- Compact and lightweight design
+- Efficient heat dissipation
+
+Specifications:
+- Frequency: 5.8 GHz
+- Type: Analog
+
+## Digital VTX
+Category: Video transmitters
+Status: Coming soon
+URL: https://www.spaceandtechengineerings.com/digital-vtx.html
+
+The Digital VTX is a 5.8 GHz video transmitter option for digital FPV video systems. It shares the compact, lightweight, heat-efficient platform of our Analog VTX.
+
+Highlights:
+- High-power output
+- 5.8 GHz frequency band
+- Stable signal transmission
+- Compact and lightweight design
+- Efficient heat dissipation
+
+Specifications:
+- Frequency: 5.8 GHz
+- Type: Digital
+
+## SATE-H7 FPV flight controller
+Category: Flight controllers
+Status: Coming soon
+URL: https://www.spaceandtechengineerings.com/sate-h7-fpv-flight-controller.html
+
+SATE-H7 is an H7-based flight controller for FPV drones. It pairs an STM32H7 microcontroller with a fourth-generation InvenSense gyroscope and accelerometer, an Infineon barometer and a high-performance OSD. Separate 10 V and 5 V BEC outputs and a solder-less plug-and-play design keep builds clean, and it works with digital HD systems.
+
+Highlights:
+- Powerful H7-based STM32 microcontroller
+- Separate BEC outputs
+- Solder-less plug-and-play design
+- Multi-firmware support
+- Reverse-voltage and short-circuit protection
+- Compatible with digital HD systems
+
+Specifications:
+- Microcontroller: STM32H7
+- IMU: InvenSense 4th-generation gyroscope and accelerometer
+- Barometer: Infineon high-precision
+- OSD: High-performance
+- BEC: 10 V / 2 A and 5 V / 2 A
+- Battery input: 3-6S
+
+## SATE-HIGH AMP ESC 200A 6-12S
+Category: ESCs
+Status: Available
+URL: https://www.spaceandtechengineerings.com/sate-high-amp-esc.html
+
+SATE-HIGH AMP ESC is a high-current single ESC for UAV propulsion, with a stated 200 A continuous drain and a 6S-12S input range. It runs AM32 firmware on an STM microcontroller and includes crash protection plus reverse-voltage and short-circuit protection.
+
+Highlights:
+- 200A continuous drain (as stated in catalogue)
+- Crash-protection feature
+- Reverse-voltage and short-circuit protection
+- AM32 firmware supported
+- Wide compatibility and customization
+
+Specifications:
+- Current: 200 A continuous drain (as stated in catalogue)
+- Battery: 6S-12S
+- Firmware: AM32
+- Microcontroller: STM
+- MOSFETs: High-capacity
+
+## Aazmuth Mini
+Category: Flight controllers
+Status: Coming soon
+URL: https://www.spaceandtechengineerings.com/aazmuth-mini.html
+
+Aazmuth Mini is a compact, budget-friendly flight controller for training drones. It uses an STM32H7 with fourth-generation InvenSense inertial sensing, a MEAS barometer and an industry-grade magnetometer, inside a low-profile case designed to minimise airflow disturbance in flight.
+
+Highlights:
+- Cost-effective design with low-profile form factor
+- Budget-friendly solution
+- External casing designed to minimize airflow disturbance
+
+Specifications:
+- Microcontroller: STM32H7
+- IMU: InvenSense 4th-generation gyroscope and accelerometer
+- Barometer: MEAS high-precision
+- Magnetometer: Industry-grade
+- Power: High-efficiency power IC
+
+## SATE-AIO Board
+Category: Flight controllers
+Status: Available
+URL: https://www.spaceandtechengineerings.com/sate-aio-board.html
+
+SATE-AIO is an all-in-one board that combines an STM32 flight controller, a 4th-generation IMU, an industrial-grade barometer and an integrated 4-in-1 ESC rated up to 25 A continuous. It is AM32 compatible with DShot support, for compact FPV and multirotor builds.
+
+Highlights:
+- STM32 microcontroller for fast, low-latency flight control
+- Single 4th-generation IMU for stability and noise rejection
+- Industrial-grade barometer for altitude sensing
+- Integrated 4-in-1 ESC and power system
+- AM32 compatible with DShot protocol support
+
+Specifications:
+- Microcontroller: STM32
+- IMU: 4th-generation, single
+- Barometer: Industrial-grade
+- ESC: Integrated 4-in-1, up to 25 A continuous
+- Firmware: AM32 compatible
+- Protocol: DShot
+
+## SATE FalconEye PLFM radar
+Category: Radar
+Status: Coming soon
+URL: https://www.spaceandtechengineerings.com/sate-falconeye-plfm.html
+
+SATE FalconEye PLFM is a modular electronic beam-steering radar platform, currently under development. It comes in two versions: AERIS-10N (Nexus) with a 3 km range and an 8 x 16 patch antenna array, and AERIS-10E (Extended) with a 20 km range and a 32 x 16 dielectric-filled slotted waveguide array. Beam steering covers plus or minus 45 degrees in elevation and azimuth. An onboard FPGA handles pulse compression, Doppler FFT, MTI and CFAR, and a Python GUI with map integration and GPS/IMU position and attitude correction ties it together.
+
+Highlights:
+- Two versions: AERIS-10N (Nexus) and AERIS-10E (Extended)
+- Full electronic beam steering, plus or minus 45 degrees in elevation and azimuth
+- Onboard FPGA for pulse compression, Doppler FFT, MTI and CFAR
+- Python GUI with map integration
+- GPS/IMU integration for real-time position and attitude correction
+- Modular power-management, frequency-synthesis and RF boards
+
+Specifications:
+- AERIS-10N (Nexus): 3 km range, 8 x 16 patch antenna array
+- AERIS-10E (Extended): 20 km range, 32 x 16 dielectric-filled slotted waveguide array
+- Beam steering: Plus or minus 45 degrees, elevation and azimuth
+- Signal processing: Pulse compression, Doppler FFT, MTI, CFAR
 
 
 ## Frequently asked questions

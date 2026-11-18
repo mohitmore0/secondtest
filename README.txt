@@ -172,3 +172,14 @@ V16: WIX PAR SITE (asli Wix site banane ka tarika)
       site-content.md   Poori site ka text
       aria-prompt.txt   Aria ke liye instructions
     Site live hone ke baad:  node export-wix.js --base https://aapki-site.netlify.app
+
+V17: HIDE / REMOVE / NOIMAGE (product-admin.html + admin-server.js + data.js + build.js + app.js)
+    HIDE      Add/Edit form me "Hide product" checkbox. Edit mode me neeche "Hide product / Unhide" button bhi hai.
+              Hidden product site par kahin nahi dikhta (products, home, filters, sitemap, llms.txt, related). data.js me hidden:true
+              rehta hai, uska <slug>.html build me delete ho jata hai. Admin dropdown me "(HIDDEN)" likha aata hai, wapas dikhane ke liye Unhide.
+              Haath se: data.js me product ke andar  hidden: true  likho, phir  node build.js.
+    REMOVE    Edit mode me "Remove product" button (confirm + slug type karna padta hai). data.js se block aur <slug>.html delete.
+              Photos images/ me rehti hain. Backup .admin-backups/ me. Server (hosting) se purani <slug>.html bhi delete karo.
+    NOIMAGE   Product ki main photo khali ho, ya images/ me file na mile, to images/noimage.png lagti hai (Photo ab zaroori nahi).
+              Sitemap / schema / og me noimage nahi jaata. Browser me tuti image par bhi noimage aati hai.
+    data.js   S.allProducts = saare products (hidden bhi), S.products = sirf visible. Site/build S.products use karte hain, admin allProducts.

@@ -48,6 +48,7 @@ details summary{cursor:pointer;font-weight:600}
 .count{float:right;color:var(--mu);font-weight:400}
 .existing{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .existing span{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--mu)}
+.bar #editActions{display:none}
 .bar{position:sticky;bottom:0;background:var(--bg);padding:12px 0;border-top:1px solid var(--line);margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 #offline{display:none}
 </style>
@@ -79,11 +80,12 @@ details summary{cursor:pointer;font-weight:600}
   <div class="chips" id="also"></div>
   <label class="chk"><input type="checkbox" id="featured"> Home page par dikhao (featured)</label>
   <label class="chk"><input type="checkbox" id="noindex"> Google search se chhupao (noindex, sitemap se bhi bahar)</label>
+  <label class="chk"><input type="checkbox" id="hidden"> <span><b>Hide product</b>: site par kahin nahi dikhega (products, home, search, sitemap sab se gayab). Baad me edit karke wapas la sakte ho.</span></label>
 </div>
 
 <div class="sec">
   <h2>2. Photos</h2>
-  <label class="req" for="mainFile">Main photo <small>(PNG / JPG / WEBP / AVIF, max 8 MB)</small></label>
+  <label for="mainFile">Main photo <small>(PNG / JPG / WEBP / AVIF, max 8 MB). Photo nahi doge to <code>images/noimage.png</code> lagegi.</small></label>
   <input type="file" id="mainFile" accept="image/png,image/jpeg,image/webp,image/avif,image/gif">
   <label for="mainUrl">ya photo ka link <small>(https://... ya images/naam.jpg, agar upload nahi karna)</small></label>
   <input type="text" id="mainUrl" placeholder="https://...">
@@ -144,6 +146,10 @@ details summary{cursor:pointer;font-weight:600}
 <div class="bar">
   <button type="button" class="pri" id="submit">Add product</button>
   <button type="button" id="reset">Form saaf karo</button>
+  <span id="editActions" style="display:none;gap:8px;margin-left:auto">
+    <button type="button" id="hideBtn">Hide product</button>
+    <button type="button" id="removeBtn" style="border-color:var(--bad);color:var(--bad)">Remove product</button>
+  </span>
   <span id="status2" style="color:var(--mu)"></span>
 </div>
 
@@ -185,7 +191,7 @@ $('#mainUrl').addEventListener('input',()=>{drawThumbs()});
 function payload(){
   const gal=st.gal.map(x=>({type:'file',data:x.data})).concat($('#galUrl').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).map(v=>({type:'url',value:v})));
   return{
-    editSlug:st.edit||undefined,noindex:$('#noindex').checked,
+    editSlug:st.edit||undefined,noindex:$('#noindex').checked,hidden:$('#hidden').checked,
     name:$('#name').value,slug:$('#slug').value,category:$('#category').value,status:$('#status').value,featured:$('#featured').checked,
     also:[...document.querySelectorAll('#also input:checked')].map(i=>i.value),
     image:st.main?{type:'file',data:st.main.data}:{type:'url',value:$('#mainUrl').value},gallery:gal,
@@ -223,7 +229,7 @@ function slugCheck(){const s=$('#slug').value.trim(),h=$('#slugHint');
   if(st.edit){h.textContent='Page: '+s+'.html (edit me badalta nahi)';h.style.color='var(--mu)';return}
   if(!s){h.textContent='';return}
   h.textContent=st.slugs.has(s)?'Ye slug pehle se hai, doosra rakho.':'Page: '+s+'.html';h.style.color=st.slugs.has(s)?'var(--bad)':'var(--mu)'}
-['category','status','featured','short','description','features','bestFor','buyUrl','vDesign','vBench','vFly','galUrl','mainUrl','name','slug','noindex'].forEach(id=>$('#'+id).addEventListener('input',schedule));
+['category','status','featured','short','description','features','bestFor','buyUrl','vDesign','vBench','vFly','galUrl','mainUrl','name','slug','noindex','hidden'].forEach(id=>$('#'+id).addEventListener('input',schedule));
 $('#category').addEventListener('change',()=>{drawAlso();schedule()});
 $('#status').addEventListener('change',schedule);
 $('#short').addEventListener('input',()=>$('#shortN').textContent=$('#short').value.length+' akshar (110-160 best)');
@@ -245,7 +251,7 @@ function showIssues(errs,warns){
 function resetForm(){
   document.querySelectorAll('input[type=text],textarea').forEach(e=>e.value='');
   document.querySelectorAll('input[type=file]').forEach(e=>e.value='');
-  $('#featured').checked=false;$('#noindex').checked=false;$('#status').value='available';setMode(null);$('#specs').innerHTML='';$('#faq').innerHTML='';$('#docs').innerHTML='';
+  $('#featured').checked=false;$('#noindex').checked=false;$('#hidden').checked=false;$('#status').value='available';setMode(null);$('#specs').innerHTML='';$('#faq').innerHTML='';$('#docs').innerHTML='';
   st.main=null;st.gal=[];st.slugTouched=false;
   for(let i=0;i<3;i++)specRow();faqRow();faqRow();docRow();
   drawAlso();drawThumbs();$('#slugHint').textContent='';$('#shortN').textContent='0';$('#code').textContent='...';
@@ -258,6 +264,7 @@ function setMode(slug,name){
   $('#title').textContent=slug?'Edit product: '+(name||slug):'Add new product';
   $('#submit').textContent=slug?'Save changes':'Add product';
   $('#editNote').style.display=slug?'':'none';if(!slug)$('#mode').value='';
+  const ea=$('#editActions');ea.style.display=slug?'flex':'none';$('#hideBtn').textContent=st.isHidden?'Unhide (wapas dikhao)':'Hide product';
   $('#intro').innerHTML=slug?'Badlav karo, <b>Save changes</b> dabao. <code>data.js</code> me sirf ye product badlega, baaki sab waisa hi rahega, aur <code>node build.js</code> khud chalega.':'Form bharo, <b>Add product</b> dabao. Baaki sab khud hoga: <code>data.js</code> update, photos <code>images/</code> me save, aur <code>node build.js</code> chalega. <span style="color:var(--ac)">*</span> wale fields zaroori hain.';
 }
 async function loadProduct(slug){
@@ -267,7 +274,7 @@ async function loadProduct(slug){
   resetForm();setMode(slug,p.name);st.slugTouched=true;
   const set=(id,v)=>{$(id).value=v==null?'':v};
   set('#name',p.name);set('#slug',p.slug);set('#category',p.category);set('#status',p.status||'available');
-  $('#featured').checked=!!p.featured;$('#noindex').checked=!!p.noindex;
+  $('#featured').checked=!!p.featured;$('#noindex').checked=!!p.noindex;$('#hidden').checked=!!p.hidden;st.isHidden=!!p.hidden;
   drawAlso();(p.also||[]).forEach(c=>{const i=document.querySelector('#also input[value="'+CSS.escape(c)+'"]');if(i)i.checked=true});
   set('#mainUrl',p.image);set('#galUrl',(p.gallery||[]).join('\n'));
   set('#short',p.short);set('#description',p.description);
@@ -278,6 +285,7 @@ async function loadProduct(slug){
   $('#docs').innerHTML='';(p.docs||[]).forEach(x=>docRow([x.label,x.url]));if(!(p.docs||[]).length)docRow();
   set('#buyUrl',p.buyUrl);
   const j=p.journey||{};set('#vDesign',(j.design||{}).video);set('#vBench',(j.bench||{}).video);set('#vFly',(j.fly||{}).video);
+  $('#hideBtn').textContent=st.isHidden?'Unhide (wapas dikhao)':'Hide product';
   slugCheck();drawThumbs();schedule();
   $('#mode').value=slug;
   window.scrollTo({top:0});
@@ -286,6 +294,37 @@ $('#mode').onchange=async e=>{
   showIssues([]);$('#result').innerHTML='';
   if(e.target.value)await loadProduct(e.target.value);
   else{resetForm();$('#mode').value=''}
+};
+
+function doneMsg(cls,title,items,build){
+  $('#result').innerHTML='<div class="msg '+cls+'" role="status"><b>'+title+'</b><ul>'+items.map(i=>'<li>'+i+'</li>').join('')+'</ul>'+(build&&build.out?'<details><summary>Build output</summary><pre>'+esc(build.out)+'</pre></details>':'')+'</div>';
+  window.scrollTo({top:$('#result').offsetTop-80,behavior:'smooth'});
+}
+$('#hideBtn').onclick=async()=>{
+  const slug=st.edit;if(!slug)return;const hide=!st.isHidden;
+  if(!confirm(hide?'Ye product site se hide kar dun? (data.js me rahega, par site par kahin nahi dikhega)':'Is product ko wapas site par dikha dun?'))return;
+  showIssues([]);$('#status2').textContent='Ho raha hai, build chal raha hai...';
+  try{
+    const r=await api('/api/hide-product',{slug,hidden:hide});
+    if(!r.ok){showIssues(r.errors);return}
+    await loadMeta();await loadProduct(slug);
+    doneMsg(r.build&&!r.build.ok?'warn':'good',hide?'Product hide ho gaya.':'Product wapas dikhne laga.',
+      [hide?'Ab ye site par kahin nahi dikhega aur uska page (<code>'+esc(slug)+'.html</code>) hata diya gaya. Data <code>data.js</code> me safe hai.':'Product page dobara ban gaya.','Ab poora folder hosting par upload karo (aur hide kiye hue product ki purani <code>'+esc(slug)+'.html</code> server se delete karo).'],r.build);
+  }catch(e){showIssues(['Server se baat nahi ho paayi: '+e.message])}
+  finally{$('#status2').textContent=''}
+};
+$('#removeBtn').onclick=async()=>{
+  const slug=st.edit;if(!slug)return;
+  if(!confirm('PAKKA remove karna hai?\n\n"'+slug+'" data.js se delete ho jayega aur uska page bhi hat jayega. (Backup .admin-backups/ me rahega, photos images/ me rahengi.)'))return;
+  if(prompt('Confirm karne ke liye product ka slug likho:\n'+slug)!==slug){showIssues(['Slug match nahi hua, remove nahi kiya.']);return}
+  showIssues([]);$('#status2').textContent='Remove ho raha hai, build chal raha hai...';
+  try{
+    const r=await api('/api/remove-product',{slug});
+    if(!r.ok){showIssues(r.errors);return}
+    await loadMeta();resetForm();
+    doneMsg(r.build&&!r.build.ok?'warn':'good','Product remove ho gaya.',['<code>'+esc(r.removed)+'</code> data.js se hat gaya'+(r.pageGone?' aur uska page bhi delete ho gaya.':'.'),'Photos <code>images/</code> me waise hi hain (chaho to haath se delete karo).','Ab poora folder hosting par upload karo (server se purani <code>'+esc(r.removed)+'.html</code> bhi delete karo).'],r.build);
+  }catch(e){showIssues(['Server se baat nahi ho paayi: '+e.message])}
+  finally{$('#status2').textContent=''}
 };
 
 $('#submit').onclick=async()=>{
@@ -315,7 +354,7 @@ async function loadMeta(){
     st.cats=m.categories;st.slugs=new Set(m.products.map(p=>p.slug));
     const c=$('#category'),cur=c.value;c.innerHTML='';m.categories.forEach(x=>{const o=document.createElement('option');o.textContent=x;o.value=x;c.appendChild(o)});if(cur)c.value=cur;
     const g=$('#editGroup');g.innerHTML='';
-    m.products.forEach(p=>{const o=document.createElement('option');o.value=p.slug;o.textContent=p.name+(p.status==='soon'?' (soon)':'');g.appendChild(o)});
+    m.products.forEach(p=>{const o=document.createElement('option');o.value=p.slug;o.textContent=p.name+(p.status==='soon'?' (soon)':'')+(p.hidden?' (HIDDEN)':'');g.appendChild(o)});
     $('#mode').value=st.edit||'';
     drawAlso();
   }catch(e){$('#offline').style.display='block'}

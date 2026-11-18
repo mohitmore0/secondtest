@@ -61,7 +61,7 @@ window.SITE = {
      image  : main photo             |  gallery: extra photos (optional)
      specs  : [["Naam","Value"], ...] (khali chhodo to table hide ho jayegi)
      docs   : [{label,url}]          |  buyUrl: store link (optional)        */
-  categories: ["Flight controllers", "ESCs", "GPS", "FPV", "Transmitters"],
+  categories: ["Flight controllers", "ESCs", "GPS", "FPV", "Transmitters", "Receivers", "Video transmitters", "Radar"],
   /* FPV category: product ki main category (category:) wahi rehti hai; FPV me dikhane ke liye also: ["FPV"] lagao.
      Naya FPV product: category: "FPV" bhi likh sakte ho. */
   products: [
@@ -141,45 +141,43 @@ window.SITE = {
     },
     {
       slug: "skydrive-am32-40a", name: "Skydrive AM32 40A 3-6S", category: "ESCs",
-      status: "available", featured: false,
+      status: "available", featured: false, hidden: true,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
-      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
-         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
         design: { text: "", imgs: [], video: "" },
-        bench:  { text: "", imgs: [], video: "" },
-        fly:    { text: "", imgs: [], video: "" }
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
       },
       short: "40A AM32 ESC for 3-6S LiPo builds. A light choice for survey and mapping drones.",
       description: "The Skydrive AM32 40A is a 3-6S electronic speed controller running AM32 firmware. It is a light, efficient choice for survey, mapping and general UAV builds that do not need the 60 A headroom.",
-      features: ["40 A rating", "AM32 firmware", "3-6S LiPo input"],
+      features: ["40 A rating","AM32 firmware","3-6S LiPo input"],
       specs: [["Current","40 A"],["Battery","3-6S"],["Firmware","AM32"]],
-      bestFor: ["Survey and mapping", "Startups and prototypes"],
+      bestFor: ["Survey and mapping","Startups and prototypes"],
       faq: [
         { q: "Which firmware does the Skydrive 40A run?", a: "AM32, configurable with standard AM32 tools." },
         { q: "40A or 60A Skydrive ESC?", a: "Pick 40 A for lighter survey and general UAV builds, and 60 A for heavy payloads such as sprayer drones." }
-      ], docs: []
+      ],
+      docs: []
     },
     {
       slug: "skydrive-55a-am32-4-in-1", name: "Skydrive 55A AM32 4-in-1", category: "ESCs",
-      also: ["FPV"], status: "available", featured: false,
+      also: ["FPV"], status: "available", featured: false, hidden: true,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
-      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
-         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
         design: { text: "", imgs: [], video: "" },
-        bench:  { text: "", imgs: [], video: "" },
-        fly:    { text: "", imgs: [], video: "" }
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
       },
       short: "Four 55A AM32 ESCs on one board. Short wiring for 5-inch FPV builds and below.",
       description: "The Skydrive 55A 4-in-1 puts four AM32 ESCs on a single board, which keeps wiring short and the stack tidy on 5-inch FPV builds and smaller. It is the matching ESC for the Exelr8 F7 flight controller.",
-      features: ["4 ESCs on one board", "55 A rating", "AM32 firmware"],
+      features: ["4 ESCs on one board","55 A rating","AM32 firmware"],
       specs: [["Current","55 A"],["Type","4-in-1"],["Firmware","AM32"]],
       bestFor: ["FPV racing and freestyle"],
       faq: [
         { q: "What is a 4-in-1 ESC?", a: "A single board that carries four speed controllers, one for each motor of a quadcopter, which keeps wiring short and weight low." },
         { q: "Which firmware does the 55A 4-in-1 run?", a: "AM32." }
-      ], docs: []
+      ],
+      docs: []
     },
     {
       slug: "navsate-gps-for-uavs", name: "NAVSATE GPS for UAVs", category: "GPS",
@@ -231,6 +229,199 @@ window.SITE = {
       slug: "trx-10km", name: "TRX 10 km", category: "Transmitters", status: "soon", featured: false, noindex: true,
       image: "https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg", gallery: [],
       short: "10 km range radio transmitter. Coming soon.", description: "TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.", features: [], specs: [], docs: [], faq: []
+    },
+    {
+      slug: "elrs-fpv-receiver", name: "ELRS FPV radio receiver", category: "Receivers",
+      also: ["ESCs","FPV"], status: "available", featured: false,
+      image: "images/elrs-fpv-receiver-main.png", gallery: ["images/elrs-fpv-receiver-gallery-1.png"],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "ExpressLRS 2.4 GHz receiver with ESP32, CRSF output and built-in TCXO for FPV aircraft.",
+      description: "The ELRS receiver is an ExpressLRS-approved 2.4 GHz receiver for FPV aircraft. It uses an ESP32 microcontroller with a Semtech RF chip and a built-in TCXO, and connects to the flight controller over the CRSF bus. It gives a fast, smooth link with telemetry back to the radio.",
+      features: ["ESP32 microcontroller","ExpressLRS-approved design","Fast and smooth connection","Built-in TCXO","CRSF bus interface"],
+      specs: [["Microcontroller","ESP32"],["RF chip","Semtech"],["Frequency","2.4 GHz"],["Interface","CRSF bus"],["Antenna","65 mm 2.4 GHz T-antenna"],["Telemetry RF power","10 mW"],["Input voltage","5 V"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
+      faq: [
+        { q: "Which radio protocol does the ELRS receiver use?", a: "It is an ExpressLRS design with a CRSF bus interface, so it works with CRSF-compatible radio systems." },
+        { q: "What input voltage does it need?", a: "5 V." }
+      ],
+      docs: []
+    },
+    {
+      slug: "sate-4-in-1-esc-80a", name: "4-in-1 ESC 80A 3-6S", category: "ESCs",
+      also: ["FPV"], status: "available", featured: false,
+      image: "images/sate-4-in-1-esc-80a-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "Four-channel FPV ESC on one board with AM32 support, DShot and 3-6S input.",
+      description: "The 4-in-1 ESC puts four motor-drive channels on a single board for FPV quadcopters and multirotors. It runs AM32 firmware, supports DShot with bidirectional control, and includes crash protection plus reverse-voltage and short-circuit protection. Catalogue rating is 80 A continuous.",
+      features: ["DShot protocol support","Bidirectional control","Crash-protection feature","Reverse-voltage and short-circuit protection","AM32 firmware supported","Wide compatibility and customization"],
+      specs: [["Current","80 A continuous (as stated in catalogue)"],["Battery","3-6S"],["Type","4-in-1"],["Firmware","AM32"],["Microcontroller","STM"],["MOSFETs","High-capacity"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
+      faq: [
+        { q: "Is the 80A rating per motor or total?", a: "The catalogue does not say. Ask us to confirm before you design your power system." },
+        { q: "Which firmware does it run?", a: "AM32." }
+      ],
+      docs: []
+    },
+    {
+      slug: "analog-vtx", name: "Analog VTX", category: "Video transmitters",
+      also: ["FPV"], status: "soon", featured: false,
+      image: "images/analog-vtx-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "5.8 GHz analog FPV video transmitter in a compact, lightweight body with efficient heat dissipation.",
+      description: "The Analog VTX is a 5.8 GHz video transmitter for analog FPV links. It has a compact, lightweight body, high-power output and a design that dissipates heat efficiently for stable signal transmission.",
+      features: ["High-power output","5.8 GHz frequency band","Stable signal transmission","Compact and lightweight design","Efficient heat dissipation"],
+      specs: [["Frequency","5.8 GHz"],["Type","Analog"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
+      faq: [
+        { q: "Which band does the Analog VTX use?", a: "5.8 GHz." },
+        { q: "What are the output power levels and input voltage?", a: "Contact us for the full electrical ratings for your build." }
+      ],
+      docs: []
+    },
+    {
+      slug: "digital-vtx", name: "Digital VTX", category: "Video transmitters",
+      also: ["FPV"], status: "soon", featured: false,
+      image: "images/digital-vtx-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "5.8 GHz digital FPV video transmitter, compact and lightweight with efficient heat dissipation.",
+      description: "The Digital VTX is a 5.8 GHz video transmitter option for digital FPV video systems. It shares the compact, lightweight, heat-efficient platform of our Analog VTX.",
+      features: ["High-power output","5.8 GHz frequency band","Stable signal transmission","Compact and lightweight design","Efficient heat dissipation"],
+      specs: [["Frequency","5.8 GHz"],["Type","Digital"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
+      faq: [
+        { q: "Which digital HD systems does it support?", a: "Contact us and we will confirm compatibility with your goggles and air unit." }
+      ],
+      docs: []
+    },
+    {
+      slug: "sate-h7-fpv-flight-controller", name: "SATE-H7 FPV flight controller", category: "Flight controllers",
+      also: ["FPV"], status: "soon", featured: false,
+      image: "images/sate-h7-fpv-flight-controller-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "STM32H7 flight controller for FPV with 4th-generation IMU, barometer, OSD and dual BEC.",
+      description: "SATE-H7 is an H7-based flight controller for FPV drones. It pairs an STM32H7 microcontroller with a fourth-generation InvenSense gyroscope and accelerometer, an Infineon barometer and a high-performance OSD. Separate 10 V and 5 V BEC outputs and a solder-less plug-and-play design keep builds clean, and it works with digital HD systems.",
+      features: ["Powerful H7-based STM32 microcontroller","Separate BEC outputs","Solder-less plug-and-play design","Multi-firmware support","Reverse-voltage and short-circuit protection","Compatible with digital HD systems"],
+      specs: [["Microcontroller","STM32H7"],["IMU","InvenSense 4th-generation gyroscope and accelerometer"],["Barometer","Infineon high-precision"],["OSD","High-performance"],["BEC","10 V / 2 A and 5 V / 2 A"],["Battery input","3-6S"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
+      faq: [
+        { q: "SATE-H7 or Exelr8?", a: "SATE-H7 uses an STM32H7 for more processing headroom. Exelr8 uses an STM32F7." },
+        { q: "What battery can it run on?", a: "3-6S." }
+      ],
+      docs: []
+    },
+    {
+      slug: "sate-esc", name: "SATE-ESC single ESC", category: "ESCs",
+      status: "available", featured: false, hidden: true,
+      image: "images/sate-esc.jpg", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "Single-channel AM32 ESC family in 20A, 40A, 60A, 80A and 120A options for 3-6S.",
+      description: "SATE-ESC is a family of single-channel ESCs for multirotors and other UAVs, offered in 20 A, 40 A, 60 A, 80 A and 120 A versions. All run AM32 firmware on an STM microcontroller with high-capacity MOSFETs, crash protection, and reverse-voltage and short-circuit protection.",
+      features: ["Current options: 20A, 40A, 60A, 80A and 120A","Crash-protection feature","Reverse-voltage and short-circuit protection","AM32 firmware supported","Wide compatibility and customization"],
+      specs: [["Current options","20 A / 40 A / 60 A / 80 A / 120 A"],["Battery","3-6S"],["Firmware","AM32"],["Microcontroller","STM"],["MOSFETs","High-capacity"]],
+      bestFor: ["Agriculture","Survey and mapping","Startups and prototypes"],
+      faq: [
+        { q: "Which current ratings are available?", a: "20 A, 40 A, 60 A, 80 A and 120 A." },
+        { q: "Which firmware does it run?", a: "AM32." }
+      ],
+      docs: []
+    },
+    {
+      slug: "sate-high-amp-esc", name: "SATE-HIGH AMP ESC 200A 6-12S", category: "ESCs",
+      also: ["FPV"], status: "available", featured: false,
+      image: "images/sate-high-amp-esc-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "High-current single ESC with 200A continuous rating, 6S-12S input and AM32 support.",
+      description: "SATE-HIGH AMP ESC is a high-current single ESC for UAV propulsion, with a stated 200 A continuous drain and a 6S-12S input range. It runs AM32 firmware on an STM microcontroller and includes crash protection plus reverse-voltage and short-circuit protection.",
+      features: ["200A continuous drain (as stated in catalogue)","Crash-protection feature","Reverse-voltage and short-circuit protection","AM32 firmware supported","Wide compatibility and customization"],
+      specs: [["Current","200 A continuous drain (as stated in catalogue)"],["Battery","6S-12S"],["Firmware","AM32"],["Microcontroller","STM"],["MOSFETs","High-capacity"]],
+      bestFor: ["Agriculture","Defense and security","Startups and prototypes"],
+      faq: [
+        { q: "What voltage range does it support?", a: "6S-12S." },
+        { q: "What cooling does the 200A rating need?", a: "Contact us with your motor and airflow setup and we will confirm." }
+      ],
+      docs: []
+    },
+    {
+      slug: "aazmuth-mini", name: "Aazmuth Mini", category: "Flight controllers",
+      also: ["FPV"], status: "soon", featured: false,
+      image: "images/aazmuth-mini-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "Compact, low-cost STM32H7 flight controller for training drones, with a low-profile case.",
+      description: "Aazmuth Mini is a compact, budget-friendly flight controller for training drones. It uses an STM32H7 with fourth-generation InvenSense inertial sensing, a MEAS barometer and an industry-grade magnetometer, inside a low-profile case designed to minimise airflow disturbance in flight.",
+      features: ["Cost-effective design with low-profile form factor","Budget-friendly solution","External casing designed to minimize airflow disturbance"],
+      specs: [["Microcontroller","STM32H7"],["IMU","InvenSense 4th-generation gyroscope and accelerometer"],["Barometer","MEAS high-precision"],["Magnetometer","Industry-grade"],["Power","High-efficiency power IC"]],
+      bestFor: ["Education and research","Startups and prototypes"],
+      faq: [
+        { q: "What is Aazmuth Mini for?", a: "Training drones and compact UAV platforms where a low-profile case helps." },
+        { q: "Aazmuth or Aazmuth Mini?", a: "Aazmuth is the triple-redundant flagship. Aazmuth Mini is the compact, lower-cost option for training." }
+      ],
+      docs: []
+    },
+    {
+      slug: "sate-aio-board", name: "SATE-AIO Board", category: "Flight controllers",
+      also: ["ESCs","FPV"], status: "available", featured: false,
+      image: "images/sate-aio-board-main.png", gallery: ["images/sate-aio-board-gallery-1.png"],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "All-in-one flight controller and 4-in-1 ESC board, up to 25A continuous, AM32 and DShot.",
+      description: "SATE-AIO is an all-in-one board that combines an STM32 flight controller, a 4th-generation IMU, an industrial-grade barometer and an integrated 4-in-1 ESC rated up to 25 A continuous. It is AM32 compatible with DShot support, for compact FPV and multirotor builds.",
+      features: ["STM32 microcontroller for fast, low-latency flight control","Single 4th-generation IMU for stability and noise rejection","Industrial-grade barometer for altitude sensing","Integrated 4-in-1 ESC and power system","AM32 compatible with DShot protocol support"],
+      specs: [["Microcontroller","STM32"],["IMU","4th-generation, single"],["Barometer","Industrial-grade"],["ESC","Integrated 4-in-1, up to 25 A continuous"],["Firmware","AM32 compatible"],["Protocol","DShot"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
+      faq: [
+        { q: "What is an AIO board?", a: "One board that holds both the flight controller and the 4-in-1 ESC, so there is less wiring and a smaller stack." },
+        { q: "What current can it handle?", a: "The integrated ESC is rated up to 25 A continuous." }
+      ],
+      docs: []
+    },
+    {
+      slug: "sate-falconeye-plfm", name: "SATE FalconEye PLFM radar", category: "Radar",
+      status: "soon", featured: false, noindex: true,
+      image: "images/sate-falconeye-plfm.jpg", gallery: [],
+      short: "Electronic beam-steering radar platform in 3 km and 20 km versions. Under development.",
+      description: "SATE FalconEye PLFM is a modular electronic beam-steering radar platform, currently under development. It comes in two versions: AERIS-10N (Nexus) with a 3 km range and an 8 x 16 patch antenna array, and AERIS-10E (Extended) with a 20 km range and a 32 x 16 dielectric-filled slotted waveguide array. Beam steering covers plus or minus 45 degrees in elevation and azimuth. An onboard FPGA handles pulse compression, Doppler FFT, MTI and CFAR, and a Python GUI with map integration and GPS/IMU position and attitude correction ties it together.",
+      features: ["Two versions: AERIS-10N (Nexus) and AERIS-10E (Extended)", "Full electronic beam steering, plus or minus 45 degrees in elevation and azimuth", "Onboard FPGA for pulse compression, Doppler FFT, MTI and CFAR", "Python GUI with map integration", "GPS/IMU integration for real-time position and attitude correction", "Modular power-management, frequency-synthesis and RF boards"],
+      specs: [["AERIS-10N (Nexus)", "3 km range, 8 x 16 patch antenna array"], ["AERIS-10E (Extended)", "20 km range, 32 x 16 dielectric-filled slotted waveguide array"], ["Beam steering", "Plus or minus 45 degrees, elevation and azimuth"], ["Signal processing", "Pulse compression, Doppler FFT, MTI, CFAR"]],
+      bestFor: ["Defense and security", "Education and research"],
+      faq: [
+        { q: "Is FalconEye available now?", a: "Not yet. It is under development. Contact us for status." },
+        { q: "What is the difference between AERIS-10N and AERIS-10E?", a: "Nexus is the 3 km version with a patch array. Extended is the 20 km version with a slotted waveguide array." }
+      ], docs: []
     }
   ],
 
@@ -301,6 +492,10 @@ window.SITE = {
    ===================================================================== */
 (function(){
 const S=window.SITE;
+/* HIDE + NOIMAGE: p.hidden:true wale products site par kahin nahi dikhte (admin form me dikhte hain: S.allProducts).
+   Jis product ki image khali ho, uski jagah images/noimage.png lagti hai. */
+S.allProducts=S.products.slice();
+S.products=S.allProducts.filter(p=>!p.hidden).map(p=>p.image?p:Object.assign({},p,{image:"images/noimage.png",noimg:true}));
 S.inCat=(p,c)=>p.category===c||(p.also||[]).indexOf(c)>-1;   /* product kisi category me hai ya nahi (main + also) */
 const reg=(S.about.offices||[]).find(o=>/regist/i.test(o.role))||(S.about.offices||[])[0]||{};
 S.company={

@@ -12,14 +12,21 @@ Key facts:
 - [Aazmuth flight controller](https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html): Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.
 - [Exelr8 FPV flight controller F7](https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html): F7 flight controller for light, fast FPV racing and freestyle builds.
 - [Skydrive AM32 60A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-60a.html): 60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads such as sprayer drones.
-- [Skydrive AM32 40A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-40a.html): 40A AM32 ESC for 3-6S LiPo builds. A light choice for survey and mapping drones.
-- [Skydrive 55A AM32 4-in-1](https://www.spaceandtechengineerings.com/skydrive-55a-am32-4-in-1.html): Four 55A AM32 ESCs on one board. Short wiring for 5-inch FPV builds and below.
 - [NAVSATE GPS for UAVs](https://www.spaceandtechengineerings.com/navsate-gps-for-uavs.html): UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.
 - [NAVSATE mini for FPV drones](https://www.spaceandtechengineerings.com/navsate-mini-gps.html): Compact NAVSATE GPS for FPV drones. Adds position data to small builds.
+- [ELRS FPV radio receiver](https://www.spaceandtechengineerings.com/elrs-fpv-receiver.html): ExpressLRS 2.4 GHz receiver with ESP32, CRSF output and built-in TCXO for FPV aircraft.
+- [4-in-1 ESC 80A 3-6S](https://www.spaceandtechengineerings.com/sate-4-in-1-esc-80a.html): Four-channel FPV ESC on one board with AM32 support, DShot and 3-6S input.
+- [SATE-HIGH AMP ESC 200A 6-12S](https://www.spaceandtechengineerings.com/sate-high-amp-esc.html): High-current single ESC with 200A continuous rating, 6S-12S input and AM32 support.
+- [SATE-AIO Board](https://www.spaceandtechengineerings.com/sate-aio-board.html): All-in-one flight controller and 4-in-1 ESC board, up to 25A continuous, AM32 and DShot.
 
 ## Coming soon
 - TRX 5 km
 - TRX 10 km
+- Analog VTX
+- Digital VTX
+- SATE-H7 FPV flight controller
+- Aazmuth Mini
+- SATE FalconEye PLFM radar
 
 ## Guides
 - [Documentation, pinouts and calibration](https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs)

@@ -10,6 +10,15 @@ const fs = require('fs'), vm = require('vm');
 const ctx = { window: {} }; vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(__dirname + '/data.js', 'utf8'), ctx);
 const S = ctx.window.SITE, U = S.url, today = new Date().toISOString().slice(0, 10);
+/* HIDDEN products: unka purana <slug>.html bhi hata do (taaki seedha link se bhi na khule) */
+(S.allProducts || []).filter(p => p.hidden && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug)).forEach(p => {
+  try { fs.unlinkSync(__dirname + '/' + p.slug + '.html'); console.log('Hidden product, page hata diya: ' + p.slug + '.html'); } catch (_) {} });
+/* NOIMAGE: jis local image file disk par nahi hai uski jagah images/noimage.png (data.js khali image pehle se handle karta hai) */
+{ const okImg = u => !u || /^https?:/i.test(u) || fs.existsSync(__dirname + '/' + String(u).replace(/^\//, ''));
+  S.products.forEach(p => {
+    if (!okImg(p.image)) { console.log('Image nahi mili (' + p.image + ') -> noimage: ' + p.slug); p.image = 'images/noimage.png'; p.noimg = true; }
+    p.gallery = (p.gallery || []).filter(okImg); }); }
+const realImg = p => p.noimg ? '' : p.image;   /* sitemap / schema / og me noimage nahi jaata */
 /* layout.js: har page ke sections ka order. Static (crawlable) HTML bhi isi order me banta hai. */
 const LAYV = (() => { const c = { window: {} }; vm.createContext(c); try { vm.runInContext(fs.readFileSync(__dirname + '/layout.js', 'utf8'), c); } catch (e) { console.log('layout.js nahi mila ya galat hai, default order use ho raha hai'); } return c.window.LAYOUT || {}; })();
 const customBlock = o => { const t = o.title ? `<h2>${E(o.title)}</h2>` : '', l = o.lead ? `<p>${E(o.lead)}</p>` : '';
@@ -63,7 +72,7 @@ const webpage = (m, url, type, extra) => Object.assign({ '@type': type || 'WebPa
 const faqLd = (url, list) => ({ '@type': 'FAQPage', '@id': url + '#faq', mainEntity: list.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const graph = items => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': items })}</script>`;
 const productLd = p => {
-  const imgs = [p.image].concat(p.gallery || []).filter(Boolean).map(abs), url = pUrl(p);
+  const imgs = [realImg(p)].concat(p.gallery || []).filter(Boolean).map(abs), url = pUrl(p);
   return { '@type': 'Product', '@id': url + '#product', name: p.name, description: p.description, image: imgs, sku: p.slug, category: p.category, url,
     brand: { '@type': 'Brand', name: S.short }, manufacturer: { '@id': ORG_ID },
     additionalProperty: (p.specs || []).map(s => ({ '@type': 'PropertyValue', name: s[0], value: s[1] })) };
@@ -202,7 +211,7 @@ S.products.forEach(p => {
   const bits = [p.short].concat(String(p.description).split(/(?<=\.)\s+/)).concat(p.status === 'soon' ? [] : ['Made in India.', 'Get a quote from ' + S.short + '.']);
   let desc = ''; bits.forEach(t => { if (t && !desc.includes(t) && (desc + ' ' + t).trim().length <= 135) desc = (desc + ' ' + t).trim(); });
   let title = `${p.name} | ${p.category} | ${S.short}`; if (title.length > 62) title = `${p.name} | ${S.short}`;
-  const m = { file: pFile(p), title, desc, image: p.image, imgAlt: p.name };
+  const m = { file: pFile(p), title, desc, image: realImg(p), imgAlt: p.name };
   if (p.noindex) m.robots = 'noindex,follow';
   if (p.status !== 'soon' && (p.specs || []).length < 3) warn.push(`THIN PRODUCT (add specs): ${p.slug}`);
   const items = [org, website, crumbs(url, [['Home', U + '/'], ['Products', U + '/products.html'], [p.name, url]]),
@@ -223,7 +232,7 @@ const pages = [['', 1.0, 'weekly'], ['products.html', 0.9, 'weekly'], ['about.ht
 const x = t => t.replace(/&/g, '&amp;');
 w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   pages.map(([p, pr, cf]) => `  <url><loc>${U}/${p}</loc><lastmod>${today}</lastmod><changefreq>${cf}</changefreq><priority>${pr}</priority></url>`).join('\n') + '\n' +
-  S.products.filter(p => !p.noindex).map(p => `  <url><loc>${pUrl(p)}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${p.status === 'soon' ? 0.5 : 0.8}</priority>${p.image ? `<image:image><image:loc>${x(abs(p.image))}</image:loc><image:title>${x(E(p.name))}</image:title></image:image>` : ''}</url>`).join('\n') + `\n</urlset>\n`);
+  S.products.filter(p => !p.noindex).map(p => `  <url><loc>${pUrl(p)}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${p.status === 'soon' ? 0.5 : 0.8}</priority>${realImg(p) ? `<image:image><image:loc>${x(abs(realImg(p)))}</image:loc><image:title>${x(E(p.name))}</image:title></image:image>` : ''}</url>`).join('\n') + `\n</urlset>\n`);
 
 /* ---------------- robots.txt (search + AI crawlers allowed) ---------------- */
 const bots = ['Googlebot', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'Google-Extended', 'Applebot', 'Applebot-Extended', 'Amazonbot', 'CCBot', 'meta-externalagent', 'DuckAssistBot', 'MistralAI-User', 'cohere-ai'];
