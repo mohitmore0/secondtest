@@ -221,14 +221,26 @@ window.SITE = {
       ], docs: []
     },
     {
-      slug: "trx-5km", name: "TRX 5 km", category: "Transmitters", status: "soon", featured: false, noindex: true,
-      image: "https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg", gallery: [],
-      short: "5 km range radio transmitter. Coming soon.", description: "TRX 5 km is a radio transmitter on our roadmap, aimed at 5 km control range. Ask us and we will tell you as soon as there is a launch date.", features: [], specs: [], docs: [], faq: []
+      slug: "trx-5km", name: "TRX 5 km", category: "Transmitters",
+      status: "soon", featured: false,
+      image: "images/noimage.png", gallery: [],
+      short: "5 km range radio transmitter. Coming soon.",
+      description: "TRX 5 km is a radio transmitter on our roadmap, aimed at 5 km control range. Ask us and we will tell you as soon as there is a launch date.",
+      features: [],
+      specs: [],
+      faq: [],
+      docs: []
     },
     {
-      slug: "trx-10km", name: "TRX 10 km", category: "Transmitters", status: "soon", featured: false, noindex: true,
-      image: "https://static.wixstatic.com/media/e688f6_c9645f8cf58b4468be911911ded63735~mv2.jpg", gallery: [],
-      short: "10 km range radio transmitter. Coming soon.", description: "TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.", features: [], specs: [], docs: [], faq: []
+      slug: "trx-10km", name: "TRX 10 km", category: "Transmitters",
+      status: "soon", featured: false,
+      image: "", gallery: ["images/noimage.png"],
+      short: "10 km range radio transmitter. Coming soon.",
+      description: "TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.",
+      features: [],
+      specs: [],
+      faq: [],
+      docs: []
     },
     {
       slug: "elrs-fpv-receiver", name: "ELRS FPV radio receiver", category: "Receivers",
