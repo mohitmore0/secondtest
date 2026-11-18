@@ -157,7 +157,7 @@ Q: Which flight controller should I pick?
 A: Aazmuth for redundancy and professional work, Exelr8 F7 for FPV builds. Tell us your build and we will confirm.
 
 Q: Are your drone electronics made in India?
-A: They are designed in Mumbai and Nashik by our own hardware and firmware engineers, so support and fixes are a phone call away.
+A: They are designed in India by our own hardware and firmware engineers, so support and fixes are a phone call away.
 
 Q: Can I buy in bulk or for a company or OEM project?
 A: Yes. Send quantity and use case through the quote form, or call or WhatsApp us, and we will reply with the right parts.

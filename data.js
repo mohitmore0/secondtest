@@ -33,7 +33,7 @@ window.SITE = {
   hero: {
     /* title + text sirf SEO / Google ke liye hain (screen par nahi dikhte). Hero par sirf slider dikhta hai. */
     title: "Indian flight controllers, ESCs and GPS for drones",
-    text: "Triple-redundant Aazmuth flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules. Designed in Mumbai and Nashik, tested in flight, supported by the engineers who built them.",
+    text: "Triple-redundant Aazmuth flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules. Designed in India, tested in flight, supported by the engineers who built them.",
     image: "https://static.wixstatic.com/media/e688f6_10c2110744d94fc980962c8b7d6fc872~mv2.png",
     /* HERO SLIDER (full screen, koi text nahi). Order yahi rahega: pehli image = main hero.
        ms = us image ko kitni der dikhana hai (milliseconds): main hero 6000 (6 sec), baki 3000 (3 sec).
@@ -250,7 +250,7 @@ window.SITE = {
     values: [
       { title: "Test everything", text: "Every batch gets bench time and flight time before it ships." },
       { title: "Write it down", text: "Public docs, pinouts and changelogs, so you are never guessing." },
-      { title: "Make it here", text: "Designed in Mumbai and Nashik, so a fix is a phone call away." }
+      { title: "Make it here", text: "Designed in India, so a fix is a phone call away." }
     ],
     /* photo khali ho to initials wala avatar dikhega. Team hatani ho to list khali [] kar do. */
     team: [
@@ -278,7 +278,7 @@ window.SITE = {
     { t: "Startups and prototypes", x: "Small batches, direct support and parts that match your build.", p: ["skydrive-am32-40a", "skydrive-am32-60a", "exelr8-fpv-flight-controller-f7"] }
   ],
   process: [
-    { t: "Design", x: "Schematics, PCBs and firmware drawn in Mumbai and Nashik." },
+    { t: "Design", x: "Schematics, PCBs and firmware drawn in India." },
     { t: "Bench test", x: "Every board is powered, loaded and measured before it leaves the bench." },
     { t: "Fly test", x: "Real flights, real logs, real fixes." },
     { t: "Ship and support", x: "Public docs, and a phone number that gets answered." }
@@ -287,7 +287,7 @@ window.SITE = {
     { q: "What is AM32 firmware?", a: "AM32 is open-source firmware for 32-bit brushless ESCs. Skydrive ESCs run it, so you can configure and update them with the usual AM32 tools." },
     { q: "Which ESC should I buy for an agriculture or sprayer drone?", a: "Start with the Skydrive AM32 60A 3-6S, which is meant for heavier payloads. Share your motor, prop and battery setup and we will confirm the fit." },
     { q: "Which flight controller should I pick?", a: "Aazmuth for redundancy and professional work, Exelr8 F7 for FPV builds. Tell us your build and we will confirm." },
-    { q: "Are your drone electronics made in India?", a: "They are designed in Mumbai and Nashik by our own hardware and firmware engineers, so support and fixes are a phone call away." },
+    { q: "Are your drone electronics made in India?", a: "They are designed in India by our own hardware and firmware engineers, so support and fixes are a phone call away." },
     { q: "Can I buy in bulk or for a company or OEM project?", a: "Yes. Send quantity and use case through the quote form, or call or WhatsApp us, and we will reply with the right parts." },
     { q: "Where are the pinouts and setup guides?", a: "In our public documentation. Each product page links to its own docs, where they exist." },
     { q: "Do you ship across India?", a: "Call or WhatsApp us with your pincode and quantity and we will confirm shipping." },
