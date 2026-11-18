@@ -19,7 +19,7 @@ Is file me site ka saara text hai (data.js se). Wix me paste karne ya check karn
 
 Indian flight controllers, ESCs and GPS for drones
 
-Triple-redundant Aazmuth flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules. Designed in Mumbai and Nashik, tested in flight, supported by the engineers who built them.
+Triple-redundant Aazmuth flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules. Designed in India, tested in flight, supported by the engineers who built them.
 
 
 ### Numbers
@@ -46,7 +46,7 @@ We design the electronics, write the firmware and fly every batch ourselves. Whe
 
 ### From bench to sky (process)
 
-- **Design**: Schematics, PCBs and firmware drawn in Mumbai and Nashik.
+- **Design**: Schematics, PCBs and firmware drawn in India.
 - **Bench test**: Every board is powered, loaded and measured before it leaves the bench.
 - **Fly test**: Real flights, real logs, real fixes.
 - **Ship and support**: Public docs, and a phone number that gets answered.
@@ -343,7 +343,7 @@ TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. A
 
 ### title
 
-Built in Nashik. Flown everywhere.
+Built in INDIA. Flown everywhere.
 
 
 ### mission
@@ -376,7 +376,7 @@ We are a small team of hardware and firmware engineers making flight controllers
 
 - Test everything : Every batch gets bench time and flight time before it ships.
 - Write it down : Public docs, pinouts and changelogs, so you are never guessing.
-- Make it here : Designed in Mumbai and Nashik, so a fix is a phone call away.
+- Make it here : Designed in India, so a fix is a phone call away.
 
 
 ### team
@@ -396,7 +396,7 @@ We are a small team of hardware and firmware engineers making flight controllers
 - **What is AM32 firmware?** AM32 is open-source firmware for 32-bit brushless ESCs. Skydrive ESCs run it, so you can configure and update them with the usual AM32 tools.
 - **Which ESC should I buy for an agriculture or sprayer drone?** Start with the Skydrive AM32 60A 3-6S, which is meant for heavier payloads. Share your motor, prop and battery setup and we will confirm the fit.
 - **Which flight controller should I pick?** Aazmuth for redundancy and professional work, Exelr8 F7 for FPV builds. Tell us your build and we will confirm.
-- **Are your drone electronics made in India?** They are designed in Mumbai and Nashik by our own hardware and firmware engineers, so support and fixes are a phone call away.
+- **Are your drone electronics made in India?** They are designed in India by our own hardware and firmware engineers, so support and fixes are a phone call away.
 - **Can I buy in bulk or for a company or OEM project?** Yes. Send quantity and use case through the quote form, or call or WhatsApp us, and we will reply with the right parts.
 - **Where are the pinouts and setup guides?** In our public documentation. Each product page links to its own docs, where they exist.
 - **Do you ship across India?** Call or WhatsApp us with your pincode and quantity and we will confirm shipping.

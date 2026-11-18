@@ -2,7 +2,7 @@
 
 > Made in India drone components
 
-Space and Tech Engineering LLP is an Indian drone electronics company with offices in Mumbai and Nashik. It designs and sells the Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules for UAV and FPV builders.
+Space and Tech Engineering LLP is an Indian drone electronics company with offices in India. It designs and sells the Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules for UAV and FPV builders.
 
 We are a small team of hardware and firmware engineers making flight controllers, ESCs and GPS modules that Indian builders can actually get support for.
 

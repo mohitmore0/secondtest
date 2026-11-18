@@ -20,6 +20,8 @@ const customBlock = o => { const t = o.title ? `<h2>${E(o.title)}</h2>` : '', l 
   return ''; };
 const lay = (pg, blocks) => (Array.isArray(LAYV[pg]) ? LAYV[pg] : Object.keys(blocks)).map(k => typeof k === 'string' ? (blocks[k] || '') : (k && typeof k === 'object' ? customBlock(k) : '')).join('');
 const w = (f, t) => fs.writeFileSync(__dirname + '/' + f, t);
+/* CACHE-BUST: data.js/layout.js/app.js/css badalte hi ye hash badal jata hai, isliye browser/CDN hamesha naya file uthata hai (purana data nahi dikhta). */
+const VER = (() => { const h = require('crypto').createHash('md5'); ['data.js', 'layout.js', 'app.js', 'fx.js', 'fx2.js', 'fx3.js', 'fx4.js', 'style.css', 'fx2.css', 'fx3.css', 'fx4.css', 'saffron.css'].forEach(f => { try { h.update(fs.readFileSync(__dirname + '/' + f)); } catch (e) {} }); return h.digest('hex').slice(0, 8); })();
 const E = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const abs = u => /^https?:/.test(u) ? u : U + '/' + String(u).replace(/^\//, '');
 const pFile = p => p.slug + '.html', pUrl = p => `${U}/${pFile(p)}`;
@@ -35,13 +37,13 @@ const avail = S.products.filter(p => p.status !== 'soon'), soon = S.products.fil
 /* ---------------- page meta ---------------- */
 const META = {
   home: { file: 'index.html', path: '', title: 'Indian Drone Flight Controllers, ESCs & GPS | Space and Tech',
-    desc: 'Indian drone flight controllers, AM32 ESCs and UAV GPS modules by Aazmuth, Skydrive and NAVSATE. Designed in Mumbai and Nashik.' },
+    desc: 'Indian drone flight controllers, AM32 ESCs and UAV GPS modules by Aazmuth, Skydrive and NAVSATE. Designed in India.' },
   products: { file: 'products.html', path: 'products.html', title: 'Drone Flight Controllers, ESCs & GPS Modules | Products',
     desc: 'Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1) and NAVSATE GPS modules for UAV and FPV drones.' },
-  about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, Nashik',
-    desc: 'A small team of hardware and firmware engineers in Mumbai and Nashik building flight controllers, ESCs and GPS for Indian drone builders.' },
+  about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, India',
+    desc: 'A small team of hardware and firmware engineers in India building flight controllers, ESCs and GPS for Indian drone builders.' },
   contact: { file: 'contact.html', path: 'contact.html', title: 'Contact Space and Tech Engineering | Get an OEM Quote',
-    desc: `Call or WhatsApp ${S.phone} or email us for OEM quotes on flight controllers, AM32 ESCs and GPS modules. Mumbai and Nashik.` }
+    desc: `Call or WhatsApp ${S.phone} or email us for OEM quotes on flight controllers, AM32 ESCs and GPS modules. India.` }
 };
 
 /* ---------------- JSON-LD ---------------- */
@@ -89,7 +91,7 @@ function seoTags(m, url, ld, og) {
 <meta name="twitter:title" content="${E(m.title)}">
 <meta name="twitter:description" content="${E(m.desc)}">
 <meta name="twitter:image" content="${img}">
-<meta name="geo.region" content="IN-MH"><meta name="geo.placename" content="Nashik, Mumbai">
+<meta name="geo.region" content="IN-MH"><meta name="geo.placename" content="India">
 <meta name="author" content="${E(S.name)}">
 <link rel="alternate" type="text/plain" href="${U}/llms.txt" title="llms.txt">
 ${graph(ld)}`;
@@ -108,7 +110,7 @@ const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.n
 const prodCards = list => list.map(p => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(p.name)} ${E(p.category.replace(/s$/, ''))}" width="320" height="240" loading="lazy"></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
 const faqHtml = list => list.map(f => `<h3>${E(f.q || f[0])}</h3><p>${E(f.a || f[1])}</p>`).join('');
 const officesHtml = () => S.about.offices.map(o => `<address><b>${E(o.role)}, ${E(o.city)}</b><br>${E(o.address)}</address>`).join('');
-const intro = `${S.name} is an Indian drone electronics company with offices in Mumbai and Nashik. It designs and sells the Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules for UAV and FPV builders.`;
+const intro = `${S.name} is an Indian drone electronics company with offices in India. It designs and sells the Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules for UAV and FPV builders.`;
 
 const BODY = {
   home: () => `<main><h1>${E(S.hero.title)}</h1><p>${E(S.hero.text)}</p><p>${E(intro)}</p>` + lay('home', {
@@ -142,7 +144,7 @@ ${p.status !== 'soon' ? `<p><a href="${E(waLink(p))}">Get a quote on WhatsApp</a
   }
 };
 const READY = '';
-const SCRIPTS = `<script src="data.js"></script><script src="layout.js"></script>\n<script src="app.js"></script><script src="fx.js"></script><script src="fx2.js"></script><script src="fx3.js"></script><script src="fx4.js"></script>\n${READY}`;
+const SCRIPTS = `<script src="data.js?v=${VER}"></script><script src="layout.js?v=${VER}"></script>\n<script src="app.js?v=${VER}"></script><script src="fx.js?v=${VER}"></script><script src="fx2.js?v=${VER}"></script><script src="fx3.js?v=${VER}"></script><script src="fx4.js?v=${VER}"></script>\n${READY}`;
 function shell(m, url, ld, bodyAttr, body, og) {
   return `<!DOCTYPE html>
 <html lang="en-IN" data-static="1">
@@ -154,8 +156,8 @@ function shell(m, url, ld, bodyAttr, body, og) {
 ${seoTags(m, url, ld, og)}
 ${ICON}
 ${FONTS}
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="fx2.css"><link rel="stylesheet" href="fx3.css"><link rel="stylesheet" href="fx4.css"><link rel="stylesheet" href="saffron.css">
+<link rel="stylesheet" href="style.css?v=${VER}">
+<link rel="stylesheet" href="fx2.css?v=${VER}"><link rel="stylesheet" href="fx3.css?v=${VER}"><link rel="stylesheet" href="fx4.css?v=${VER}"><link rel="stylesheet" href="saffron.css?v=${VER}">
 </head>
 <body ${bodyAttr}>
 ${nav}
@@ -232,7 +234,7 @@ w('robots.txt', `# Search engines and AI answer engines are welcome. To opt out 
 
 /* ---------------- llms.txt + llms-full.txt (for AI assistants) ---------------- */
 const allFaq = S.faq.map(f => [f.q, f.a]);
-w('llms.txt', `# ${S.name}\n\n> ${S.tagline}. ${intro}\n\nKey facts:\n- Products: Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1), NAVSATE GPS modules.\n- Offices: Mumbai (registered office) and Nashik (product development centre), Maharashtra, India.\n- Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.\n- OEM and bulk orders: ${S.email}, ${S.phone}.\n\n## Products\n` +
+w('llms.txt', `# ${S.name}\n\n> ${S.tagline}. ${intro}\n\nKey facts:\n- Products: Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1), NAVSATE GPS modules.\n- Offices: India (registered office and product development centre).\n- Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.\n- OEM and bulk orders: ${S.email}, ${S.phone}.\n\n## Products\n` +
   avail.map(p => `- [${p.name}](${pUrl(p)}): ${p.short}`).join('\n') + (soon.length ? `\n\n## Coming soon\n` + soon.map(p => `- ${p.name}`).join('\n') : '') +
   `\n\n## Guides\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
 w('llms-full.txt', `# ${S.name}\n\n> ${S.tagline}\n\n${intro}\n\n${S.about.text}\n\n` +

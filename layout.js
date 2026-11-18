@@ -26,10 +26,10 @@ window.LAYOUT = {
     'tech',        // "Technology solutions" product cards
 
     // --- SEO content blocks (visible to visitors and present in the static HTML). Facts come from data.js only. ---
-    { type: 'text', id: 'about-company', title: 'Indian drone electronics, designed in Mumbai and Nashik',
+    { type: 'text', id: 'about-company', title: 'Indian drone electronics, designed in India',
       text: [
         'Space and Tech Engineering LLP is a small team of hardware and firmware engineers building flight electronics for drones. Our first flight controller, built by two engineers in 2022, finally held a hover. Since then we have added Skydrive AM32 ESCs, NAVSATE GPS modules and the Aazmuth flagship flight controller.',
-        'Our mission is to make dependable flight electronics in India, with open documentation and support that builders can actually reach. We design our boards and firmware at our offices in Mumbai and Nashik, so a question or a fix is a phone call away. We work with drone manufacturers, UAV companies, FPV builders, research teams and OEM buyers.'
+        'Our mission is to make dependable flight electronics in India, with open documentation and support that builders can actually reach. We design our boards and firmware at our offices in India, so a question or a fix is a phone call away. We work with drone manufacturers, UAV companies, FPV builders, research teams and OEM buyers.'
       ] },
     { type: 'tiles', id: 'drone-electronics', alt: true, title: 'Flight controllers, ESCs and GPS for UAV and FPV drones',
       lead: 'Four product families that are designed to work together, each with its own documentation.',
@@ -53,7 +53,7 @@ window.LAYOUT = {
     'process',     // "From bench to sky" 4 steps
     { type: 'tiles', id: 'why-us', alt: true, title: 'Why choose Space and Tech Engineering',
       items: [
-        { title: 'Designed and supported in India', text: 'Our hardware and firmware engineers sit in Mumbai and Nashik. When something needs fixing, you speak to the people who built it.' },
+        { title: 'Designed and supported in India', text: 'Our hardware and firmware engineers sit in India. When something needs fixing, you speak to the people who built it.' },
         { title: 'Tested before it ships', text: 'Every batch gets bench time and flight time before it ships.' },
         { title: 'Documentation you can read', text: 'We publish pinouts, calibration guides and changelogs, so you are never guessing.' },
         { title: 'Redundancy where it matters', text: 'Aazmuth carries three IMUs and two barometers on isolated buses, so one noisy sensor does not take down the flight.' }
