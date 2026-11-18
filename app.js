@@ -28,10 +28,10 @@ const org={"@context":"https://schema.org","@type":"Organization",name:S.name,ur
 /* ---------- shared parts ---------- */
 const links=[['Products','products.html','products'],['Docs',S.docsUrl,''],['About','about.html','about'],['Contact','contact.html','contact']];
 const cur=l=>(l[2]&&(page===l[2]||(l[2]==='products'&&page==='product')))?' aria-current="page"':'';
-const header=`<header><div class="wrap nav"><a class="logo" href="index.html">${S.logo?`<img class="lgi" src="${E(S.logo)}" alt="${E(S.short)} logo">`:`<span class="lt">${E(S.short)}<small>${E(S.tagline)}</small></span>`}</a>
+const header=`<header><div class="wrap nav"><a class="logo" href="/">${S.logo?`<img class="lgi" src="${E(S.logo)}" alt="${E(S.short)} logo">`:`<span class="lt">${E(S.short)}<small>${E(S.tagline)}</small></span>`}</a>
 <nav aria-label="Main">${links.map(l=>`<a href="${E(l[1])}"${cur(l)}>${l[0]}</a>`).join('')}</nav>
 <div class="hbar"><a class="btn" href="contact.html">Get a quote</a><button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button></div></div></header>
-<div class="menu" id="menu">${[['Home','index.html']].concat(links.map(l=>[l[0],l[1]])).map(l=>`<a class="m" href="${E(l[1])}">${l[0]}</a>`).join('')}
+<div class="menu" id="menu">${[['Home','/']].concat(links.map(l=>[l[0],l[1]])).map(l=>`<a class="m" href="${E(l[1])}">${l[0]}</a>`).join('')}
 <div class="mf">Talk to our engineers<a href="${tel}">${E(S.phone)}</a></div></div>`;
 const footer=`<footer><div class="wrap fcols"><div class="fc"><b>Company</b><a href="about.html">About</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="${E(S.docsUrl)}">Documents</a></div><div class="fc"><b>Legal</b>${S.legal.pages.map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</div><div class="fc"><b>Grievance Officer</b><span>${E(S.legal.officer.name)}</span><a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a><span>Reply in 24 hours</span></div><div class="fc"><b>Follow</b>${S.social.map(s=>`<a href="${E(s.url)}">${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Sitemap</a></div></div><div class="wrap fbar"><span>&copy; ${S.year} ${E(S.name)}${S.company.llpin?` &middot; LLPIN ${E(S.company.llpin)}`:''}</span><span>Registered office: ${E(S.company.registeredOffice)}</span></div></footer>
 <div class="dock" id="dock"><a class="btn o" href="${tel}">Call us</a><a class="btn" href="contact.html">Get a quote</a></div>`;
@@ -131,7 +131,7 @@ product(){
   seo(`${p.name} | ${S.name}`,p.short||p.description,p.image,[org,{"@context":"https://schema.org","@type":"Product",name:p.name,image:imgs.map(abs),description:p.description,category:p.category,brand:{"@type":"Brand",name:S.short}}],path);
   const rel=P.filter(x=>x.slug!==p.slug&&x.category===p.category).concat(P.filter(x=>x.slug!==p.slug&&x.category!==p.category)).slice(0,4);
   return compose('product',{
-main:()=>`<section><div class="wrap"><p class="crumb"><a href="index.html">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</p>
+main:()=>`<section><div class="wrap"><p class="crumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</p>
 <div class="pd"><div><div class="main-img"><img id="mi" src="${E(imgs[0])}" alt="${E(p.name)}" fetchpriority="high"></div>
 ${imgs.length>1?`<div class="thumbs">${imgs.map((u,i)=>`<button type="button" data-i="${i}" aria-label="Photo ${i+1}"${i?'':' aria-current="true"'}><img src="${E(u)}" alt=""></button>`).join('')}</div>`:''}</div>
 <div><span class="cat">${E(p.category)}${soon?' &middot; Coming soon':''}</span><h1>${E(p.name)}</h1><p class="d">${E(p.description)}</p>

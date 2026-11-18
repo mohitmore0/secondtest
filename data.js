@@ -41,12 +41,12 @@ window.SITE = {
        Image badalni ho to images/ folder me file rakho aur src badlo. alt sirf screen reader / SEO ke liye. */
     interval: 3000,
     slides: [
-      { src: "images/hero.png",    ms: 6000, zoom: 1.38, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
+      { src: "images/hero.avif",    ms: 6000, zoom: 1.38, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
       { src: "images/azmuth.avif",  ms: 3000, zoom: 1.6, alt: "Azmuth flight controller", href: "aazmuth-flight-controller.html" },
-      { src: "images/exclr8.png",  ms: 3000, zoom: 1.6, alt: "Exelr8 flight controller for FPV drones", href: "exelr8-fpv-flight-controller-f7.html" },
-      { src: "images/4in1.png",    ms: 3000, zoom: 1.45, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
+      { src: "images/exclr8.avif",  ms: 3000, zoom: 1.6, alt: "Exelr8 flight controller for FPV drones", href: "exelr8-fpv-flight-controller-f7.html" },
+      { src: "images/4in1.avif",    ms: 3000, zoom: 1.45, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
       { src: "images/sateesc.avif", ms: 3000, zoom: 1.6, alt: "SATE-ESC single electronic speed controller", href: "skydrive-am32-60a.html" },
-      { src: "images/navsate.png", ms: 3000, zoom: 1.6, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
+      { src: "images/navsate.avif", ms: 3000, zoom: 1.6, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
     ]
   },
   stats: [   // n = number, s = suffix
@@ -376,7 +376,7 @@ S.legal={
    {h:"No professional advice",p:["Nothing on this site is legal, regulatory or financial advice."]}
    ]},
   {slug:"product-regulatory",nav:"Product Regulatory Disclaimer",title:"Product Regulatory Disclaimer",
-   desc:"Regulatory position of drone components supplied by Space and Tech Engineering LLP: DGCA, drone rules, radio equipment and who is responsible for compliance.",
+   desc:"Regulatory position of drone components supplied by Space and Tech Engineering LLP: DGCA, drone rules, radio equipment and compliance.",
    intro:"Our products are parts of drones, not complete drones. This page explains what that means for regulation.",
    sections:[
    {h:"Components are not aircraft",p:[S.legal_uas_placeholder||"Space and Tech Engineering LLP supplies electronic components and accessories for unmanned aircraft systems. The supply of an individual component does not constitute certification or approval of a complete drone or unmanned aircraft system. Customers and system integrators are responsible for verifying applicable regulatory, safety and operational requirements before deployment."]},

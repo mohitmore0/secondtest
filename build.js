@@ -15,7 +15,7 @@ const LAYV = (() => { const c = { window: {} }; vm.createContext(c); try { vm.ru
 const customBlock = o => { const t = o.title ? `<h2>${E(o.title)}</h2>` : '', l = o.lead ? `<p>${E(o.lead)}</p>` : '';
   if (o.type === 'text') return t + l + [].concat(o.text || []).map(x => `<p>${E(x)}</p>`).join('') + (o.btn ? `<p><a href="${E(o.btn.href)}">${E(o.btn.label)}</a></p>` : '');
   if (o.type === 'banner') return `<h3>${E(o.title || '')}</h3><p>${E(o.text || '')}</p>` + (o.btn ? `<p><a href="${E(o.btn.href)}">${E(o.btn.label)}</a></p>` : '');
-  if (o.type === 'tiles') return t + l + `<ul>${(o.items || []).map(i => `<li><b>${E(i.title)}</b>: ${E(i.text || '')}</li>`).join('')}</ul>`;
+  if (o.type === 'tiles') return t + l + `<ul>${(o.items || []).map(i => `<li><b>${i.href ? `<a href="${E(i.href)}">${E(i.title)}</a>` : E(i.title)}</b>: ${E(i.text || '')}</li>`).join('')}</ul>`;
   if (o.type === 'image') return t + `<img src="${E(o.src)}" alt="${E(o.alt_text || o.caption || o.title || '')}">`;
   return ''; };
 const lay = (pg, blocks) => (Array.isArray(LAYV[pg]) ? LAYV[pg] : Object.keys(blocks)).map(k => typeof k === 'string' ? (blocks[k] || '') : (k && typeof k === 'object' ? customBlock(k) : '')).join('');
@@ -35,13 +35,13 @@ const avail = S.products.filter(p => p.status !== 'soon'), soon = S.products.fil
 /* ---------------- page meta ---------------- */
 const META = {
   home: { file: 'index.html', path: '', title: 'Indian Drone Flight Controllers, ESCs & GPS | Space and Tech',
-    desc: 'Made-in-India Aazmuth flight controllers, Skydrive AM32 ESCs and NAVSATE GPS for UAV and FPV builders. Designed in Mumbai and Nashik. Get a quote today.' },
+    desc: 'Indian drone flight controllers, AM32 ESCs and UAV GPS modules by Aazmuth, Skydrive and NAVSATE. Designed in Mumbai and Nashik.' },
   products: { file: 'products.html', path: 'products.html', title: 'Drone Flight Controllers, ESCs & GPS Modules | Products',
-    desc: 'Browse Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1) and NAVSATE GPS modules for UAV and FPV drones. Made in India.' },
+    desc: 'Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1) and NAVSATE GPS modules for UAV and FPV drones.' },
   about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, Nashik',
-    desc: 'We are a small team of hardware and firmware engineers in Mumbai and Nashik making flight controllers, ESCs and GPS modules for Indian drone builders.' },
+    desc: 'A small team of hardware and firmware engineers in Mumbai and Nashik building flight controllers, ESCs and GPS for Indian drone builders.' },
   contact: { file: 'contact.html', path: 'contact.html', title: 'Contact Space and Tech Engineering | Get an OEM Quote',
-    desc: `Call or WhatsApp ${S.phone}, or email us for OEM quotes on flight controllers, AM32 ESCs and GPS modules. Offices in Mumbai and Nashik, India.` }
+    desc: `Call or WhatsApp ${S.phone} or email us for OEM quotes on flight controllers, AM32 ESCs and GPS modules. Mumbai and Nashik.` }
 };
 
 /* ---------------- JSON-LD ---------------- */
@@ -69,7 +69,7 @@ const productLd = p => {
 
 /* ---------------- head ---------------- */
 function seoTags(m, url, ld, og) {
-  if (m.desc.length > 160) warn.push(`description too long (${m.desc.length}): ${m.file}`);
+  if (m.desc.length > 140) warn.push(`description too long for pixel limit (${m.desc.length}): ${m.file}`);
   const img = abs(m.image || S.ogImage || S.hero.image);
   return `<title>${E(m.title)}</title>
 <meta name="description" content="${E(m.desc)}">
@@ -102,8 +102,8 @@ const ICON = (S.favicon ? `<link rel="icon" type="image/png" href="${S.favicon}"
 /* ---------------- static body blocks (real, crawlable content) ---------------- */
 
 S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
-const nav = `<header><nav aria-label="Main"><a href="index.html">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></header>`;
-const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><p>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${E(S.legal.officer.name)}, <a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p></footer>`;
+const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></header>`;
+const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><p>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${S.legal.officer.name ? E(S.legal.officer.name) + ', ' : ''}<a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p><p>Follow us: ${(S.social || []).map(s => `<a href="${E(s.url)}" rel="noopener">${E(s.label)}</a>`).join(' | ')}${S.docsUrl ? ` | <a href="${E(S.docsUrl)}" rel="noopener">Documentation</a>` : ''}</p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
 const prodCards = list => list.map(p => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(p.name)} ${E(p.category.replace(/s$/, ''))}" width="320" height="240" loading="lazy"></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
 const faqHtml = list => list.map(f => `<h3>${E(f.q || f[0])}</h3><p>${E(f.a || f[1])}</p>`).join('');
@@ -128,7 +128,7 @@ ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${
   ...Object.fromEntries(S.legal.pages.map(L => [L.slug, () => `<main><h1>${E(L.title)}</h1><p>${E(L.intro)}</p><p>Effective: ${E(S.legal.effective)}. Last updated: ${E(S.legal.updated)}.</p>${L.officerBlock ? offTxt() : ''}${L.sections.map((s, i) => `<h2>${i + 1}. ${E(s.h)}</h2>${(s.p || []).map(t => `<p>${E(t)}</p>`).join('')}${s.ul ? `<ul>${s.ul.map(t => `<li>${E(t)}</li>`).join('')}</ul>` : ''}`).join('')}</main>`])),
   product: p => {
     const rel = S.products.filter(x => x.slug !== p.slug && x.category === p.category).concat(S.products.filter(x => x.slug !== p.slug && x.category !== p.category)).slice(0, 4);
-    return `<main><nav aria-label="Breadcrumb"><a href="index.html">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</nav>
+    return `<main><nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</nav>
 <h1>${E(p.name)}</h1><p>${E(p.category)}${p.status === 'soon' ? ' - coming soon' : ''}</p><img src="${E(p.image)}" alt="${E(p.name)}" width="640" height="480">
 <p>${E(p.description)}</p>${p.features && p.features.length ? `<h2>Highlights</h2><ul>${p.features.map(f => `<li>${E(f)}</li>`).join('')}</ul>` : ''}
 ${p.specs && p.specs.length ? `<h2>${E(p.name)} specifications</h2><table>${p.specs.map(s => `<tr><th scope="row">${E(s[0])}</th><td>${E(s[1])}</td></tr>`).join('')}</table>` : ''}
@@ -174,7 +174,8 @@ S.legal.pages.forEach(L => { pageType[L.slug] = 'WebPage'; });
 Object.keys(pageType).forEach(k => {
   const m = META[k], url = U + '/' + m.path;
   const items = [org, website];
-  const bc = k === 'home' ? [['Home', U + '/']] : [['Home', U + '/'], [m.title.split(' | ').pop(), url]];
+  const crumbName = { products: 'Products', about: 'About', contact: 'Contact' }[k] || (S.legal.pages.find(L => L.slug === k) || {}).nav || k;
+  const bc = k === 'home' ? [['Home', U + '/']] : [['Home', U + '/'], [crumbName, url]];
   items.push(crumbs(url, bc));
   const extra = {};
   if (k === 'products') {
@@ -196,8 +197,8 @@ Object.keys(pageType).forEach(k => {
 /* one static page per product */
 S.products.forEach(p => {
   const url = pUrl(p);
-  const bits = [p.short].concat(String(p.description).split(/(?<=\.)\s+/)).concat(p.status === 'soon' ? [] : ['Made in India.']);
-  let desc = ''; bits.forEach(t => { if (t && !desc.includes(t) && (desc + ' ' + t).trim().length <= 158) desc = (desc + ' ' + t).trim(); });
+  const bits = [p.short].concat(String(p.description).split(/(?<=\.)\s+/)).concat(p.status === 'soon' ? [] : ['Made in India.', 'Get a quote from ' + S.short + '.']);
+  let desc = ''; bits.forEach(t => { if (t && !desc.includes(t) && (desc + ' ' + t).trim().length <= 135) desc = (desc + ' ' + t).trim(); });
   let title = `${p.name} | ${p.category} | ${S.short}`; if (title.length > 62) title = `${p.name} | ${S.short}`;
   const m = { file: pFile(p), title, desc, image: p.image, imgAlt: p.name };
   if (p.noindex) m.robots = 'noindex,follow';
@@ -208,6 +209,13 @@ S.products.forEach(p => {
   w(pFile(p), shell(m, url, items, `data-page="product" data-slug="${E(p.slug)}"`, BODY.product(p), 'product'));
 });
 
+/* 404.html: noindex, not in sitemap */
+{
+  const m = { file: '404.html', title: 'Page not found | ' + S.short, desc: 'This page does not exist. Browse our drone flight controllers, ESCs and GPS modules.', robots: 'noindex,follow' };
+  const body = `<main><h1>Page not found</h1><p>The page you are looking for does not exist or has moved.</p><p><a href="/">Go to the home page</a> or see all <a href="products.html">drone flight controllers, ESCs and GPS modules</a>.</p></main>`;
+  w('404.html', shell(m, U + '/404.html', [org], 'data-page="notfound"', body).replace('<link rel="canonical" href="' + U + '/404.html">\n', '').replace(/<link rel="alternate" hreflang[^>]*>\n/g, '').replace(SCRIPTS, '').replace('<head>', '<head>\n<base href="/">'));
+}
+
 /* ---------------- sitemap.xml ---------------- */
 const pages = [['', 1.0, 'weekly'], ['products.html', 0.9, 'weekly'], ['about.html', 0.6, 'monthly'], ['contact.html', 0.6, 'yearly']].concat(S.legal.pages.map(L => [L.slug + '.html', 0.3, 'yearly']));
 const x = t => t.replace(/&/g, '&amp;');
@@ -217,8 +225,10 @@ w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://
 
 /* ---------------- robots.txt (search + AI crawlers allowed) ---------------- */
 const bots = ['Googlebot', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'Google-Extended', 'Applebot', 'Applebot-Extended', 'Amazonbot', 'CCBot', 'meta-externalagent', 'DuckAssistBot', 'MistralAI-User', 'cohere-ai'];
-w('robots.txt', `# Search engines and AI answer engines are welcome. To opt out of AI training only, change that bot to "Disallow: /".\nUser-agent: *\nAllow: /\n\n` +
-  bots.map(b => `User-agent: ${b}\nAllow: /\n`).join('\n') + `\nSitemap: ${U}/sitemap.xml\n`);
+const PRIVATE = ['/editor.html', '/product-admin.html', '/admin-server.js', '/start-admin.bat', '/build.js', '/export-wix.js', '/wix-export/', '/README.txt', '/product.html'];
+const rules = PRIVATE.map(p => `Disallow: ${p}`).join('\n');
+w('robots.txt', `# Search engines and AI answer engines are welcome. To opt out of AI training only, change that bot to "Disallow: /".\nUser-agent: *\nAllow: /\n${rules}\n\n` +
+  bots.map(b => `User-agent: ${b}\nAllow: /\n${rules}\n`).join('\n') + `\nSitemap: ${U}/sitemap.xml\n`);
 
 /* ---------------- llms.txt + llms-full.txt (for AI assistants) ---------------- */
 const allFaq = S.faq.map(f => [f.q, f.a]);
