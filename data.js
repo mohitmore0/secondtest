@@ -529,19 +529,19 @@ S.inCat=(p,c)=>p.category===c||(p.also||[]).indexOf(c)>-1;   /* product kisi cat
 const reg=(S.about.offices||[]).find(o=>/regist/i.test(o.role))||(S.about.offices||[])[0]||{};
 S.company={
   llpName:S.name,
-  llpin:"",                       // <-- LLPIN (MCA records se verify karke daalo, jaise AAA-1234)
+  llpin:"ABC-5467",                       // <-- LLPIN (MCA records se verify karke daalo, jaise AAA-1234)
   registeredOffice:reg.address||"",
-  gstin:""                        // <-- optional, GSTIN verify karke
+  gstin:"27AEVFS0361R1Z2"                        // <-- optional, GSTIN verify karke
 };
 S.legal={
   effective:"16 November 2026", updated:"16 November 2026",
   officer:{
-    name:"",                      // <-- Grievance Officer ka poora naam
-    designation:"",               // <-- jaise "Director" / "Compliance Manager"
+    name:"Arup Das",                      // <-- Grievance Officer ka poora naam
+    designation:"Compliance Manager",               // <-- jaise "Director" / "Compliance Manager"
     email:S.email,                // existing verified email (badalna ho to yahin)
     phone:S.phone,                // existing verified number
     address:S.company.registeredOffice,
-    hours:""                      // <-- jaise "Mon-Sat, 10:00 to 18:00 IST"
+    hours:"Mon-Fri, 11:00 to 18:00 IST"                      // <-- jaise "Mon-Sat, 10:00 to 18:00 IST"
   },
   /* Sab drone products UAS ke components hain, isliye ye text har product page par aata hai.
      Transmitters ke liye RF wali extra line judti hai. */
