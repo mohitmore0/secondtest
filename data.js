@@ -323,7 +323,7 @@ window.SITE = {
     },
     {
       slug: "sate-h7-fpv-flight-controller", name: "SATE-H7 FPV flight controller", category: "Flight controllers",
-      also: ["FPV"], status: "soon", featured: false,
+      also: ["FPV"], status: "soon", featured: false, hidden: true,
       image: "images/sate-h7-fpv-flight-controller-main.png", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },

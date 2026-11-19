@@ -193,29 +193,6 @@ Specifications:
 - Frequency: 5.8 GHz
 - Type: Digital
 
-## SATE-H7 FPV flight controller
-Category: Flight controllers
-Status: Coming soon
-URL: https://www.spaceandtechengineerings.com/sate-h7-fpv-flight-controller.html
-
-SATE-H7 is an H7-based flight controller for FPV drones. It pairs an STM32H7 microcontroller with a fourth-generation InvenSense gyroscope and accelerometer, an Infineon barometer and a high-performance OSD. Separate 10 V and 5 V BEC outputs and a solder-less plug-and-play design keep builds clean, and it works with digital HD systems.
-
-Highlights:
-- Powerful H7-based STM32 microcontroller
-- Separate BEC outputs
-- Solder-less plug-and-play design
-- Multi-firmware support
-- Reverse-voltage and short-circuit protection
-- Compatible with digital HD systems
-
-Specifications:
-- Microcontroller: STM32H7
-- IMU: InvenSense 4th-generation gyroscope and accelerometer
-- Barometer: Infineon high-precision
-- OSD: High-performance
-- BEC: 10 V / 2 A and 5 V / 2 A
-- Battery input: 3-6S
-
 ## SATE-HIGH AMP ESC 200A 6-12S
 Category: ESCs
 Status: Available

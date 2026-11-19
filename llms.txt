@@ -25,7 +25,6 @@ Key facts:
 - TRX 10 km
 - Analog VTX
 - Digital VTX
-- SATE-H7 FPV flight controller
 - Aazmuth Mini
 - SATE FalconEye PLFM radar
 
