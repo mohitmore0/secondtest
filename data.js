@@ -99,23 +99,22 @@ window.SITE = {
       slug: "exelr8-fpv-flight-controller-f7", name: "Exelr8 FPV flight controller F7", category: "Flight controllers",
       also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_7ed082c4ce4c4d01baea626a1683544f~mv2.jpg", gallery: [],
-      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
-         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
         design: { text: "", imgs: [], video: "" },
-        bench:  { text: "", imgs: [], video: "" },
-        fly:    { text: "", imgs: [], video: "" }
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
       },
       short: "F7 flight controller for light, fast FPV racing and freestyle builds.",
       description: "Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.",
-      features: ["F7 processor", "Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS", "Designed and supported in India"],
-      specs: [["Processor","F7"],["Built for","FPV racing and freestyle"]],
-      bestFor: ["FPV racing and freestyle", "Startups and prototypes"],
+      features: ["F7 processor","Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS","Designed and supported in India"],
+      specs: [["Microcontroller","F7"],["Gyroscope & Accelerometer","InvenSense 4th Generation"],["Barometer","Infineon High-Precision"],["OSD","High-Performance OSD"],["BEC Output","10V / 2A and 5V / 2A"],["Battery Input","3S–6S"],["Protection","Reverse-voltage and short-circuit protection"]],
+      bestFor: ["FPV racing and freestyle","Startups and prototypes"],
       faq: [
         { q: "What is the Exelr8 flight controller for?", a: "Exelr8 is an F7 flight controller for FPV drone builds, including racing and freestyle quads." },
         { q: "Which ESC and GPS go with Exelr8?", a: "The Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS are the matching parts in our FPV stack." },
         { q: "Exelr8 or Aazmuth?", a: "Choose Exelr8 for FPV builds and Aazmuth when you need triple-redundant sensing for professional or mission work." }
-      ], docs: []
+      ],
+      docs: []
     },
     {
       slug: "skydrive-am32-60a", name: "Skydrive AM32 60A 3-6S", category: "ESCs",
@@ -181,24 +180,23 @@ window.SITE = {
     },
     {
       slug: "navsate-gps-for-uavs", name: "NAVSATE GPS for UAVs", category: "GPS",
-      status: "available", featured: true,
+      also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
-      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
-         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
         design: { text: "", imgs: [], video: "" },
-        bench:  { text: "", imgs: [], video: "" },
-        fly:    { text: "", imgs: [], video: "" }
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
       },
       short: "UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.",
       description: "NAVSATE is our GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position and ground-speed data it needs for position hold, return-to-home and waypoint missions, and pairs with Aazmuth for survey, agriculture and defence work.",
-      features: ["Tuned for UAVs", "Tested on long flights", "Enables position hold, return-to-home and waypoint missions"],
-      specs: [["Built for","UAVs"],["Use","Position hold, return-to-home, waypoints"]],
-      bestFor: ["Agriculture", "Survey and mapping", "Defense and security"],
+      features: ["Tuned for UAVs","Tested on long flights","Enables position hold, return-to-home and waypoint missions"],
+      specs: [["GNSS Chip","u-blox"],["Magnetometer:","Industry-grade"],["Communication Interface","CAN"],["Protocol","DroneCAN"],["RF Front End","Built-in LNA and RF filter"],["Oscillator","TCXO"],["Satellite Tracking","25+ satellites in urban areas"]],
+      bestFor: ["Agriculture","Survey and mapping","Defense and security"],
       faq: [
         { q: "What does the NAVSATE GPS do?", a: "It tells the flight controller where the drone is and how fast it is moving, which enables position hold, return-to-home and waypoint missions." },
         { q: "Which flight controller works with NAVSATE?", a: "It is designed as part of our stack with the Aazmuth flight controller. Share your build and we will confirm wiring and settings." }
-      ], docs: []
+      ],
+      docs: []
     },
     {
       slug: "navsate-mini-gps", name: "NAVSATE mini for FPV drones", category: "GPS",

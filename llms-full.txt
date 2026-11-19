@@ -47,8 +47,13 @@ Highlights:
 - Designed and supported in India
 
 Specifications:
-- Processor: F7
-- Built for: FPV racing and freestyle
+- Microcontroller: F7
+- Gyroscope & Accelerometer: InvenSense 4th Generation
+- Barometer: Infineon High-Precision
+- OSD: High-Performance OSD
+- BEC Output: 10V / 2A and 5V / 2A
+- Battery Input: 3S–6S
+- Protection: Reverse-voltage and short-circuit protection
 
 ## Skydrive AM32 60A 3-6S
 Category: ESCs
@@ -80,8 +85,13 @@ Highlights:
 - Enables position hold, return-to-home and waypoint missions
 
 Specifications:
-- Built for: UAVs
-- Use: Position hold, return-to-home, waypoints
+- GNSS Chip: u-blox
+- Magnetometer:: Industry-grade
+- Communication Interface: CAN
+- Protocol: DroneCAN
+- RF Front End: Built-in LNA and RF filter
+- Oscillator: TCXO
+- Satellite Tracking: 25+ satellites in urban areas
 
 ## NAVSATE mini for FPV drones
 Category: GPS
