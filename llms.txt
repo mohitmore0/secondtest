@@ -18,6 +18,7 @@ Key facts:
 - [4-in-1 ESC 80A 3-6S](https://www.spaceandtechengineerings.com/sate-4-in-1-esc-80a.html): Four-channel FPV ESC on one board with AM32 support, DShot and 3-6S input.
 - [SATE-HIGH AMP ESC 200A 6-12S](https://www.spaceandtechengineerings.com/sate-high-amp-esc.html): High-current single ESC with 200A continuous rating, 6S-12S input and AM32 support.
 - [SATE-AIO Board](https://www.spaceandtechengineerings.com/sate-aio-board.html): All-in-one flight controller and 4-in-1 ESC board, up to 25A continuous, AM32 and DShot.
+- [Kinetik Flight Controller](https://www.spaceandtechengineerings.com/kinetik-flight-controller.html): Compact 5×5 cm FPV flight controller with dual Betaflight and ArduPilot support for versatile drone applications.
 
 ## Coming soon
 - TRX 5 km

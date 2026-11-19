@@ -299,6 +299,21 @@ Specifications:
 - Beam steering: Plus or minus 45 degrees, elevation and azimuth
 - Signal processing: Pulse compression, Doppler FFT, MTI, CFAR
 
+## Kinetik Flight Controller
+Category: Flight controllers
+Status: Available
+URL: https://www.spaceandtechengineerings.com/kinetik-flight-controller.html
+
+Kinetik FC is a compact, FPV-based flight controller designed for drone enthusiasts, developers, and UAV builders. Measuring just 5 × 5 cm, it supports both Betaflight and ArduPilot, offering the flexibility to power everything from FPV freestyle and racing drones to autonomous UAVs. Its standout feature is dual firmware compatibility, giving users the freedom to choose between high-performance FPV flying and advanced autonomous flight on a single platform.
+
+Highlights:
+- ArduPilot and Betaflight supported
+
+Specifications:
+- Voltage: 3S to 6S
+- Microcontroller: STM32 H7
+- Redundancy: 2 IMUs, 2 barometers
+
 
 ## Frequently asked questions
 Q: What is AM32 firmware?

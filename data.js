@@ -434,6 +434,23 @@ window.SITE = {
         { q: "Is FalconEye available now?", a: "Not yet. It is under development. Contact us for status." },
         { q: "What is the difference between AERIS-10N and AERIS-10E?", a: "Nexus is the 3 km version with a patch array. Extended is the 20 km version with a slotted waveguide array." }
       ], docs: []
+    },
+    {
+      slug: "kinetik-flight-controller", name: "Kinetik Flight Controller", category: "Flight controllers",
+      also: ["FPV"], status: "available", featured: false,
+      image: "images/kinetik-flight-controller-main.png", gallery: [],
+      journey: {
+        design: { text: "", imgs: [], video: "" },
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
+      },
+      short: "Compact 5×5 cm FPV flight controller with dual Betaflight and ArduPilot support for versatile drone applications.",
+      description: "Kinetik FC is a compact, FPV-based flight controller designed for drone enthusiasts, developers, and UAV builders. Measuring just 5 × 5 cm, it supports both Betaflight and ArduPilot, offering the flexibility to power everything from FPV freestyle and racing drones to autonomous UAVs. Its standout feature is dual firmware compatibility, giving users the freedom to choose between high-performance FPV flying and advanced autonomous flight on a single platform.",
+      features: ["ArduPilot and Betaflight supported"],
+      specs: [["Voltage","3S to 6S"],["Microcontroller","STM32 H7"],["Redundancy","2 IMUs, 2 barometers"]],
+      bestFor: ["FPV"],
+      faq: [],
+      docs: []
     }
   ],
 
