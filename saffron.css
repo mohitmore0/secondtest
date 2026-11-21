@@ -238,3 +238,6 @@ footer .fbar{border-top-color:rgba(255,154,46,.2)}
 @media (prefers-reduced-motion:reduce){
   .logo .lt,h2,.fin h2,.st b,.jr .jt b,.hs:after,.btn:after{animation:none!important}
 }
+
+.skip-link{position:absolute;left:8px;top:-60px;z-index:1000;background:#ff9a2e;color:#000;padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}.skip-link:focus{top:8px}
+footer address{font-style:normal}

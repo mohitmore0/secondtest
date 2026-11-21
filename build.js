@@ -31,7 +31,20 @@ const lay = (pg, blocks) => (Array.isArray(LAYV[pg]) ? LAYV[pg] : Object.keys(bl
 const w = (f, t) => fs.writeFileSync(__dirname + '/' + f, t);
 /* CACHE-BUST: data.js/layout.js/app.js/css badalte hi ye hash badal jata hai, isliye browser/CDN hamesha naya file uthata hai (purana data nahi dikhta). */
 const VER = (() => { const h = require('crypto').createHash('md5'); ['data.js', 'layout.js', 'app.js', 'fx.js', 'fx2.js', 'fx3.js', 'fx4.js', 'style.css', 'fx2.css', 'fx3.css', 'fx4.css', 'saffron.css'].forEach(f => { try { h.update(fs.readFileSync(__dirname + '/' + f)); } catch (e) {} }); return h.digest('hex').slice(0, 8); })();
+/* BUNDLE: 6 CSS + 7 JS files -> bundle.css + bundle.js (sirf 2 request). Source files (data.js, style.css...) waise hi edit karo.
+   Minify ke liye ek baar: npm install   (esbuild). Na ho to bina minify sirf jod diya jata hai. */
+const CSS_SRC = ['style.css', 'fx2.css', 'fx3.css', 'fx4.css', 'saffron.css'];
+const JS_SRC = ['data.js', 'layout.js', 'app.js', 'fx.js', 'fx2.js', 'fx3.js', 'fx4.js'];
+(() => {
+  const rd = f => { try { return fs.readFileSync(__dirname + '/' + f, 'utf8'); } catch (e) { return ''; } };
+  let es = null; try { es = require('esbuild'); } catch (e) { console.log('NOTE: esbuild nahi mila, bundle minify nahi hua (npm install chalao).'); }
+  let css = CSS_SRC.map(rd).join('\n'), js = JS_SRC.map(rd).join(';\n');
+  if (es) { try { css = es.transformSync(css, { loader: 'css', minify: true }).code; js = es.transformSync(js, { loader: 'js', minify: true }).code; } catch (e) { console.log('Minify error (bina minify bundle bana):', e.message); } }
+  fs.writeFileSync(__dirname + '/bundle.css', css); fs.writeFileSync(__dirname + '/bundle.js', js);
+})();
 const E = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const CATSING = { 'ESCs': 'ESC (electronic speed controller)', 'Flight controllers': 'flight controller', 'GPS': 'GPS module', 'Receivers': 'receiver', 'Transmitters': 'transmitter', 'Video transmitters': 'video transmitter', 'Radar': 'radar module', 'FPV': 'FPV electronics' };
+const altFor = p => { const c = CATSING[p.category] || String(p.category || '').toLowerCase(), key = c.split(' ')[0].toLowerCase(); return (String(p.name).toLowerCase().includes(key) ? p.name : p.name + ' ' + c) + ' for drones'; };
 const abs = u => /^https?:/.test(u) ? u : U + '/' + String(u).replace(/^\//, '');
 const pFile = p => p.slug + '.html', pUrl = p => `${U}/${pFile(p)}`;
 const clip = (t, n) => { t = String(t).replace(/\s+/g, ' ').trim(); return t.length <= n ? t : t.slice(0, n - 1).replace(/\s+\S*$/, '') + '\u2026'; };
@@ -46,13 +59,13 @@ const avail = S.products.filter(p => p.status !== 'soon'), soon = S.products.fil
 /* ---------------- page meta ---------------- */
 const META = {
   home: { file: 'index.html', path: '', title: 'Indian Drone Flight Controllers, ESCs & GPS | Space and Tech',
-    desc: 'Indian drone flight controllers, AM32 ESCs and UAV GPS modules by Aazmuth, Skydrive and NAVSATE. Designed in India.' },
+    desc: 'Indian drone flight controllers, AM32 ESCs and UAV GPS modules by Aazmuth, Skydrive and NAVSATE. Designed in India. Get an OEM quote.', preload: true },
   products: { file: 'products.html', path: 'products.html', title: 'Drone Flight Controllers, ESCs & GPS Modules | Products',
     desc: 'Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1) and NAVSATE GPS modules for UAV and FPV drones.' },
   about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, India',
     desc: 'A small team of hardware and firmware engineers in India building flight controllers, ESCs and GPS for Indian drone builders.' },
   contact: { file: 'contact.html', path: 'contact.html', title: 'Contact Space and Tech Engineering | Get an OEM Quote',
-    desc: `Call or WhatsApp ${S.phone} or email us for OEM quotes on flight controllers, AM32 ESCs and GPS modules. India.` }
+    desc: `Call or WhatsApp ${S.phone} or email us for OEM and bulk quotes on drone flight controllers, AM32 ESCs and GPS modules made in India.` }
 };
 
 /* ---------------- JSON-LD ---------------- */
@@ -70,7 +83,7 @@ const website = { '@type': 'WebSite', '@id': WEB_ID, url: U + '/', name: S.name,
 const crumbs = (url, items) => ({ '@type': 'BreadcrumbList', '@id': url + '#breadcrumb', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x[0], item: x[1] })) });
 const webpage = (m, url, type, extra) => Object.assign({ '@type': type || 'WebPage', '@id': url + '#webpage', url, name: m.title, description: m.desc, isPartOf: { '@id': WEB_ID }, about: { '@id': ORG_ID }, inLanguage: 'en-IN', breadcrumb: { '@id': url + '#breadcrumb' } }, extra || {});
 const faqLd = (url, list) => ({ '@type': 'FAQPage', '@id': url + '#faq', mainEntity: list.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
-const graph = items => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': items })}</script>`;
+const graph = items => items.filter(Boolean).map(it => `<script type="application/ld+json">${JSON.stringify(Object.assign({ '@context': 'https://schema.org' }, it))}</script>`).join('\n');
 const productLd = p => {
   const imgs = [realImg(p)].concat(p.gallery || []).filter(Boolean).map(abs), url = pUrl(p);
   return { '@type': 'Product', '@id': url + '#product', name: p.name, description: p.description, image: imgs, sku: p.slug, category: p.category, url,
@@ -84,7 +97,7 @@ function seoTags(m, url, ld, og) {
   const img = abs(m.image || S.ogImage || S.hero.image);
   return `<title>${E(m.title)}</title>
 <meta name="description" content="${E(m.desc)}">
-<meta name="robots" content="${m.robots || 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'}">
+<meta name="robots" content="${m.robots || 'index,follow,max-image-preview:large'}">
 <link rel="canonical" href="${url}">
 <link rel="alternate" hreflang="en-IN" href="${url}">
 <link rel="alternate" hreflang="x-default" href="${url}">
@@ -114,9 +127,9 @@ const ICON = (S.favicon ? `<link rel="icon" type="image/png" href="${S.favicon}"
 
 S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
 const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></header>`;
-const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><p>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${S.legal.officer.name ? E(S.legal.officer.name) + ', ' : ''}<a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p><p>Follow us: ${(S.social || []).map(s => `<a href="${E(s.url)}" rel="noopener">${E(s.label)}</a>`).join(' | ')}${S.docsUrl ? ` | <a href="${E(S.docsUrl)}" rel="noopener">Documentation</a>` : ''}</p></footer>`;
+const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><address>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</address><p>Last updated: <time datetime="${today}">${today}</time></p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${S.legal.officer.name ? E(S.legal.officer.name) + ', ' : ''}<a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p><p>Follow us: ${(S.social || []).map(s => `<a href="${E(s.url)}" rel="noopener">${E(s.label)}</a>`).join(' | ')}${S.docsUrl ? ` | <a href="${E(S.docsUrl)}" rel="noopener">Documentation</a>` : ''}</p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
-const prodCards = list => list.map(p => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(p.name)} ${E(p.category.replace(/s$/, ''))}" width="320" height="240" loading="lazy"></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
+const prodCards = list => list.map((p, i) => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(altFor(p))}" width="320" height="240"${i < 3 ? (i ? '' : ' fetchpriority="high"') : ' loading="lazy"'}></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
 const faqHtml = list => list.map(f => `<h3>${E(f.q || f[0])}</h3><p>${E(f.a || f[1])}</p>`).join('');
 const officesHtml = () => S.about.offices.map(o => `<address><b>${E(o.role)}, ${E(o.city)}</b><br>${E(o.address)}</address>`).join('');
 const intro = `${S.name} is an Indian drone electronics company with offices in India. It designs and sells the Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules for UAV and FPV builders.`;
@@ -140,7 +153,7 @@ ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${
   product: p => {
     const rel = S.products.filter(x => x.slug !== p.slug && x.category === p.category).concat(S.products.filter(x => x.slug !== p.slug && x.category !== p.category)).slice(0, 4);
     return `<main><nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</nav>
-<h1>${E(p.name)}</h1><p>${E(p.category)}${p.status === 'soon' ? ' - coming soon' : ''}</p><img src="${E(p.image)}" alt="${E(p.name)}" width="640" height="480">
+<h1>${E(p.name)}</h1><p>${E(p.category)}${p.status === 'soon' ? ' - coming soon' : ''}</p><img src="${E(p.image)}" alt="${E(altFor(p))}" width="640" height="480">
 <p>${E(p.description)}</p>${p.features && p.features.length ? `<h2>Highlights</h2><ul>${p.features.map(f => `<li>${E(f)}</li>`).join('')}</ul>` : ''}
 ${p.specs && p.specs.length ? `<h2>${E(p.name)} specifications</h2><table>${p.specs.map(s => `<tr><th scope="row">${E(s[0])}</th><td>${E(s[1])}</td></tr>`).join('')}</table>` : ''}
 ${p.docs && p.docs.length ? `<h2>Documentation</h2><ul>${p.docs.map(d => `<li><a href="${E(d.url)}">${E(d.label)}</a></li>`).join('')}</ul>` : ''}
@@ -153,7 +166,7 @@ ${p.status !== 'soon' ? `<p><a href="${E(waLink(p))}">Get a quote on WhatsApp</a
   }
 };
 const READY = '';
-const SCRIPTS = `<script src="data.js?v=${VER}"></script><script src="layout.js?v=${VER}"></script>\n<script src="app.js?v=${VER}"></script><script src="fx.js?v=${VER}"></script><script src="fx2.js?v=${VER}"></script><script src="fx3.js?v=${VER}"></script><script src="fx4.js?v=${VER}"></script>\n${READY}`;
+const SCRIPTS = `<script src="bundle.js?v=${VER}"></script>\n${READY}`;
 function shell(m, url, ld, bodyAttr, body, og) {
   return `<!DOCTYPE html>
 <html lang="en-IN" data-static="1">
@@ -164,13 +177,14 @@ function shell(m, url, ld, bodyAttr, body, og) {
 <style>html{background:#0a0a0b}</style>
 ${seoTags(m, url, ld, og)}
 ${ICON}
+${m.preload ? '<link rel="preload" as="image" href="' + S.hero.slides[0].src + '" fetchpriority="high">' : ''}
 ${FONTS}
-<link rel="stylesheet" href="style.css?v=${VER}">
-<link rel="stylesheet" href="fx2.css?v=${VER}"><link rel="stylesheet" href="fx3.css?v=${VER}"><link rel="stylesheet" href="fx4.css?v=${VER}"><link rel="stylesheet" href="saffron.css?v=${VER}">
+<link rel="stylesheet" href="bundle.css?v=${VER}">
 </head>
 <body ${bodyAttr}>
+<a class="skip-link" href="#main">Skip to main content</a>
 ${nav}
-${body}
+${body.replace('<main>', '<main id="main">')}
 ${foot}
 <noscript><p style="padding:24px">JavaScript is off. All content above is available as text. Product list: <a href="llms.txt">llms.txt</a></p></noscript>
 ${SCRIPTS}
@@ -211,7 +225,7 @@ S.products.forEach(p => {
   const bits = [p.short].concat(String(p.description).split(/(?<=\.)\s+/)).concat(p.status === 'soon' ? [] : ['Made in India.', 'Get a quote from ' + S.short + '.']);
   let desc = ''; bits.forEach(t => { if (t && !desc.includes(t) && (desc + ' ' + t).trim().length <= 135) desc = (desc + ' ' + t).trim(); });
   let title = `${p.name} | ${p.category} | ${S.short}`; if (title.length > 62) title = `${p.name} | ${S.short}`;
-  const m = { file: pFile(p), title, desc, image: realImg(p), imgAlt: p.name };
+  const m = { file: pFile(p), title, desc, image: realImg(p), imgAlt: altFor(p) };
   if (p.noindex) m.robots = 'noindex,follow';
   if (p.status !== 'soon' && (p.specs || []).length < 3) warn.push(`THIN PRODUCT (add specs): ${p.slug}`);
   const items = [org, website, crumbs(url, [['Home', U + '/'], ['Products', U + '/products.html'], [p.name, url]]),

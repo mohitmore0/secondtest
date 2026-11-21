@@ -41,6 +41,11 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "/bundle.*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
@@ -55,3 +60,7 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-src https://www.youtube-nocookie.com https://www.youtube.com; connect-src 'self' https:; base-uri 'self'; form-action 'self' https:; object-src 'none'; frame-ancestors 'self'"
