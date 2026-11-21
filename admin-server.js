@@ -11,7 +11,7 @@
          aur koi extra field) wo jaise the waise hi rehte hain. Slug edit me lock rehta hai (URL na tute).
    HIDE: product hide karo to wo site par kahin nahi dikhta (data.js me hidden:true, uska <slug>.html bhi hat jata hai); Unhide se wapas.
    REMOVE: product data.js se aur uska <slug>.html delete (photos images/ me rehti hain). Dono se pehle data.js ka backup banta hai.
-   NOIMAGE: main photo na ho to site par images/noimage.png lagti hai.
+   NOIMAGE: main photo na ho to site par images/noimage.webp lagti hai.
    Koi npm package nahi chahiye. Server sirf 127.0.0.1 par sunta hai (bahar se koi access nahi kar sakta). */
 const http = require('http'), fs = require('fs'), path = require('path'), vm = require('vm');
 const { spawn, execFile } = require('child_process');
@@ -173,7 +173,7 @@ function buildProduct(inp, site, editSlug) {
   p.status = status; p.featured = !!inp.featured;
   if (inp.noindex) p.noindex = true;
   if (inp.hidden) p.hidden = true;
-  p.image = main ? main.path : '';   // khali = site par images/noimage.png lagta hai
+  p.image = main ? main.path : '';   // khali = site par images/noimage.webp lagta hai
   p.gallery = gallery.map(g => g.path);
   const oj = (old && old.journey) || null, vids = { design: yt('design'), bench: yt('bench'), fly: yt('fly') };
   if (!old || oj || vids.design || vids.bench || vids.fly) {
@@ -186,7 +186,7 @@ function buildProduct(inp, site, editSlug) {
   if (old) Object.keys(old).filter(k => !MANAGED.includes(k)).forEach(k => { p[k] = old[k]; });
 
   const warnings = [];
-  if (!main) warnings.push('Main photo nahi di: site par images/noimage.png dikhegi. Photo baad me edit karke daal sakte ho.');
+  if (!main) warnings.push('Main photo nahi di: site par images/noimage.webp dikhegi. Photo baad me edit karke daal sakte ho.');
   if (inp.hidden) warnings.push('Product HIDDEN hai: site par kahin nahi dikhega (admin me dikhta rahega).');
   if (status !== 'soon' && specs.length < 3) warnings.push('Specs 3 se kam hain: Google ke liye product "thin" maana jayega. Ho sake to aur specs daalo.');
   if (!features.length) warnings.push('Features khali hain. 3-5 benefit lines daalna better rehta hai.');

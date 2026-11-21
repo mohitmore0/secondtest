@@ -180,6 +180,6 @@ V17: HIDE / REMOVE / NOIMAGE (product-admin.html + admin-server.js + data.js + b
               Haath se: data.js me product ke andar  hidden: true  likho, phir  node build.js.
     REMOVE    Edit mode me "Remove product" button (confirm + slug type karna padta hai). data.js se block aur <slug>.html delete.
               Photos images/ me rehti hain. Backup .admin-backups/ me. Server (hosting) se purani <slug>.html bhi delete karo.
-    NOIMAGE   Product ki main photo khali ho, ya images/ me file na mile, to images/noimage.png lagti hai (Photo ab zaroori nahi).
+    NOIMAGE   Product ki main photo khali ho, ya images/ me file na mile, to images/noimage.webp lagti hai (Photo ab zaroori nahi).
               Sitemap / schema / og me noimage nahi jaata. Browser me tuti image par bhi noimage aati hai.
     data.js   S.allProducts = saare products (hidden bhi), S.products = sirf visible. Site/build S.products use karte hain, admin allProducts.

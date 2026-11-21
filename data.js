@@ -221,7 +221,7 @@ window.SITE = {
     {
       slug: "trx-5km", name: "TRX 5 km", category: "Transmitters",
       status: "soon", featured: false,
-      image: "images/noimage.png", gallery: [],
+      image: "images/noimage.webp", gallery: [],
       short: "5 km range radio transmitter. Coming soon.",
       description: "TRX 5 km is a radio transmitter on our roadmap, aimed at 5 km control range. Ask us and we will tell you as soon as there is a launch date.",
       features: [],
@@ -232,7 +232,7 @@ window.SITE = {
     {
       slug: "trx-10km", name: "TRX 10 km", category: "Transmitters",
       status: "soon", featured: false,
-      image: "", gallery: ["images/noimage.png"],
+      image: "", gallery: ["images/noimage.webp"],
       short: "10 km range radio transmitter. Coming soon.",
       description: "TRX 10 km is a radio transmitter on our roadmap, aimed at 10 km control range. Ask us and we will tell you as soon as there is a launch date.",
       features: [],
@@ -243,7 +243,7 @@ window.SITE = {
     {
       slug: "elrs-fpv-receiver", name: "ELRS FPV radio receiver", category: "Receivers",
       also: ["ESCs","FPV"], status: "available", featured: false,
-      image: "images/elrs-fpv-receiver-main.png", gallery: ["images/elrs-fpv-receiver-gallery-1.png"],
+      image: "images/elrs-fpv-receiver-main.webp", gallery: ["images/elrs-fpv-receiver-gallery-1.webp"],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -263,7 +263,7 @@ window.SITE = {
     {
       slug: "sate-4-in-1-esc-80a", name: "4-in-1 ESC 80A 3-6S", category: "ESCs",
       also: ["FPV"], status: "available", featured: false,
-      image: "images/sate-4-in-1-esc-80a-main.png", gallery: [],
+      image: "images/sate-4-in-1-esc-80a-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -283,7 +283,7 @@ window.SITE = {
     {
       slug: "analog-vtx", name: "Analog VTX", category: "Video transmitters",
       also: ["FPV"], status: "soon", featured: false,
-      image: "images/analog-vtx-main.png", gallery: [],
+      image: "images/analog-vtx-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -303,7 +303,7 @@ window.SITE = {
     {
       slug: "digital-vtx", name: "Digital VTX", category: "Video transmitters",
       also: ["FPV"], status: "soon", featured: false,
-      image: "images/digital-vtx-main.png", gallery: [],
+      image: "images/digital-vtx-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -322,7 +322,7 @@ window.SITE = {
     {
       slug: "sate-h7-fpv-flight-controller", name: "SATE-H7 FPV flight controller", category: "Flight controllers",
       also: ["FPV"], status: "soon", featured: false, hidden: true,
-      image: "images/sate-h7-fpv-flight-controller-main.png", gallery: [],
+      image: "images/sate-h7-fpv-flight-controller-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -362,7 +362,7 @@ window.SITE = {
     {
       slug: "sate-high-amp-esc", name: "SATE-HIGH AMP ESC 200A 6-12S", category: "ESCs",
       also: ["FPV"], status: "available", featured: false,
-      image: "images/sate-high-amp-esc-main.png", gallery: [],
+      image: "images/sate-high-amp-esc-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -382,7 +382,7 @@ window.SITE = {
     {
       slug: "aazmuth-mini", name: "Aazmuth Mini", category: "Flight controllers",
       also: ["FPV"], status: "soon", featured: false,
-      image: "images/aazmuth-mini-main.png", gallery: [],
+      image: "images/aazmuth-mini-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -402,7 +402,7 @@ window.SITE = {
     {
       slug: "sate-aio-board", name: "SATE-AIO Board", category: "Flight controllers",
       also: ["ESCs","FPV"], status: "available", featured: false,
-      image: "images/sate-aio-board-main.png", gallery: ["images/sate-aio-board-gallery-1.png"],
+      image: "images/sate-aio-board-main.webp", gallery: ["images/sate-aio-board-gallery-1.webp"],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -436,7 +436,7 @@ window.SITE = {
     {
       slug: "kinetik-flight-controller", name: "Kinetik Flight Controller", category: "Flight controllers",
       also: ["FPV"], status: "available", featured: false,
-      image: "images/kinetik-flight-controller-main.png", gallery: [],
+      image: "images/kinetik-flight-controller-main.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -520,9 +520,9 @@ window.SITE = {
 (function(){
 const S=window.SITE;
 /* HIDE + NOIMAGE: p.hidden:true wale products site par kahin nahi dikhte (admin form me dikhte hain: S.allProducts).
-   Jis product ki image khali ho, uski jagah images/noimage.png lagti hai. */
+   Jis product ki image khali ho, uski jagah images/noimage.webp lagti hai. */
 S.allProducts=S.products.slice();
-S.products=S.allProducts.filter(p=>!p.hidden).map(p=>p.image?p:Object.assign({},p,{image:"images/noimage.png",noimg:true}));
+S.products=S.allProducts.filter(p=>!p.hidden).map(p=>p.image?p:Object.assign({},p,{image:"images/noimage.webp",noimg:true}));
 S.inCat=(p,c)=>p.category===c||(p.also||[]).indexOf(c)>-1;   /* product kisi category me hai ya nahi (main + also) */
 const reg=(S.about.offices||[]).find(o=>/regist/i.test(o.role))||(S.about.offices||[])[0]||{};
 S.company={

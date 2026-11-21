@@ -13,10 +13,10 @@ const S = ctx.window.SITE, U = S.url, today = new Date().toISOString().slice(0, 
 /* HIDDEN products: unka purana <slug>.html bhi hata do (taaki seedha link se bhi na khule) */
 (S.allProducts || []).filter(p => p.hidden && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug)).forEach(p => {
   try { fs.unlinkSync(__dirname + '/' + p.slug + '.html'); console.log('Hidden product, page hata diya: ' + p.slug + '.html'); } catch (_) {} });
-/* NOIMAGE: jis local image file disk par nahi hai uski jagah images/noimage.png (data.js khali image pehle se handle karta hai) */
+/* NOIMAGE: jis local image file disk par nahi hai uski jagah images/noimage.webp (data.js khali image pehle se handle karta hai) */
 { const okImg = u => !u || /^https?:/i.test(u) || fs.existsSync(__dirname + '/' + String(u).replace(/^\//, ''));
   S.products.forEach(p => {
-    if (!okImg(p.image)) { console.log('Image nahi mili (' + p.image + ') -> noimage: ' + p.slug); p.image = 'images/noimage.png'; p.noimg = true; }
+    if (!okImg(p.image)) { console.log('Image nahi mili (' + p.image + ') -> noimage: ' + p.slug); p.image = 'images/noimage.webp'; p.noimg = true; }
     p.gallery = (p.gallery || []).filter(okImg); }); }
 const realImg = p => p.noimg ? '' : p.image;   /* sitemap / schema / og me noimage nahi jaata */
 /* layout.js: har page ke sections ka order. Static (crawlable) HTML bhi isi order me banta hai. */
