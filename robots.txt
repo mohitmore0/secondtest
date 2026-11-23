@@ -7,6 +7,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -19,6 +20,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -31,6 +33,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -43,6 +46,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -55,6 +59,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -67,6 +72,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -79,6 +85,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -91,6 +98,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -103,6 +111,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -115,6 +124,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -127,6 +137,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -139,6 +150,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -151,6 +163,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -163,6 +176,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -175,6 +189,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -187,6 +202,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -199,6 +215,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -211,6 +228,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -223,6 +241,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html
@@ -235,6 +254,7 @@ Disallow: /admin-server.js
 Disallow: /start-admin.bat
 Disallow: /build.js
 Disallow: /export-wix.js
+Disallow: /indexnow.js
 Disallow: /wix-export/
 Disallow: /README.txt
 Disallow: /product.html

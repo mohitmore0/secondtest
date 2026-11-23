@@ -81,7 +81,7 @@ const org = {
 };
 const website = { '@type': 'WebSite', '@id': WEB_ID, url: U + '/', name: S.name, publisher: { '@id': ORG_ID }, inLanguage: 'en-IN' };
 const crumbs = (url, items) => ({ '@type': 'BreadcrumbList', '@id': url + '#breadcrumb', itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x[0], item: x[1] })) });
-const webpage = (m, url, type, extra) => Object.assign({ '@type': type || 'WebPage', '@id': url + '#webpage', url, name: m.title, description: m.desc, isPartOf: { '@id': WEB_ID }, about: { '@id': ORG_ID }, inLanguage: 'en-IN', breadcrumb: { '@id': url + '#breadcrumb' } }, extra || {});
+const webpage = (m, url, type, extra) => Object.assign({ '@type': type || 'WebPage', '@id': url + '#webpage', url, name: m.title, description: m.desc, isPartOf: { '@id': WEB_ID }, about: { '@id': ORG_ID }, inLanguage: 'en-IN', dateModified: today, breadcrumb: { '@id': url + '#breadcrumb' } }, extra || {});
 const faqLd = (url, list) => ({ '@type': 'FAQPage', '@id': url + '#faq', mainEntity: list.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const graph = items => items.filter(Boolean).map(it => `<script type="application/ld+json">${JSON.stringify(Object.assign({ '@context': 'https://schema.org' }, it))}</script>`).join('\n');
 const productLd = p => {
@@ -126,7 +126,7 @@ const ICON = (S.favicon ? `<link rel="icon" type="image/png" href="${S.favicon}"
 /* ---------------- static body blocks (real, crawlable content) ---------------- */
 
 S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
-const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></header>`;
+const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="guides.html">Guides</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></header>`;
 const foot = `<footer><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><address>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</address><p>Last updated: <time datetime="${today}">${today}</time></p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${S.legal.officer.name ? E(S.legal.officer.name) + ', ' : ''}<a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p><p>Follow us: ${(S.social || []).map(s => `<a href="${E(s.url)}" rel="noopener">${E(s.label)}</a>`).join(' | ')}${S.docsUrl ? ` | <a href="${E(S.docsUrl)}" rel="noopener">Documentation</a>` : ''}</p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
 const prodCards = list => list.map((p, i) => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(altFor(p))}" width="320" height="240"${i < 3 ? (i ? '' : ' fetchpriority="high"') : ' loading="lazy"'}></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`).join('');
@@ -177,6 +177,7 @@ function shell(m, url, ld, bodyAttr, body, og) {
 <style>html{background:#0a0a0b}</style>
 ${seoTags(m, url, ld, og)}
 ${ICON}
+<link rel="manifest" href="manifest.webmanifest">
 ${m.preload ? '<link rel="preload" as="image" href="' + S.hero.slides[0].src + '" fetchpriority="high">' : ''}
 ${FONTS}
 <link rel="stylesheet" href="bundle.css?v=${VER}">
@@ -234,6 +235,65 @@ S.products.forEach(p => {
   w(pFile(p), shell(m, url, items, `data-page="product" data-slug="${E(p.slug)}"`, BODY.product(p), 'product'));
 });
 
+
+/* ---------------- GUIDES (long-tail SEO pages, static + fast, bina bundle.js) ---------------- */
+const GUIDES = (() => { try { return require('./guides-data.js'); } catch (e) { return []; } })();
+const gUrl = g => `${U}/${g.slug}.html`;
+const gHead = cur => `<header class="gh"><div class="in"><a href="/"><img src="${E(S.logo || 'images/logo.png')}" alt="${E(S.name)} logo" width="36" height="36"></a><nav aria-label="Main"><a href="/">Home</a><a href="products.html">Products</a><a href="guides.html"${cur === 'guides' ? ' aria-current="page"' : ''}>Guides</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></header>`;
+const gFoot = `<footer class="gf"><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}.</p><p>${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a> | <a href="guides.html">Guides</a> | <a href="terms.html">Terms</a> | <a href="privacy.html">Privacy</a></p></footer>`;
+const gShell = (m, url, ld, body, og) => `<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0b">
+<style>html{background:#0a0a0b}</style>
+${seoTags(m, url, ld, og)}
+${ICON}
+<link rel="manifest" href="manifest.webmanifest">
+${FONTS}
+<link rel="stylesheet" href="guides.css?v=${VER}">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+${gHead(m.cur)}
+${body}
+${gFoot}
+</body>
+</html>
+`;
+const gCard = p => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(altFor(p))}" width="320" height="150" loading="lazy"></a><h3><a href="${pFile(p)}">${E(p.name)}</a></h3><p>${E(p.short)}</p></article>`;
+GUIDES.forEach(g => {
+  const url = gUrl(g), prods = g.products.map(sl => S.products.find(p => p.slug === sl)).filter(Boolean);
+  const m = { file: g.slug + '.html', title: g.title, desc: g.desc, cur: 'guides', image: prods[0] && realImg(prods[0]) };
+  const ids = g.sections.map((s, i) => 's' + (i + 1));
+  const body = `<main id="main"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="guides.html">Guides</a> / ${E(g.h1)}</nav>
+<article><h1>${E(g.h1)}</h1><p class="meta">By ${E(S.name)} | Updated <time datetime="${today}">${today}</time></p>
+<p class="take"><b>Quick answer:</b> ${E(g.take)}</p>
+<nav class="toc" aria-label="Table of contents"><b>In this guide</b><ol>${g.sections.map((s, i) => `<li><a href="#${ids[i]}">${E(s.h)}</a></li>`).join('')}<li><a href="#faq">FAQ</a></li></ol></nav>
+${g.sections.map((s, i) => `<section id="${ids[i]}"><h2>${E(s.h)}</h2>${(s.p || []).map(t => `<p>${E(t)}</p>`).join('')}${s.ul ? `<ul>${s.ul.map(t => `<li>${E(t)}</li>`).join('')}</ul>` : ''}</section>`).join('')}
+<section id="products"><h2>Related products from ${E(S.short)}</h2><div class="cards">${prods.map(gCard).join('')}</div></section>
+<section id="faq"><h2>Frequently asked questions</h2>${g.faq.map(f => `<details><summary>${E(f[0])}</summary><p>${E(f[1])}</p></details>`).join('')}</section>
+<div class="cta"><a class="btn" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I read your guide: ' + g.h1 + '. I need a quote.')}">Get a quote on WhatsApp</a><a class="btn o" href="contact.html">Contact us</a></div>
+<p class="meta">More: ${GUIDES.filter(x => x !== g).map(x => `<a href="${x.slug}.html">${E(x.h1)}</a>`).join(' | ')}</p></article></main>`;
+  const ld = [org, website, crumbs(url, [['Home', U + '/'], ['Guides', U + '/guides.html'], [g.h1, url]]),
+    webpage(m, url, 'WebPage', { mainEntity: { '@id': url + '#article' }, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.take'] } }),
+    { '@type': 'TechArticle', '@id': url + '#article', headline: g.h1, description: g.desc, inLanguage: 'en-IN', datePublished: today, dateModified: today, mainEntityOfPage: { '@id': url + '#webpage' }, author: { '@id': ORG_ID }, publisher: { '@id': ORG_ID }, image: m.image ? [abs(m.image)] : [abs(S.ogImage || S.hero.image)], about: prods.map(p => ({ '@id': pUrl(p) + '#product' })) },
+    faqLd(url, g.faq)];
+  w(m.file, gShell(m, url, ld, body, 'article'));
+});
+if (GUIDES.length) {
+  const url = U + '/guides.html', m = { file: 'guides.html', title: 'Drone Electronics Guides | Flight Controllers, ESC, GPS', desc: 'Practical guides on drone flight controllers, AM32 ESCs, GPS modules, ELRS receivers and FPV stacks by Space and Tech.', cur: 'guides' };
+  const body = `<main id="main"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> / Guides</nav><h1>Drone electronics guides</h1><p>Straight answers for builders in India: how to choose, size and wire flight controllers, ESCs, GPS modules and receivers.</p><ul class="glist">${GUIDES.map(g => `<li><a href="${g.slug}.html">${E(g.h1)}</a><p>${E(g.desc)}</p></li>`).join('')}</ul></main>`;
+  w('guides.html', gShell(m, url, [org, website, crumbs(url, [['Home', U + '/'], ['Guides', url]]),
+    webpage(m, url, 'CollectionPage', { mainEntity: { '@id': url + '#list' } }),
+    { '@type': 'ItemList', '@id': url + '#list', itemListElement: GUIDES.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: gUrl(g), name: g.h1 })) }], body));
+}
+/* PWA manifest + IndexNow key file */
+w('manifest.webmanifest', JSON.stringify({ name: S.name, short_name: S.short, start_url: '/', display: 'standalone', background_color: '#0a0a0b', theme_color: '#0a0a0b', icons: [{ src: S.appleIcon || S.logo, sizes: '180x180', type: 'image/png' }, { src: S.favicon, sizes: '192x192', type: 'image/png' }] }));
+const INDEXNOW_KEY = require('crypto').createHash('md5').update(U).digest('hex');
+w(INDEXNOW_KEY + '.txt', INDEXNOW_KEY);
+
 /* 404.html: noindex, not in sitemap */
 {
   const m = { file: '404.html', title: 'Page not found | ' + S.short, desc: 'This page does not exist. Browse our drone flight controllers, ESCs and GPS modules.', robots: 'noindex,follow' };
@@ -242,7 +302,7 @@ S.products.forEach(p => {
 }
 
 /* ---------------- sitemap.xml ---------------- */
-const pages = [['', 1.0, 'weekly'], ['products.html', 0.9, 'weekly'], ['about.html', 0.6, 'monthly'], ['contact.html', 0.6, 'yearly']].concat(S.legal.pages.map(L => [L.slug + '.html', 0.3, 'yearly']));
+const pages = [['', 1.0, 'weekly'], ['products.html', 0.9, 'weekly']].concat(GUIDES.length ? [['guides.html', 0.8, 'weekly']].concat(GUIDES.map(g => [g.slug + '.html', 0.8, 'monthly'])) : []).concat([['about.html', 0.6, 'monthly'], ['contact.html', 0.6, 'yearly']]).concat(S.legal.pages.map(L => [L.slug + '.html', 0.3, 'yearly']));
 const x = t => t.replace(/&/g, '&amp;');
 w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   pages.map(([p, pr, cf]) => `  <url><loc>${U}/${p}</loc><lastmod>${today}</lastmod><changefreq>${cf}</changefreq><priority>${pr}</priority></url>`).join('\n') + '\n' +
@@ -250,7 +310,7 @@ w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://
 
 /* ---------------- robots.txt (search + AI crawlers allowed) ---------------- */
 const bots = ['Googlebot', 'Bingbot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Perplexity-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'Google-Extended', 'Applebot', 'Applebot-Extended', 'Amazonbot', 'CCBot', 'meta-externalagent', 'DuckAssistBot', 'MistralAI-User', 'cohere-ai'];
-const PRIVATE = ['/editor.html', '/product-admin.html', '/admin-server.js', '/start-admin.bat', '/build.js', '/export-wix.js', '/wix-export/', '/README.txt', '/product.html'];
+const PRIVATE = ['/editor.html', '/product-admin.html', '/admin-server.js', '/start-admin.bat', '/build.js', '/export-wix.js', '/indexnow.js', '/wix-export/', '/README.txt', '/product.html'];
 const rules = PRIVATE.map(p => `Disallow: ${p}`).join('\n');
 w('robots.txt', `# Search engines and AI answer engines are welcome. To opt out of AI training only, change that bot to "Disallow: /".\nUser-agent: *\nAllow: /\n${rules}\n\n` +
   bots.map(b => `User-agent: ${b}\nAllow: /\n${rules}\n`).join('\n') + `\nSitemap: ${U}/sitemap.xml\n`);
@@ -259,7 +319,7 @@ w('robots.txt', `# Search engines and AI answer engines are welcome. To opt out 
 const allFaq = S.faq.map(f => [f.q, f.a]);
 w('llms.txt', `# ${S.name}\n\n> ${S.tagline}. ${intro}\n\nKey facts:\n- Products: Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1), NAVSATE GPS modules.\n- Offices: India (registered office and product development centre).\n- Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.\n- OEM and bulk orders: ${S.email}, ${S.phone}.\n\n## Products\n` +
   avail.map(p => `- [${p.name}](${pUrl(p)}): ${p.short}`).join('\n') + (soon.length ? `\n\n## Coming soon\n` + soon.map(p => `- ${p.name}`).join('\n') : '') +
-  `\n\n## Guides\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
+  `\n\n## Guides\n` + GUIDES.map(g => `- [${g.h1}](${gUrl(g)}): ${g.desc}`).join('\n') + `\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
 w('llms-full.txt', `# ${S.name}\n\n> ${S.tagline}\n\n${intro}\n\n${S.about.text}\n\n` +
   S.products.map(p => `## ${p.name}\nCategory: ${p.category}\nStatus: ${p.status === 'soon' ? 'Coming soon' : 'Available'}\nURL: ${pUrl(p)}\n\n${p.description}\n` +
     (p.features.length ? `\nHighlights:\n${p.features.map(f => '- ' + f).join('\n')}\n` : '') + (p.specs.length ? `\nSpecifications:\n${p.specs.map(s => `- ${s[0]}: ${s[1]}`).join('\n')}\n` : '') + (p.docs.length ? `\nDocs:\n${p.docs.map(d => `- ${d.label}: ${d.url}`).join('\n')}\n` : '')).join('\n') +
