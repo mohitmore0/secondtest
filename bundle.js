@@ -967,7 +967,7 @@ product(){
   if(!p){path='products.html';seo(`Product not found | ${S.name}`,'This product does not exist.',null,null,path);
     return `<main id="main"><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section></main>`}
   path=pUrl(p);const imgs=[p.image].concat(p.gallery||[]).filter(Boolean);const soon=p.status==='soon';
-  seo(`${p.name} | ${S.name}`,p.short||p.description,p.image,[org,{"@context":"https://schema.org","@type":"Product",name:p.name,image:imgs.map(abs),description:p.description,category:p.category,brand:{"@type":"Brand",name:S.short}}],path);
+  seo(`${p.name} | ${S.name}`,p.short||p.description,p.image,org,path);
   const rel=P.filter(x=>x.slug!==p.slug&&x.category===p.category).concat(P.filter(x=>x.slug!==p.slug&&x.category!==p.category)).slice(0,4);
   const guides=(window.PRODUCT_GUIDES||[]).filter(g=>g.products.includes(p.slug));
   const collection=collections.find(([category])=>category===p.category)?.[1];

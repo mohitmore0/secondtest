@@ -95,12 +95,6 @@ const crumbs = (url, items) => ({ '@type': 'BreadcrumbList', '@id': url + '#brea
 const webpage = (m, url, type, extra) => Object.assign({ '@type': type || 'WebPage', '@id': url + '#webpage', url, name: m.title, description: m.desc, isPartOf: { '@id': WEB_ID }, about: { '@id': ORG_ID }, inLanguage: 'en-IN', dateModified: today, breadcrumb: { '@id': url + '#breadcrumb' } }, extra || {});
 const faqLd = (url, list) => ({ '@type': 'FAQPage', '@id': url + '#faq', mainEntity: list.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const graph = items => items.filter(Boolean).map(it => `<script type="application/ld+json">${JSON.stringify(Object.assign({ '@context': 'https://schema.org' }, it))}</script>`).join('\n');
-const productLd = p => {
-  const imgs = [realImg(p)].concat(p.gallery || []).filter(Boolean).map(abs), url = pUrl(p);
-  return { '@type': 'Product', '@id': url + '#product', name: p.name, description: p.description, image: imgs, sku: p.slug, category: p.category, url,
-    brand: { '@type': 'Brand', name: S.short }, manufacturer: { '@id': ORG_ID },
-    additionalProperty: (p.specs || []).map(s => ({ '@type': 'PropertyValue', name: s[0], value: s[1] })) };
-};
 
 /* ---------------- head ---------------- */
 function seoTags(m, url, ld, og) {
@@ -248,8 +242,8 @@ S.products.forEach(p => {
   const trail = [['Home', U + '/'], ['Products', U + '/products.html']];
   if (collection) trail.push([collection.category, U + '/' + collection.slug + '.html']);
   trail.push([p.name, url]);
-  const items = [org, website, crumbs(url, trail),
-    webpage(m, url, 'ItemPage', { mainEntity: { '@id': url + '#product' } }), productLd(p)];
+  // Quote-only listings use ItemPage and breadcrumbs without a Product snippet.
+  const items = [org, website, crumbs(url, trail), webpage(m, url, 'ItemPage')];
   if (p.faq && p.faq.length) items.push(faqLd(url, p.faq.map(f => [f.q, f.a])));
   w(pFile(p), shell(m, url, items, `data-page="product" data-slug="${E(p.slug)}"`, BODY.product(p), 'product'));
 });
@@ -296,7 +290,7 @@ ${g.sections.map((s, i) => `<section id="${ids[i]}"><h2>${E(s.h)}</h2>${(s.p || 
 <p class="meta">More: ${GUIDES.filter(x => x !== g).map(x => `<a href="${x.slug}.html">${E(x.h1)}</a>`).join(' | ')}</p></article></main>`;
   const ld = [org, website, crumbs(url, [['Home', U + '/'], ['Guides', U + '/guides.html'], [g.h1, url]]),
     webpage(m, url, 'WebPage', { mainEntity: { '@id': url + '#article' }, speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.take'] } }),
-    { '@type': 'TechArticle', '@id': url + '#article', headline: g.h1, description: g.desc, inLanguage: 'en-IN', datePublished: today, dateModified: today, mainEntityOfPage: { '@id': url + '#webpage' }, author: { '@id': ORG_ID }, publisher: { '@id': ORG_ID }, image: m.image ? [abs(m.image)] : [abs(S.ogImage || S.hero.image)], about: prods.map(p => ({ '@id': pUrl(p) + '#product' })) },
+    { '@type': 'TechArticle', '@id': url + '#article', headline: g.h1, description: g.desc, inLanguage: 'en-IN', datePublished: today, dateModified: today, mainEntityOfPage: { '@id': url + '#webpage' }, author: { '@id': ORG_ID }, publisher: { '@id': ORG_ID }, image: m.image ? [abs(m.image)] : [abs(S.ogImage || S.hero.image)], mentions: prods.map(p => ({ '@id': pUrl(p) + '#webpage' })) },
     faqLd(url, g.faq)];
   w(m.file, gShell(m, url, ld, body, 'article'));
 });
