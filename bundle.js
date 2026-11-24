@@ -1,3 +1,4 @@
+window.PRODUCT_GUIDES = [{"slug":"guide-flight-controller-india","h1":"How to choose a drone flight controller in India","products":["aazmuth-flight-controller","exelr8-fpv-flight-controller-f7","sate-aio-board","kinetik-flight-controller"]},{"slug":"guide-am32-esc","h1":"AM32 ESC explained: how to choose the right amp rating","products":["skydrive-am32-60a","sate-4-in-1-esc-80a","sate-high-amp-esc"]},{"slug":"guide-uav-gps-module","h1":"How to choose a GPS module for UAVs and FPV drones","products":["navsate-gps-for-uavs","navsate-mini-gps"]},{"slug":"guide-fpv-drone-electronics-stack","h1":"The FPV drone electronics stack explained","products":["aazmuth-flight-controller","sate-4-in-1-esc-80a","elrs-fpv-receiver","sate-aio-board"]},{"slug":"guide-elrs-receiver","h1":"ExpressLRS (ELRS) receivers: what they are and how to choose","products":["elrs-fpv-receiver"]}];
 /* =====================================================================
    DATA.JS  -  Poori website ka content yahin se aata hai.
    Is file ko edit karo, save karo, browser refresh karo. Bas.
@@ -44,7 +45,7 @@ window.SITE = {
       { src: "images/hero.avif",    ms: 6000, zoom: 1.38, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
       { src: "images/azmuth.avif",  ms: 3000, zoom: 1.6, alt: "Azmuth flight controller", href: "aazmuth-flight-controller.html" },
       { src: "images/exclr8.avif",  ms: 3000, zoom: 1.6, alt: "Exelr8 flight controller for FPV drones", href: "exelr8-fpv-flight-controller-f7.html" },
-      { src: "images/4in1.avif",    ms: 3000, zoom: 1.45, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
+      { src: "images/4in1.avif",    ms: 3000, zoom: 1.45, alt: "AM32 ESCs for FPV drones", href: "drone-escs.html" },
       { src: "images/sateesc.avif", ms: 3000, zoom: 1.6, alt: "SATE-ESC single electronic speed controller", href: "skydrive-am32-60a.html" },
       { src: "images/navsate.avif", ms: 3000, zoom: 1.6, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
     ]
@@ -62,11 +63,48 @@ window.SITE = {
      specs  : [["Naam","Value"], ...] (khali chhodo to table hide ho jayegi)
      docs   : [{label,url}]          |  buyUrl: store link (optional)        */
   categories: ["Flight controllers", "ESCs", "GPS", "FPV", "Transmitters", "Receivers", "Video transmitters", "Radar"],
+  catalogIntro: "Compare flight controllers, AM32 electronic speed controllers, GPS modules, ExpressLRS receivers and FPV video transmitters. Filter by component, then open a product to check its specifications, compatibility and availability.",
+  catalogBuying: "Start with your aircraft type, battery voltage and the parts you already own. If you need a compatibility check, current pricing or a bulk quote in India, share your build details and quantity with our team.",
+  productCollections: {
+    "Flight controllers": {
+      slug: "drone-flight-controllers", title: "Drone Flight Controllers in India",
+      description: "Compare Aazmuth, Exelr8 and other UAV and FPV flight controllers by firmware support, sensors and board layout.",
+      advice: "Start with the firmware and mounting pattern your build requires. Then check the IMU, barometer and available ports against your GPS, receiver and ESC. For training or compact builds, check case clearance and connector access before choosing a board.",
+      guide: "guide-flight-controller-india"
+    },
+    "ESCs": {
+      slug: "drone-escs", title: "AM32 Drone ESCs for UAV and FPV Builds",
+      description: "Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.",
+      advice: "Match the battery cell count first, then compare continuous current ratings with your motor and propeller load. A 4-in-1 board combines four channels in one stack. Individual ESCs can be replaced one at a time. Check the individual product for its signal, voltage and mounting requirements.",
+      guide: "guide-am32-esc"
+    },
+    "GPS": {
+      slug: "drone-gps-modules", title: "GPS Modules for UAV and FPV Drones",
+      description: "Compare NAVSATE UAV GPS and NAVSATE Mini FPV GPS for drone builds that need position data.",
+      advice: "Choose the module by available space and the flight controller’s supported GPS interface. The UAV module is intended for builds that use position hold and waypoint missions. NAVSATE Mini is intended for compact FPV frames. Flight modes depend on the flight controller and its firmware.",
+      guide: "guide-uav-gps-module"
+    },
+    "FPV": {
+      slug: "fpv-drone-electronics", title: "FPV Drone Electronics and Components",
+      description: "Browse FPV flight controllers, ESCs, GPS modules, ExpressLRS receivers and video transmitters by build requirement.",
+      advice: "Check frame mounting dimensions and battery voltage before pairing components. Match the control receiver with your radio protocol and the video transmitter with your goggles or receiver. Leave room for connectors and verify how each part is powered.",
+      guide: "guide-fpv-drone-electronics-stack"
+    },
+    "Video transmitters": {
+      slug: "fpv-video-transmitters", title: "5.8 GHz FPV Video Transmitters",
+      description: "Compare Space and Tech Engineering’s analog and digital 5.8 GHz FPV video transmitter product pages.",
+      advice: "Check your goggles or video receiver for protocol support before comparing transmitters. Analog and digital products can share a frequency band, while compatibility depends on the video system. Compare the listed power, connector and mounting details for each model.",
+      guide: "guide-fpv-drone-electronics-stack"
+    }
+  },
   /* FPV category: product ki main category (category:) wahi rehti hai; FPV me dikhane ke liye also: ["FPV"] lagao.
      Naya FPV product: category: "FPV" bhi likh sakte ho. */
   products: [
     {
       slug: "aazmuth-flight-controller", name: "Aazmuth flight controller", category: "Flight controllers",
+      heading: "Aazmuth STM32H7 UAV Flight Controller",
+      buyerSummary: "A modular STM32H7 flight controller for professional UAVs, with three IMUs and two barometers on separate buses. Replace an IMU board without replacing the controller.",
+      buyerCheck: "For a survey or agriculture UAV, compare the 92 x 54 x 14.6 mm enclosure and 63 g weight with your airframe. Confirm the firmware, peripheral connections and supported sensor modules for your build.",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_4ef9d2c2ab6a43a5ab35ac564c0604cc~mv2.jpg", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
@@ -97,6 +135,9 @@ window.SITE = {
     },
     {
       slug: "exelr8-fpv-flight-controller-f7", name: "Exelr8 FPV flight controller F7", category: "Flight controllers",
+      heading: "Exelr8 F7 FPV Flight Controller",
+      buyerSummary: "An F7 flight controller for 3S to 6S racing and freestyle quads, with an onboard OSD and separate 5 V and 10 V outputs for supported peripherals.",
+      buyerCheck: "Check frame mounting, the ESC cable pinout and the voltage and current requirements of your receiver and video system. Ask which current ESC options fit your stack if you are replacing an older board.",
       also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_7ed082c4ce4c4d01baea626a1683544f~mv2.jpg", gallery: [],
       journey: {
@@ -105,19 +146,22 @@ window.SITE = {
         fly   : { text: "", imgs: [], video: "" }
       },
       short: "F7 flight controller for light, fast FPV racing and freestyle builds.",
-      description: "Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.",
+      description: "Exelr8 is an F7 flight controller for 3S to 6S FPV racing and freestyle builds. It combines a fourth-generation InvenSense IMU, an Infineon barometer and onboard OSD. Separate 5 V and 10 V BEC outputs can power compatible peripherals within their listed ratings.",
       features: ["F7 processor","Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS","Designed and supported in India"],
       specs: [["Microcontroller","F7"],["Gyroscope & Accelerometer","InvenSense 4th Generation"],["Barometer","Infineon High-Precision"],["OSD","High-Performance OSD"],["BEC Output","10V / 2A and 5V / 2A"],["Battery Input","3S–6S"],["Protection","Reverse-voltage and short-circuit protection"]],
       bestFor: ["FPV racing and freestyle","Startups and prototypes"],
       faq: [
         { q: "What is the Exelr8 flight controller for?", a: "Exelr8 is an F7 flight controller for FPV drone builds, including racing and freestyle quads." },
-        { q: "Which ESC and GPS go with Exelr8?", a: "The Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS are the matching parts in our FPV stack." },
+        { q: "Which ESC and GPS go with Exelr8?", a: "Choose an ESC that matches your battery and motor load, then check the harness pinout. If you are adding a GPS such as the NAVSATE Mini, confirm the interface and firmware support for your build." },
         { q: "Exelr8 or Aazmuth?", a: "Choose Exelr8 for FPV builds and Aazmuth when you need triple-redundant sensing for professional or mission work." }
       ],
       docs: []
     },
     {
       slug: "skydrive-am32-60a", name: "Skydrive AM32 60A 3-6S", category: "ESCs",
+      heading: "Skydrive 60A AM32 ESC for 3-6S Drones",
+      buyerSummary: "A single 60 A AM32 electronic speed controller for 3S to 6S LiPo power systems. Compare it for multirotors that need one ESC per motor.",
+      buyerCheck: "Share the battery cell count, motor model, propeller size and measured current under load when requesting a quote. Confirm cooling and current headroom for the intended payload.",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
@@ -180,6 +224,9 @@ window.SITE = {
     },
     {
       slug: "navsate-gps-for-uavs", name: "NAVSATE GPS for UAVs", category: "GPS",
+      heading: "NAVSATE GPS Module for UAV Drones",
+      buyerSummary: "A DroneCAN GPS module with an onboard magnetometer for UAV positioning. Compare it for flight controllers that support CAN peripherals.",
+      buyerCheck: "Confirm the controller supports DroneCAN and check the connector, available CAN port and mounting space. Position hold, return-to-home and waypoint behavior depend on your flight firmware and configuration.",
       also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
       journey: {
@@ -200,6 +247,9 @@ window.SITE = {
     },
     {
       slug: "navsate-mini-gps", name: "NAVSATE mini for FPV drones", category: "GPS",
+      heading: "NAVSATE Mini GPS Module for FPV Drones",
+      buyerSummary: "A compact GPS module for FPV builds where mounting space is limited. It supplies position data to a compatible flight controller.",
+      buyerCheck: "Ask for the current pinout, supply voltage, interface and dimensions before ordering, especially for a tight frame. Check which GPS features your flight firmware supports.",
       also: ["FPV"], status: "available", featured: false,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
@@ -220,6 +270,9 @@ window.SITE = {
     },
     {
       slug: "trx-5km", name: "TRX 5 km", category: "Transmitters",
+      heading: "TRX 5 km Radio Transmitter",
+      buyerSummary: "A radio control transmitter in development with a 5 km design target. Ask about release timing and the supported receiver ecosystem.",
+      buyerCheck: "Confirm receiver and protocol compatibility for your existing equipment when final specifications are available. The distance is a design target and actual range depends on operating conditions and the final hardware.",
       status: "soon", featured: false,
       image: "images/noimage.webp", gallery: [],
       short: "5 km range radio transmitter. Coming soon.",
@@ -231,6 +284,9 @@ window.SITE = {
     },
     {
       slug: "trx-10km", name: "TRX 10 km", category: "Transmitters",
+      heading: "TRX 10 km Radio Transmitter",
+      buyerSummary: "A radio control transmitter in development with a 10 km design target. Ask for the planned receiver options and availability.",
+      buyerCheck: "If you are comparing the two TRX models, ask for final specifications and range test conditions before choosing one. The product name reflects the design target.",
       status: "soon", featured: false,
       image: "", gallery: ["images/noimage.webp"],
       short: "10 km range radio transmitter. Coming soon.",
@@ -242,6 +298,9 @@ window.SITE = {
     },
     {
       slug: "elrs-fpv-receiver", name: "ELRS FPV radio receiver", category: "Receivers",
+      heading: "2.4 GHz ExpressLRS FPV Receiver (ELRS)",
+      buyerSummary: "A 2.4 GHz ExpressLRS receiver for FPV aircraft. It connects to the flight controller through CRSF, takes a 5 V supply and includes a 65 mm T-antenna.",
+      buyerCheck: "Check that your radio uses 2.4 GHz ExpressLRS, that the flight controller has a suitable UART for CRSF and that the frame has room for the antenna. Confirm firmware compatibility before binding.",
       also: ["ESCs","FPV"], status: "available", featured: false,
       image: "images/elrs-fpv-receiver-main.webp", gallery: ["images/elrs-fpv-receiver-gallery-1.webp"],
       journey: {
@@ -262,6 +321,9 @@ window.SITE = {
     },
     {
       slug: "sate-4-in-1-esc-80a", name: "4-in-1 ESC 80A 3-6S", category: "ESCs",
+      heading: "SATE 80A 4-in-1 AM32 ESC for 3-6S FPV",
+      buyerSummary: "A four-channel AM32 ESC for 3S to 6S FPV builds. One board serves all four motors, with DShot support for compatible flight controllers.",
+      buyerCheck: "Confirm whether the catalogue 80 A figure applies per channel or to the board before choosing motors. Also check your mounting pattern, flight-controller cable pinout and airflow.",
       also: ["FPV"], status: "available", featured: false,
       image: "images/sate-4-in-1-esc-80a-main.webp", gallery: [],
       journey: {
@@ -282,6 +344,9 @@ window.SITE = {
     },
     {
       slug: "analog-vtx", name: "Analog VTX", category: "Video transmitters",
+      heading: "5.8 GHz Analog FPV Video Transmitter (VTX)",
+      buyerSummary: "A compact 5.8 GHz analog video transmitter in development for FPV builds using analog goggles or a compatible video receiver.",
+      buyerCheck: "Ask for the final input voltage, supported channels, output power levels and antenna connector before choosing a video system.",
       also: ["FPV"], status: "soon", featured: false,
       image: "images/analog-vtx-main.webp", gallery: [],
       journey: {
@@ -302,6 +367,9 @@ window.SITE = {
     },
     {
       slug: "digital-vtx", name: "Digital VTX", category: "Video transmitters",
+      heading: "5.8 GHz Digital FPV Video Transmitter (VTX)",
+      buyerSummary: "A compact 5.8 GHz digital video transmitter in development for FPV builds. Confirm support for your goggles or receiver before choosing this model.",
+      buyerCheck: "Ask which digital video protocol and camera connections the final version supports. The frequency band alone does not establish compatibility with your existing equipment.",
       also: ["FPV"], status: "soon", featured: false,
       image: "images/digital-vtx-main.webp", gallery: [],
       journey: {
@@ -361,6 +429,9 @@ window.SITE = {
     },
     {
       slug: "sate-high-amp-esc", name: "SATE-HIGH AMP ESC 200A 6-12S", category: "ESCs",
+      heading: "SATE 200A AM32 ESC for 6-12S Drones",
+      buyerSummary: "A single AM32 ESC for 6S to 12S UAV propulsion with a catalogue rating of 200 A continuous. Compare it for builds with a high-current motor load.",
+      buyerCheck: "Request the rating conditions and confirm cooling and connector requirements using your motor, propeller and battery details. Use your measured current under load when comparing ESCs.",
       also: ["FPV"], status: "available", featured: false,
       image: "images/sate-high-amp-esc-main.webp", gallery: [],
       journey: {
@@ -381,6 +452,9 @@ window.SITE = {
     },
     {
       slug: "aazmuth-mini", name: "Aazmuth Mini", category: "Flight controllers",
+      heading: "Aazmuth Mini STM32H7 Flight Controller",
+      buyerSummary: "A low-profile STM32H7 flight controller for training drones. It combines an IMU, barometer and magnetometer in a compact enclosure.",
+      buyerCheck: "For a training fleet, check mounting options, cable access and firmware support for the exercises you plan to teach. Include the number of aircraft when requesting a quote.",
       also: ["FPV"], status: "soon", featured: false,
       image: "images/aazmuth-mini-main.webp", gallery: [],
       journey: {
@@ -401,6 +475,9 @@ window.SITE = {
     },
     {
       slug: "sate-aio-board", name: "SATE-AIO Board", category: "Flight controllers",
+      heading: "SATE AIO Flight Controller and 4-in-1 ESC",
+      buyerSummary: "A combined flight controller and 4-in-1 ESC for compact builds, with DShot and AM32 compatibility. It reduces the number of separate boards in the stack.",
+      buyerCheck: "Ask how the published 25 A rating applies to the motor channels. Confirm motor load, battery input, mounting pattern and peripheral connections before choosing this board.",
       also: ["ESCs","FPV"], status: "available", featured: false,
       image: "images/sate-aio-board-main.webp", gallery: ["images/sate-aio-board-gallery-1.webp"],
       journey: {
@@ -421,8 +498,11 @@ window.SITE = {
     },
     {
       slug: "sate-falconeye-plfm", name: "SATE FalconEye PLFM radar", category: "Radar",
-      status: "soon", featured: false, noindex: true,
-      image: "images/sate-falconeye-plfm.jpg", gallery: [],
+      heading: "SATE FalconEye PLFM Beam-Steering Radar",
+      buyerSummary: "A modular beam-steering radar platform under development, with the AERIS-10N and AERIS-10E variants listed on the product page.",
+      buyerCheck: "For evaluation enquiries, ask which development version is available and what documentation can be shared.",
+      status: "soon", featured: false,
+      image: "", gallery: [],
       short: "Electronic beam-steering radar platform in 3 km and 20 km versions. Under development.",
       description: "SATE FalconEye PLFM is a modular electronic beam-steering radar platform, currently under development. It comes in two versions: AERIS-10N (Nexus) with a 3 km range and an 8 x 16 patch antenna array, and AERIS-10E (Extended) with a 20 km range and a 32 x 16 dielectric-filled slotted waveguide array. Beam steering covers plus or minus 45 degrees in elevation and azimuth. An onboard FPGA handles pulse compression, Doppler FFT, MTI and CFAR, and a Python GUI with map integration and GPS/IMU position and attitude correction ties it together.",
       features: ["Two versions: AERIS-10N (Nexus) and AERIS-10E (Extended)", "Full electronic beam steering, plus or minus 45 degrees in elevation and azimuth", "Onboard FPGA for pulse compression, Doppler FFT, MTI and CFAR", "Python GUI with map integration", "GPS/IMU integration for real-time position and attitude correction", "Modular power-management, frequency-synthesis and RF boards"],
@@ -435,6 +515,9 @@ window.SITE = {
     },
     {
       slug: "kinetik-flight-controller", name: "Kinetik Flight Controller", category: "Flight controllers",
+      heading: "Kinetik FPV Flight Controller",
+      buyerSummary: "A 5 x 5 cm STM32H7 flight controller for 3S to 6S builds, with two IMUs, two barometers and support for Betaflight and ArduPilot.",
+      buyerCheck: "Choose the firmware your project needs, then confirm the board target and peripheral support for that firmware. Check the mounting pattern separately from the overall board size.",
       also: ["FPV"], status: "available", featured: false,
       image: "images/kinetik-flight-controller-main.webp", gallery: [],
       journey: {
@@ -610,7 +693,8 @@ S.legal={
    ]}
   ]
 };
-})();;
+})();
+;
 /* ===========================================================================
    LAYOUT.JS  -  HAR PAGE KE SECTIONS YAHAN SE CONTROL HOTE HAIN
    ===========================================================================
@@ -648,8 +732,8 @@ window.LAYOUT = {
       lead: 'Four product families that are designed to work together, each with its own documentation.',
       items: [
         { title: 'Aazmuth UAV flight controller', href: 'aazmuth-flight-controller.html', text: 'Our flagship flight controller for professional UAVs runs an STM32 H7 (Cortex-M7, up to 480 MHz) with 3 IMUs and 2 barometers, each on an isolated bus. IMU boards plug into the 20-pin Aazmuth Bus, so sensors can be swapped or upgraded without replacing the controller.' },
-        { title: 'Exelr8 F7 FPV flight controller', href: 'exelr8-fpv-flight-controller-f7.html', text: 'An F7 flight controller for FPV racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to make a complete Indian-designed FPV stack.' },
-        { title: 'Skydrive AM32 ESCs', href: 'products.html', text: 'Electronic speed controllers that run open AM32 firmware, so you can configure and update them with the usual AM32 tools. Choose the 60A for heavy payloads such as sprayer drones, the 40A for survey and mapping builds, or the 55A 4-in-1 for 5-inch FPV builds and smaller.' },
+        { title: 'Exelr8 F7 FPV flight controller', href: 'exelr8-fpv-flight-controller-f7.html', text: 'An F7 flight controller for FPV racing and freestyle builds. See its specifications and matching GPS options before choosing components for your stack.' },
+        { title: 'AM32 drone ESCs', href: 'drone-escs.html', text: 'Compare 3–6S and 6–12S electronic speed controllers, including single-channel ESCs for UAVs and 4-in-1 boards for FPV builds.' },
         { title: 'NAVSATE GPS modules', href: 'navsate-gps-for-uavs.html', text: 'A UAV GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position data it needs for position hold, return-to-home and waypoint missions. The compact NAVSATE mini is made for FPV drones.' }
       ] },
     'cfg',         // "Configure your drone stack" (platform chuno, parts dekho)
@@ -758,6 +842,8 @@ const altFor=p=>{const c=CATSING[p.category]||String(p.category||'').toLowerCase
 const page=d.body.dataset.page,q=new URLSearchParams(location.search);
 const abs=u=>/^https?:/.test(u)?u:S.url+'/'+String(u).replace(/^\//,'');
 const pUrl=p=>p.slug+'.html';
+const collections=Object.entries(S.productCollections||{}).filter(([category])=>P.some(p=>S.inCat(p,category)&&!p.noindex));
+const collectionLinks=()=>`<ul>${collections.map(([,c])=>`<li><a href="${E(c.slug)}.html">${E(c.title)}</a></li>`).join('')}</ul>`;
 const tel='tel:+'+S.whatsapp;
 d.documentElement.classList.add('js');
 
@@ -789,7 +875,7 @@ const header=`<a class="skip-link" href="#main">Skip to main content</a><header>
 const footer=`<footer><div class="wrap fcols"><div class="fc"><b>Company</b><a href="about.html">About us</a><a href="guides.html">Guides</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="${E(S.docsUrl)}">Product documentation</a></div><div class="fc"><b>Legal</b>${S.legal.pages.map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</div><div class="fc"><b>Grievance Officer</b><span>${E(S.legal.officer.name)}</span><a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a><span>Reply in 24 hours</span></div><div class="fc"><b>Follow</b>${S.social.map(s=>`<a href="${E(s.url)}" rel="noopener">Follow on ${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Site map</a></div></div><div class="wrap fbar"><span>&copy; ${S.year} ${E(S.name)}${S.company.llpin?` &middot; LLPIN ${E(S.company.llpin)}`:''}</span><address>Registered office: ${E(S.company.registeredOffice)}</address><span>Last updated: ${new Date(document.lastModified).toISOString().slice(0,10)}</span></div></footer>
 <div class="dock" id="dock"><a class="btn o" href="${tel}">Call us</a><a class="btn" href="contact.html">Get a quote</a></div>`;
 
-const card=(p,i)=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img${i<3?(i?'':' fetchpriority="high"'):' loading="lazy"'} width="320" height="240" src="${E(p.image)}" alt="${E(altFor(p))}" onerror="this.onerror=null;this.src='images/noimage.webp'"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(p.name)}</h3><p>${E(p.short)}</p></div></a>`;
+const card=(p,i,detail=false)=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img${i<3?(i?'':' fetchpriority="high"'):' loading="lazy"'} width="320" height="240" src="${E(p.image)}" alt="${E(altFor(p))}" onerror="this.onerror=null;this.src='images/noimage.webp'"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(detail?(p.heading||p.name):p.name)}</h3><p>${E(detail?(p.buyerSummary||p.short):p.short)}</p></div></a>`;
 
 /* ---------- bench to sky (har product page par) ---------- */
 const ytId=u=>{u=String(u||'').trim();const m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/|live\/)([\w-]{11})/)||u.match(/^([\w-]{11})$/);return m?m[1]:''};
@@ -858,8 +944,8 @@ home(){
   const mot=[[90,90],[310,90],[90,310],[310,310]].map(([x,y])=>`<g class="pt" data-c="ESCs"><circle cx="${x}" cy="${y}" r="12"/><g class="rot" style="transform-origin:${x}px ${y}px"><path d="M${x-48} ${y}h96M${x} ${y-48}v96"/></g></g>`).join('');
   return compose('home',{
 hero:()=>`<div class="hs" id="hs" data-ms="${+S.hero.interval||3000}" role="region" aria-roledescription="carousel" aria-label="Featured products"><h1 class="sr">${E(S.hero.title)}</h1><div class="hsw">${(S.hero.slides||[]).map((x,i)=>{const im=`<img width="1898" height="1148" src="${E(x.src)}" alt="${E(x.alt||'')}"${i?' loading="lazy"':' fetchpriority="high"'} draggable="false">`;return `<div class="hsl${i?'':' on'}" data-ms="${+x.ms||+S.hero.interval||3000}"${x.zoom?` style="--z:${+x.zoom}"`:''}${i?' aria-hidden="true"':''}>${x.href?`<a href="${E(x.href)}" tabindex="${i?-1:0}" aria-label="${E(x.alt||'Product')}">${im}</a>`:im}</div>`}).join('')}</div><button type="button" class="hnav p" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="hnav n" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="hdots">${(S.hero.slides||[]).map((x,i)=>`<button type="button" class="hdot${i?'':' on'}" aria-label="Slide ${i+1}"></button>`).join('')}</div></div>`,
-tech:()=>`<section id="tech"><div class="wrap"><h2>Technology solutions</h2><p class="lead">Every part of the flight stack, from one team.</p>
-<div class="grid">${list.map(card).join('')}</div><div class="more"><a class="btn o" href="products.html">See all ${P.length} products</a></div></div></section>`,
+tech:()=>`<section id="tech"><div class="wrap"><h2>Drone electronics</h2><p class="lead">Flight controllers, AM32 ESCs, GPS modules and FPV components.</p>
+<div class="grid">${list.map((p,i)=>card(p,i)).join('')}</div><div class="more"><a class="btn o" href="products.html">See all ${P.length} products</a></div></div></section>`,
 cfg:()=>`<div id="cfg-slot"></div>`,
 process:()=>`<section class="alt"><div class="wrap"><h2>From bench to sky</h2><p class="lead">How a board gets from our desk to your drone.</p><div class="proc">${S.process.map((s,i)=>`<div class="st"><b>${i+1}</b><h3>${E(s.t)}</h3><p class="mute">${E(s.x)}</p></div>`).join('')}</div></div></section>`,
 manifesto:()=>`<section class="mfs"><div class="wrap"><p class="mf2">${words}</p></div></section>`,
@@ -871,31 +957,34 @@ products(){
   seo(`Products | ${S.name}`,`Flight controllers, ESCs, GPS modules and more from ${S.name}.`,P[0]&&P[0].image,[org,{"@context":"https://schema.org","@type":"ItemList",itemListElement:P.map((p,i)=>({"@type":"ListItem",position:i+1,url:S.url+'/'+pUrl(p),name:p.name}))}],path);
   const cats=S.categories.filter(c=>P.some(p=>S.inCat(p,c)));
   return compose('products',{
-catalog:()=>`<section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Products</h1><p class="lead">Flight controllers, ESCs, GPS and more. Tap a product for details.</p>
+catalog:()=>`<section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Drone electronics catalog</h1><p>${E(S.catalogIntro)}</p><p class="lead">${E(S.catalogBuying)} <a href="contact.html">Request a quote</a></p>
 <div class="filters" role="group" aria-label="Filter by category">${['All'].concat(cats).map(c=>`<button type="button" aria-pressed="${c==='All'}" data-c="${E(c)}">${E(c)}</button>`).join('')}</div>
-<div class="grid" id="pg"></div></div></section>`
+<div class="grid" id="pg"></div><h2 style="margin-top:32px">Browse by component</h2>${collectionLinks()}</div></section>`
 });
 },
 product(){
-  const p=P.find(x=>x.slug===(q.get('p')||d.body.dataset.slug));
+  const p=P.find(x=>x.slug===(d.body.dataset.slug||q.get('p')));
   if(!p){path='products.html';seo(`Product not found | ${S.name}`,'This product does not exist.',null,null,path);
-    return `<main id="main"><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section>${regBox(p0)}</main>`}
+    return `<main id="main"><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section></main>`}
   path=pUrl(p);const imgs=[p.image].concat(p.gallery||[]).filter(Boolean);const soon=p.status==='soon';
   seo(`${p.name} | ${S.name}`,p.short||p.description,p.image,[org,{"@context":"https://schema.org","@type":"Product",name:p.name,image:imgs.map(abs),description:p.description,category:p.category,brand:{"@type":"Brand",name:S.short}}],path);
   const rel=P.filter(x=>x.slug!==p.slug&&x.category===p.category).concat(P.filter(x=>x.slug!==p.slug&&x.category!==p.category)).slice(0,4);
+  const guides=(window.PRODUCT_GUIDES||[]).filter(g=>g.products.includes(p.slug));
+  const collection=collections.find(([category])=>category===p.category)?.[1];
   return compose('product',{
-main:()=>`<section><div class="wrap"><p class="crumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</p>
+main:()=>`<section><div class="wrap"><p class="crumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${collection?`<a href="${E(collection.slug)}.html">${E(p.category)}</a> / `:''}${E(p.name)}</p>
 <div class="pd"><div><div class="main-img"><img id="mi" width="640" height="480" src="${E(imgs[0])}" alt="${E(altFor(p))}" fetchpriority="high" onerror="this.onerror=null;this.src='images/noimage.webp'"></div>
 ${imgs.length>1?`<div class="thumbs">${imgs.map((u,i)=>`<button type="button" data-i="${i}" aria-label="Photo ${i+1}"${i?'':' aria-current="true"'}><img width="80" height="60" src="${E(u)}" alt="${E(p.name)} photo ${i+1}" onerror="this.onerror=null;this.src='images/noimage.webp'"></button>`).join('')}</div>`:''}</div>
-<div><span class="cat">${E(p.category)}${soon?' &middot; Coming soon':''}</span><h1>${E(p.name)}</h1><p class="d">${E(p.description)}</p>
+<div><span class="cat">${E(p.category)}${soon?' &middot; Coming soon':''}</span><h1>${E(p.heading||p.name)}</h1><p class="d">${E(p.description)}</p>
 ${p.features&&p.features.length?`<h3>Highlights</h3><ul>${p.features.map(f=>`<li>${E(f)}</li>`).join('')}</ul>`:''}
+${p.buyerCheck?`<h3>${soon?'What to confirm before launch':'What to check before ordering'}</h3><p>${E(p.buyerCheck)}</p>`:''}
 ${p.specs&&p.specs.length?`<h3>Specifications</h3><table>${p.specs.map(s=>`<tr><td>${E(s[0])}</td><td>${E(s[1])}</td></tr>`).join('')}</table>`:''}
 ${p.docs&&p.docs.length?`<h3>Documentation</h3><div class="docs">${p.docs.map(x=>`<a href="${E(x.url)}">${E(x.label)}</a>`).join('')}</div>`:''}
 ${p.bestFor&&p.bestFor.length?`<h3>Best for</h3><div class="docs">${p.bestFor.map(x=>`<span>${E(x)}</span>`).join('')}</div>`:''}
 <div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${soon?'':`<a class="btn o" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I want a quote for '+p.name+'. Quantity: ')}">WhatsApp quote</a>`}${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div></div></div></div></section>`,
 journey:()=>jr(p),
 faq:()=>`${p.faq&&p.faq.length?`<section><div class="wrap"><h2>${E(p.name)} FAQ</h2><p class="lead"></p>${p.faq.map(f=>`<details><summary>${E(f.q)}</summary><p>${E(f.a)}</p></details>`).join('')}</div></section>`:''}`,
-related:()=>`${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map(card).join('')}</div></div></section>`:''}`,
+related:()=>`${guides.length?`<section><div class="wrap"><h2>Related guides</h2><ul>${guides.map(g=>`<li><a href="${E(g.slug)}.html">${E(g.h1)}</a></li>`).join('')}</ul></div></section>`:''}${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map((p,i)=>card(p,i)).join('')}</div></div></section>`:''}`,
 regulatory:()=>regBox(p)
 });
 },
@@ -954,7 +1043,7 @@ LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
 <section><div class="wrap lg"><aside class="lg-toc" aria-label="On this page"><b>On this page</b>${L.sections.map((s,i)=>`<a href="#s${i+1}">${i+1}. ${E(s.h)}</a>`).join('')}<hr>${LG.pages.filter(x=>x!==L).map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</aside><article class="lg-body">${L.officerBlock?offHtml():''}${secHtml(L)}</article></div></section></main>`}});
 
 /* ---------- render ---------- */
-d.body.innerHTML=header+(pages[page]||pages.home)()+footer;
+d.body.innerHTML=header+(['guides','collection'].includes(page)?$('#main').outerHTML:(pages[page]||pages.home)())+footer;
 
 /* hero slider: har 3 sec (data.js: hero.interval) me auto slide. Dots, arrows, swipe, tab hidden hone par ruk jata hai */
 (()=>{const hs=$('#hs');if(!hs)return;
@@ -985,11 +1074,11 @@ matchMedia('(min-width:901px)').addEventListener('change',e=>e.matches&&setMenu(
 
 /* products filter */
 const pg=$('#pg');
-if(pg){const show=c=>{const l=P.filter(p=>c==='All'||S.inCat(p,c));pg.innerHTML=l.length?l.map(card).join(''):'<div class="empty">No products in this category yet.</div>';reveal()};
+if(pg){const show=c=>{const l=P.filter(p=>c==='All'||S.inCat(p,c));pg.innerHTML=l.length?l.map((p,i)=>card(p,i,true)).join(''):'<div class="empty">No products in this category yet.</div>';reveal()};
 $$('.filters button').forEach(b=>b.onclick=()=>{$$('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));show(b.dataset.c)});show('All')}
 
 /* product gallery */
-$$('.thumbs button').forEach(b=>b.onclick=()=>{const pp=P.find(x=>x.slug===(q.get('p')||d.body.dataset.slug)),i=+b.dataset.i,u=[pp.image].concat(pp.gallery||[]);$('#mi').src=u[i];$$('.thumbs button').forEach(x=>x.toggleAttribute('aria-current',x===b))});
+$$('.thumbs button').forEach(b=>b.onclick=()=>{const pp=P.find(x=>x.slug===(d.body.dataset.slug||q.get('p'))),i=+b.dataset.i,u=[pp.image].concat(pp.gallery||[]);$('#mi').src=u[i];$$('.thumbs button').forEach(x=>x.toggleAttribute('aria-current',x===b))});
 
 /* contact form -> mailto */
 const f=$('#f');
@@ -1008,7 +1097,8 @@ const lg=$('.logos');if(lg&&!rm)[...lg.children].forEach(n=>{const c=n.cloneNode
 
 /* hide dock on contact page */
 if(page==='contact')$('#dock').style.display='none';
-})();;
+})();
+;
 /* FX.JS - saari animations (canvas, tilt, magnetic buttons, scroll effects). Normal editing me chhuna nahi. */
 (()=>{const d=document,$=(s,r=d)=>r.querySelector(s),$$=(s,r=d)=>[...r.querySelectorAll(s)],
 rm=false, /* reduce-motion ignore: animations hamesha chalengi */

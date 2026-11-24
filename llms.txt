@@ -3,10 +3,16 @@
 > Made in India drone components. Space and Tech Engineering LLP is an Indian drone electronics company with offices in India. It designs and sells the Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs and NAVSATE GPS modules for UAV and FPV builders.
 
 Key facts:
-- Products: Aazmuth and Exelr8 flight controllers, Skydrive AM32 ESCs (40A, 60A, 55A 4-in-1), NAVSATE GPS modules.
 - Offices: India (registered office and product development centre).
 - Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.
 - OEM and bulk orders: arup@spaceandtech-engineerings.com, +91 96657 17903.
+
+## Product collections
+- [Drone Flight Controllers in India](https://www.spaceandtechengineerings.com/drone-flight-controllers.html): Compare Aazmuth, Exelr8 and other UAV and FPV flight controllers by firmware support, sensors and board layout.
+- [AM32 Drone ESCs for UAV and FPV Builds](https://www.spaceandtechengineerings.com/drone-escs.html): Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.
+- [GPS Modules for UAV and FPV Drones](https://www.spaceandtechengineerings.com/drone-gps-modules.html): Compare NAVSATE UAV GPS and NAVSATE Mini FPV GPS for drone builds that need position data.
+- [FPV Drone Electronics and Components](https://www.spaceandtechengineerings.com/fpv-drone-electronics.html): Browse FPV flight controllers, ESCs, GPS modules, ExpressLRS receivers and video transmitters by build requirement.
+- [5.8 GHz FPV Video Transmitters](https://www.spaceandtechengineerings.com/fpv-video-transmitters.html): Compare Space and Tech Engineering’s analog and digital 5.8 GHz FPV video transmitter product pages.
 
 ## Products
 - [Aazmuth flight controller](https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html): Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.

@@ -35,8 +35,8 @@ window.LAYOUT = {
       lead: 'Four product families that are designed to work together, each with its own documentation.',
       items: [
         { title: 'Aazmuth UAV flight controller', href: 'aazmuth-flight-controller.html', text: 'Our flagship flight controller for professional UAVs runs an STM32 H7 (Cortex-M7, up to 480 MHz) with 3 IMUs and 2 barometers, each on an isolated bus. IMU boards plug into the 20-pin Aazmuth Bus, so sensors can be swapped or upgraded without replacing the controller.' },
-        { title: 'Exelr8 F7 FPV flight controller', href: 'exelr8-fpv-flight-controller-f7.html', text: 'An F7 flight controller for FPV racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to make a complete Indian-designed FPV stack.' },
-        { title: 'Skydrive AM32 ESCs', href: 'products.html', text: 'Electronic speed controllers that run open AM32 firmware, so you can configure and update them with the usual AM32 tools. Choose the 60A for heavy payloads such as sprayer drones, the 40A for survey and mapping builds, or the 55A 4-in-1 for 5-inch FPV builds and smaller.' },
+        { title: 'Exelr8 F7 FPV flight controller', href: 'exelr8-fpv-flight-controller-f7.html', text: 'An F7 flight controller for FPV racing and freestyle builds. See its specifications and matching GPS options before choosing components for your stack.' },
+        { title: 'AM32 drone ESCs', href: 'drone-escs.html', text: 'Compare 3–6S and 6–12S electronic speed controllers, including single-channel ESCs for UAVs and 4-in-1 boards for FPV builds.' },
         { title: 'NAVSATE GPS modules', href: 'navsate-gps-for-uavs.html', text: 'A UAV GPS module tuned for UAVs and tested on long flights. It gives your flight controller the position data it needs for position hold, return-to-home and waypoint missions. The compact NAVSATE mini is made for FPV drones.' }
       ] },
     'cfg',         // "Configure your drone stack" (platform chuno, parts dekho)

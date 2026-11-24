@@ -39,7 +39,7 @@ Category: Flight controllers
 Status: Available
 URL: https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html
 
-Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.
+Exelr8 is an F7 flight controller for 3S to 6S FPV racing and freestyle builds. It combines a fourth-generation InvenSense IMU, an Infineon barometer and onboard OSD. Separate 5 V and 10 V BEC outputs can power compatible peripherals within their listed ratings.
 
 Highlights:
 - F7 processor

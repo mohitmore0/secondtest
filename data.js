@@ -44,7 +44,7 @@ window.SITE = {
       { src: "images/hero.avif",    ms: 6000, zoom: 1.38, alt: "Building India's indigenous avionics future: NAVSATE, Exelr8 and Azmuth", href: "products.html" },
       { src: "images/azmuth.avif",  ms: 3000, zoom: 1.6, alt: "Azmuth flight controller", href: "aazmuth-flight-controller.html" },
       { src: "images/exclr8.avif",  ms: 3000, zoom: 1.6, alt: "Exelr8 flight controller for FPV drones", href: "exelr8-fpv-flight-controller-f7.html" },
-      { src: "images/4in1.avif",    ms: 3000, zoom: 1.45, alt: "4-in-1 ESC for FPV drones", href: "skydrive-55a-am32-4-in-1.html" },
+      { src: "images/4in1.avif",    ms: 3000, zoom: 1.45, alt: "AM32 ESCs for FPV drones", href: "drone-escs.html" },
       { src: "images/sateesc.avif", ms: 3000, zoom: 1.6, alt: "SATE-ESC single electronic speed controller", href: "skydrive-am32-60a.html" },
       { src: "images/navsate.avif", ms: 3000, zoom: 1.6, alt: "NAVSATE GPS", href: "navsate-gps-for-uavs.html" }
     ]
@@ -62,11 +62,48 @@ window.SITE = {
      specs  : [["Naam","Value"], ...] (khali chhodo to table hide ho jayegi)
      docs   : [{label,url}]          |  buyUrl: store link (optional)        */
   categories: ["Flight controllers", "ESCs", "GPS", "FPV", "Transmitters", "Receivers", "Video transmitters", "Radar"],
+  catalogIntro: "Compare flight controllers, AM32 electronic speed controllers, GPS modules, ExpressLRS receivers and FPV video transmitters. Filter by component, then open a product to check its specifications, compatibility and availability.",
+  catalogBuying: "Start with your aircraft type, battery voltage and the parts you already own. If you need a compatibility check, current pricing or a bulk quote in India, share your build details and quantity with our team.",
+  productCollections: {
+    "Flight controllers": {
+      slug: "drone-flight-controllers", title: "Drone Flight Controllers in India",
+      description: "Compare Aazmuth, Exelr8 and other UAV and FPV flight controllers by firmware support, sensors and board layout.",
+      advice: "Start with the firmware and mounting pattern your build requires. Then check the IMU, barometer and available ports against your GPS, receiver and ESC. For training or compact builds, check case clearance and connector access before choosing a board.",
+      guide: "guide-flight-controller-india"
+    },
+    "ESCs": {
+      slug: "drone-escs", title: "AM32 Drone ESCs for UAV and FPV Builds",
+      description: "Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.",
+      advice: "Match the battery cell count first, then compare continuous current ratings with your motor and propeller load. A 4-in-1 board combines four channels in one stack. Individual ESCs can be replaced one at a time. Check the individual product for its signal, voltage and mounting requirements.",
+      guide: "guide-am32-esc"
+    },
+    "GPS": {
+      slug: "drone-gps-modules", title: "GPS Modules for UAV and FPV Drones",
+      description: "Compare NAVSATE UAV GPS and NAVSATE Mini FPV GPS for drone builds that need position data.",
+      advice: "Choose the module by available space and the flight controller’s supported GPS interface. The UAV module is intended for builds that use position hold and waypoint missions. NAVSATE Mini is intended for compact FPV frames. Flight modes depend on the flight controller and its firmware.",
+      guide: "guide-uav-gps-module"
+    },
+    "FPV": {
+      slug: "fpv-drone-electronics", title: "FPV Drone Electronics and Components",
+      description: "Browse FPV flight controllers, ESCs, GPS modules, ExpressLRS receivers and video transmitters by build requirement.",
+      advice: "Check frame mounting dimensions and battery voltage before pairing components. Match the control receiver with your radio protocol and the video transmitter with your goggles or receiver. Leave room for connectors and verify how each part is powered.",
+      guide: "guide-fpv-drone-electronics-stack"
+    },
+    "Video transmitters": {
+      slug: "fpv-video-transmitters", title: "5.8 GHz FPV Video Transmitters",
+      description: "Compare Space and Tech Engineering’s analog and digital 5.8 GHz FPV video transmitter product pages.",
+      advice: "Check your goggles or video receiver for protocol support before comparing transmitters. Analog and digital products can share a frequency band, while compatibility depends on the video system. Compare the listed power, connector and mounting details for each model.",
+      guide: "guide-fpv-drone-electronics-stack"
+    }
+  },
   /* FPV category: product ki main category (category:) wahi rehti hai; FPV me dikhane ke liye also: ["FPV"] lagao.
      Naya FPV product: category: "FPV" bhi likh sakte ho. */
   products: [
     {
       slug: "aazmuth-flight-controller", name: "Aazmuth flight controller", category: "Flight controllers",
+      heading: "Aazmuth STM32H7 UAV Flight Controller",
+      buyerSummary: "A modular STM32H7 flight controller for professional UAVs, with three IMUs and two barometers on separate buses. Replace an IMU board without replacing the controller.",
+      buyerCheck: "For a survey or agriculture UAV, compare the 92 x 54 x 14.6 mm enclosure and 63 g weight with your airframe. Confirm the firmware, peripheral connections and supported sensor modules for your build.",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_4ef9d2c2ab6a43a5ab35ac564c0604cc~mv2.jpg", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
@@ -97,6 +134,9 @@ window.SITE = {
     },
     {
       slug: "exelr8-fpv-flight-controller-f7", name: "Exelr8 FPV flight controller F7", category: "Flight controllers",
+      heading: "Exelr8 F7 FPV Flight Controller",
+      buyerSummary: "An F7 flight controller for 3S to 6S racing and freestyle quads, with an onboard OSD and separate 5 V and 10 V outputs for supported peripherals.",
+      buyerCheck: "Check frame mounting, the ESC cable pinout and the voltage and current requirements of your receiver and video system. Ask which current ESC options fit your stack if you are replacing an older board.",
       also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_7ed082c4ce4c4d01baea626a1683544f~mv2.jpg", gallery: [],
       journey: {
@@ -105,19 +145,22 @@ window.SITE = {
         fly   : { text: "", imgs: [], video: "" }
       },
       short: "F7 flight controller for light, fast FPV racing and freestyle builds.",
-      description: "Exelr8 is our F7 flight controller for FPV drones, made for tight, punchy racing and freestyle builds. It pairs with the Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS to give you a complete Indian-designed FPV stack with local support.",
+      description: "Exelr8 is an F7 flight controller for 3S to 6S FPV racing and freestyle builds. It combines a fourth-generation InvenSense IMU, an Infineon barometer and onboard OSD. Separate 5 V and 10 V BEC outputs can power compatible peripherals within their listed ratings.",
       features: ["F7 processor","Pairs with Skydrive 4-in-1 ESC and NAVSATE mini GPS","Designed and supported in India"],
       specs: [["Microcontroller","F7"],["Gyroscope & Accelerometer","InvenSense 4th Generation"],["Barometer","Infineon High-Precision"],["OSD","High-Performance OSD"],["BEC Output","10V / 2A and 5V / 2A"],["Battery Input","3S–6S"],["Protection","Reverse-voltage and short-circuit protection"]],
       bestFor: ["FPV racing and freestyle","Startups and prototypes"],
       faq: [
         { q: "What is the Exelr8 flight controller for?", a: "Exelr8 is an F7 flight controller for FPV drone builds, including racing and freestyle quads." },
-        { q: "Which ESC and GPS go with Exelr8?", a: "The Skydrive 55A AM32 4-in-1 ESC and the NAVSATE mini GPS are the matching parts in our FPV stack." },
+        { q: "Which ESC and GPS go with Exelr8?", a: "Choose an ESC that matches your battery and motor load, then check the harness pinout. If you are adding a GPS such as the NAVSATE Mini, confirm the interface and firmware support for your build." },
         { q: "Exelr8 or Aazmuth?", a: "Choose Exelr8 for FPV builds and Aazmuth when you need triple-redundant sensing for professional or mission work." }
       ],
       docs: []
     },
     {
       slug: "skydrive-am32-60a", name: "Skydrive AM32 60A 3-6S", category: "ESCs",
+      heading: "Skydrive 60A AM32 ESC for 3-6S Drones",
+      buyerSummary: "A single 60 A AM32 electronic speed controller for 3S to 6S LiPo power systems. Compare it for multirotors that need one ESC per motor.",
+      buyerCheck: "Share the battery cell count, motor model, propeller size and measured current under load when requesting a quote. Confirm cooling and current headroom for the intended payload.",
       status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
@@ -180,6 +223,9 @@ window.SITE = {
     },
     {
       slug: "navsate-gps-for-uavs", name: "NAVSATE GPS for UAVs", category: "GPS",
+      heading: "NAVSATE GPS Module for UAV Drones",
+      buyerSummary: "A DroneCAN GPS module with an onboard magnetometer for UAV positioning. Compare it for flight controllers that support CAN peripherals.",
+      buyerCheck: "Confirm the controller supports DroneCAN and check the connector, available CAN port and mounting space. Position hold, return-to-home and waypoint behavior depend on your flight firmware and configuration.",
       also: ["FPV"], status: "available", featured: true,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
       journey: {
@@ -200,6 +246,9 @@ window.SITE = {
     },
     {
       slug: "navsate-mini-gps", name: "NAVSATE mini for FPV drones", category: "GPS",
+      heading: "NAVSATE Mini GPS Module for FPV Drones",
+      buyerSummary: "A compact GPS module for FPV builds where mounting space is limited. It supplies position data to a compatible flight controller.",
+      buyerCheck: "Ask for the current pinout, supply voltage, interface and dimensions before ordering, especially for a tight frame. Check which GPS features your flight firmware supports.",
       also: ["FPV"], status: "available", featured: false,
       image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
@@ -220,6 +269,9 @@ window.SITE = {
     },
     {
       slug: "trx-5km", name: "TRX 5 km", category: "Transmitters",
+      heading: "TRX 5 km Radio Transmitter",
+      buyerSummary: "A radio control transmitter in development with a 5 km design target. Ask about release timing and the supported receiver ecosystem.",
+      buyerCheck: "Confirm receiver and protocol compatibility for your existing equipment when final specifications are available. The distance is a design target and actual range depends on operating conditions and the final hardware.",
       status: "soon", featured: false,
       image: "images/noimage.webp", gallery: [],
       short: "5 km range radio transmitter. Coming soon.",
@@ -231,6 +283,9 @@ window.SITE = {
     },
     {
       slug: "trx-10km", name: "TRX 10 km", category: "Transmitters",
+      heading: "TRX 10 km Radio Transmitter",
+      buyerSummary: "A radio control transmitter in development with a 10 km design target. Ask for the planned receiver options and availability.",
+      buyerCheck: "If you are comparing the two TRX models, ask for final specifications and range test conditions before choosing one. The product name reflects the design target.",
       status: "soon", featured: false,
       image: "", gallery: ["images/noimage.webp"],
       short: "10 km range radio transmitter. Coming soon.",
@@ -242,6 +297,9 @@ window.SITE = {
     },
     {
       slug: "elrs-fpv-receiver", name: "ELRS FPV radio receiver", category: "Receivers",
+      heading: "2.4 GHz ExpressLRS FPV Receiver (ELRS)",
+      buyerSummary: "A 2.4 GHz ExpressLRS receiver for FPV aircraft. It connects to the flight controller through CRSF, takes a 5 V supply and includes a 65 mm T-antenna.",
+      buyerCheck: "Check that your radio uses 2.4 GHz ExpressLRS, that the flight controller has a suitable UART for CRSF and that the frame has room for the antenna. Confirm firmware compatibility before binding.",
       also: ["ESCs","FPV"], status: "available", featured: false,
       image: "images/elrs-fpv-receiver-main.webp", gallery: ["images/elrs-fpv-receiver-gallery-1.webp"],
       journey: {
@@ -262,6 +320,9 @@ window.SITE = {
     },
     {
       slug: "sate-4-in-1-esc-80a", name: "4-in-1 ESC 80A 3-6S", category: "ESCs",
+      heading: "SATE 80A 4-in-1 AM32 ESC for 3-6S FPV",
+      buyerSummary: "A four-channel AM32 ESC for 3S to 6S FPV builds. One board serves all four motors, with DShot support for compatible flight controllers.",
+      buyerCheck: "Confirm whether the catalogue 80 A figure applies per channel or to the board before choosing motors. Also check your mounting pattern, flight-controller cable pinout and airflow.",
       also: ["FPV"], status: "available", featured: false,
       image: "images/sate-4-in-1-esc-80a-main.webp", gallery: [],
       journey: {
@@ -282,6 +343,9 @@ window.SITE = {
     },
     {
       slug: "analog-vtx", name: "Analog VTX", category: "Video transmitters",
+      heading: "5.8 GHz Analog FPV Video Transmitter (VTX)",
+      buyerSummary: "A compact 5.8 GHz analog video transmitter in development for FPV builds using analog goggles or a compatible video receiver.",
+      buyerCheck: "Ask for the final input voltage, supported channels, output power levels and antenna connector before choosing a video system.",
       also: ["FPV"], status: "soon", featured: false,
       image: "images/analog-vtx-main.webp", gallery: [],
       journey: {
@@ -302,6 +366,9 @@ window.SITE = {
     },
     {
       slug: "digital-vtx", name: "Digital VTX", category: "Video transmitters",
+      heading: "5.8 GHz Digital FPV Video Transmitter (VTX)",
+      buyerSummary: "A compact 5.8 GHz digital video transmitter in development for FPV builds. Confirm support for your goggles or receiver before choosing this model.",
+      buyerCheck: "Ask which digital video protocol and camera connections the final version supports. The frequency band alone does not establish compatibility with your existing equipment.",
       also: ["FPV"], status: "soon", featured: false,
       image: "images/digital-vtx-main.webp", gallery: [],
       journey: {
@@ -361,6 +428,9 @@ window.SITE = {
     },
     {
       slug: "sate-high-amp-esc", name: "SATE-HIGH AMP ESC 200A 6-12S", category: "ESCs",
+      heading: "SATE 200A AM32 ESC for 6-12S Drones",
+      buyerSummary: "A single AM32 ESC for 6S to 12S UAV propulsion with a catalogue rating of 200 A continuous. Compare it for builds with a high-current motor load.",
+      buyerCheck: "Request the rating conditions and confirm cooling and connector requirements using your motor, propeller and battery details. Use your measured current under load when comparing ESCs.",
       also: ["FPV"], status: "available", featured: false,
       image: "images/sate-high-amp-esc-main.webp", gallery: [],
       journey: {
@@ -381,6 +451,9 @@ window.SITE = {
     },
     {
       slug: "aazmuth-mini", name: "Aazmuth Mini", category: "Flight controllers",
+      heading: "Aazmuth Mini STM32H7 Flight Controller",
+      buyerSummary: "A low-profile STM32H7 flight controller for training drones. It combines an IMU, barometer and magnetometer in a compact enclosure.",
+      buyerCheck: "For a training fleet, check mounting options, cable access and firmware support for the exercises you plan to teach. Include the number of aircraft when requesting a quote.",
       also: ["FPV"], status: "soon", featured: false,
       image: "images/aazmuth-mini-main.webp", gallery: [],
       journey: {
@@ -401,6 +474,9 @@ window.SITE = {
     },
     {
       slug: "sate-aio-board", name: "SATE-AIO Board", category: "Flight controllers",
+      heading: "SATE AIO Flight Controller and 4-in-1 ESC",
+      buyerSummary: "A combined flight controller and 4-in-1 ESC for compact builds, with DShot and AM32 compatibility. It reduces the number of separate boards in the stack.",
+      buyerCheck: "Ask how the published 25 A rating applies to the motor channels. Confirm motor load, battery input, mounting pattern and peripheral connections before choosing this board.",
       also: ["ESCs","FPV"], status: "available", featured: false,
       image: "images/sate-aio-board-main.webp", gallery: ["images/sate-aio-board-gallery-1.webp"],
       journey: {
@@ -421,8 +497,11 @@ window.SITE = {
     },
     {
       slug: "sate-falconeye-plfm", name: "SATE FalconEye PLFM radar", category: "Radar",
-      status: "soon", featured: false, noindex: true,
-      image: "images/sate-falconeye-plfm.jpg", gallery: [],
+      heading: "SATE FalconEye PLFM Beam-Steering Radar",
+      buyerSummary: "A modular beam-steering radar platform under development, with the AERIS-10N and AERIS-10E variants listed on the product page.",
+      buyerCheck: "For evaluation enquiries, ask which development version is available and what documentation can be shared.",
+      status: "soon", featured: false,
+      image: "", gallery: [],
       short: "Electronic beam-steering radar platform in 3 km and 20 km versions. Under development.",
       description: "SATE FalconEye PLFM is a modular electronic beam-steering radar platform, currently under development. It comes in two versions: AERIS-10N (Nexus) with a 3 km range and an 8 x 16 patch antenna array, and AERIS-10E (Extended) with a 20 km range and a 32 x 16 dielectric-filled slotted waveguide array. Beam steering covers plus or minus 45 degrees in elevation and azimuth. An onboard FPGA handles pulse compression, Doppler FFT, MTI and CFAR, and a Python GUI with map integration and GPS/IMU position and attitude correction ties it together.",
       features: ["Two versions: AERIS-10N (Nexus) and AERIS-10E (Extended)", "Full electronic beam steering, plus or minus 45 degrees in elevation and azimuth", "Onboard FPGA for pulse compression, Doppler FFT, MTI and CFAR", "Python GUI with map integration", "GPS/IMU integration for real-time position and attitude correction", "Modular power-management, frequency-synthesis and RF boards"],
@@ -435,6 +514,9 @@ window.SITE = {
     },
     {
       slug: "kinetik-flight-controller", name: "Kinetik Flight Controller", category: "Flight controllers",
+      heading: "Kinetik FPV Flight Controller",
+      buyerSummary: "A 5 x 5 cm STM32H7 flight controller for 3S to 6S builds, with two IMUs, two barometers and support for Betaflight and ArduPilot.",
+      buyerCheck: "Choose the firmware your project needs, then confirm the board target and peripheral support for that firmware. Check the mounting pattern separately from the overall board size.",
       also: ["FPV"], status: "available", featured: false,
       image: "images/kinetik-flight-controller-main.webp", gallery: [],
       journey: {

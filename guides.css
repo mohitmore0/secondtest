@@ -1,31 +1,58 @@
-:root{--bg:#0a0a0b;--fg:#f3efe8;--mut:#b9b2a6;--or:#FF9A2E;--gold:#FFD36B;--card:#141416;--line:#26262b}
-*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.7 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-a{color:var(--or)}a:hover{color:var(--gold)}
-.skip-link{position:absolute;left:-999px}.skip-link:focus{left:8px;top:8px;background:#000;padding:8px;z-index:9}
-header.gh{position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
-.gh .in{max-width:1080px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.gh img{height:36px;width:auto}.gh nav{display:flex;gap:18px;flex-wrap:wrap;margin-left:auto}
-.gh nav a{color:var(--fg);text-decoration:none;font-weight:500}.gh nav a:hover,.gh nav a[aria-current]{color:var(--or)}
-main{max-width:820px;margin:auto;padding:28px 20px 60px}
-.crumb{font-size:14px;color:var(--mut)}.crumb a{color:var(--mut)}
-h1,h2,h3{font-family:"Barlow Condensed",Inter,sans-serif;line-height:1.15;letter-spacing:.2px}
-h1{font-size:clamp(32px,6vw,52px);margin:.4em 0 .3em;background:linear-gradient(90deg,var(--or),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-h2{font-size:clamp(24px,4vw,34px);margin:1.7em 0 .5em;color:var(--gold)}h3{font-size:20px}
-.meta{color:var(--mut);font-size:14px}
-.take{border-left:4px solid var(--or);background:var(--card);padding:14px 18px;border-radius:0 10px 10px 0;margin:22px 0}
-.take b{color:var(--gold)}
-.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 22px;margin:22px 0}.toc ol{margin:6px 0;padding-left:20px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:14px 0}
-.cards article{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .2s,border-color .2s}
-.cards article:hover{transform:translateY(-3px);border-color:var(--or)}
-.cards img{width:100%;height:150px;object-fit:contain;background:#0e0e10;display:block}
-.cards h3{margin:10px 14px 4px;font-size:18px}.cards h3 a{color:var(--fg);text-decoration:none}.cards p{margin:0 14px 14px;font-size:14px;color:var(--mut)}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0}
-.btn{display:inline-block;padding:12px 22px;border-radius:999px;background:linear-gradient(90deg,var(--or),var(--gold));color:#111;font-weight:700;text-decoration:none}
-.btn.o{background:none;border:1px solid var(--or);color:var(--or)}
-details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:10px 0}summary{cursor:pointer;font-weight:600}
-footer.gf{border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:var(--mut);font-size:14px}.gf a{color:var(--mut)}
-.glist{list-style:none;padding:0;display:grid;gap:14px}.glist li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
-.glist a{font-family:"Barlow Condensed",sans-serif;font-size:24px;text-decoration:none}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* Guide content uses the shared theme in bundle.css. */
+.guide-main {
+  max-width: 940px;
+  margin-inline: auto;
+  padding: clamp(32px, 6vw, 72px) 20px;
+}
+
+.guide-main h1 { font-size: clamp(40px, 7vw, 76px); }
+.guide-main h2 { font-size: clamp(28px, 5vw, 42px); }
+.guide-main h3 { font-size: 24px; }
+.guide-main section { padding: 24px 0; }
+.guide-main .crumb { display: block; }
+.guide-main .meta { color: var(--mute); font-size: 14px; }
+
+.guide-main :is(.toc, .take, .glist li, .cards article, details) {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 16px 20px;
+}
+
+.guide-main .take { border-left: 3px solid var(--or); }
+.guide-main .take b { color: var(--gold); }
+.guide-main .toc { display: block; margin: 22px 0; }
+.guide-main .toc ol { margin: 6px 0 0; padding-left: 20px; }
+.guide-main :is(.toc, .meta, .glist) a { color: var(--or-lt); }
+
+.guide-main .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.guide-main .cards img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  background: var(--bg2);
+  margin-bottom: 12px;
+}
+
+.guide-main :is(.cards, .glist) p { margin: 8px 0 0; color: var(--mute); }
+.guide-main details { margin-top: 10px; }
+.guide-main summary { cursor: pointer; }
+.guide-main .cta { margin: 24px 0; }
+.guide-main .glist { list-style: none; padding: 0; display: grid; gap: 14px; }
+.guide-main .glist a {
+  font: 700 26px "Barlow Condensed", sans-serif;
+  text-decoration: none;
+}
+
+.guide-main .glist li:hover { border-color: var(--or); }
+
+html:not(.js) body[data-page="guides"] header nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline: 20px;
+}

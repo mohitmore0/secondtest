@@ -7,6 +7,8 @@ const altFor=p=>{const c=CATSING[p.category]||String(p.category||'').toLowerCase
 const page=d.body.dataset.page,q=new URLSearchParams(location.search);
 const abs=u=>/^https?:/.test(u)?u:S.url+'/'+String(u).replace(/^\//,'');
 const pUrl=p=>p.slug+'.html';
+const collections=Object.entries(S.productCollections||{}).filter(([category])=>P.some(p=>S.inCat(p,category)&&!p.noindex));
+const collectionLinks=()=>`<ul>${collections.map(([,c])=>`<li><a href="${E(c.slug)}.html">${E(c.title)}</a></li>`).join('')}</ul>`;
 const tel='tel:+'+S.whatsapp;
 d.documentElement.classList.add('js');
 
@@ -38,7 +40,7 @@ const header=`<a class="skip-link" href="#main">Skip to main content</a><header>
 const footer=`<footer><div class="wrap fcols"><div class="fc"><b>Company</b><a href="about.html">About us</a><a href="guides.html">Guides</a>${S.careersUrl?`<a href="${E(S.careersUrl)}">Careers</a>`:''}<a href="${E(S.docsUrl)}">Product documentation</a></div><div class="fc"><b>Legal</b>${S.legal.pages.map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</div><div class="fc"><b>Grievance Officer</b><span>${E(S.legal.officer.name)}</span><a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a><span>Reply in 24 hours</span></div><div class="fc"><b>Follow</b>${S.social.map(s=>`<a href="${E(s.url)}" rel="noopener">Follow on ${E(s.label)}</a>`).join('')}<a href="sitemap.xml">Site map</a></div></div><div class="wrap fbar"><span>&copy; ${S.year} ${E(S.name)}${S.company.llpin?` &middot; LLPIN ${E(S.company.llpin)}`:''}</span><address>Registered office: ${E(S.company.registeredOffice)}</address><span>Last updated: ${new Date(document.lastModified).toISOString().slice(0,10)}</span></div></footer>
 <div class="dock" id="dock"><a class="btn o" href="${tel}">Call us</a><a class="btn" href="contact.html">Get a quote</a></div>`;
 
-const card=(p,i)=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img${i<3?(i?'':' fetchpriority="high"'):' loading="lazy"'} width="320" height="240" src="${E(p.image)}" alt="${E(altFor(p))}" onerror="this.onerror=null;this.src='images/noimage.webp'"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(p.name)}</h3><p>${E(p.short)}</p></div></a>`;
+const card=(p,i,detail=false)=>`<a class="card rv" href="${pUrl(p)}">${p.status==='soon'?'<span class="tag">Coming soon</span>':''}<div class="ph"><img${i<3?(i?'':' fetchpriority="high"'):' loading="lazy"'} width="320" height="240" src="${E(p.image)}" alt="${E(altFor(p))}" onerror="this.onerror=null;this.src='images/noimage.webp'"></div><div class="b"><span class="cat">${E(p.category)}</span><h3>${E(detail?(p.heading||p.name):p.name)}</h3><p>${E(detail?(p.buyerSummary||p.short):p.short)}</p></div></a>`;
 
 /* ---------- bench to sky (har product page par) ---------- */
 const ytId=u=>{u=String(u||'').trim();const m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/|live\/)([\w-]{11})/)||u.match(/^([\w-]{11})$/);return m?m[1]:''};
@@ -107,8 +109,8 @@ home(){
   const mot=[[90,90],[310,90],[90,310],[310,310]].map(([x,y])=>`<g class="pt" data-c="ESCs"><circle cx="${x}" cy="${y}" r="12"/><g class="rot" style="transform-origin:${x}px ${y}px"><path d="M${x-48} ${y}h96M${x} ${y-48}v96"/></g></g>`).join('');
   return compose('home',{
 hero:()=>`<div class="hs" id="hs" data-ms="${+S.hero.interval||3000}" role="region" aria-roledescription="carousel" aria-label="Featured products"><h1 class="sr">${E(S.hero.title)}</h1><div class="hsw">${(S.hero.slides||[]).map((x,i)=>{const im=`<img width="1898" height="1148" src="${E(x.src)}" alt="${E(x.alt||'')}"${i?' loading="lazy"':' fetchpriority="high"'} draggable="false">`;return `<div class="hsl${i?'':' on'}" data-ms="${+x.ms||+S.hero.interval||3000}"${x.zoom?` style="--z:${+x.zoom}"`:''}${i?' aria-hidden="true"':''}>${x.href?`<a href="${E(x.href)}" tabindex="${i?-1:0}" aria-label="${E(x.alt||'Product')}">${im}</a>`:im}</div>`}).join('')}</div><button type="button" class="hnav p" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="hnav n" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><div class="hdots">${(S.hero.slides||[]).map((x,i)=>`<button type="button" class="hdot${i?'':' on'}" aria-label="Slide ${i+1}"></button>`).join('')}</div></div>`,
-tech:()=>`<section id="tech"><div class="wrap"><h2>Technology solutions</h2><p class="lead">Every part of the flight stack, from one team.</p>
-<div class="grid">${list.map(card).join('')}</div><div class="more"><a class="btn o" href="products.html">See all ${P.length} products</a></div></div></section>`,
+tech:()=>`<section id="tech"><div class="wrap"><h2>Drone electronics</h2><p class="lead">Flight controllers, AM32 ESCs, GPS modules and FPV components.</p>
+<div class="grid">${list.map((p,i)=>card(p,i)).join('')}</div><div class="more"><a class="btn o" href="products.html">See all ${P.length} products</a></div></div></section>`,
 cfg:()=>`<div id="cfg-slot"></div>`,
 process:()=>`<section class="alt"><div class="wrap"><h2>From bench to sky</h2><p class="lead">How a board gets from our desk to your drone.</p><div class="proc">${S.process.map((s,i)=>`<div class="st"><b>${i+1}</b><h3>${E(s.t)}</h3><p class="mute">${E(s.x)}</p></div>`).join('')}</div></div></section>`,
 manifesto:()=>`<section class="mfs"><div class="wrap"><p class="mf2">${words}</p></div></section>`,
@@ -120,31 +122,34 @@ products(){
   seo(`Products | ${S.name}`,`Flight controllers, ESCs, GPS modules and more from ${S.name}.`,P[0]&&P[0].image,[org,{"@context":"https://schema.org","@type":"ItemList",itemListElement:P.map((p,i)=>({"@type":"ListItem",position:i+1,url:S.url+'/'+pUrl(p),name:p.name}))}],path);
   const cats=S.categories.filter(c=>P.some(p=>S.inCat(p,c)));
   return compose('products',{
-catalog:()=>`<section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Products</h1><p class="lead">Flight controllers, ESCs, GPS and more. Tap a product for details.</p>
+catalog:()=>`<section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Drone electronics catalog</h1><p>${E(S.catalogIntro)}</p><p class="lead">${E(S.catalogBuying)} <a href="contact.html">Request a quote</a></p>
 <div class="filters" role="group" aria-label="Filter by category">${['All'].concat(cats).map(c=>`<button type="button" aria-pressed="${c==='All'}" data-c="${E(c)}">${E(c)}</button>`).join('')}</div>
-<div class="grid" id="pg"></div></div></section>`
+<div class="grid" id="pg"></div><h2 style="margin-top:32px">Browse by component</h2>${collectionLinks()}</div></section>`
 });
 },
 product(){
-  const p=P.find(x=>x.slug===(q.get('p')||d.body.dataset.slug));
+  const p=P.find(x=>x.slug===(d.body.dataset.slug||q.get('p')));
   if(!p){path='products.html';seo(`Product not found | ${S.name}`,'This product does not exist.',null,null,path);
-    return `<main id="main"><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section>${regBox(p0)}</main>`}
+    return `<main id="main"><section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Product not found</h1><p class="lead">Check the link or browse all products.</p><a class="btn" href="products.html">All products</a></div></section></main>`}
   path=pUrl(p);const imgs=[p.image].concat(p.gallery||[]).filter(Boolean);const soon=p.status==='soon';
   seo(`${p.name} | ${S.name}`,p.short||p.description,p.image,[org,{"@context":"https://schema.org","@type":"Product",name:p.name,image:imgs.map(abs),description:p.description,category:p.category,brand:{"@type":"Brand",name:S.short}}],path);
   const rel=P.filter(x=>x.slug!==p.slug&&x.category===p.category).concat(P.filter(x=>x.slug!==p.slug&&x.category!==p.category)).slice(0,4);
+  const guides=(window.PRODUCT_GUIDES||[]).filter(g=>g.products.includes(p.slug));
+  const collection=collections.find(([category])=>category===p.category)?.[1];
   return compose('product',{
-main:()=>`<section><div class="wrap"><p class="crumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${E(p.name)}</p>
+main:()=>`<section><div class="wrap"><p class="crumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${collection?`<a href="${E(collection.slug)}.html">${E(p.category)}</a> / `:''}${E(p.name)}</p>
 <div class="pd"><div><div class="main-img"><img id="mi" width="640" height="480" src="${E(imgs[0])}" alt="${E(altFor(p))}" fetchpriority="high" onerror="this.onerror=null;this.src='images/noimage.webp'"></div>
 ${imgs.length>1?`<div class="thumbs">${imgs.map((u,i)=>`<button type="button" data-i="${i}" aria-label="Photo ${i+1}"${i?'':' aria-current="true"'}><img width="80" height="60" src="${E(u)}" alt="${E(p.name)} photo ${i+1}" onerror="this.onerror=null;this.src='images/noimage.webp'"></button>`).join('')}</div>`:''}</div>
-<div><span class="cat">${E(p.category)}${soon?' &middot; Coming soon':''}</span><h1>${E(p.name)}</h1><p class="d">${E(p.description)}</p>
+<div><span class="cat">${E(p.category)}${soon?' &middot; Coming soon':''}</span><h1>${E(p.heading||p.name)}</h1><p class="d">${E(p.description)}</p>
 ${p.features&&p.features.length?`<h3>Highlights</h3><ul>${p.features.map(f=>`<li>${E(f)}</li>`).join('')}</ul>`:''}
+${p.buyerCheck?`<h3>${soon?'What to confirm before launch':'What to check before ordering'}</h3><p>${E(p.buyerCheck)}</p>`:''}
 ${p.specs&&p.specs.length?`<h3>Specifications</h3><table>${p.specs.map(s=>`<tr><td>${E(s[0])}</td><td>${E(s[1])}</td></tr>`).join('')}</table>`:''}
 ${p.docs&&p.docs.length?`<h3>Documentation</h3><div class="docs">${p.docs.map(x=>`<a href="${E(x.url)}">${E(x.label)}</a>`).join('')}</div>`:''}
 ${p.bestFor&&p.bestFor.length?`<h3>Best for</h3><div class="docs">${p.bestFor.map(x=>`<span>${E(x)}</span>`).join('')}</div>`:''}
 <div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${soon?'':`<a class="btn o" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I want a quote for '+p.name+'. Quantity: ')}">WhatsApp quote</a>`}${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div></div></div></div></section>`,
 journey:()=>jr(p),
 faq:()=>`${p.faq&&p.faq.length?`<section><div class="wrap"><h2>${E(p.name)} FAQ</h2><p class="lead"></p>${p.faq.map(f=>`<details><summary>${E(f.q)}</summary><p>${E(f.a)}</p></details>`).join('')}</div></section>`:''}`,
-related:()=>`${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map(card).join('')}</div></div></section>`:''}`,
+related:()=>`${guides.length?`<section><div class="wrap"><h2>Related guides</h2><ul>${guides.map(g=>`<li><a href="${E(g.slug)}.html">${E(g.h1)}</a></li>`).join('')}</ul></div></section>`:''}${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map((p,i)=>card(p,i)).join('')}</div></div></section>`:''}`,
 regulatory:()=>regBox(p)
 });
 },
@@ -203,7 +208,7 @@ LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
 <section><div class="wrap lg"><aside class="lg-toc" aria-label="On this page"><b>On this page</b>${L.sections.map((s,i)=>`<a href="#s${i+1}">${i+1}. ${E(s.h)}</a>`).join('')}<hr>${LG.pages.filter(x=>x!==L).map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</aside><article class="lg-body">${L.officerBlock?offHtml():''}${secHtml(L)}</article></div></section></main>`}});
 
 /* ---------- render ---------- */
-d.body.innerHTML=header+(pages[page]||pages.home)()+footer;
+d.body.innerHTML=header+(['guides','collection'].includes(page)?$('#main').outerHTML:(pages[page]||pages.home)())+footer;
 
 /* hero slider: har 3 sec (data.js: hero.interval) me auto slide. Dots, arrows, swipe, tab hidden hone par ruk jata hai */
 (()=>{const hs=$('#hs');if(!hs)return;
@@ -234,11 +239,11 @@ matchMedia('(min-width:901px)').addEventListener('change',e=>e.matches&&setMenu(
 
 /* products filter */
 const pg=$('#pg');
-if(pg){const show=c=>{const l=P.filter(p=>c==='All'||S.inCat(p,c));pg.innerHTML=l.length?l.map(card).join(''):'<div class="empty">No products in this category yet.</div>';reveal()};
+if(pg){const show=c=>{const l=P.filter(p=>c==='All'||S.inCat(p,c));pg.innerHTML=l.length?l.map((p,i)=>card(p,i,true)).join(''):'<div class="empty">No products in this category yet.</div>';reveal()};
 $$('.filters button').forEach(b=>b.onclick=()=>{$$('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));show(b.dataset.c)});show('All')}
 
 /* product gallery */
-$$('.thumbs button').forEach(b=>b.onclick=()=>{const pp=P.find(x=>x.slug===(q.get('p')||d.body.dataset.slug)),i=+b.dataset.i,u=[pp.image].concat(pp.gallery||[]);$('#mi').src=u[i];$$('.thumbs button').forEach(x=>x.toggleAttribute('aria-current',x===b))});
+$$('.thumbs button').forEach(b=>b.onclick=()=>{const pp=P.find(x=>x.slug===(d.body.dataset.slug||q.get('p'))),i=+b.dataset.i,u=[pp.image].concat(pp.gallery||[]);$('#mi').src=u[i];$$('.thumbs button').forEach(x=>x.toggleAttribute('aria-current',x===b))});
 
 /* contact form -> mailto */
 const f=$('#f');
