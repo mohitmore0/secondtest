@@ -18,7 +18,7 @@ module.exports = [
         'UARTs and ports: count the receiver, GPS, VTX, telemetry and camera ports you need. Running out of UARTs is a common build mistake.',
         'Mounting size: 20x20, 25.5x25.5 and 30.5x30.5 mm are the usual patterns. Match your frame and ESC stack.'] },
       { h: 'Match the FC with the rest of the stack', p: ['A flight controller never works alone. Check that its ESC connector voltage and current rating suit your ESC, that it has a port for your receiver protocol such as ELRS, and that GPS wiring is supported if you plan to fly long range or use return-to-home.', 'All-in-one boards combine FC and ESC in one PCB. They save weight and wiring, which suits compact builds, but a stack is easier to repair because you can replace each board separately.'] },
-      { h: 'Where to buy in India', p: ['Buying from an Indian manufacturer gives you local support, faster replacement and OEM or bulk pricing for startups and educational labs. Space and Tech Engineering designs the Aazmuth and Exelr8 flight controllers in India, and you can request a quote on WhatsApp or email.'] }
+      { h: 'Where to buy in India', p: ['Space and Tech Engineering designs Aazmuth and Exelr8 flight controllers in India. The models below link to specifications and documentation. Ask for the exact firmware target and revision, current availability, and a quote for your quantity before ordering.'] }
     ],
     faq: [
       ['Which flight controller is best for beginners?', 'A flight controller with Betaflight support, a clear pinout and good documentation is easiest to start with. Check that it has enough UARTs for your receiver and VTX.'],
@@ -79,7 +79,7 @@ module.exports = [
     h1: 'The FPV drone electronics stack explained',
     desc: 'Every part of an FPV drone stack explained: flight controller, ESC, receiver, VTX, GPS and power. A build guide for Indian pilots.',
     take: 'An FPV electronics stack has five core parts: flight controller, ESC, receiver, video transmitter and power distribution. Pick them together so voltage, protocol and size all match.',
-    products: ['aazmuth-flight-controller', 'sate-4-in-1-esc-80a', 'elrs-fpv-receiver', 'sate-aio-board'],
+    products: ['exelr8-fpv-flight-controller-f7', 'kinetik-flight-controller', 'sate-4-in-1-esc-80a', 'elrs-fpv-receiver', 'sate-aio-board', 'navsate-mini-gps', 'analog-vtx', 'digital-vtx'],
     sections: [
       { h: 'The core parts', ul: [
         'Flight controller: reads sensors and runs the flight firmware.',

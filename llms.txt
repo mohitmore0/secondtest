@@ -8,14 +8,14 @@ Key facts:
 - OEM and bulk orders: arup@spaceandtech-engineerings.com, +91 96657 17903.
 
 ## Product collections
-- [Drone Flight Controllers in India](https://www.spaceandtechengineerings.com/drone-flight-controllers.html): Compare Aazmuth, Exelr8 and other UAV and FPV flight controllers by firmware support, sensors and board layout.
+- [Indian Drone Flight Controllers for UAV & FPV](https://www.spaceandtechengineerings.com/drone-flight-controllers.html): Compare Indian-designed flight controllers for UAVs and FPV drones. See Aazmuth STM32H7 and Exelr8 F7 specs, documentation and OEM quote options.
 - [AM32 Drone ESCs for UAV and FPV Builds](https://www.spaceandtechengineerings.com/drone-escs.html): Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.
 - [GPS Modules for UAV and FPV Drones](https://www.spaceandtechengineerings.com/drone-gps-modules.html): Compare NAVSATE UAV GPS and NAVSATE Mini FPV GPS for drone builds that need position data.
 - [FPV Drone Electronics and Components](https://www.spaceandtechengineerings.com/fpv-drone-electronics.html): Browse FPV flight controllers, ESCs, GPS modules, ExpressLRS receivers and video transmitters by build requirement.
 - [5.8 GHz FPV Video Transmitters](https://www.spaceandtechengineerings.com/fpv-video-transmitters.html): Compare Space and Tech Engineering’s analog and digital 5.8 GHz FPV video transmitter product pages.
 
 ## Products
-- [Aazmuth flight controller](https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html): Modular, triple-redundant STM32 H7 flight controller with 3 IMUs and 2 barometers on isolated buses.
+- [Aazmuth flight controller](https://www.spaceandtechengineerings.com/aazmuth-flight-controller.html): Indian-designed Aazmuth STM32H7 UAV flight controller with 3 IMUs, 2 barometers and replaceable IMU boards. Request an OEM quote.
 - [Exelr8 FPV flight controller F7](https://www.spaceandtechengineerings.com/exelr8-fpv-flight-controller-f7.html): F7 flight controller for light, fast FPV racing and freestyle builds.
 - [Skydrive AM32 60A 3-6S](https://www.spaceandtechengineerings.com/skydrive-am32-60a.html): 60A AM32 ESC for 3-6S LiPo builds. Handles heavy payloads such as sprayer drones.
 - [NAVSATE GPS for UAVs](https://www.spaceandtechengineerings.com/navsate-gps-for-uavs.html): UAV-tuned GPS module, tested on long flights, for position hold and waypoint missions.

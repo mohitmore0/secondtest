@@ -160,7 +160,7 @@ ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${
     const collection = collectionFor(p.category);
     return `<main><nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="products.html">Products</a> / ${collection ? `<a href="${E(collection.slug)}.html">${E(collection.category)}</a> / ` : ''}${E(p.name)}</nav>
 <h1>${E(productHeading(p))}</h1><p>${E(p.category)}${p.status === 'soon' ? ' - coming soon' : ''}</p><img src="${E(p.image)}" alt="${E(altFor(p))}" width="640" height="480">
-<p>${E(p.description)}</p>${p.features && p.features.length ? `<h2>Highlights</h2><ul>${p.features.map(f => `<li>${E(f)}</li>`).join('')}</ul>` : ''}
+${p.buyerSummary ? `<p>${E(p.buyerSummary)}</p>` : ''}<p>${E(p.description)}</p>${p.features && p.features.length ? `<h2>Highlights</h2><ul>${p.features.map(f => `<li>${E(f)}</li>`).join('')}</ul>` : ''}
 ${p.buyerCheck ? `<h2>${p.status === 'soon' ? 'What to confirm before launch' : 'What to check before ordering'}</h2><p>${E(p.buyerCheck)}</p>` : ''}
 ${p.specs && p.specs.length ? `<h2>${E(p.name)} specifications</h2><table>${p.specs.map(s => `<tr><th scope="row">${E(s[0])}</th><td>${E(s[1])}</td></tr>`).join('')}</table>` : ''}
 ${p.docs && p.docs.length ? `<h2>Documentation</h2><ul>${p.docs.map(d => `<li><a href="${E(d.url)}">${E(d.label)}</a></li>`).join('')}</ul>` : ''}
@@ -231,10 +231,10 @@ Object.keys(pageType).forEach(k => {
 /* one static page per product */
 S.products.forEach(p => {
   const url = pUrl(p);
-  const desc = p.status === 'soon'
+  const desc = p.seoDescription || (p.status === 'soon'
     ? clip((p.short || p.description || p.name).replace(/\s*Coming soon\.?$/i, '').trim(), 126) + ' Coming soon.'
-    : clip(p.short || p.description || p.name, 140);
-  const title = productHeading(p);
+    : clip(p.short || p.description || p.name, 140));
+  const title = p.seoTitle || productHeading(p);
   const m = { file: pFile(p), title, desc, image: realImg(p), imgAlt: altFor(p) };
   if (p.noindex) m.robots = 'noindex,follow';
   if (p.status !== 'soon' && (p.specs || []).length < 3) warn.push(`THIN PRODUCT (add specs): ${p.slug}`);
