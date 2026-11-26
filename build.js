@@ -69,13 +69,13 @@ const productHeading = p => p.heading || p.name;
 
 /* ---------------- page meta ---------------- */
 const META = {
-  home: { file: 'index.html', path: '', title: 'Indian Drone Flight Controllers, ESCs & GPS | Space and Tech',
-    desc: 'Indian drone flight controllers, AM32 ESCs and UAV GPS modules by Aazmuth, Skydrive and NAVSATE. Designed in India. Get an OEM quote.', preload: true },
-  products: { file: 'products.html', path: 'products.html', title: 'Drone Electronics Catalog | Compare UAV and FPV Parts',
-    desc: 'Compare drone flight controllers, AM32 ESCs, GPS modules, ELRS receivers and FPV video transmitters. Check compatibility or request a quote.' },
+  home: { file: 'index.html', path: '', title: 'Drone Components in India | Flight Controllers, ESCs & GPS',
+    desc: 'Compare drone flight controllers, AM32 ESCs and UAV GPS modules in India. Request OEM pricing or a custom component quote from SATE.', preload: true },
+  products: { file: 'products.html', path: 'products.html', title: 'Drone Components Catalog | UAV & FPV Electronics | SATE',
+    desc: 'Compare UAV and FPV component specifications, from flight controllers and AM32 ESCs to GPS modules. Request a product or custom-spec quote.' },
   about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, India',
     desc: 'A small team of hardware and firmware engineers in India building flight controllers, ESCs and GPS for Indian drone builders.' },
-  'custom-components': { file: 'custom-components.html', path: 'custom-components.html', title: 'Custom Drone Electronics & UAV Components in India | SATE',
+  'custom-components': { file: 'custom-components.html', path: 'custom-components.html', title: 'Custom Drone Components & UAV Electronics in India | SATE',
     desc: 'Request a quote for custom drone electronics in India. Share your flight controller, ESC, GPS or other UAV component requirements with SATE.' },
   contact: { file: 'contact.html', path: 'contact.html', title: 'Contact Space and Tech Engineering | Get an OEM Quote',
     desc: `Call or WhatsApp ${S.phone} or email us for OEM and bulk quotes on drone flight controllers, AM32 ESCs and GPS modules made in India.` }
@@ -133,7 +133,7 @@ const ICON = (S.favicon ? `<link rel="icon" type="image/png" href="${S.favicon}"
 /* ---------------- static body blocks (real, crawlable content) ---------------- */
 
 S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
-const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="custom-components.html">Custom Orders</a> <a href="contact.html">Contact</a></nav></header>`;
+const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="custom-components.html">Custom Drone Components</a> <a href="contact.html">Contact</a></nav></header>`;
 const foot = `<footer><p><a href="guides.html">Guides</a></p><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><address>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</address><p>Last updated: <time datetime="${today}">${today}</time></p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${S.legal.officer.name ? E(S.legal.officer.name) + ', ' : ''}<a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p><p>Follow us: ${(S.social || []).map(s => `<a href="${E(s.url)}" rel="noopener">${E(s.label)}</a>`).join(' | ')}${S.docsUrl ? ` | <a href="${E(S.docsUrl)}" rel="noopener">Documentation</a>` : ''}</p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
 const prodCards = list => list.map((p, i) => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(altFor(p))}" width="320" height="240"${i < 3 ? (i ? '' : ' fetchpriority="high"') : ' loading="lazy"'}></a><h3><a href="${pFile(p)}">${E(productHeading(p))}</a></h3>${p.status === 'soon' ? '<p>Coming soon</p>' : ''}<p>${E(p.buyerSummary || p.short)}</p></article>`).join('');
@@ -146,7 +146,7 @@ const BODY = {
     tech: `<h2>Drone flight controllers, ESCs and GPS modules</h2>${collectionLinks()}${prodList(avail)}${soon.length ? `<h2>Coming soon</h2>${prodList(soon)}` : ''}`,
     process: `<h2>How we build</h2><ul>${S.process.map(p => `<li><b>${E(p.t)}</b>: ${E(p.x)}</li>`).join('')}</ul>`
   }) + `<h2>Where we are</h2>${officesHtml()}\n<p><a href="contact.html">Request an OEM quote</a>.</p></main>`,
-  products: () => `<main><h1>Drone electronics catalog</h1><p>${E(S.catalogIntro)}</p><p>${E(S.catalogBuying)} <a href="contact.html">Request a quote</a></p>${collectionLinks()}
+  products: () => `<main><h1>Drone electronics catalog</h1><p>${E(S.catalogIntro)}</p><p>${E(S.catalogBuying)} <a href="contact.html">Request a quote</a></p><p><a href="custom-components.html">Request custom drone components</a> if your UAV needs a different mounting pattern, pinout or electrical specification.</p>${collectionLinks()}
 ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${E(c)}</h2><div>${prodCards(S.products.filter(p => S.inCat(p, c)))}</div>`).join('')}</main>`,
   about: () => `<main><h1>${E(S.about.title)}</h1><p>${E(S.about.text)}</p>` + lay('about', {
     who: `<h2>Mission</h2><p>${E(S.about.mission)}</p><h2>Vision</h2><p>${E(S.about.vision)}</p>`,
@@ -156,8 +156,8 @@ ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${
   }) + `</main>`,
   'custom-components': () => `<main><section><div class="wrap">
 <div class="custom-order-hero"><div>
-<h1 class="cn">Custom electronics for your drone build</h1>
-<p class="lead">Order custom drone components from Space and Tech Engineering in India. We review requests for new components and changes to existing boards, from prototype quantities to OEM batches.</p>
+<h1 class="cn">Custom drone components in India</h1>
+<p class="lead">Space and Tech Engineering reviews custom drone electronics requests for prototypes and OEM batches. Tell us which UAV component you need and what must change, such as the board size, pinout or operating voltage.</p>
 <div class="cta"><a class="btn" href="contact.html?product=custom-components">Request a custom quote</a><a class="btn o" href="mailto:${E(S.email)}?subject=Custom%20component%20enquiry">Email your requirements</a></div>
 </div><figure class="custom-order-visual">
 <svg viewBox="0 0 480 360" role="img" aria-labelledby="footprint-title">
@@ -197,17 +197,24 @@ ${[210,240,270].map(x => `<circle cx="${x}" cy="64" r="4.5"/><circle cx="${x}" c
 </svg>
 <figcaption>Illustrative PCB footprint</figcaption>
 </figure></div>
-<h2>Component requests we review</h2>
-<ul>
-<li><a href="drone-flight-controllers.html">Flight controllers</a> with a different board size, mounting pattern or connector layout.</li>
-<li><a href="drone-escs.html">ESCs</a> for a specific supply voltage, motor current or installation space.</li>
-<li><a href="drone-gps-modules.html">GPS modules</a> with a particular connector or interface for your flight controller.</li>
-</ul>
-<h2>Send your requirements</h2>
-<p>Tell us what the part needs to do, which drone it goes into, how many units you need and when you need them. Include any fixed requirements, such as dimensions, pinout or firmware compatibility. If you already have a drawing or reference part number, include it with your enquiry.</p>
-<h2>What happens after you enquire?</h2>
-<p>We review your requirements and follow up if we need more details. If we can take on the order, we send a written quote with the agreed specifications, price, lead time, warranty and any minimum order quantity before you confirm.</p>
-<p>See our <a href="refund-policy.html">returns and warranty policy</a> for custom-order terms.</p>
+<section class="custom-components-types" aria-labelledby="custom-component-types">
+<h2 id="custom-component-types">Drone electronics we can review for customization</h2>
+<div class="custom-components-grid">
+<article><h3>Custom flight controllers</h3><p>Share the board footprint, mounting hole spacing, connectors and firmware compatibility your flight controller needs.</p><a href="drone-flight-controllers.html">Compare flight controllers</a></article>
+<article><h3>Custom UAV ESCs</h3><p>Tell us your battery voltage, continuous current requirement and available mounting space. Include AM32 compatibility if it matters to your build.</p><a href="drone-escs.html">Compare drone ESCs</a></article>
+<article><h3>Custom drone GPS modules</h3><p>Share the connector, pinout, mounting limits and flight controller interface you need for your GPS or GNSS module.</p><a href="drone-gps-modules.html">Compare GPS modules</a></article>
+</div>
+</section>
+<section class="custom-components-quote" aria-labelledby="custom-quote-heading">
+<h2 id="custom-quote-heading">Request an OEM drone electronics quote</h2>
+<ol>
+<li><strong>Describe the part.</strong> Include the application, required dimensions, electrical limits and interfaces. Send a drawing or reference part number if available.</li>
+<li><strong>Specify quantities and timing.</strong> Include prototype or bulk quantities and the target delivery date.</li>
+<li><strong>Review the written quote.</strong> If the request is feasible, we confirm specifications, price, lead time, warranty and any minimum order quantity before you commit.</li>
+</ol>
+<div class="cta"><a class="btn" href="contact.html?product=custom-components">Request a custom component quote</a></div>
+<p>See our <a href="refund-policy.html">returns and warranty policy</a> for custom component orders.</p>
+</section>
 </div></section></main>`,
   contact: () => `<main><h1>Contact ${E(S.name)}</h1><p>Request an OEM quote or ask about any flight controller, ESC or GPS module.</p>
 <ul><li>Phone: <a href="tel:+${E(S.whatsapp)}">${E(S.phone)}</a></li><li>WhatsApp: <a href="https://wa.me/${E(S.whatsapp)}">${E(S.phone)}</a></li><li>Email: <a href="mailto:${E(S.email)}">${E(S.email)}</a></li></ul>${officesHtml()}</main>`,
@@ -222,6 +229,7 @@ ${p.buyerCheck ? `<h2>${p.status === 'soon' ? 'What to confirm before launch' : 
 ${p.specs && p.specs.length ? `<h2>${E(p.name)} specifications</h2><table>${p.specs.map(s => `<tr><th scope="row">${E(s[0])}</th><td>${E(s[1])}</td></tr>`).join('')}</table>` : ''}
 ${p.docs && p.docs.length ? `<h2>Documentation</h2><ul>${p.docs.map(d => `<li><a href="${E(d.url)}">${E(d.label)}</a></li>`).join('')}</ul>` : ''}
 <p><a href="contact.html?product=${encodeURIComponent(p.slug)}">${p.status === 'soon' ? 'Ask about launch' : 'Get a quote'}</a>${p.buyUrl && p.status !== 'soon' ? ` | <a href="${E(p.buyUrl)}">View in store</a>` : ''}</p>
+${p.status !== 'soon' ? `<p>Need a different specification for your build? <a href="custom-components.html">Explore custom drone component orders</a>.</p>` : ''}
 ${p.bestFor && p.bestFor.length ? `<h2>Best for</h2><ul>${p.bestFor.map(a => `<li>${E(a)}</li>`).join('')}</ul>` : ''}
 ${guideLinks.some(g => g.products.includes(p.slug)) ? `<h2>Related guides</h2><ul>${guideLinks.filter(g => g.products.includes(p.slug)).map(g => `<li><a href="${E(g.slug)}.html">${E(g.h1)}</a></li>`).join('')}</ul>` : ''}
 ${p.status !== 'soon' ? `<h2>From bench to sky</h2><ol>${['design', 'bench', 'fly', 'ship'].map((k, i) => { const st = S.process[i] || {}, j = (p.journey || {})[k] || {}, id = ((String(j.video || '').match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/|live\/)([\w-]{11})/) || [])[1]); return `<li><b>${E(st.t)}.</b> ${E(j.text || st.x)}${id ? ` <a href="https://www.youtube.com/watch?v=${id}">Watch the ${E(st.t.toLowerCase())} video</a>` : ''}</li>`; }).join('')}</ol>` : ''}
@@ -288,7 +296,7 @@ S.legal.pages.forEach(L => { pageType[L.slug] = 'WebPage'; });
 Object.keys(pageType).forEach(k => {
   const m = META[k], url = U + '/' + m.path;
   const items = [org, website];
-  const crumbName = { products: 'Products', about: 'About', 'custom-components': 'Custom Orders', contact: 'Contact' }[k] || (S.legal.pages.find(L => L.slug === k) || {}).nav || k;
+  const crumbName = { products: 'Products', about: 'About', 'custom-components': 'Custom Drone Components', contact: 'Contact' }[k] || (S.legal.pages.find(L => L.slug === k) || {}).nav || k;
   const bc = k === 'home' ? [['Home', U + '/']] : [['Home', U + '/'], [crumbName, url]];
   items.push(crumbs(url, bc));
   const extra = {};
@@ -391,7 +399,7 @@ collections.forEach(c => {
 <h1>${E(c.title)}</h1><p class="lead">${E(c.description)}</p>
 <section><h2>Compare products</h2><div class="cards">${c.products.map(gCard).join('')}</div></section>
 <section><h2>What to check before you choose</h2><p>${E(c.advice)}</p>${guide ? `<p><a href="${guide.slug}.html">${E(guide.h1)}</a></p>` : ''}</section>
-<div class="cta"><a class="btn" href="contact.html">Ask about compatibility or pricing</a><a class="btn o" href="products.html">View all products</a></div>
+<div class="cta"><a class="btn" href="contact.html">Ask about compatibility or pricing</a><a class="btn o" href="products.html">View all products</a><a class="btn o" href="custom-components.html">Request custom specifications</a></div>
 </main>`;
   const listId = url + '#list';
   const ld = [org, website, crumbs(url, [['Home', U + '/'], ['Products', U + '/products.html'], [c.category, url]]),
@@ -417,7 +425,7 @@ pages.push(...collections.map(c => c.slug + '.html'));
 if (GUIDES.length) pages.push('guides.html', ...GUIDES.map(g => g.slug + '.html'));
 const indexedProducts = S.products.filter(p => !p.noindex);
 const sitemapEntry = (url, image) => `  <url><loc>${E(url)}</loc>${image ? `<image:image><image:loc>${E(abs(image))}</image:loc></image:image>` : ''}</url>`;
-w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
+if (!process.argv.includes('--skip-sitemap')) w('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
   pages.map(p => sitemapEntry(U + '/' + p)).concat(indexedProducts.map(p => sitemapEntry(pUrl(p), realImg(p)))).join('\n') + `\n</urlset>\n`);
 
 /* ---------------- robots.txt (search + AI crawlers allowed) ---------------- */
@@ -432,11 +440,11 @@ const allFaq = S.faq.map(f => [f.q, f.a]);
 w('llms.txt', `# ${S.name}\n\n> ${S.tagline}. ${intro}\n\nKey facts:\n- Offices: India (registered office and product development centre).\n- Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.\n- OEM and bulk orders: ${S.email}, ${S.phone}.\n\n## Product collections\n` +
   collections.map(c => `- [${c.title}](${U}/${c.slug}.html): ${c.description}`).join('\n') + '\n\n## Products\n' +
   avail.map(p => `- [${p.name}](${pUrl(p)}): ${p.short}`).join('\n') + (soon.length ? `\n\n## Coming soon\n` + soon.map(p => `- ${p.name}`).join('\n') : '') +
-  `\n\n## Guides\n` + GUIDES.map(g => `- [${g.h1}](${gUrl(g)}): ${g.desc}`).join('\n') + `\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [Custom component orders](${U}/custom-components.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
+  `\n\n## Guides\n` + GUIDES.map(g => `- [${g.h1}](${gUrl(g)}): ${g.desc}`).join('\n') + `\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [Custom Drone Components](${U}/custom-components.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
 w('llms-full.txt', `# ${S.name}\n\n> ${S.tagline}\n\n${intro}\n\n${S.about.text}\n\n` +
   S.products.map(p => `## ${p.name}\nCategory: ${p.category}\nStatus: ${p.status === 'soon' ? 'Coming soon' : 'Available'}\nURL: ${pUrl(p)}\n\n${p.description}\n` +
     (p.features.length ? `\nHighlights:\n${p.features.map(f => '- ' + f).join('\n')}\n` : '') + (p.specs.length ? `\nSpecifications:\n${p.specs.map(s => `- ${s[0]}: ${s[1]}`).join('\n')}\n` : '') + (p.docs.length ? `\nDocs:\n${p.docs.map(d => `- ${d.label}: ${d.url}`).join('\n')}\n` : '')).join('\n') +
   `\n\n## Frequently asked questions\n` + allFaq.map(f => `Q: ${f[0]}\nA: ${f[1]}\n`).join('\n') + `\n## Contact\nPhone: ${S.phone}\nEmail: ${S.email}\n` + S.about.offices.map(o => `${o.role}: ${o.address}`).join('\n') + '\n');
 
 if (warn.length) console.log('WARNINGS:\n' + warn.join('\n'));
-console.log(`Done: sitemap.xml (${pages.length + indexedProducts.length} URLs), robots.txt, llms.txt, llms-full.txt`);
+console.log(`Done: robots.txt, llms.txt, llms-full.txt${process.argv.includes('--skip-sitemap') ? ' (sitemap retained)' : ', sitemap.xml (' + (pages.length + indexedProducts.length) + ' URLs)'}`);

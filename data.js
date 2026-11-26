@@ -67,7 +67,7 @@ window.SITE = {
   productCollections: {
     "Flight controllers": {
       slug: "drone-flight-controllers", title: "Indian Drone Flight Controllers for UAV & FPV",
-      description: "Compare Indian-designed flight controllers for UAVs and FPV drones. See Aazmuth STM32H7 and Exelr8 F7 specs, documentation and OEM quote options.",
+      description: "Compare Aazmuth STM32H7 and Exelr8 F7 flight controllers for UAV and FPV builds. Check specifications, documentation and OEM quote options.",
       advice: "For a survey or agriculture UAV, start with Aazmuth if you need three IMUs, two barometers and replaceable IMU boards. For a 3S to 6S FPV quad, compare Exelr8 F7 if you need onboard OSD. Check the exact firmware target, frame clearance and GPS, receiver and ESC connections before ordering. For an OEM quote, share your aircraft type, firmware requirements and quantity.",
       guide: "guide-flight-controller-india"
     },

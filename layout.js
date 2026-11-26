@@ -23,10 +23,10 @@ window.LAYOUT = {
   /* ---------------- HOME (index.html) ---------------- */
   home: [
     'hero',        // full screen image slider
-    { type: 'text', id: 'custom-components', title: 'Custom drone electronics for prototypes and OEM orders',
-      text: 'Need a flight controller, ESC, GPS module or another UAV component adapted to your build? Share your specifications, quantity and target delivery date for a feasibility review.',
-      btn: { label: 'Request custom drone components', href: 'custom-components.html' } },
     'tech',        // "Technology solutions" product cards
+    { type: 'text', id: 'custom-components', title: 'Custom drone components in India',
+      text: 'Need a custom flight controller, ESC or GPS module? Send your mounting, voltage or connector requirements for a prototype or OEM batch.',
+      btn: { label: 'Explore Custom Drone Components', href: 'custom-components.html' } },
 
     // --- SEO content blocks (visible to visitors and present in the static HTML). Facts come from data.js only. ---
     { type: 'text', id: 'about-company', title: 'Indian drone electronics, designed in India',

@@ -68,7 +68,7 @@ window.SITE = {
   productCollections: {
     "Flight controllers": {
       slug: "drone-flight-controllers", title: "Indian Drone Flight Controllers for UAV & FPV",
-      description: "Compare Indian-designed flight controllers for UAVs and FPV drones. See Aazmuth STM32H7 and Exelr8 F7 specs, documentation and OEM quote options.",
+      description: "Compare Aazmuth STM32H7 and Exelr8 F7 flight controllers for UAV and FPV builds. Check specifications, documentation and OEM quote options.",
       advice: "For a survey or agriculture UAV, start with Aazmuth if you need three IMUs, two barometers and replaceable IMU boards. For a 3S to 6S FPV quad, compare Exelr8 F7 if you need onboard OSD. Check the exact firmware target, frame clearance and GPS, receiver and ESC connections before ordering. For an OEM quote, share your aircraft type, firmware requirements and quantity.",
       guide: "guide-flight-controller-india"
     },
@@ -765,10 +765,10 @@ window.LAYOUT = {
   /* ---------------- HOME (index.html) ---------------- */
   home: [
     'hero',        // full screen image slider
-    { type: 'text', id: 'custom-components', title: 'Custom drone electronics for prototypes and OEM orders',
-      text: 'Need a flight controller, ESC, GPS module or another UAV component adapted to your build? Share your specifications, quantity and target delivery date for a feasibility review.',
-      btn: { label: 'Request custom drone components', href: 'custom-components.html' } },
     'tech',        // "Technology solutions" product cards
+    { type: 'text', id: 'custom-components', title: 'Custom drone components in India',
+      text: 'Need a custom flight controller, ESC or GPS module? Send your mounting, voltage or connector requirements for a prototype or OEM batch.',
+      btn: { label: 'Explore Custom Drone Components', href: 'custom-components.html' } },
 
     // --- SEO content blocks (visible to visitors and present in the static HTML). Facts come from data.js only. ---
     { type: 'text', id: 'about-company', title: 'Indian drone electronics, designed in India',
@@ -913,7 +913,7 @@ let path='';
 const org={"@context":"https://schema.org","@type":"Organization",name:S.name,url:S.url,logo:abs(S.logo||S.hero.image),email:S.email,telephone:'+'+S.whatsapp,sameAs:S.social.map(s=>s.url)};
 
 /* ---------- shared parts ---------- */
-const links=[['Products','products.html','products'],['Custom Orders','custom-components.html','custom-components'],['Documentation',S.docsUrl,''],['About','about.html','about'],['Contact','contact.html','contact']];
+const links=[['Products','products.html','products'],['Custom Drone Components','custom-components.html','custom-components'],['Documentation',S.docsUrl,''],['About','about.html','about'],['Contact','contact.html','contact']];
 const cur=l=>(l[2]&&(page===l[2]||(l[2]==='products'&&page==='product')))?' aria-current="page"':'';
 const header=`<a class="skip-link" href="#main">Skip to main content</a><header><div class="wrap nav"><a class="logo" href="/">${S.logo?`<img class="lgi" width="866" height="288" src="${E(S.logo)}" alt="${E(S.short)} logo">`:`<span class="lt">${E(S.short)}<small>${E(S.tagline)}</small></span>`}</a>
 <nav aria-label="Main">${links.map(l=>`<a href="${E(l[1])}"${cur(l)}>${l[0]}</a>`).join('')}</nav>
@@ -1005,7 +1005,7 @@ products(){
   seo(`Products | ${S.name}`,`Flight controllers, ESCs, GPS modules and more from ${S.name}.`,P[0]&&P[0].image,[org,{"@context":"https://schema.org","@type":"ItemList",itemListElement:P.map((p,i)=>({"@type":"ListItem",position:i+1,url:S.url+'/'+pUrl(p),name:p.name}))}],path);
   const cats=S.categories.filter(c=>P.some(p=>S.inCat(p,c)));
   return compose('products',{
-catalog:()=>`<section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Drone electronics catalog</h1><p>${E(S.catalogIntro)}</p><p class="lead">${E(S.catalogBuying)} <a href="contact.html">Request a quote</a></p>
+catalog:()=>`<section><div class="wrap"><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Drone electronics catalog</h1><p>${E(S.catalogIntro)}</p><p class="lead">${E(S.catalogBuying)} <a href="contact.html">Request a quote</a></p><p><a href="custom-components.html">Request custom drone components</a> if your UAV needs a different mounting pattern, pinout or electrical specification.</p>
 <div class="filters" role="group" aria-label="Filter by category">${['All'].concat(cats).map(c=>`<button type="button" aria-pressed="${c==='All'}" data-c="${E(c)}">${E(c)}</button>`).join('')}</div>
 <div class="grid" id="pg"></div><h2 style="margin-top:32px">Browse by component</h2>${collectionLinks()}</div></section>`
 });
@@ -1026,10 +1026,10 @@ ${imgs.length>1?`<div class="thumbs">${imgs.map((u,i)=>`<button type="button" da
 <div><span class="cat">${E(p.category)}${soon?' &middot; Coming soon':''}</span><h1>${E(p.heading||p.name)}</h1><p class="d">${E(p.description)}</p>
 ${p.features&&p.features.length?`<h3>Highlights</h3><ul>${p.features.map(f=>`<li>${E(f)}</li>`).join('')}</ul>`:''}
 ${p.buyerCheck?`<h3>${soon?'What to confirm before launch':'What to check before ordering'}</h3><p>${E(p.buyerCheck)}</p>`:''}
-${p.specs&&p.specs.length?`<h3>Specifications</h3><table>${p.specs.map(s=>`<tr><td>${E(s[0])}</td><td>${E(s[1])}</td></tr>`).join('')}</table>`:''}
+${p.specs&&p.specs.length?`<h3>Specifications</h3><table>${p.specs.map(s=>`<tr><th scope="row">${E(s[0])}</th><td>${E(s[1])}</td></tr>`).join('')}</table>`:''}
 ${p.docs&&p.docs.length?`<h3>Documentation</h3><div class="docs">${p.docs.map(x=>`<a href="${E(x.url)}">${E(x.label)}</a>`).join('')}</div>`:''}
 ${p.bestFor&&p.bestFor.length?`<h3>Best for</h3><div class="docs">${p.bestFor.map(x=>`<span>${E(x)}</span>`).join('')}</div>`:''}
-<div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${soon?'':`<a class="btn o" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I want a quote for '+p.name+'. Quantity: ')}">WhatsApp quote</a>`}${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div></div></div></div></section>`,
+<div class="cta"><a class="btn" href="contact.html?product=${encodeURIComponent(p.slug)}">${soon?'Ask about launch':'Get a quote'}</a>${soon?'':`<a class="btn o" href="https://wa.me/${E(S.whatsapp)}?text=${encodeURIComponent('Hi, I want a quote for '+p.name+'. Quantity: ')}">WhatsApp quote</a>`}${p.buyUrl&&!soon?`<a class="btn o" href="${E(p.buyUrl)}">View in store</a>`:''}</div>${!soon?`<p>Need a different specification for your build? <a href="custom-components.html">Explore custom drone component orders</a>.</p>`:''}</div></div></div></section>`,
 journey:()=>jr(p),
 faq:()=>`${p.faq&&p.faq.length?`<section><div class="wrap"><h2>${E(p.name)} FAQ</h2><p class="lead"></p>${p.faq.map(f=>`<details><summary>${E(f.q)}</summary><p>${E(f.a)}</p></details>`).join('')}</div></section>`:''}`,
 related:()=>`${guides.length?`<section><div class="wrap"><h2>Related guides</h2><ul>${guides.map(g=>`<li><a href="${E(g.slug)}.html">${E(g.h1)}</a></li>`).join('')}</ul></div></section>`:''}${rel.length?`<section class="alt"><div class="wrap"><h2>More products</h2><p class="lead"></p><div class="grid">${rel.map((p,i)=>card(p,i)).join('')}</div></div></section>`:''}`,
