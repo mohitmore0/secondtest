@@ -765,6 +765,9 @@ window.LAYOUT = {
   /* ---------------- HOME (index.html) ---------------- */
   home: [
     'hero',        // full screen image slider
+    { type: 'text', id: 'custom-components', title: 'Custom drone electronics for prototypes and OEM orders',
+      text: 'Need a flight controller, ESC, GPS module or another UAV component adapted to your build? Share your specifications, quantity and target delivery date for a feasibility review.',
+      btn: { label: 'Request custom drone components', href: 'custom-components.html' } },
     'tech',        // "Technology solutions" product cards
 
     // --- SEO content blocks (visible to visitors and present in the static HTML). Facts come from data.js only. ---
@@ -910,7 +913,7 @@ let path='';
 const org={"@context":"https://schema.org","@type":"Organization",name:S.name,url:S.url,logo:abs(S.logo||S.hero.image),email:S.email,telephone:'+'+S.whatsapp,sameAs:S.social.map(s=>s.url)};
 
 /* ---------- shared parts ---------- */
-const links=[['Products','products.html','products'],['Documentation',S.docsUrl,''],['About','about.html','about'],['Contact','contact.html','contact']];
+const links=[['Products','products.html','products'],['Custom Orders','custom-components.html','custom-components'],['Documentation',S.docsUrl,''],['About','about.html','about'],['Contact','contact.html','contact']];
 const cur=l=>(l[2]&&(page===l[2]||(l[2]==='products'&&page==='product')))?' aria-current="page"':'';
 const header=`<a class="skip-link" href="#main">Skip to main content</a><header><div class="wrap nav"><a class="logo" href="/">${S.logo?`<img class="lgi" width="866" height="288" src="${E(S.logo)}" alt="${E(S.short)} logo">`:`<span class="lt">${E(S.short)}<small>${E(S.tagline)}</small></span>`}</a>
 <nav aria-label="Main">${links.map(l=>`<a href="${E(l[1])}"${cur(l)}>${l[0]}</a>`).join('')}</nav>
@@ -1071,8 +1074,8 @@ form:()=>`<section><div class="wrap contact"><div><h1 class="cn" style="font-siz
 <a class="big" href="${tel}">${E(S.phone)}</a><a class="big" href="mailto:${E(S.email)}">${E(S.email)}</a><a class="big" href="https://wa.me/${E(S.whatsapp)}">WhatsApp</a>
 <div style="margin-top:26px">${S.about.offices.map(o=>`<div class="off" style="margin-bottom:12px"><h3 style="font-size:26px">${E(o.role)}</h3><p>${E(o.address)}</p></div>`).join('')}</div></div>
 <form id="f"><label>Your name<input name="n" required autocomplete="name" maxlength="80"></label><label>Phone<input name="p" type="tel" required autocomplete="tel" inputmode="tel" pattern="[0-9+ ()\-]{8,18}" maxlength="18" title="Enter a valid phone number"></label>
-<label>Product<select name="s"><option value="">Not sure yet</option>${P.map(p=>`<option value="${E(p.name)}"${p.slug===sel?' selected':''}>${E(p.name)}</option>`).join('')}</select></label>
-<label>Message<textarea name="m" maxlength="1500" placeholder="Tell us about your build and quantity"></textarea></label><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div><label class="chk"><input type="checkbox" name="ok" required> <span>I have read the <a href="privacy.html">Privacy Policy</a> and agree that Space and Tech Engineering LLP may use these details to reply to my enquiry.</span></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p id="fs" role="status" aria-live="polite" class="mute" style="font-size:14px;margin:0"></p><p class="mute" style="font-size:13px;margin:0">Nothing is stored on our website. This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section>`
+<label>Product<select name="s"><option value="">Not sure yet</option><option value="Custom component order"${sel==='custom-components'?' selected':''}>Custom component order</option>${P.map(p=>`<option value="${E(p.name)}"${p.slug===sel?' selected':''}>${E(p.name)}</option>`).join('')}</select></label>
+<label>Message<textarea name="m" maxlength="1500" placeholder="${sel==='custom-components'?'Describe the component, specifications, quantity and target delivery date':'Tell us about your build and quantity'}"></textarea></label><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div><label class="chk"><input type="checkbox" name="ok" required> <span>I have read the <a href="privacy.html">Privacy Policy</a> and agree that Space and Tech Engineering LLP may use these details to reply to my enquiry.</span></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p id="fs" role="status" aria-live="polite" class="mute" style="font-size:14px;margin:0"></p><p class="mute" style="font-size:13px;margin:0">Nothing is stored on our website. This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section>`
 });
 }};
 
@@ -1088,7 +1091,7 @@ LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
 <section><div class="wrap lg"><aside class="lg-toc" aria-label="On this page"><b>On this page</b>${L.sections.map((s,i)=>`<a href="#s${i+1}">${i+1}. ${E(s.h)}</a>`).join('')}<hr>${LG.pages.filter(x=>x!==L).map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</aside><article class="lg-body">${L.officerBlock?offHtml():''}${secHtml(L)}</article></div></section></main>`}});
 
 /* ---------- render ---------- */
-d.body.innerHTML=header+(['guides','collection'].includes(page)?$('#main').outerHTML:(pages[page]||pages.home)())+footer;
+d.body.innerHTML=header+(['guides','collection','custom-components'].includes(page)?$('#main').outerHTML:(pages[page]||pages.home)())+footer;
 
 /* hero slider: har 3 sec (data.js: hero.interval) me auto slide. Dots, arrows, swipe, tab hidden hone par ruk jata hai */
 (()=>{const hs=$('#hs');if(!hs)return;

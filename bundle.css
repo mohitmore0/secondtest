@@ -439,6 +439,77 @@ footer .fbar{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);d
 .yt:hover button{background:#fff;color:#0a0a0b}.yt button svg{width:32px;height:32px;fill:currentColor;margin-left:4px}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:820px){.jr .jst{grid-template-columns:1fr}}
+/* Custom orders footprint illustration */
+[data-page="custom-components"] main h1 {
+  font-size: clamp(25.6px, 4.48vw, 46.08px);
+}
+[data-page="custom-components"] main h2 {
+  font-size: clamp(21.76px, 3.2vw, 37.12px);
+}
+.custom-order-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+  margin-bottom: 40px;
+}
+.custom-order-visual {
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at center, #372717, #151311 72%);
+  color: #e6dbce;
+}
+.custom-order-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+.footprint-traces path {
+  stroke: #e5a85e;
+}
+.footprint-sweep {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .footprint-traces path {
+    animation: footprint-route 1.65s ease-out both;
+  }
+  .footprint-traces path:nth-child(even) {
+    animation-delay: 0.25s;
+  }
+  .footprint-core {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: footprint-chip 1.2s 1.5s ease-out both;
+  }
+  .footprint-sweep {
+    animation: footprint-scan 2.65s 1.45s ease-in-out both;
+  }
+}
+@keyframes footprint-route {
+  from { stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0.35; }
+  to { stroke-dasharray: 100; stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes footprint-chip {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.05); filter: drop-shadow(0 0 11px #ffb864); }
+}
+@keyframes footprint-scan {
+  0% { transform: translateY(0); opacity: 0; }
+  15%, 78% { opacity: 1; }
+  100% { transform: translateY(304px); opacity: 0; }
+}
+.custom-order-visual figcaption {
+  margin-top: 14px;
+  font-size: 0.875rem;
+}
+@media (max-width: 700px) {
+  .custom-order-hero { grid-template-columns: 1fr; }
+}
+
 /* FX2 - advanced layer: boot intro, cursor, hero drone, scroll-exploded anatomy, flying companion */
 #bt2{position:fixed;inset:0;z-index:999;background:#0a0a0b;display:grid;place-items:center;transition:transform 1s cubic-bezier(.8,0,.2,1)}
 #bt2.go{transform:translateY(-100%)}

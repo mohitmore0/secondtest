@@ -45,6 +45,7 @@ Key facts:
 ## Company
 - [Home](https://www.spaceandtechengineerings.com/)
 - [All products](https://www.spaceandtechengineerings.com/products.html)
+- [Custom component orders](https://www.spaceandtechengineerings.com/custom-components.html)
 - [About](https://www.spaceandtechengineerings.com/about.html)
 - [Contact](https://www.spaceandtechengineerings.com/contact.html)
 - [Terms and Conditions](https://www.spaceandtechengineerings.com/terms.html)

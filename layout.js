@@ -23,6 +23,9 @@ window.LAYOUT = {
   /* ---------------- HOME (index.html) ---------------- */
   home: [
     'hero',        // full screen image slider
+    { type: 'text', id: 'custom-components', title: 'Custom drone electronics for prototypes and OEM orders',
+      text: 'Need a flight controller, ESC, GPS module or another UAV component adapted to your build? Share your specifications, quantity and target delivery date for a feasibility review.',
+      btn: { label: 'Request custom drone components', href: 'custom-components.html' } },
     'tech',        // "Technology solutions" product cards
 
     // --- SEO content blocks (visible to visitors and present in the static HTML). Facts come from data.js only. ---

@@ -75,6 +75,8 @@ const META = {
     desc: 'Compare drone flight controllers, AM32 ESCs, GPS modules, ELRS receivers and FPV video transmitters. Check compatibility or request a quote.' },
   about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, India',
     desc: 'A small team of hardware and firmware engineers in India building flight controllers, ESCs and GPS for Indian drone builders.' },
+  'custom-components': { file: 'custom-components.html', path: 'custom-components.html', title: 'Custom Drone Electronics & UAV Components in India | SATE',
+    desc: 'Request a quote for custom drone electronics in India. Share your flight controller, ESC, GPS or other UAV component requirements with SATE.' },
   contact: { file: 'contact.html', path: 'contact.html', title: 'Contact Space and Tech Engineering | Get an OEM Quote',
     desc: `Call or WhatsApp ${S.phone} or email us for OEM and bulk quotes on drone flight controllers, AM32 ESCs and GPS modules made in India.` }
 };
@@ -131,7 +133,7 @@ const ICON = (S.favicon ? `<link rel="icon" type="image/png" href="${S.favicon}"
 /* ---------------- static body blocks (real, crawlable content) ---------------- */
 
 S.legal.pages.forEach(L => { META[L.slug] = { file: L.slug + '.html', path: L.slug + '.html', title: L.nav + ' | Space and Tech', desc: L.desc }; });
-const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></header>`;
+const nav = `<header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="custom-components.html">Custom Orders</a> <a href="contact.html">Contact</a></nav></header>`;
 const foot = `<footer><p><a href="guides.html">Guides</a></p><p>&copy; ${S.year} ${E(S.name)}. ${E(S.tagline)}. ${E(S.phone)} | <a href="mailto:${E(S.email)}">${E(S.email)}</a></p><address>${E(S.company.llpName)}${S.company.llpin ? ', LLPIN ' + E(S.company.llpin) : ''}. Registered office: ${E(S.company.registeredOffice)}</address><p>Last updated: <time datetime="${today}">${today}</time></p><p>${S.legal.pages.map(L => `<a href="${L.slug}.html">${E(L.nav)}</a>`).join(' | ')} | Grievance Officer: ${S.legal.officer.name ? E(S.legal.officer.name) + ', ' : ''}<a href="mailto:${E(S.legal.officer.email)}">${E(S.legal.officer.email)}</a></p><p>Follow us: ${(S.social || []).map(s => `<a href="${E(s.url)}" rel="noopener">${E(s.label)}</a>`).join(' | ')}${S.docsUrl ? ` | <a href="${E(S.docsUrl)}" rel="noopener">Documentation</a>` : ''}</p></footer>`;
 const prodList = list => `<ul>${list.map(p => `<li><a href="${pFile(p)}">${E(p.name)}</a>: ${E(p.short)}${p.status === 'soon' ? ' (coming soon)' : ''}</li>`).join('')}</ul>`;
 const prodCards = list => list.map((p, i) => `<article><a href="${pFile(p)}"><img src="${E(p.image)}" alt="${E(altFor(p))}" width="320" height="240"${i < 3 ? (i ? '' : ' fetchpriority="high"') : ' loading="lazy"'}></a><h3><a href="${pFile(p)}">${E(productHeading(p))}</a></h3>${p.status === 'soon' ? '<p>Coming soon</p>' : ''}<p>${E(p.buyerSummary || p.short)}</p></article>`).join('');
@@ -152,6 +154,61 @@ ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${
     values: `<h2>How we work</h2><ul>${S.about.values.map(v => `<li><b>${E(v.title)}.</b> ${E(v.text)}</li>`).join('')}</ul>`,
     find: `<h2>Offices</h2>${officesHtml()}`
   }) + `</main>`,
+  'custom-components': () => `<main><section><div class="wrap">
+<div class="custom-order-hero"><div>
+<h1 class="cn">Custom electronics for your drone build</h1>
+<p class="lead">Order custom drone components from Space and Tech Engineering in India. We review requests for new components and changes to existing boards, from prototype quantities to OEM batches.</p>
+<div class="cta"><a class="btn" href="contact.html?product=custom-components">Request a custom quote</a><a class="btn o" href="mailto:${E(S.email)}?subject=Custom%20component%20enquiry">Email your requirements</a></div>
+</div><figure class="custom-order-visual">
+<svg viewBox="0 0 480 360" role="img" aria-labelledby="footprint-title">
+<title id="footprint-title">Illustrative PCB footprint with a central chip, solder pads and routed traces</title>
+<defs>
+  <pattern id="footprint-grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="#66513a" stroke-opacity=".26"/></pattern>
+  <linearGradient id="footprint-board" x2="1" y2="1"><stop stop-color="#282119"/><stop offset="1" stop-color="#161411"/></linearGradient>
+  <linearGradient id="footprint-scan" x2="0" y2="1"><stop stop-color="#ffc775" stop-opacity="0"/><stop offset="1" stop-color="#ffc775" stop-opacity=".48"/></linearGradient>
+  <clipPath id="footprint-outline"><rect x="76" y="36" width="328" height="288" rx="22"/></clipPath>
+</defs>
+<rect width="480" height="360" fill="url(#footprint-grid)"/>
+<rect x="76" y="36" width="328" height="288" rx="22" fill="url(#footprint-board)" stroke="#9b7549" stroke-width="2"/>
+<rect x="87" y="47" width="306" height="266" rx="16" fill="none" stroke="#a47a49" stroke-opacity=".45" stroke-dasharray="4 6"/>
+<g fill="#141210" stroke="#b58a56" stroke-width="2">
+  <circle cx="107" cy="67" r="8"/><circle cx="373" cy="67" r="8"/><circle cx="107" cy="293" r="8"/><circle cx="373" cy="293" r="8"/>
+</g>
+<g class="footprint-traces" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5">
+${[
+  'M126 116h42l23 23h16', 'M126 141h37l22 22h22', 'M126 180h81', 'M126 219h37l22-22h22', 'M126 244h42l23-23h16',
+  'M354 116h-42l-23 23h-16', 'M354 141h-37l-22 22h-22', 'M354 180h-81', 'M354 219h-37l-22-22h-22', 'M354 244h-42l-23-23h-16',
+  'M223 133V92l-13-13V64', 'M240 133V64', 'M257 133V92l13-13V64', 'M223 227v41l-13 13v15', 'M240 227v69', 'M257 227v41l13 13v15'
+].map(path => `<path d="${path}" pathLength="100"/>`).join('')}
+</g>
+<g fill="#e5a85e" stroke="#ffce8d" stroke-width="1">
+${[116,141,180,219,244].map(y => `<rect x="114" y="${y-4}" width="17" height="8" rx="2"/><rect x="349" y="${y-4}" width="17" height="8" rx="2"/>`).join('')}
+${[210,240,270].map(x => `<circle cx="${x}" cy="64" r="4.5"/><circle cx="${x}" cy="296" r="4.5"/>`).join('')}
+</g>
+<g class="footprint-core">
+  <rect x="196" y="128" width="88" height="104" rx="7" fill="#1c1814" stroke="#ffbf71" stroke-width="2"/>
+  <rect x="207" y="139" width="66" height="82" rx="4" fill="#362719" stroke="#9e7140"/>
+  <path d="M222 180h8l6-13 8 26 6-13h8" fill="none" stroke="#ffca83" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="216" cy="149" r="2.5" fill="#ffca83"/>
+</g>
+<g clip-path="url(#footprint-outline)">
+  <g class="footprint-sweep"><rect x="76" y="-13" width="328" height="48" fill="url(#footprint-scan)"/><path d="M76 35h328" stroke="#ffda9e" stroke-width="2"/></g>
+</g>
+</svg>
+<figcaption>Illustrative PCB footprint</figcaption>
+</figure></div>
+<h2>Component requests we review</h2>
+<ul>
+<li><a href="drone-flight-controllers.html">Flight controllers</a> with a different board size, mounting pattern or connector layout.</li>
+<li><a href="drone-escs.html">ESCs</a> for a specific supply voltage, motor current or installation space.</li>
+<li><a href="drone-gps-modules.html">GPS modules</a> with a particular connector or interface for your flight controller.</li>
+</ul>
+<h2>Send your requirements</h2>
+<p>Tell us what the part needs to do, which drone it goes into, how many units you need and when you need them. Include any fixed requirements, such as dimensions, pinout or firmware compatibility. If you already have a drawing or reference part number, include it with your enquiry.</p>
+<h2>What happens after you enquire?</h2>
+<p>We review your requirements and follow up if we need more details. If we can take on the order, we send a written quote with the agreed specifications, price, lead time, warranty and any minimum order quantity before you confirm.</p>
+<p>See our <a href="refund-policy.html">returns and warranty policy</a> for custom-order terms.</p>
+</div></section></main>`,
   contact: () => `<main><h1>Contact ${E(S.name)}</h1><p>Request an OEM quote or ask about any flight controller, ESC or GPS module.</p>
 <ul><li>Phone: <a href="tel:+${E(S.whatsapp)}">${E(S.phone)}</a></li><li>WhatsApp: <a href="https://wa.me/${E(S.whatsapp)}">${E(S.phone)}</a></li><li>Email: <a href="mailto:${E(S.email)}">${E(S.email)}</a></li></ul>${officesHtml()}</main>`,
   ...Object.fromEntries(S.legal.pages.map(L => [L.slug, () => `<main><h1>${E(L.title)}</h1><p>${E(L.intro)}</p><p>Effective: ${E(S.legal.effective)}. Last updated: ${E(S.legal.updated)}.</p>${L.officerBlock ? offTxt() : ''}${L.sections.map((s, i) => `<h2>${i + 1}. ${E(s.h)}</h2>${(s.p || []).map(t => `<p>${E(t)}</p>`).join('')}${s.ul ? `<ul>${s.ul.map(t => `<li>${E(t)}</li>`).join('')}</ul>` : ''}`).join('')}</main>`])),
@@ -203,12 +260,12 @@ ${SCRIPTS}
 }
 
 /* ---------------- generate pages ---------------- */
-const pageType = { home: 'WebPage', products: 'CollectionPage', about: 'AboutPage', contact: 'ContactPage' };
+const pageType = { home: 'WebPage', products: 'CollectionPage', about: 'AboutPage', 'custom-components': 'WebPage', contact: 'ContactPage' };
 S.legal.pages.forEach(L => { pageType[L.slug] = 'WebPage'; });
 Object.keys(pageType).forEach(k => {
   const m = META[k], url = U + '/' + m.path;
   const items = [org, website];
-  const crumbName = { products: 'Products', about: 'About', contact: 'Contact' }[k] || (S.legal.pages.find(L => L.slug === k) || {}).nav || k;
+  const crumbName = { products: 'Products', about: 'About', 'custom-components': 'Custom Orders', contact: 'Contact' }[k] || (S.legal.pages.find(L => L.slug === k) || {}).nav || k;
   const bc = k === 'home' ? [['Home', U + '/']] : [['Home', U + '/'], [crumbName, url]];
   items.push(crumbs(url, bc));
   const extra = {};
@@ -351,7 +408,7 @@ const allFaq = S.faq.map(f => [f.q, f.a]);
 w('llms.txt', `# ${S.name}\n\n> ${S.tagline}. ${intro}\n\nKey facts:\n- Offices: India (registered office and product development centre).\n- Use cases: agriculture, survey and mapping, defence and industrial, FPV racing, education, startups.\n- OEM and bulk orders: ${S.email}, ${S.phone}.\n\n## Product collections\n` +
   collections.map(c => `- [${c.title}](${U}/${c.slug}.html): ${c.description}`).join('\n') + '\n\n## Products\n' +
   avail.map(p => `- [${p.name}](${pUrl(p)}): ${p.short}`).join('\n') + (soon.length ? `\n\n## Coming soon\n` + soon.map(p => `- ${p.name}`).join('\n') : '') +
-  `\n\n## Guides\n` + GUIDES.map(g => `- [${g.h1}](${gUrl(g)}): ${g.desc}`).join('\n') + `\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
+  `\n\n## Guides\n` + GUIDES.map(g => `- [${g.h1}](${gUrl(g)}): ${g.desc}`).join('\n') + `\n- [Documentation, pinouts and calibration](${S.docsUrl})\n\n## Company\n- [Home](${U}/)\n- [All products](${U}/products.html)\n- [Custom component orders](${U}/custom-components.html)\n- [About](${U}/about.html)\n- [Contact](${U}/contact.html)\n${S.legal.pages.map(L => `- [${L.nav}](${U}/${L.slug}.html)\n`).join('')}\n## Contact\n- Phone / WhatsApp: ${S.phone}\n- Email: ${S.email}\n` + S.about.offices.map(o => `- ${o.role}: ${o.address}`).join('\n') + '\n');
 w('llms-full.txt', `# ${S.name}\n\n> ${S.tagline}\n\n${intro}\n\n${S.about.text}\n\n` +
   S.products.map(p => `## ${p.name}\nCategory: ${p.category}\nStatus: ${p.status === 'soon' ? 'Coming soon' : 'Available'}\nURL: ${pUrl(p)}\n\n${p.description}\n` +
     (p.features.length ? `\nHighlights:\n${p.features.map(f => '- ' + f).join('\n')}\n` : '') + (p.specs.length ? `\nSpecifications:\n${p.specs.map(s => `- ${s[0]}: ${s[1]}`).join('\n')}\n` : '') + (p.docs.length ? `\nDocs:\n${p.docs.map(d => `- ${d.label}: ${d.url}`).join('\n')}\n` : '')).join('\n') +
