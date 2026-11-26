@@ -92,6 +92,8 @@ h2{background-image:linear-gradient(90deg,#fff 0%,#fff 30%,#FFE9A8 41%,#FFB347 5
 .card:after{background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,211,107,.14),transparent 60%)}
 .ph{border-bottom-color:rgba(255,154,46,.25)}
 .ph img{filter:saturate(1.1) contrast(1.04)}
+.ph img[src$="-packshot.webp"]{filter:none;object-fit:contain;background:#fff}
+.main-img:has(img[src$="-packshot.webp"]){background:#fff}
 .ph:after{background:linear-gradient(transparent 46%,rgba(255,184,107,.55) 50%,transparent 54%) 0 -60%/100% 60% no-repeat;border-color:rgba(255,154,46,.25)}
 .card h3{color:#fff}
 .card:hover h3{color:var(--gold);text-shadow:0 0 18px var(--glow)}

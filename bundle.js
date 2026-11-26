@@ -108,7 +108,7 @@ window.SITE = {
       buyerSummary: "Designed in India for professional UAVs, Aazmuth has three IMUs and two barometers on separate buses. Its modular design lets you replace an IMU board without replacing the controller.",
       buyerCheck: "For a survey or agriculture UAV, compare the 92 x 54 x 14.6 mm enclosure and 63 g weight with your airframe. Confirm the firmware, peripheral connections and supported sensor modules for your build.",
       status: "available", featured: true,
-      image: "https://static.wixstatic.com/media/e688f6_4ef9d2c2ab6a43a5ab35ac564c0604cc~mv2.jpg", gallery: [],
+      image: "images/aazmuth-flight-controller-packshot.webp", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
          Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
@@ -144,7 +144,7 @@ window.SITE = {
       buyerSummary: "An F7 flight controller for 3S to 6S racing and freestyle quads, with an onboard OSD and separate 5 V and 10 V outputs for supported peripherals.",
       buyerCheck: "Check frame mounting, the ESC cable pinout and the voltage and current requirements of your receiver and video system. Ask which current ESC options fit your stack if you are replacing an older board.",
       also: ["FPV"], status: "available", featured: true,
-      image: "https://static.wixstatic.com/media/e688f6_7ed082c4ce4c4d01baea626a1683544f~mv2.jpg", gallery: [],
+      image: "images/exelr8-fpv-flight-controller-f7-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -170,7 +170,7 @@ window.SITE = {
       buyerSummary: "A single 60 A AM32 electronic speed controller for 3S to 6S LiPo power systems. Compare it for multirotors that need one ESC per motor.",
       buyerCheck: "Share the battery cell count, motor model, propeller size and measured current under load when requesting a quote. Confirm cooling and current headroom for the intended payload.",
       status: "available", featured: true,
-      image: "https://static.wixstatic.com/media/e688f6_f41fedc59ef8475a8a40bf6cc0885654~mv2.jpg", gallery: [],
+      image: "images/skydrive-am32-60a-packshot.webp", gallery: [],
       /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
          Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
       journey: {
@@ -237,7 +237,7 @@ window.SITE = {
       buyerSummary: "A DroneCAN GPS module with an onboard magnetometer for UAV positioning. Compare it for flight controllers that support CAN peripherals.",
       buyerCheck: "Confirm the controller supports DroneCAN and check the connector, available CAN port and mounting space. Position hold, return-to-home and waypoint behavior depend on your flight firmware and configuration.",
       also: ["FPV"], status: "available", featured: true,
-      image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
+      image: "images/navsate-gps-for-uavs-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -319,7 +319,7 @@ window.SITE = {
       buyerSummary: "A 2.4 GHz ExpressLRS receiver for FPV aircraft. It connects to the flight controller through CRSF, takes a 5 V supply and includes a 65 mm T-antenna.",
       buyerCheck: "Check that your radio uses 2.4 GHz ExpressLRS, that the flight controller has a suitable UART for CRSF and that the frame has room for the antenna. Confirm firmware compatibility before binding.",
       also: ["ESCs","FPV"], status: "available", featured: false,
-      image: "images/elrs-fpv-receiver-main.webp", gallery: ["images/elrs-fpv-receiver-gallery-1.webp"],
+      image: "images/elrs-fpv-receiver-packshot.webp", gallery: ["images/elrs-fpv-receiver-gallery-1.webp"],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -344,7 +344,7 @@ window.SITE = {
       buyerSummary: "A four-channel AM32 ESC for 3S to 6S FPV builds. One board serves all four motors, with DShot support for compatible flight controllers.",
       buyerCheck: "Confirm whether the catalogue 80 A figure applies per channel or to the board before choosing motors. Also check your mounting pattern, flight-controller cable pinout and airflow.",
       also: ["FPV"], status: "available", featured: false,
-      image: "images/sate-4-in-1-esc-80a-main.webp", gallery: [],
+      image: "images/sate-4-in-1-esc-80a-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -369,7 +369,7 @@ window.SITE = {
       buyerSummary: "A compact 5.8 GHz analog video transmitter in development for FPV builds using analog goggles or a compatible video receiver.",
       buyerCheck: "Ask for the final input voltage, supported channels, output power levels and antenna connector before choosing a video system.",
       also: ["FPV"], status: "soon", featured: false,
-      image: "images/analog-vtx-main.webp", gallery: [],
+      image: "images/analog-vtx-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -394,7 +394,7 @@ window.SITE = {
       buyerSummary: "A compact 5.8 GHz digital video transmitter in development for FPV builds. Confirm support for your goggles or receiver before choosing this model.",
       buyerCheck: "Ask which digital video protocol and camera connections the final version supports. The frequency band alone does not establish compatibility with your existing equipment.",
       also: ["FPV"], status: "soon", featured: false,
-      image: "images/digital-vtx-main.webp", gallery: [],
+      image: "images/digital-vtx-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -483,7 +483,7 @@ window.SITE = {
       buyerSummary: "A low-profile STM32H7 flight controller for training drones. It combines an IMU, barometer and magnetometer in a compact enclosure.",
       buyerCheck: "For a training fleet, check mounting options, cable access and firmware support for the exercises you plan to teach. Include the number of aircraft when requesting a quote.",
       also: ["FPV"], status: "soon", featured: false,
-      image: "images/aazmuth-mini-main.webp", gallery: [],
+      image: "images/aazmuth-mini-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -508,7 +508,7 @@ window.SITE = {
       buyerSummary: "A combined flight controller and 4-in-1 ESC for compact builds, with DShot and AM32 compatibility. It reduces the number of separate boards in the stack.",
       buyerCheck: "Ask how the published 25 A rating applies to the motor channels. Confirm motor load, battery input, mounting pattern and peripheral connections before choosing this board.",
       also: ["ESCs","FPV"], status: "available", featured: false,
-      image: "images/sate-aio-board-main.webp", gallery: ["images/sate-aio-board-gallery-1.webp"],
+      image: "images/sate-aio-board-packshot.webp", gallery: ["images/sate-aio-board-gallery-1.webp"],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },
@@ -552,7 +552,7 @@ window.SITE = {
       buyerSummary: "A 5 x 5 cm STM32H7 flight controller for 3S to 6S builds, with two IMUs, two barometers and support for Betaflight and ArduPilot.",
       buyerCheck: "Choose the firmware your project needs, then confirm the board target and peripheral support for that firmware. Check the mounting pattern separately from the overall board size.",
       also: ["FPV"], status: "available", featured: false,
-      image: "images/kinetik-flight-controller-main.webp", gallery: [],
+      image: "images/kinetik-flight-controller-packshot.webp", gallery: [],
       journey: {
         design: { text: "", imgs: [], video: "" },
         bench : { text: "", imgs: [], video: "" },

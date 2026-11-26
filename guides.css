@@ -39,6 +39,10 @@
   margin-bottom: 12px;
 }
 
+.guide-main .cards img[src$="-packshot.webp"] {
+  background: #fff;
+}
+
 .guide-main :is(.cards, .glist) p { margin: 8px 0 0; color: var(--mute); }
 .guide-main details { margin-top: 10px; }
 .guide-main summary { cursor: pointer; }
