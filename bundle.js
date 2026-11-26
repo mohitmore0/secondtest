@@ -1091,7 +1091,9 @@ LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
 <section><div class="wrap lg"><aside class="lg-toc" aria-label="On this page"><b>On this page</b>${L.sections.map((s,i)=>`<a href="#s${i+1}">${i+1}. ${E(s.h)}</a>`).join('')}<hr>${LG.pages.filter(x=>x!==L).map(x=>`<a href="${x.slug}.html">${E(x.nav)}</a>`).join('')}</aside><article class="lg-body">${L.officerBlock?offHtml():''}${secHtml(L)}</article></div></section></main>`}});
 
 /* ---------- render ---------- */
+const pcbLoader = $('#pcb-loader');
 d.body.innerHTML=header+(['guides','collection','custom-components'].includes(page)?$('#main').outerHTML:(pages[page]||pages.home)())+footer;
+if (pcbLoader) d.body.prepend(pcbLoader);
 
 /* hero slider: har 3 sec (data.js: hero.interval) me auto slide. Dots, arrows, swipe, tab hidden hone par ruk jata hai */
 (()=>{const hs=$('#hs');if(!hs)return;

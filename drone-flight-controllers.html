@@ -36,10 +36,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="bundle.css?v=4f23b4c1">
-<link rel="stylesheet" href="guides.css?v=4f23b4c1">
+<link rel="stylesheet" href="bundle.css?v=3d6e540f">
+<link rel="stylesheet" href="guides.css?v=3d6e540f">
 </head>
 <body data-page="collection">
+<div id="pcb-loader" class="pcb-loader" hidden>
+<svg viewBox="0 0 240 160" aria-hidden="true">
+  <rect class="pcb-loader-board" x="17" y="14" width="206" height="132" rx="16"/>
+  <g class="pcb-loader-traces">
+    <path pathLength="100" d="M35 35h31l32 32M35 80h63M35 125h31l32-32M205 35h-31l-32 32M205 80h-63M205 125h-31l-32-32M120 30v28m0 44v28"/>
+  </g>
+  <g class="pcb-loader-pads"><circle cx="35" cy="35" r="4"/><circle cx="35" cy="80" r="4"/><circle cx="35" cy="125" r="4"/><circle cx="205" cy="35" r="4"/><circle cx="205" cy="80" r="4"/><circle cx="205" cy="125" r="4"/></g>
+  <g class="pcb-loader-chip"><rect x="98" y="58" width="44" height="44" rx="6"/><path d="m108 83 7-7 5 8 5-11 7 7"/></g>
+</svg>
+<span role="status">Loading page</span>
+</div>
+<script>
+(() => {
+  const loader = document.getElementById('pcb-loader');
+  if (document.readyState === 'complete') return;
+  loader.hidden = false;
+  window.addEventListener('load', () => {
+    loader.classList.add('pcb-loader-exit');
+    loader.setAttribute('aria-hidden', 'true');
+  }, { once: true });
+})();
+</script>
 <a class="skip-link" href="#main">Skip to main content</a>
 <header><nav aria-label="Main"><a href="/">Home</a> <a href="products.html">Products</a> <a href="about.html">About</a> <a href="custom-components.html">Custom Orders</a> <a href="contact.html">Contact</a></nav></header>
 <main id="main" class="guide-main">
@@ -50,7 +72,7 @@
 <div class="cta"><a class="btn" href="contact.html">Ask about compatibility or pricing</a><a class="btn o" href="products.html">View all products</a></div>
 </main>
 <footer><p><a href="guides.html">Guides</a></p><p>&copy; 2026 Space and Tech Engineering LLP. Made in India drone components. +91 96657 17903 | <a href="mailto:arup@spaceandtech-engineerings.com">arup@spaceandtech-engineerings.com</a></p><address>Space and Tech Engineering LLP, LLPIN ABC-5467. Registered office: Unit 37A, Patel Industrial Estate, Vivekananda Rd, Yadav Nagar, Dahisar East, Mumbai 400068</address><p>Last updated: <time datetime="2026-11-26">2026-11-26</time></p><p><a href="terms.html">Terms and Conditions</a> | <a href="refund-policy.html">Returns and Warranty</a> | <a href="privacy.html">Privacy Policy</a> | <a href="grievance.html">Grievance Redressal</a> | <a href="disclaimer.html">Disclaimer</a> | <a href="product-regulatory.html">Product Regulatory Disclaimer</a> | Grievance Officer: Arup Das, <a href="mailto:arup@spaceandtech-engineerings.com">arup@spaceandtech-engineerings.com</a></p><p>Follow us: <a href="https://in.linkedin.com/company/space-and-tech-engineering" rel="noopener">LinkedIn</a> | <a href="https://www.instagram.com/spaceandtechengg" rel="noopener">Instagram</a> | <a href="https://spaceandtech-engineerings.gitbook.io/space-and-tech-engineerings-docs" rel="noopener">Documentation</a></p></footer>
-<script src="bundle.js?v=4f23b4c1"></script>
+<script src="bundle.js?v=3d6e540f"></script>
 
 </body>
 </html>

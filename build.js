@@ -232,6 +232,28 @@ ${p.status !== 'soon' ? `<p><a href="${E(waLink(p))}">Get a quote on WhatsApp</a
 };
 const READY = '';
 const SCRIPTS = `<script src="bundle.js?v=${VER}"></script>\n${READY}`;
+const PCB_LOADER = `<div id="pcb-loader" class="pcb-loader" hidden>
+<svg viewBox="0 0 240 160" aria-hidden="true">
+  <rect class="pcb-loader-board" x="17" y="14" width="206" height="132" rx="16"/>
+  <g class="pcb-loader-traces">
+    <path pathLength="100" d="M35 35h31l32 32M35 80h63M35 125h31l32-32M205 35h-31l-32 32M205 80h-63M205 125h-31l-32-32M120 30v28m0 44v28"/>
+  </g>
+  <g class="pcb-loader-pads"><circle cx="35" cy="35" r="4"/><circle cx="35" cy="80" r="4"/><circle cx="35" cy="125" r="4"/><circle cx="205" cy="35" r="4"/><circle cx="205" cy="80" r="4"/><circle cx="205" cy="125" r="4"/></g>
+  <g class="pcb-loader-chip"><rect x="98" y="58" width="44" height="44" rx="6"/><path d="m108 83 7-7 5 8 5-11 7 7"/></g>
+</svg>
+<span role="status">Loading page</span>
+</div>
+<script>
+(() => {
+  const loader = document.getElementById('pcb-loader');
+  if (document.readyState === 'complete') return;
+  loader.hidden = false;
+  window.addEventListener('load', () => {
+    loader.classList.add('pcb-loader-exit');
+    loader.setAttribute('aria-hidden', 'true');
+  }, { once: true });
+})();
+</script>`;
 function shell(m, url, ld, bodyAttr, body, og) {
   return `<!DOCTYPE html>
 <html lang="en-IN" data-static="1">
@@ -248,6 +270,7 @@ ${FONTS}
 <link rel="stylesheet" href="bundle.css?v=${VER}">
 </head>
 <body ${bodyAttr}>
+${PCB_LOADER}
 <a class="skip-link" href="#main">Skip to main content</a>
 ${nav}
 ${body.replace('<main>', '<main id="main">')}
@@ -323,6 +346,7 @@ ${FONTS}
 <link rel="stylesheet" href="guides.css?v=${VER}">
 </head>
 <body data-page="${page}">
+${PCB_LOADER}
 <a class="skip-link" href="#main">Skip to main content</a>
 ${nav}
 ${body}
