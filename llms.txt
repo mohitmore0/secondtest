@@ -8,9 +8,9 @@ Key facts:
 - OEM and bulk orders: arup@spaceandtech-engineerings.com, +91 96657 17903.
 
 ## Product collections
-- [Indian Drone Flight Controllers for UAV & FPV](https://www.spaceandtechengineerings.com/drone-flight-controllers.html): Compare Aazmuth STM32H7 and Exelr8 F7 flight controllers for UAV and FPV builds. Check specifications, documentation and OEM quote options.
-- [AM32 Drone ESCs for UAV and FPV Builds](https://www.spaceandtechengineerings.com/drone-escs.html): Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.
-- [GPS Modules for UAV and FPV Drones](https://www.spaceandtechengineerings.com/drone-gps-modules.html): Compare NAVSATE UAV GPS and NAVSATE Mini FPV GPS for drone builds that need position data.
+- [Drone Flight Controllers for UAVs and FPV | SATE India](https://www.spaceandtechengineerings.com/drone-flight-controllers.html): Compare STM32H7 and F7 drone flight controllers from SATE. Check UAV autopilot hardware, FPV board specifications and firmware support.
+- [AM32 Drone ESCs | Single and 4-in-1 ESCs for UAV & FPV](https://www.spaceandtechengineerings.com/drone-escs.html): Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.
+- [Drone GPS and GNSS Modules | DroneCAN and FPV GPS](https://www.spaceandtechengineerings.com/drone-gps-modules.html): Compare the NAVSATE DroneCAN GPS and GNSS module with the compact NAVSATE Mini GPS for FPV drones. Check your flight controller interface.
 - [FPV Drone Electronics and Components](https://www.spaceandtechengineerings.com/fpv-drone-electronics.html): Browse FPV flight controllers, ESCs, GPS modules, ExpressLRS receivers and video transmitters by build requirement.
 - [5.8 GHz FPV Video Transmitters](https://www.spaceandtechengineerings.com/fpv-video-transmitters.html): Compare Space and Tech Engineering’s analog and digital 5.8 GHz FPV video transmitter product pages.
 

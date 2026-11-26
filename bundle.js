@@ -63,24 +63,24 @@ window.SITE = {
      specs  : [["Naam","Value"], ...] (khali chhodo to table hide ho jayegi)
      docs   : [{label,url}]          |  buyUrl: store link (optional)        */
   categories: ["Flight controllers", "ESCs", "GPS", "FPV", "Transmitters", "Receivers", "Video transmitters", "Radar"],
-  catalogIntro: "Compare flight controllers, AM32 electronic speed controllers, GPS modules, ExpressLRS receivers and FPV video transmitters. Filter by component, then open a product to check its specifications, compatibility and availability.",
+  catalogIntro: "Compare UAV and FPV drone parts, including STM32 flight controllers, AM32 electronic speed controllers (ESCs), GPS and GNSS modules, ExpressLRS (ELRS) receivers and FPV video transmitters (VTX). Open each model for specifications, compatibility and availability.",
   catalogBuying: "Start with your aircraft type, battery voltage and the parts you already own. If you need a compatibility check, current pricing or a bulk quote in India, share your build details and quantity with our team.",
   productCollections: {
     "Flight controllers": {
-      slug: "drone-flight-controllers", title: "Indian Drone Flight Controllers for UAV & FPV",
-      description: "Compare Aazmuth STM32H7 and Exelr8 F7 flight controllers for UAV and FPV builds. Check specifications, documentation and OEM quote options.",
+      slug: "drone-flight-controllers", title: "Drone Flight Controllers for UAVs and FPV | SATE India",
+      description: "Compare STM32H7 and F7 drone flight controllers from SATE. Check UAV autopilot hardware, FPV board specifications and firmware support.",
       advice: "For a survey or agriculture UAV, start with Aazmuth if you need three IMUs, two barometers and replaceable IMU boards. For a 3S to 6S FPV quad, compare Exelr8 F7 if you need onboard OSD. Check the exact firmware target, frame clearance and GPS, receiver and ESC connections before ordering. For an OEM quote, share your aircraft type, firmware requirements and quantity.",
       guide: "guide-flight-controller-india"
     },
     "ESCs": {
-      slug: "drone-escs", title: "AM32 Drone ESCs for UAV and FPV Builds",
+      slug: "drone-escs", title: "AM32 Drone ESCs | Single and 4-in-1 ESCs for UAV & FPV",
       description: "Compare AM32 electronic speed controllers, including 3–6S single and 4-in-1 ESCs and a high-current 6–12S option.",
       advice: "Match the battery cell count first, then compare continuous current ratings with your motor and propeller load. A 4-in-1 board combines four channels in one stack. Individual ESCs can be replaced one at a time. Check the individual product for its signal, voltage and mounting requirements.",
       guide: "guide-am32-esc"
     },
     "GPS": {
-      slug: "drone-gps-modules", title: "GPS Modules for UAV and FPV Drones",
-      description: "Compare NAVSATE UAV GPS and NAVSATE Mini FPV GPS for drone builds that need position data.",
+      slug: "drone-gps-modules", title: "Drone GPS and GNSS Modules | DroneCAN and FPV GPS",
+      description: "Compare the NAVSATE DroneCAN GPS and GNSS module with the compact NAVSATE Mini GPS for FPV drones. Check your flight controller interface.",
       advice: "Choose the module by available space and the flight controller’s supported GPS interface. The UAV module is intended for builds that use position hold and waypoint missions. NAVSATE Mini is intended for compact FPV frames. Flight modes depend on the flight controller and its firmware.",
       guide: "guide-uav-gps-module"
     },
@@ -315,7 +315,7 @@ window.SITE = {
       slug: "elrs-fpv-receiver", name: "ELRS FPV radio receiver", category: "Receivers",
       heading: "2.4 GHz ExpressLRS FPV Receiver (ELRS)",
       seoTitle: "2.4 GHz ExpressLRS FPV Receiver | ESP32, CRSF, 5 V",
-      seoDescription: "2.4 GHz ExpressLRS FPV receiver with ESP32, CRSF, a 5 V input and a 65 mm T-antenna. Check your setup and request pricing in India.",
+      seoDescription: "Compare SATE's 2.4 GHz ExpressLRS (ELRS) receiver for FPV drones with ESP32, CRSF, 5 V input and a 65 mm T-antenna.",
       buyerSummary: "A 2.4 GHz ExpressLRS receiver for FPV aircraft. It connects to the flight controller through CRSF, takes a 5 V supply and includes a 65 mm T-antenna.",
       buyerCheck: "Check that your radio uses 2.4 GHz ExpressLRS, that the flight controller has a suitable UART for CRSF and that the frame has room for the antenna. Confirm firmware compatibility before binding.",
       also: ["ESCs","FPV"], status: "available", featured: false,
@@ -365,7 +365,7 @@ window.SITE = {
       slug: "analog-vtx", name: "Analog VTX", category: "Video transmitters",
       heading: "5.8 GHz Analog FPV Video Transmitter (VTX)",
       seoTitle: "5.8 GHz Analog FPV Video Transmitter | In Development",
-      seoDescription: "Compact 5.8 GHz analog FPV VTX in development. Ask about analog goggle compatibility, specifications and release timing.",
+      seoDescription: "SATE's 5.8 GHz analog video transmitter (VTX) for FPV drones is in development. Ask about goggle compatibility and availability.",
       buyerSummary: "A compact 5.8 GHz analog video transmitter in development for FPV builds using analog goggles or a compatible video receiver.",
       buyerCheck: "Ask for the final input voltage, supported channels, output power levels and antenna connector before choosing a video system.",
       also: ["FPV"], status: "soon", featured: false,

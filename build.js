@@ -75,7 +75,7 @@ const META = {
     desc: 'Compare UAV and FPV component specifications, from flight controllers and AM32 ESCs to GPS modules. Request a product or custom-spec quote.' },
   about: { file: 'about.html', path: 'about.html', title: 'About Space and Tech Engineering | Drone Electronics, India',
     desc: 'A small team of hardware and firmware engineers in India building flight controllers, ESCs and GPS for Indian drone builders.' },
-  'custom-components': { file: 'custom-components.html', path: 'custom-components.html', title: 'Custom Drone Components & UAV Electronics in India | SATE',
+  'custom-components': { file: 'custom-components.html', path: 'custom-components.html', title: 'Custom UAV Electronics & OEM Drone Components | SATE India',
     desc: 'Request a quote for custom drone electronics in India. Share your flight controller, ESC, GPS or other UAV component requirements with SATE.' },
   contact: { file: 'contact.html', path: 'contact.html', title: 'Contact Space and Tech Engineering | Get an OEM Quote',
     desc: `Call or WhatsApp ${S.phone} or email us for OEM and bulk quotes on drone flight controllers, AM32 ESCs and GPS modules made in India.` }
@@ -156,8 +156,8 @@ ${S.categories.filter(c => S.products.some(p => S.inCat(p, c))).map(c => `<h2>${
   }) + `</main>`,
   'custom-components': () => `<main><section><div class="wrap">
 <div class="custom-order-hero"><div>
-<h1 class="cn">Custom drone components in India</h1>
-<p class="lead">Space and Tech Engineering reviews custom drone electronics requests for prototypes and OEM batches. Tell us which UAV component you need and what must change, such as the board size, pinout or operating voltage.</p>
+<h1 class="cn">Custom drone components and OEM UAV electronics</h1>
+<p class="lead">Based in India, Space and Tech Engineering reviews custom UAV electronics enquiries for prototype builds and OEM production batches. Tell us which drone component you need and what has to change, such as the PCB dimensions, connector pinout or operating voltage.</p>
 <div class="cta"><a class="btn" href="contact.html?product=custom-components">Request a custom quote</a><a class="btn o" href="mailto:${E(S.email)}?subject=Custom%20component%20enquiry">Email your requirements</a></div>
 </div><figure class="custom-order-visual">
 <svg viewBox="0 0 480 360" role="img" aria-labelledby="footprint-title">
@@ -200,9 +200,9 @@ ${[210,240,270].map(x => `<circle cx="${x}" cy="64" r="4.5"/><circle cx="${x}" c
 <section class="custom-components-types" aria-labelledby="custom-component-types">
 <h2 id="custom-component-types">Drone electronics we can review for customization</h2>
 <div class="custom-components-grid">
-<article><h3>Custom flight controllers</h3><p>Share the board footprint, mounting hole spacing, connectors and firmware compatibility your flight controller needs.</p><a href="drone-flight-controllers.html">Compare flight controllers</a></article>
-<article><h3>Custom UAV ESCs</h3><p>Tell us your battery voltage, continuous current requirement and available mounting space. Include AM32 compatibility if it matters to your build.</p><a href="drone-escs.html">Compare drone ESCs</a></article>
-<article><h3>Custom drone GPS modules</h3><p>Share the connector, pinout, mounting limits and flight controller interface you need for your GPS or GNSS module.</p><a href="drone-gps-modules.html">Compare GPS modules</a></article>
+<article><h3>Custom UAV flight controller boards</h3><p>For a custom flight controller PCB, share the board footprint, mounting hole spacing, connector pinout and firmware requirements.</p><a href="drone-flight-controllers.html">Compare flight controllers</a></article>
+<article><h3>Custom drone ESCs</h3><p>Tell us whether you need a single or 4-in-1 electronic speed controller. Include battery voltage, continuous current, mounting limits and any AM32 or DShot requirements.</p><a href="drone-escs.html">Compare drone ESCs</a></article>
+<article><h3>Custom GPS and GNSS modules</h3><p>For a UAV navigation module, share the connector pinout, mounting limits and interface your flight controller needs, such as DroneCAN or serial GPS.</p><a href="drone-gps-modules.html">Compare GPS modules</a></article>
 </div>
 </section>
 <section class="custom-components-quote" aria-labelledby="custom-quote-heading">
@@ -304,6 +304,18 @@ Object.keys(pageType).forEach(k => {
     items.push({ '@type': 'ItemList', '@id': url + '#list', name: 'Space and Tech Engineering products', itemListElement: avail.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: pUrl(p), name: p.name })) });
     extra.mainEntity = { '@id': url + '#list' };
   }
+  if (k === 'custom-components') {
+    const serviceId = url + '#service';
+    items.push({
+      '@type': 'Service', '@id': serviceId, url,
+      name: 'Custom drone components',
+      description: m.desc,
+      serviceType: 'Custom drone electronics and UAV components',
+      provider: { '@id': ORG_ID },
+      areaServed: { '@type': 'Country', name: 'India' }
+    });
+    extra.mainEntity = { '@id': serviceId };
+  }
   items.push(webpage(m, url, pageType[k], extra));
   w(m.file, shell(m, url, items, `data-page="${k}"`, BODY[k]()));
 });
@@ -331,7 +343,10 @@ S.products.forEach(p => {
   if (collection) trail.push([collection.category, U + '/' + collection.slug + '.html']);
   trail.push([p.name, url]);
   // Quote-only listings use ItemPage and breadcrumbs without a Product snippet.
-  const items = [org, website, crumbs(url, trail), webpage(m, url, 'ItemPage')];
+  const primaryImage = m.image ? {
+    primaryImageOfPage: { '@type': 'ImageObject', contentUrl: abs(m.image), caption: m.imgAlt }
+  } : undefined;
+  const items = [org, website, crumbs(url, trail), webpage(m, url, 'ItemPage', primaryImage)];
   if (p.faq && p.faq.length) items.push(faqLd(url, p.faq.map(f => [f.q, f.a])));
   w(pFile(p), shell(m, url, items, `data-page="product" data-slug="${E(p.slug)}"`, BODY.product(p), 'product'));
 });
