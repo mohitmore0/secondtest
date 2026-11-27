@@ -256,28 +256,27 @@ window.SITE = {
     },
     {
       slug: "navsate-mini-gps", name: "NAVSATE mini for FPV drones", category: "GPS",
-      heading: "NAVSATE Mini GPS Module for FPV Drones",
-      seoTitle: "NAVSATE Mini GPS Module for Compact FPV Drones",
-      seoDescription: "NAVSATE Mini is a compact GPS module for FPV drones. Check mounting space and flight controller compatibility before requesting a quote.",
-      buyerSummary: "A compact GPS module for FPV builds where mounting space is limited. It supplies position data to a compatible flight controller.",
-      buyerCheck: "Ask for the current pinout, supply voltage, interface and dimensions before ordering, especially for a tight frame. Check which GPS features your flight firmware supports.",
       also: ["FPV"], status: "available", featured: false,
-      image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: [],
-      /* BENCH TO SKY (product page ke neeche). Har step me: text (optional, khali = default), imgs: ["images/x.jpg"], video: YouTube link.
-         Khali imgs/video = wo hissa dikhega hi nahi. Video: https://www.youtube.com/watch?v=XXXX ya https://youtu.be/XXXX */
+      image: "https://static.wixstatic.com/media/e688f6_64ebb40d939447eb83457bcc81170048~mv2.jpg", gallery: ["images/navsate-mini-gps-gallery-1.png"],
       journey: {
         design: { text: "", imgs: [], video: "" },
-        bench:  { text: "", imgs: [], video: "" },
-        fly:    { text: "", imgs: [], video: "" }
+        bench : { text: "", imgs: [], video: "" },
+        fly   : { text: "", imgs: [], video: "" }
       },
       short: "Compact NAVSATE GPS for FPV drones. Adds position data to small builds.",
       description: "NAVSATE mini is the compact version of our UAV GPS, made for FPV builds where weight and space matter. It adds position data for features like return-to-home to racing and long-range quads.",
-      features: ["Compact size for FPV builds", "Matches the Exelr8 FPV stack"],
+      features: ["Compact size for FPV builds","Matches the Exelr8 FPV stack"],
       specs: [["Built for","FPV drones"]],
       bestFor: ["FPV racing and freestyle"],
       faq: [
         { q: "What is the NAVSATE mini?", a: "A compact GPS module for FPV drones, from the same team that makes the NAVSATE UAV GPS." }
-      ], docs: []
+      ],
+      docs: [],
+      heading: "NAVSATE Mini GPS Module for FPV Drones",
+      seoTitle: "NAVSATE Mini GPS Module for Compact FPV Drones",
+      seoDescription: "NAVSATE Mini is a compact GPS module for FPV drones. Check mounting space and flight controller compatibility before requesting a quote.",
+      buyerSummary: "A compact GPS module for FPV builds where mounting space is limited. It supplies position data to a compatible flight controller.",
+      buyerCheck: "Ask for the current pinout, supply voltage, interface and dimensions before ordering, especially for a tight frame. Check which GPS features your flight firmware supports."
     },
     {
       slug: "trx-5km", name: "TRX 5 km", category: "Transmitters",
