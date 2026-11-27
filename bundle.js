@@ -891,6 +891,31 @@ const page=d.body.dataset.page,q=new URLSearchParams(location.search);
 const abs=u=>/^https?:/.test(u)?u:S.url+'/'+String(u).replace(/^\//,'');
 const pUrl=p=>p.slug+'.html';
 const collections=Object.entries(S.productCollections||{}).filter(([category])=>P.some(p=>S.inCat(p,category)&&!p.noindex));
+const enquiryIntents = {
+  contact: 'Hello SATE team, I have a question about your drone electronics.\n\nMy question: ',
+  quote: 'Hello SATE team, I would like a quote for drone components.\n\nComponents needed: \nQuantity: \nTarget delivery date: ',
+  oem: 'Hello SATE team, I would like an OEM or bulk order quote.\n\nComponents needed: \nEstimated quantity: \nTarget delivery date: ',
+  partnership: 'Hello SATE team, I am interested in working with SATE.\n\nCompany: \nPartnership or integration requirements: ',
+  advice: 'Hello SATE team, could you help me choose components for my drone build?\n\nBuild and compatibility requirements: '
+};
+function enquiryMessage(productSlug, intent, sourcePage) {
+  if (productSlug === 'custom-components') {
+    return 'Hello SATE team, I would like a quote for a custom drone component.\n\nComponent needed: \nRequired specifications: \nQuantity: \nTarget delivery date: ';
+  }
+  const product = P.find(item => item.slug === productSlug);
+  if (product) {
+    return product.status === 'soon'
+      ? 'Hello SATE team, could you share the expected availability and details for ' + product.name + '?\n\nIntended use: '
+      : 'Hello SATE team, I would like pricing and availability for ' + product.name + '.\n\nQuantity: \nCompatibility requirements: \nTarget delivery date: ';
+  }
+  const collection = collections.find(([, item]) => item.slug + '.html' === sourcePage);
+  if (collection && intent !== 'contact') {
+    return 'Hello SATE team, could you help me with compatibility and pricing for ' + collection[0].toLowerCase() + '?\n\nBuild details: \nQuantity: ';
+  }
+  const guide = (window.PRODUCT_GUIDES || []).find(item => item.slug + '.html' === sourcePage);
+  if (guide) return 'Hello SATE team, I read your guide “' + guide.h1 + '” and would like help with my build.\n\nMy question: ';
+  return Object.hasOwn(enquiryIntents, intent) ? enquiryIntents[intent] : '';
+}
 const collectionLinks=()=>`<ul>${collections.map(([,c])=>`<li><a href="${E(c.slug)}.html">${E(c.title)}</a></li>`).join('')}</ul>`;
 const tel='tel:+'+S.whatsapp;
 d.documentElement.classList.add('js');
@@ -1069,13 +1094,14 @@ contact(){
   path='contact.html';
   seo(`Contact | ${S.name}`,`Call, email or message ${S.name} to get a quote for your build.`,S.hero.image,[org,{"@context":"https://schema.org","@type":"ContactPage",url:S.url+'/'+path}],path);
   const sel=q.get('product')||'';
+  const draft=enquiryMessage(sel,q.get('intent'),q.get('from'));
   return compose('contact',{
 form:()=>`<section><div class="wrap contact"><div><h1 class="cn" style="font-size:clamp(40px,7vw,72px)">Talk to our engineers</h1><p class="lead">Share your build and we will suggest the right parts.</p>
 <a class="big" href="${tel}">${E(S.phone)}</a><a class="big" href="mailto:${E(S.email)}">${E(S.email)}</a><a class="big" href="https://wa.me/${E(S.whatsapp)}">WhatsApp</a>
 <div style="margin-top:26px">${S.about.offices.map(o=>`<div class="off" style="margin-bottom:12px"><h3 style="font-size:26px">${E(o.role)}</h3><p>${E(o.address)}</p></div>`).join('')}</div></div>
 <form id="f"><label>Your name<input name="n" required autocomplete="name" maxlength="80"></label><label>Phone<input name="p" type="tel" required autocomplete="tel" inputmode="tel" pattern="[0-9+ ()\-]{8,18}" maxlength="18" title="Enter a valid phone number"></label>
 <label>Product<select name="s"><option value="">Not sure yet</option><option value="Custom component order"${sel==='custom-components'?' selected':''}>Custom component order</option>${P.map(p=>`<option value="${E(p.name)}"${p.slug===sel?' selected':''}>${E(p.name)}</option>`).join('')}</select></label>
-<label>Message<textarea name="m" maxlength="1500" placeholder="${sel==='custom-components'?'Describe the component, specifications, quantity and target delivery date':'Tell us about your build and quantity'}"></textarea></label><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div><label class="chk"><input type="checkbox" name="ok" required> <span>I have read the <a href="privacy.html">Privacy Policy</a> and agree that Space and Tech Engineering LLP may use these details to reply to my enquiry.</span></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p id="fs" role="status" aria-live="polite" class="mute" style="font-size:14px;margin:0"></p><p class="mute" style="font-size:13px;margin:0">Nothing is stored on our website. This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section>`
+<label>Message<textarea name="m" maxlength="1500" placeholder="${sel==='custom-components'?'Describe the component, specifications, quantity and target delivery date':'Tell us about your build and quantity'}">${E(draft)}</textarea></label><div style="position:absolute;left:-9999px" aria-hidden="true"><label>Leave empty<input name="hp" tabindex="-1" autocomplete="off"></label></div><label class="chk"><input type="checkbox" name="ok" required> <span>I have read the <a href="privacy.html">Privacy Policy</a> and agree that Space and Tech Engineering LLP may use these details to reply to my enquiry.</span></label><button class="btn" type="submit">Send by email</button><button class="btn o" type="button" id="wa">Send on WhatsApp</button><p id="fs" role="status" aria-live="polite" class="mute" style="font-size:14px;margin:0"></p><p class="mute" style="font-size:13px;margin:0">Nothing is stored on our website. This opens your email app with the message ready to send. By contacting us you agree to our <a href=\"terms.html\">Terms</a> and <a href=\"privacy.html\">Privacy Policy</a>.</p></form></div></section>`
 });
 }};
 
@@ -1094,6 +1120,27 @@ LG.pages.forEach(L=>{pages[L.slug]=()=>{path=L.slug+'.html';
 const pcbLoader = $('#pcb-loader');
 d.body.innerHTML=header+(['guides','collection','custom-components'].includes(page)?$('#main').outerHTML:(pages[page]||pages.home)())+footer;
 if (pcbLoader) d.body.prepend(pcbLoader);
+
+/* Set the enquiry context on the link so opening it in a new tab works too. */
+const contactPath = new URL('contact.html', location.href).pathname;
+const currentProduct = page === 'product' ? P.find(item => item.slug === (d.body.dataset.slug || q.get('p'))) : null;
+const sourcePage = location.pathname.split('/').pop();
+for (const link of $$('a[href]')) {
+  if (link.origin !== location.origin || link.pathname !== contactPath) continue;
+  const url = new URL(link.href);
+  const label = link.textContent.toLowerCase();
+  const intent = /partner|distribut/.test(label) ? 'partnership'
+    : /oem|bulk/.test(label) ? 'oem'
+    : /compatibility|engineer|advice/.test(label) ? 'advice'
+    : /quote|pricing|launch/.test(label) ? 'quote' : 'contact';
+  if (!url.searchParams.has('product') && intent !== 'contact') {
+    if (currentProduct) url.searchParams.set('product', currentProduct.slug);
+    if (page === 'custom-components') url.searchParams.set('product', 'custom-components');
+  }
+  url.searchParams.set('intent', intent);
+  if (page === 'guides' || page === 'collection') url.searchParams.set('from', sourcePage);
+  link.href = url.href;
+}
 
 /* hero slider: har 3 sec (data.js: hero.interval) me auto slide. Dots, arrows, swipe, tab hidden hone par ruk jata hai */
 (()=>{const hs=$('#hs');if(!hs)return;
